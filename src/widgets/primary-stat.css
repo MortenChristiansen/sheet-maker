@@ -1,0 +1,21 @@
+primary-stat .container {
+    transform: rotate(-45deg);
+    border: 3px solid darkred;
+    width: 41px;
+    height: 41px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+primary-stat .inner-container {
+    border: 1px solid darkred;
+    margin: 2px;
+    width: 35px;
+    height: 35px;
+}
+
+primary-stat .container .content {
+    transform: rotate(45deg);
+    text-align: center;
+    width: 35px;
+}

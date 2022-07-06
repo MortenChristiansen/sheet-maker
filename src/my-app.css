@@ -1,0 +1,20 @@
+.message {
+  background-color: red;
+}
+
+body {
+  font-family: 'Eagle Lake', cursive;
+  font-size: 20px;
+  color: darkred;
+  background-image:  url('../content/paper-texture.png');
+  background-color: #FBF5EB;
+}
+/*
+font-family: 'Amatic SC', cursive;
+font-family: 'Eagle Lake', cursive;
+font-family: 'Estonia', cursive;
+font-family: 'Fleur De Leah', cursive;
+font-family: 'IM Fell DW Pica SC', serif;
+font-family: 'IM Fell English SC', serif;
+font-family: 'MedievalSharp', cursive;
+*/

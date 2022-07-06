@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"node_modules": true,
+			"**/*.map": true,
+			"**/package-lock.json": true,
+			"**/.yarnrc.yml": true,
+			"**/.npmrc": true,
+			"**/.htmlhintrc": true,
+			"**/.gitignore": true,
+			"**/.eslintrc.json": true,
+			"**/favicon.ico": true,
+			"**/.env": true,
+			"**/.env.development": true,
+			"**/README.md": true
+		}
+	},
+}
