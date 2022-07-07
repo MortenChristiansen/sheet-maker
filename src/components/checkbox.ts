@@ -1,9 +1,8 @@
 import { bindable } from "aurelia";
-import { ColorMode } from "../types";
+import { Component } from "./component";
 
-export class Checkbox {
-    @bindable state: "checked"|"unchecked";
-    @bindable colorMode: ColorMode;
+export class Checkbox extends Component {
+    @bindable state: "checked"|"unchecked" = "unchecked";
 
     toggle = () => {
         this.state = this.state == "checked" ? "unchecked" : "checked";

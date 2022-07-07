@@ -1,5 +1,6 @@
 checkbox {
     display: inline-block;
+    cursor: pointer;
 }
 
 checkbox .container {

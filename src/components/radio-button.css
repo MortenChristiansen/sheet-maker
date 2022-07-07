@@ -1,0 +1,18 @@
+radio-button {
+    display: inline-block;
+    cursor: pointer;
+}
+
+radio-button .container {
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+}
+
+radio-button .container.selected {
+    background-image: url('../../content/Radio checked.png');
+}
+
+radio-button .container.unselected {
+    background-image: url('../../content/Radio.png');
+}

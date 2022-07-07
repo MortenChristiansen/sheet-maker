@@ -1,5 +1,6 @@
 <require from="widgets/primary-stat"></require>
 <require from="components/checkbox"></require>
+<require from="components/radio-button"></require>
 
 Fireball
 <br/>
@@ -19,3 +20,13 @@ Fireball
 <checkbox state="checked" color-mode="monochrome"></checkbox>
 <checkbox state="unchecked" color-mode="color"></checkbox>
 <checkbox color-mode="color"></checkbox>
+
+<div>
+    <radio-button group="radios" color-mode="color"></radio-button>
+    <radio-button group="radios" color-mode="color" state="selected"></radio-button>
+    <radio-button group="radios" color-mode="monochrome" state="selected"></radio-button>
+    <radio-button group="radios" color-mode="monochrome" state="unselected"></radio-button>
+    <radio-button color-mode="monochrome" state="unselected"></radio-button>
+</div>
+
+<primary-stat value="1"></primary-stat>

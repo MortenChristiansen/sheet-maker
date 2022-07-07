@@ -1,12 +1,11 @@
 import { bindable } from "aurelia";
-import { ColorMode } from "../types";
+import { Component } from "../components/component";
 
-export class PrimaryStat {
+export class PrimaryStat extends Component {
     @bindable value: number;
     @bindable max: number = 99;
     @bindable min: number = -99;
     @bindable mode: "primary" | "primary-angled" | "secondary" | "secondary-angled" = "primary-angled";
-    @bindable colorMode: ColorMode;
 
     containerElement: Element;
     active: boolean = false;
