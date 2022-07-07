@@ -1,6 +1,6 @@
-<div class="container ${active === true ? 'active' : ''} ${mode}"
+<div class="container ${active === true ? 'active' : ''} ${mode} ${colorMode || 'color'}"
      pointerdown.delegate="press()"
      ref="containerElement">
-    <span class="content">${value}</div>
+    <span class="content numbers">${value}</div>
 </div>
 <div class="overlay" if.bind="active"  pointerup.delegate="release()" pointermove.delegate="move($event)"></div>
