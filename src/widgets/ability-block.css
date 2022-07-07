@@ -5,11 +5,6 @@ ability-block {
     margin: 30px;
 }
 
-ability-block .text {
-    font-size: 16px;
-    color: #446;
-}
-
 ability-block > .container {
     padding: 10px 30px;
 }

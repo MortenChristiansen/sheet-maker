@@ -1,0 +1,27 @@
+fatigue-block {
+    display: block;
+    margin: 30px;
+    width: 300px;
+}
+
+fatigue-block > .container {
+    padding: 10px 30px;
+}
+
+fatigue-block > .grid {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+fatigue-block > .grid > * {
+    align-self: center;
+}
+
+fatigue-block > .grid > .right {
+    justify-self: right;
+}
+
+fatigue-block radio-button {
+    margin-left: 5px;;
+}

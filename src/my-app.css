@@ -28,6 +28,11 @@ font-family: 'MedievalSharp', cursive;
   filter: grayscale(100%);
 }
 
+.text {
+    font-size: 16px;
+    color: #446;
+}
+
 
 .box {
   border-top-left-radius: 255px 15px;
