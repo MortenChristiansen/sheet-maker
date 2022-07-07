@@ -38,3 +38,17 @@ font-family: 'MedievalSharp', cursive;
   border:solid 2px #cbc1ad;
   padding: 7px 7px 0 7px;
 }
+
+input[type="text"] {
+  border: none;
+  border-bottom: 2px solid #cbc1ad;
+  background: none;
+  font-family: 'Estonia', cursive;
+  font-size: 30px;
+  font-weight: bold;
+  width: 100%;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}

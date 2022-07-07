@@ -1,0 +1,9 @@
+list {
+    display: block;
+    margin: 30px;
+    width: 300px;
+}
+
+list > .container {
+    margin: 0 25px 20px 20px;
+}

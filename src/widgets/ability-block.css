@@ -15,19 +15,9 @@ ability-block > .container {
 }
 
 ability-block input[type="text"] {
-    border: none;
-    border-bottom: 2px solid #cbc1ad;
-    background: none;
-    font-family: 'Estonia', cursive;
-    font-size: 30px;
-    width: 150px;
     text-align: center;
+    width: 150px;
     color: #888;
-}
-
-ability-block input[type="text"]:focus {
-    outline: none;
-
 }
 
 ability-block primary-stat {

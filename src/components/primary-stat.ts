@@ -56,7 +56,6 @@ export class PrimaryStat extends Component {
     }
 
     getValuePrefix = () => {
-        console.log(this.prefixPlus);
         if (!this.prefixPlus)
             return '';
 

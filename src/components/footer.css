@@ -10,6 +10,7 @@ footer .line {
     width: 100%;
     display: inline-block;
     transform: scaleY(-1);
+    align-self: center;
 }
 
 footer .line-start {
@@ -20,6 +21,7 @@ footer .line-start {
     width: 13px;
     display: inline-block;
     transform: scaleX(-1) scaleY(-1);
+    align-self: center;
 }
 
 footer .line-end {
@@ -30,6 +32,7 @@ footer .line-end {
     width: 13px;
     display: inline-block; 
     transform: scaleY(-1);
+    align-self: center;
 }
 
 footer .grid {
