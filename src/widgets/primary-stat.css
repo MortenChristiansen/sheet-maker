@@ -1,28 +1,38 @@
 primary-stat .container {
-    transform: rotate(-45deg);
-    border: 3px solid darkred;
-    width: 41px;
-    height: 41px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    width: 60px;
+    height: 60px;
     cursor: grab;
+    background-size: contain;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+primary-stat .container.primary {
+    background-image: url('../../content/Stat box.png');
+}
+
+primary-stat .container.primary-angled {
+    background-image: url('../../content/Stat box angled.png');
+}
+
+primary-stat .container.secondary {
+    background-image: url('../../content/Simple stat box.png');
+    width: 44px;
+    height: 44px;
+    margin: 8px;
+}
+
+primary-stat .container.secondary-angled {
+    background-image: url('../../content/Simple stat box angled.png');
 }
 
 primary-stat .container.active {
     cursor: grabbing;
 }
 
-primary-stat .inner-container {
-    border: 1px solid darkred;
-    margin: 2px;
-    width: 35px;
-    height: 35px;
-}
-
 primary-stat .container .content {
-    transform: rotate(45deg);
-    text-align: center;
-    width: 35px;
     user-select: none;
 }
 

@@ -4,6 +4,7 @@ export class PrimaryStat {
     @bindable value: number;
     @bindable max: number = 99;
     @bindable min: number = -99;
+    @bindable mode: "primary" | "primary-angled" | "secondary" | "secondary-angled" = "primary-angled";
 
     containerElement: Element;
     active: boolean = false;
