@@ -1,4 +1,5 @@
-<require from="widgets/primary-stat"></require>
+<require from="widgets/ability-block"></require>
+<require from="components/primary-stat"></require>
 <require from="components/checkbox"></require>
 <require from="components/radio-button"></require>
 
@@ -6,8 +7,11 @@ Fireball
 <br/>
 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
 
+<ability-block></ability-block>
+
 <primary-stat value="-3" mode="primary"></primary-stat>
 <primary-stat value="-2" mode="secondary"></primary-stat>
+<primary-stat value="-2" mode="secondary" size="s"></primary-stat>
 <primary-stat value="-1" mode="secondary-angled"></primary-stat>
 <primary-stat value="0"></primary-stat>
 <primary-stat value="1"></primary-stat>
@@ -21,7 +25,7 @@ Fireball
 <checkbox state="unchecked" color-mode="color"></checkbox>
 <checkbox color-mode="color"></checkbox>
 
-<div>
+<div class="box">
     <radio-button group="radios" color-mode="color"></radio-button>
     <radio-button group="radios" color-mode="color" state="selected"></radio-button>
     <radio-button group="radios" color-mode="monochrome" state="selected"></radio-button>

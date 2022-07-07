@@ -6,6 +6,8 @@ export class PrimaryStat extends Component {
     @bindable max: number = 99;
     @bindable min: number = -99;
     @bindable mode: "primary" | "primary-angled" | "secondary" | "secondary-angled" = "primary-angled";
+    @bindable size: "xs" | "s" | "m" = "m";
+    @bindable prefixPlus: boolean = false;
 
     containerElement: Element;
     active: boolean = false;
@@ -20,6 +22,9 @@ export class PrimaryStat extends Component {
     - Todo: Test dragging logic on touch device (phone).
     - Todo: Test that the overlay works correctly when scrolling.
     */
+
+    bound(){
+    }
 
     press = () => {
         this.active = true;
@@ -48,5 +53,13 @@ export class PrimaryStat extends Component {
 
         let newValue = Math.round(this.originalValue - (this.delta / 10));
         this.value = Math.max(this.min, Math.min(this.max, newValue));
+    }
+
+    getValuePrefix = () => {
+        console.log(this.prefixPlus);
+        if (!this.prefixPlus)
+            return '';
+
+        return this.value > 0 ? '+' : '';
     }
 }

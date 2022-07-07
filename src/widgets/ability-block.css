@@ -1,0 +1,65 @@
+ability-block {
+    display: block;
+    width: fit-content;
+    color: #446;
+}
+
+ability-block .box {
+    padding: 20px;
+    text-align: center;
+} 
+
+ability-block .title {
+    font-size: 25px;
+    color: darkred;
+}
+
+ability-block .text {
+    font-size: 16px;
+    color: #446;
+}
+
+ability-block input[type="text"] {
+    border: none;
+    border-bottom: 2px solid #cbc1ad;
+    background: none;
+    font-family: 'Estonia', cursive;
+    font-size: 30px;
+    width: 150px;
+    text-align: center;
+    color: #888;
+}
+
+ability-block input[type="text"]:focus {
+    outline: none;
+
+}
+
+ability-block primary-stat {
+    display: inline-block;
+}
+
+ability-block .grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    grid-template-rows: 1fr 1fr;
+}
+
+ability-block .grid > * {
+    align-self: center;
+}
+
+ability-block .grid .text.left-col {
+    justify-self: right;
+}
+
+ability-block .grid .text{
+    justify-self: left;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+
+ability-block .grid primary-stat {
+    margin: 1px;
+}

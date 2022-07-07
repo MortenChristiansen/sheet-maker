@@ -9,6 +9,18 @@ primary-stat .container {
     align-items: center;
 }
 
+primary-stat .container.s {
+    width: 45px;
+    height: 45px;
+    font-size: 13px;
+}
+
+primary-stat .container.xs {
+    width: 36px;
+    height: 36px;
+    font-size: 10px;
+}
+
 primary-stat .container.primary {
     background-image: url('../../content/Stat box.png');
 }
@@ -21,7 +33,14 @@ primary-stat .container.secondary {
     background-image: url('../../content/Simple stat box.png');
     width: 44px;
     height: 44px;
-    margin: 8px;
+}
+primary-stat .container.secondary.s {
+    width: 33px;
+    height: 33px;
+}
+primary-stat .container.secondary.xs {
+    width: 24px;
+    height: 24px;
 }
 
 primary-stat .container.secondary-angled {

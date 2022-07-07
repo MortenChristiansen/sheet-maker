@@ -27,3 +27,14 @@ font-family: 'MedievalSharp', cursive;
 .monochrome {
   filter: grayscale(100%);
 }
+
+
+.box {
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-right-radius: 225px 15px;
+  border-bottom-left-radius:15px 255px;
+
+  border:solid 2px #cbc1ad;
+  padding: 7px 7px 0 7px;
+}
