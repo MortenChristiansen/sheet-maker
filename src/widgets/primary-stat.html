@@ -1,1 +1,8 @@
-<div class="container"><div class="inner-container"><div class="content">${value}</div></div></div>
+<div class="container ${active === true ? 'active' : ''}"
+     pointerdown.delegate="press()"
+     ref="containerElement">
+    <div class="inner-container">
+        <div class="content">${value}</div>
+    </div>
+</div>
+<div class="overlay" if.bind="active"  pointerup.delegate="release()" pointermove.delegate="move($event)"></div>

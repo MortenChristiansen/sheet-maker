@@ -5,6 +5,11 @@ primary-stat .container {
     height: 41px;
     margin-top: 20px;
     margin-bottom: 20px;
+    cursor: grab;
+}
+
+primary-stat .container.active {
+    cursor: grabbing;
 }
 
 primary-stat .inner-container {
@@ -18,4 +23,14 @@ primary-stat .container .content {
     transform: rotate(45deg);
     text-align: center;
     width: 35px;
+    user-select: none;
+}
+
+primary-stat .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
