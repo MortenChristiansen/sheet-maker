@@ -1,0 +1,17 @@
+checkbox {
+    display: inline-block;
+}
+
+checkbox .container {
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+}
+
+checkbox .container.checked {
+    background-image: url('../../content/Checkbox checked.png');
+}
+
+checkbox .container.unchecked {
+    background-image: url('../../content/Checkbox.png');
+}
