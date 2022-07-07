@@ -1,0 +1,48 @@
+title {
+    display: block;
+    height: auto;
+}
+
+title .text {
+    font-size: 25px;
+    color: darkred;
+    padding: 0 4px;
+    display: inline-block;
+}
+
+title .line {
+    background-image: url('../../content/line.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    height: 4px;
+    width: 100%;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+title .line-start {
+    background-image: url('../../content/line-ending.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 18px;
+    width: 13px;
+    display: inline-block;
+    transform: scaleX(-1);
+    margin-top: 15px;
+}
+
+title .line-end {
+    background-image: url('../../content/line-ending.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 18px;
+    width: 13px;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+title .grid {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto auto 1fr auto;
+    grid-template-rows: 1fr;
+}

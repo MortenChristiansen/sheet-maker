@@ -2,21 +2,16 @@ ability-block {
     display: block;
     width: fit-content;
     color: #446;
-}
-
-ability-block .box {
-    padding: 20px;
-    text-align: center;
-} 
-
-ability-block .title {
-    font-size: 25px;
-    color: darkred;
+    margin: 30px;
 }
 
 ability-block .text {
     font-size: 16px;
     color: #446;
+}
+
+ability-block > .container {
+    padding: 10px 30px;
 }
 
 ability-block input[type="text"] {
@@ -62,4 +57,8 @@ ability-block .grid .text{
 
 ability-block .grid primary-stat {
     margin: 1px;
+}
+
+ability-block footer {
+    margin-top: 5px;
 }

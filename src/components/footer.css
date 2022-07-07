@@ -1,0 +1,39 @@
+footer {
+    display: block;
+}
+
+footer .line {
+    background-image: url('../../content/line.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    height: 4px;
+    width: 100%;
+    display: inline-block;
+    transform: scaleY(-1);
+}
+
+footer .line-start {
+    background-image: url('../../content/line-ending.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 18px;
+    width: 13px;
+    display: inline-block;
+    transform: scaleX(-1) scaleY(-1);
+}
+
+footer .line-end {
+    background-image: url('../../content/line-ending.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 18px;
+    width: 13px;
+    display: inline-block; 
+    transform: scaleY(-1);
+}
+
+footer .grid {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr;
+}
