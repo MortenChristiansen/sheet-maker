@@ -6,6 +6,6 @@
     <div repeat.for="item of items">
         <input type="text" value.bind="item">
     </div>
-    <input type="text" placeholder="Add item" keyup.delegate="keyPressed($event)" value.two-way="newItemText">
+    <input type="text" class="add-item-input" placeholder="Add item" keyup.delegate="keyPressed($event)" value.two-way="newItemText">
 </div>
 <footer></footer>

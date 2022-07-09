@@ -5,8 +5,23 @@ checkbox {
 
 checkbox .container {
     background-size: contain;
+    background-repeat: no-repeat;
     width: 24px;
     height: 24px;
+}
+
+checkbox .container.angled {
+    transform: rotate(45deg);
+}
+
+checkbox .container.s {
+    width: 18px;
+    height: 18px;
+}
+
+checkbox .container.xs {
+    width: 13px;
+    height: 13px;
 }
 
 checkbox .container.checked {

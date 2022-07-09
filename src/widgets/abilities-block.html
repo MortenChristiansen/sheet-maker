@@ -1,0 +1,18 @@
+<require from="../components/title"></require>
+<require from="../components/footer"></require>
+<require from="../components/primary-stat"></require>
+<require from="../components/checkbox"></require>
+
+<title text="ABILITIES"></title>
+<div class="container">
+    <div class="ability" repeat.for="item of items">
+        <checkbox size="xs" mode="angled" value.two-way="item.puissant" title="Puissant ability"></checkbox>
+        <input class="name" type="text" value.bind="item.name">
+        <input class="specialisation" type="text" value.bind="item.specialisation" placeholder="Specialisation">
+        <primary-stat class="level" mode="secondary" value.bind="item.level" min="0" size="s" title="Ability level"></primary-stat>
+        <primary-stat class="xp" mode="secondary" value.bind="item.xp" min="0" size="xs" color-mode="monochrome" title="Excess XP"></primary-stat>
+        <span class="numbers text" if.bind="item.puissant">+2</span>
+    </div>
+    <input class="add-item-input" type="text" placeholder="Add item" keyup.delegate="keyPressed($event)" value.two-way="newItemText">
+</div>
+<footer></footer>

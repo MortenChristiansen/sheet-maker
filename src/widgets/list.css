@@ -1,9 +1,14 @@
 list {
     display: block;
     margin: 30px;
-    width: 300px;
+    width: fit-content;
 }
 
 list > .container {
     margin: 0 25px 20px 20px;
+}
+
+list .add-item-input {
+    margin-top: 15px;
+    border-bottom-style: dashed;
 }

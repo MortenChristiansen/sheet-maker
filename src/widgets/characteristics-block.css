@@ -9,12 +9,6 @@ characteristics-block > .container {
     padding: 10px 30px;
 }
 
-characteristics-block input[type="text"] {
-    text-align: center;
-    width: 150px;
-    color: #888;
-}
-
 characteristics-block primary-stat {
     display: inline-block;
 }

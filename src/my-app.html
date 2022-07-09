@@ -1,6 +1,7 @@
 <require from="widgets/characteristics-block"></require>
 <require from="widgets/list"></require>
 <require from="widgets/fatigue-block"></require>
+<require from="widgets/abilities-block"></require>
 <require from="components/primary-stat"></require>
 <require from="components/checkbox"></require>
 <require from="components/radio-button"></require>
@@ -14,6 +15,7 @@ Fireball
 <list title="VIRTUES"></list>
 <list title="FLAWS"></list>
 <fatigue-block></fatigue-block>
+<abilities-block></abilities-block>
 
 <primary-stat value="-3" mode="primary"></primary-stat>
 <primary-stat value="-2" mode="secondary"></primary-stat>
@@ -26,9 +28,9 @@ Fireball
 <primary-stat value="10" color-mode="monochrome"></primary-stat>
 <primary-stat value="-10"></primary-stat>
 
-<checkbox state="checked"></checkbox>
-<checkbox state="checked" color-mode="monochrome"></checkbox>
-<checkbox state="unchecked" color-mode="color"></checkbox>
+<checkbox value.bind="true"></checkbox>
+<checkbox value.bind="true" color-mode="monochrome"></checkbox>
+<checkbox value.bind="false" color-mode="color"></checkbox>
 <checkbox color-mode="color"></checkbox>
 
 <div class="box">

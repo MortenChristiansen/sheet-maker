@@ -1,0 +1,28 @@
+abilities-block {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+}
+
+abilities-block > .container {
+    margin: 0 25px 20px 20px;
+}
+
+abilities-block .ability > * {
+    display: inline-block;
+}
+
+abilities-block .ability .name {
+    width: 200px;
+}
+
+abilities-block .ability .specialisation {
+    width: 150px;
+    text-align: center;
+}
+
+abilities-block .add-item-input {
+    margin-top: 15px;
+    width: 200px;
+    border-bottom-style: dashed;
+}
