@@ -1,0 +1,9 @@
+rune-edge {
+    display: block;
+    width: 100%;
+    height: 20px;
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-image: url('../../content/edge-runes.png');
+    margin: 50px 0;
+}
