@@ -54,3 +54,8 @@ input[type="text"].specialisation {
   width: 150px;
   color: #888;
 }
+
+::placeholder {
+  color: #bbb;
+  opacity: 1; /* Firefox */
+}

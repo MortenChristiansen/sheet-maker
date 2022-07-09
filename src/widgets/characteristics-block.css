@@ -3,6 +3,7 @@ characteristics-block {
     width: fit-content;
     color: #446;
     margin: 30px;
+    float: left;
 }
 
 characteristics-block > .container {

@@ -3,6 +3,7 @@ fatigue-block {
     margin: 30px;
     min-width: 280px;
     width: fit-content;
+    float: left;
 }
 
 fatigue-block > .container {

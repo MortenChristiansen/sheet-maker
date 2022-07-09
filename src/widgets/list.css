@@ -2,6 +2,7 @@ list {
     display: block;
     margin: 30px;
     width: fit-content;
+    float: left;
 }
 
 list > .container {
