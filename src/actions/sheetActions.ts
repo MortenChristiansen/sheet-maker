@@ -46,3 +46,10 @@ export function updateCharacteristics(state: StateHistory<State>, characteristic
     newState.character.characteristics = characteristics;
     return nextStateHistory(state, newState);
 }
+
+export function updateName(state: StateHistory<State>, name: string) {
+    console.log("Saving name", name);
+    const newState = deepCopy(state.present);
+    newState.character.description.name = name;
+    return nextStateHistory(state, newState);
+}
