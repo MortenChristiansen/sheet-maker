@@ -22,3 +22,5 @@
 
 <rune-edge></rune-edge>
 
+<button click.delegate="undo()" disabled.bind="state.past.length == 0">Undo</button>
+<button click.delegate="redo()" disabled.bind="state.future.length == 0">Redo</button>

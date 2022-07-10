@@ -47,3 +47,11 @@ export interface Ability {
     xp: number;
     puissant: boolean;
 }
+
+export interface State {
+    character?: ArsCharacter;
+}
+
+export const initialState: State = {
+    character: null
+};

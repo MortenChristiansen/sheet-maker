@@ -5,13 +5,47 @@
 <title text="CHARACTERISTICS"></title>
 <div class="container">
     <div class="grid">
-        <input type="text" class="specialisation" placeholder="Specialisation"> <span class="text left-col">STR</span> <primary-stat size="xs" min="0" value="0" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat> <primary-stat prefix-plus.bind="true" value="0"></primary-stat> <primary-stat prefix-plus.bind="true" value="0"></primary-stat> <primary-stat size="xs" min="0" value="0" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat> <span class="text">DEX</span> <input type="text" class="specialisation" placeholder="Specialisation">
-        <input type="text" class="specialisation" placeholder="Specialisation"> <span class="text left-col">STA</span> <primary-stat size="xs" min="0" value="0" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat> <primary-stat prefix-plus.bind="true" value="0"></primary-stat> <primary-stat prefix-plus.bind="true" value="0"></primary-stat> <primary-stat size="xs" min="0" value="0" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat> <span class="text">QUI</span> <input type="text" class="specialisation" placeholder="Specialisation">
+        <input type="text" class="specialisation" placeholder="Specialisation" value.bind="model.strength.specialisation">
+        <span class="text left-col">STR</span>
+        <primary-stat size="xs" min="0" value.two-way="model.strength.agingPoints" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat>
+        <primary-stat prefix-plus.bind="true" value.two-way="model.strength.value"></primary-stat>
+
+        <primary-stat prefix-plus.bind="true" value.two-way="model.dexterity.value"></primary-stat>
+        <primary-stat size="xs" min="0" value.two-way="model.dexterity.agingPoints" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat>
+        <span class="text">DEX</span>
+        <input type="text" class="specialisation" placeholder="Specialisation" value.bind="model.dexterity.specialisation">
+
+        <input type="text" class="specialisation" placeholder="Specialisation" value.bind="model.stamina.specialisation">
+        <span class="text left-col">STA</span>
+        <primary-stat size="xs" min="0" value.two-way="model.stamina.agingPoints" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat>
+        <primary-stat prefix-plus.bind="true" value.two-way="model.stamina.value"></primary-stat>
+        
+        <primary-stat prefix-plus.bind="true" value.two-way="model.quickness.value"></primary-stat>
+        <primary-stat size="xs" min="0" value.two-way="model.quickness.agingPoints" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat>
+        <span class="text">QUI</span>
+        <input type="text" class="specialisation" placeholder="Specialisation" value.bind="model.quickness.specialisation">
     </div>
     <br/>
     <div class="grid">
-        <input type="text" class="specialisation" placeholder="Specialisation"> <span class="text left-col">INT</span> <primary-stat size="xs" min="0" value="0" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat> <primary-stat prefix-plus.bind="true" value="0"></primary-stat> <primary-stat prefix-plus.bind="true" value="0"></primary-stat> <primary-stat size="xs" min="0" value="0" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat> <span class="text">PRE</span> <input type="text" class="specialisation" placeholder="Specialisation">
-        <input type="text" class="specialisation" placeholder="Specialisation"> <span class="text left-col">PER</span> <primary-stat size="xs" min="0" value="0" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat> <primary-stat prefix-plus.bind="true" value="0"></primary-stat> <primary-stat prefix-plus.bind="true" value="0"></primary-stat> <primary-stat size="xs" min="0" value="0" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat> <span class="text">COM</span> <input type="text" class="specialisation" placeholder="Specialisation">
+        <input type="text" class="specialisation" placeholder="Specialisation" value.bind="model.intelligence.specialisation">
+        <span class="text left-col">INT</span>
+        <primary-stat size="xs" min="0" value.two-way="model.intelligence.agingPoints" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat>
+        <primary-stat prefix-plus.bind="true" value.two-way="model.intelligence.value"></primary-stat>
+        
+        <primary-stat prefix-plus.bind="true" value.two-way="model.presence.value"></primary-stat>
+        <primary-stat size="xs" min="0" value.two-way="model.presence.agingPoints" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat>
+        <span class="text">PRE</span>
+        <input type="text" class="specialisation" placeholder="Specialisation" value.bind="model.presence.specialisation">
+
+        <input type="text" class="specialisation" placeholder="Specialisation" value.bind="model.perception.specialisation">
+        <span class="text left-col">PER</span>
+        <primary-stat size="xs" min="0" value.two-way="model.perception.agingPoints" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat>
+        <primary-stat prefix-plus.bind="true" value.two-way="model.perception.value"></primary-stat>
+        
+        <primary-stat prefix-plus.bind="true" value.two-way="model.communication.value"></primary-stat>
+        <primary-stat size="xs" min="0" value.two-way="model.communication.agingPoints" color-mode="monochrome" mode="secondary" title="Aging points"></primary-stat>
+        <span class="text">COM</span>
+        <input type="text" class="specialisation" placeholder="Specialisation" value.bind="model.communication.specialisation">
     </div>
 </div>
 <footer></footer>
