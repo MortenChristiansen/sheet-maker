@@ -1,18 +1,18 @@
-interface Ability {
-    name: string;
-    specialisation: string;
-    level: number;
-    xp: number;
-    puissant: boolean;
-}
+import { StateHistory, Store } from "@aurelia/store-v1";
+import { updateAbilities } from "../actions/sheetActions";
+import { Ability, State } from "../types";
+import { Widget } from "./widget";
 
-export class AbilitiesBlock {
+export class AbilitiesBlock extends Widget<Ability[]> {
     newItemText: string = '';
-    items: Ability[] = [];
+
+    constructor(store: Store<StateHistory<State>>) {
+        super(store, s => s.character?.abilities, updateAbilities);
+    }
 
     keyPressed = (event: KeyboardEvent) => {
         if (event.key == "Enter" && this.newItemText) {
-            this.items.push({ name: this.newItemText, specialisation: '', level: 0, xp: 0, puissant: false });
+            this.model.push({ name: this.newItemText, specialisation: '', level: 0, xp: 0, puissant: false });
             this.newItemText = '';
         }
     }
