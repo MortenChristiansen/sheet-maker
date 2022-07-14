@@ -1,0 +1,29 @@
+text-box {
+    display: block;
+    margin: 30px;
+    float: left;
+    width: 300px;
+}
+
+text-box > .container {
+    margin: 0 25px 20px 20px;
+}
+
+text-box textarea {
+    font-family: 'Estonia', cursive;
+    font-size: 30px;
+    background-color: transparent;
+    font-weight: bold;
+    color: #446;
+
+    width: 100%;
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none;
+}

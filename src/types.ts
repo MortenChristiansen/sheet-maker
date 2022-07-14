@@ -21,6 +21,7 @@ export interface ArsCharacterDescription {
     name: string;
     house: string;
     parens: string;
+    physicalDescription: string;
 }
 
 export interface Characteristics {
