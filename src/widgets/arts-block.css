@@ -7,14 +7,14 @@ arts-block {
 
 arts-block > .grid {
     display: grid;
-    grid-template-columns: auto auto auto auto 40px auto auto auto auto  40px auto auto auto auto;
+    grid-template-columns: auto auto auto auto 40px auto auto auto auto  10px auto auto auto auto;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
 
 arts-block > .grid > * {
     align-self: center;
     justify-self: left;
-    margin: 3px;
+    margin: 1px 2px;
 }
 
 arts-block .untrained {
