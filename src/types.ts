@@ -3,10 +3,18 @@ export type ColorMode = "color" | "monochrome";
 export interface ArsCharacter {
     description: ArsCharacterDescription;
     characteristics: Characteristics;
-    virtues: string[];
-    flaws: string[];
+    virtues: Virtue[];
+    flaws: Flaw[];
     physicalStatus: PhysicalStatus;
     abilities: Ability[];
+}
+
+export interface Virtue {
+    name: string;
+}
+
+export interface Flaw {
+    name: string;
 }
 
 export interface ArsCharacterDescription {

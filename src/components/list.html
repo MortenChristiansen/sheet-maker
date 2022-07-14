@@ -4,7 +4,7 @@
 <title text.bind="title"></title>
 <div class="container">
     <div repeat.for="item of items">
-        <input type="text" value.bind="item">
+        <input type="text" value.two-way="item.name">
     </div>
     <input type="text" class="add-item-input" placeholder="Add item" keyup.delegate="keyPressed($event)" value.two-way="newItemText">
 </div>

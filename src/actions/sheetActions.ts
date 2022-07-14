@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, Characteristics, State } from "../types";
+import { Ability, ArsCharacter, Characteristics, Flaw, State, Virtue } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -58,5 +58,19 @@ export function updateAbilities(state: StateHistory<State>, abilities: Ability[]
     console.log("Saving abilities", abilities);
     const newState = deepCopy(state.present);
     newState.character.abilities = abilities;
+    return nextStateHistory(state, newState);
+}
+
+export function updateVirtues(state: StateHistory<State>, virtues: Virtue[]) {
+    console.log("Saving virtues", virtues);
+    const newState = deepCopy(state.present);
+    newState.character.virtues = virtues;
+    return nextStateHistory(state, newState);
+}
+
+export function updateFlaws(state: StateHistory<State>, flaws: Flaw[]) {
+    console.log("Saving flaws", flaws);
+    const newState = deepCopy(state.present);
+    newState.character.flaws = flaws;
     return nextStateHistory(state, newState);
 }
