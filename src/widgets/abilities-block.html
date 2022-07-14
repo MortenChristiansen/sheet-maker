@@ -11,7 +11,7 @@
         <input class="specialisation" type="text" value.bind="item.specialisation" placeholder="Specialisation">
         <primary-stat class="level" mode="secondary" value.two-way="item.level" min="0" size="s" title="Ability level"></primary-stat>
         <primary-stat class="xp" mode="secondary" value.two-way="item.xp" min="0" size="xs" color-mode="monochrome" title="Excess XP"></primary-stat>
-        <span class="numbers text" if.two-way="item.puissant">+2</span>
+        <span class="puissant-label"><span class="numbers text" if.bind="item.puissant">+2</span></span>
     </div>
     <input class="add-item-input" type="text" placeholder="Add item" keyup.delegate="keyPressed($event)" value.two-way="newItemText">
 </div>

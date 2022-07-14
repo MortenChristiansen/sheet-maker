@@ -35,3 +35,7 @@ abilities-block .add-item-input {
     width: 200px;
     border-bottom-style: dashed;
 }
+
+abilities-block .puissant-label {
+    width: 0;
+}

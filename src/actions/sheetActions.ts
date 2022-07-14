@@ -58,21 +58,21 @@ export function updateName(state: StateHistory<State>, name: string) {
 export function updateAbilities(state: StateHistory<State>, abilities: Ability[]) {
     console.log("Saving abilities", abilities);
     const newState = deepCopy(state.present);
-    newState.character.abilities = abilities.sort((a, b) => a.name.localeCompare(b.name));
+    newState.character.abilities = abilities.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
     return nextStateHistory(state, newState);
 }
 
 export function updateVirtues(state: StateHistory<State>, virtues: Virtue[]) {
     console.log("Saving virtues", virtues);
     const newState = deepCopy(state.present);
-    newState.character.virtues = virtues.sort((a, b) => a.name.localeCompare(b.name));
+    newState.character.virtues = virtues.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
     return nextStateHistory(state, newState);
 }
 
 export function updateFlaws(state: StateHistory<State>, flaws: Flaw[]) {
     console.log("Saving flaws", flaws);
     const newState = deepCopy(state.present);
-    newState.character.flaws = flaws.sort((a, b) => a.name.localeCompare(b.name));
+    newState.character.flaws = flaws.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
     return nextStateHistory(state, newState);
 }
 
