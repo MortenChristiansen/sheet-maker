@@ -4,6 +4,7 @@ import { Component } from "./component";
 export class RadioButton extends Component {
     @bindable state: "selected"|"unselected" = "unselected";
     @bindable group: string;
+    @bindable value: string;
 
     element: Element;
 
@@ -12,7 +13,7 @@ export class RadioButton extends Component {
     }
 
     bound() {
-        this.ea.subscribe<{ group: string, source: Element }, 'radio-button-selected'>('radio-button-selected', payload => {
+        this.ea.subscribe<{ group: string, source: Element, value: string }, 'radio-button-selected'>('radio-button-selected', payload => {
             if (this.group == payload.group) {
                 this.state = payload.source === this.element ? "selected": "unselected";
             }
@@ -23,7 +24,7 @@ export class RadioButton extends Component {
         if (!this.group) {
             this.state = "selected";
         } else {
-            this.ea.publish('radio-button-selected', { group: this.group, source: this.element } )
+            this.ea.publish('radio-button-selected', { group: this.group, source: this.element, value: this.value } )
         }
     }
 }
