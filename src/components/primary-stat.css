@@ -56,7 +56,7 @@ primary-stat .container .content {
 }
 
 primary-stat .overlay {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;

@@ -17,9 +17,17 @@ abilities-block .ability .name {
     width: 200px;
 }
 
+abilities-block .ability.untrained .name {
+    opacity: 0.3;
+}
+
 abilities-block .ability .specialisation {
     width: 150px;
     text-align: center;
+}
+
+abilities-block .ability.untrained .specialisation {
+    opacity: 0;
 }
 
 abilities-block .add-item-input {

@@ -8,6 +8,8 @@ export class Widget<TModel> {
     modelState: TModel = undefined;
     active: boolean = false;
 
+    // TODO: Save if you leave or refresh the page (it does not work to just call saveChanges in the unbound method)
+
     constructor(
         private store: Store<StateHistory<State>>,
         private pluckModel: (state: State) => TModel,

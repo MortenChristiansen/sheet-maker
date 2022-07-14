@@ -5,7 +5,7 @@
 
 <title text="ABILITIES"></title>
 <div class="container">
-    <div class="ability" repeat.for="item of model">
+    <div class="ability ${item.level === 0 ? 'untrained' : ''}" repeat.for="item of model">
         <checkbox size="xs" mode="angled" value.two-way="item.puissant" title="Puissant ability"></checkbox>
         <input class="name" type="text" value.bind="item.name">
         <input class="specialisation" type="text" value.bind="item.specialisation" placeholder="Specialisation">
