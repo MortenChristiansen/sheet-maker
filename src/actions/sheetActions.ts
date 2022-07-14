@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, ArsCharacterDescription as CharacterDescription, Characteristics, Flaw, PhysicalStatus, State, Virtue } from "../types";
+import { Ability, ArsCharacter, ArsCharacterDescription as CharacterDescription, Arts, Characteristics, Flaw, PhysicalStatus, State, Virtue } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -30,7 +30,24 @@ export function createNewCharacter(state: StateHistory<State>) {
             strength: { value: 0, specialisation: '', agingPoints: 0 }
         },
         flaws: [],
-        virtues: []
+        virtues: [],
+        arts: {
+            creo: { level: 0, xp: 0, puissant: false },
+            muto: { level: 0, xp: 0, puissant: false },
+            rego: { level: 0, xp: 0, puissant: false },
+            intellego: { level: 0, xp: 0, puissant: false },
+            perdo: { level: 0, xp: 0, puissant: false },
+            animal: { level: 0, xp: 0, puissant: false },
+            auram: { level: 0, xp: 0, puissant: false },
+            aquam: { level: 0, xp: 0, puissant: false },
+            ignem: { level: 0, xp: 0, puissant: false },
+            terram: { level: 0, xp: 0, puissant: false },
+            herbam: { level: 0, xp: 0, puissant: false },
+            mentem: { level: 0, xp: 0, puissant: false },
+            corpus: { level: 0, xp: 0, puissant: false },
+            imaginem: { level: 0, xp: 0, puissant: false },
+            vim: { level: 0, xp: 0, puissant: false }
+        }
     };
     return nextStateHistory(state, newState);
 }
@@ -87,5 +104,12 @@ export function updatePhysicalStatus(state: StateHistory<State>, physicalStatus:
     console.log("Saving physical status", physicalStatus);
     const newState = deepCopy(state.present);
     newState.character.physicalStatus = physicalStatus;
+    return nextStateHistory(state, newState);
+}
+
+export function updateArts(state: StateHistory<State>, arts: Arts) {
+    console.log("Saving arts", arts);
+    const newState = deepCopy(state.present);
+    newState.character.arts = arts;
     return nextStateHistory(state, newState);
 }

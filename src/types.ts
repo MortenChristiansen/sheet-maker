@@ -7,6 +7,7 @@ export interface ArsCharacter {
     flaws: Flaw[];
     physicalStatus: PhysicalStatus;
     abilities: Ability[];
+    arts: Arts;
 }
 
 export interface Virtue {
@@ -52,6 +53,31 @@ export interface PhysicalStatus {
 export interface Ability {
     name: string;
     specialisation: string;
+    level: number;
+    xp: number;
+    puissant: boolean;
+}
+
+export interface Arts {
+    intellego: Art;
+    creo: Art;
+    muto: Art;
+    perdo: Art;
+    rego: Art;
+
+    animal: Art;
+    aquam: Art;
+    auram: Art;
+    ignem: Art;
+    terram: Art;
+    imaginem: Art;
+    herbam: Art;
+    corpus: Art;
+    vim: Art;
+    mentem: Art;
+}
+
+export interface Art {
     level: number;
     xp: number;
     puissant: boolean;

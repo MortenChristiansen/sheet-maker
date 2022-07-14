@@ -1,0 +1,22 @@
+arts-block {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+    float: left;
+}
+
+arts-block > .grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto 40px auto auto auto auto  40px auto auto auto auto;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+arts-block > .grid > * {
+    align-self: center;
+    justify-self: left;
+    margin: 3px;
+}
+
+arts-block .untrained {
+    opacity: 0.4;
+}
