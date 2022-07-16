@@ -8,8 +8,7 @@ export function createNewCharacter(state: StateHistory<State>) {
     newState.character = {
         physicalStatus : {
             fatigue : 0,
-            incapacitated: false,
-            minorWounds: 0,
+            lightWounds: 0,
             mediumWounds: 0,
             heavyWounds: 0
         },
@@ -137,6 +136,7 @@ function calculateCastingTotal(state: State, spell: Spell) {
     // TODO: Add stamina specialisation if it counts and other things such as aura, ceremonial/ritual casting
     return calculateSpellBonus(state, spell) +
            state.character.characteristics.stamina.value +
+           calculateWoundPenalty(state) +
            calculateFatiguePenalty(state);
 }
 
@@ -190,4 +190,9 @@ function calculateFatiguePenalty(state: State) {
     if (fatigue === 3) return -3;
     if (fatigue === 4) return -5;
     return 0;
+}
+
+function calculateWoundPenalty(state: State) {
+    let status = state.character.physicalStatus;
+    return -status.lightWounds + status.mediumWounds * -3 + status.heavyWounds * -5;
 }

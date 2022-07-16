@@ -1,0 +1,20 @@
+damage-block {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+    float: left;
+}
+
+damage-block > .container {
+    padding: 10px 30px;
+}
+
+damage-block .wound-type {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+damage-block .wound-type:nth-child(1) {
+    display: inline-block;
+    margin: 0;
+}

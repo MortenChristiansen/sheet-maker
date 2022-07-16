@@ -45,10 +45,9 @@ export interface Characteristic {
 
 export interface PhysicalStatus {
     fatigue: number;
-    minorWounds: number;
+    lightWounds: number;
     mediumWounds: number;
     heavyWounds: number;
-    incapacitated: boolean;
 }
 
 export interface Ability {
