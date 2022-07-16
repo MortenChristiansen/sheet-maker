@@ -10,10 +10,6 @@ characteristics-block > .container {
     padding: 10px 30px;
 }
 
-characteristics-block primary-stat {
-    display: inline-block;
-}
-
 characteristics-block .grid {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto;

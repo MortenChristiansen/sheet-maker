@@ -1,0 +1,120 @@
+spell-list {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+    float: left;
+}
+
+spell-list > .container {
+    padding: 10px 30px;
+}
+
+spell-list > .container > .grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-auto-rows: 1fr;
+}
+
+spell-list > .container > .grid > * {
+    align-self: center;
+    margin: 1px 2px;
+}
+
+spell-list .add-item-input {
+    margin-top: 15px;
+    width: 300px;
+    border-bottom-style: dashed;
+}
+
+spell-list  > .container > .grid input[type=text] {
+    width: 100px;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+spell-list  > .container > .grid input[type=text].name {
+    width: 300px;
+    text-align: left;
+}
+
+spell-list  > .container > .grid input[type=text].notes {
+    width: 300px;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+spell-list  > .container > .grid input[type=text].arts {
+    width: 50px;
+}
+
+spell-list  > .container > .grid input[type=text].prerequisites {
+    width: 50px;
+}
+
+spell-list  > .container > .grid input[type=text].page {
+    width: 50px;
+}
+
+spell-list  > .container > .grid .casting-total-label {
+    width: 25px;
+}
+
+spell-list  > .container > .grid input[type=text].sigil {
+    width: 200px;
+}
+
+spell-list .spell {
+    position: relative;
+}
+
+spell-list .co-form .form-header::before {
+    content: 'Co';
+}
+spell-list .an-form .form-header::before {
+    content: 'An';
+}
+spell-list .au-form .form-header::before {
+    content: 'Au';
+}
+spell-list .aq-form .form-header::before {
+    content: 'Aq';
+}
+spell-list .he-form .form-header::before {
+    content: 'He';
+}
+spell-list .vi-form .form-header::before {
+    content: 'Vi';
+}
+spell-list .te-form .form-header::before {
+    content: 'Te';
+}
+spell-list .ig-form .form-header::before {
+    content: 'Ig';
+}
+spell-list .me-form .form-header::before {
+    content: 'Me';
+}
+spell-list .im-form .form-header::before {
+    content: 'Im';
+}
+
+spell-list .form-header::before {
+    position: absolute;
+    left: -25px;
+    top: 5px;
+    font-size: 16px;
+    color: #bbb;
+}
+
+spell-list .co-form ~ .co-form .form-header::before,
+spell-list .an-form ~ .an-form .form-header::before,
+spell-list .au-form ~ .au-form .form-header::before,
+spell-list .aq-form ~ .aq-form .form-header::before,
+spell-list .he-form ~ .he-form .form-header::before,
+spell-list .vi-form ~ .vi-form .form-header::before,
+spell-list .te-form ~ .te-form .form-header::before,
+spell-list .ig-form ~ .ig-form .form-header::before,
+spell-list .me-form ~ .me-form .form-header::before,
+spell-list .im-form ~ .im-form .form-header::before {
+    content: '';
+}

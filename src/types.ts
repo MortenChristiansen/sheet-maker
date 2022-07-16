@@ -8,6 +8,7 @@ export interface ArsCharacter {
     physicalStatus: PhysicalStatus;
     abilities: Ability[];
     arts: Arts;
+    spells: Spell[];
 }
 
 export interface Virtue {
@@ -75,6 +76,27 @@ export interface Arts {
     corpus: Art;
     vim: Art;
     mentem: Art;
+}
+
+export interface Spell {
+    name: string;
+    arts: string;
+    prerequisites: string;
+    xp: number;
+    level: number;
+    masteryLevel: number;
+    masteries: string;
+    pageNumber: string;
+    sourceBook: string;
+    focus: boolean;
+    notes: string;
+    sigil: string;
+    range: string;
+    duration: string;
+    target: string;
+    attunementBonus: number;
+    attunement: string;
+    castingTotal: number;
 }
 
 export interface Art {

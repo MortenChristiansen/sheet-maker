@@ -13,7 +13,8 @@ export class AbilitiesBlock extends Widget<Ability[]> {
     keyPressed = (event: KeyboardEvent) => {
         if (event.key == "Enter" && this.newItemText) {
             this.model.push({ name: this.newItemText, specialisation: '', level: 0, xp: 0, puissant: false });
-            this.newItemText = '';
+             this.model.sort((a, b) => a.name.localeCompare(b.name));
+             this.newItemText = '';
         }
     }
 }
