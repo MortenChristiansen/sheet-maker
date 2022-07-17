@@ -1,0 +1,13 @@
+<require from="../layout/title"></require>
+<require from="../layout/footer"></require>
+<require from="../components/primary-stat"></require>
+
+<title text="PERSONALITY"></title>
+<div class="container">
+    <div repeat.for="trait of model">
+        <input type="text" value.two-way="trait.name">
+        <primary-stat mode="secondary" size="s" value.two-way="trait.rating" prefix-plus.bind="true"></primary-stat>
+    </div>
+    <input type="text" class="add-item-input" placeholder="Add trait" keyup.delegate="keyPressed($event)" value.two-way="newTraitText">
+</div>
+<footer></footer>

@@ -3,6 +3,7 @@ export type ColorMode = "color" | "monochrome";
 export interface ArsCharacter {
     description: CharacterDescription;
     characteristics: Characteristics;
+    personalityTraits: PersonalityTrait[];
     virtues: Virtue[];
     flaws: Flaw[];
     physicalStatus: PhysicalStatus;
@@ -46,6 +47,11 @@ export interface PhysicalStatus {
     lightWounds: number;
     mediumWounds: number;
     heavyWounds: number;
+}
+
+export interface PersonalityTrait {
+    name: string;
+    rating: number;
 }
 
 export interface Ability {

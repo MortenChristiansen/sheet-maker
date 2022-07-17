@@ -1,6 +1,6 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
 import { stat } from "fs";
-import { Ability, ArsCharacter, ArsCharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -14,11 +14,10 @@ export function createNewCharacter(state: StateHistory<State>) {
         },
         description: {
             name: '',
-            house: '',
-            parens: '',
-            physicalDescription: ''
+            description: ''
         },
         abilities: [],
+        personalityTraits: [],
         characteristics: {
             communication: { value: 0, specialisation: '', agingPoints: 0 },
             dexterity: { value: 0, specialisation: '', agingPoints: 0 },
@@ -78,6 +77,13 @@ export function updateAbilities(state: StateHistory<State>, abilities: Ability[]
     console.log("Saving abilities", abilities);
     const newState = deepCopy(state.present);
     newState.character.abilities = abilities.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
+    return nextStateHistory(state, newState);
+}
+
+export function updatePersonalityTraits(state: StateHistory<State>, personalityTraits: PersonalityTrait[]) {
+    console.log("Saving personality traits", personalityTraits);
+    const newState = deepCopy(state.present);
+    newState.character.personalityTraits = personalityTraits.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
     return nextStateHistory(state, newState);
 }
 
