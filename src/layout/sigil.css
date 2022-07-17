@@ -1,0 +1,23 @@
+sigil {
+    display: block;
+    height: auto;
+    float: left;
+}
+
+sigil > .container {
+    width: 130px;
+    height: 130px;
+    background-size: contain;
+    background-image: url('../../content/Stat box angled.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+sigil > .container .sigil-image {
+    width: 70px;
+    height: 35px;
+    background-size: contain;
+    background-image: url('../../content/sigil.png');
+    mix-blend-mode: multiply;
+}

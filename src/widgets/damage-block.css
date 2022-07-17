@@ -16,5 +16,5 @@ damage-block .wound-type {
 
 damage-block .wound-type:nth-child(1) {
     display: inline-block;
-    margin: 0;
+    margin-left: 0;
 }

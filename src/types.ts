@@ -1,7 +1,7 @@
 export type ColorMode = "color" | "monochrome";
 
 export interface ArsCharacter {
-    description: ArsCharacterDescription;
+    description: CharacterDescription;
     characteristics: Characteristics;
     virtues: Virtue[];
     flaws: Flaw[];
@@ -19,11 +19,9 @@ export interface Flaw {
     name: string;
 }
 
-export interface ArsCharacterDescription {
+export interface CharacterDescription {
     name: string;
-    house: string;
-    parens: string;
-    physicalDescription: string;
+    description: string;
 }
 
 export interface Characteristics {
