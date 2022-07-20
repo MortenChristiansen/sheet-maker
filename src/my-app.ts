@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, loadCharacter, updateAbilities, updateAgeing, updateArts, updateCharacteristics, updateConfidence, updateDescription, updateFlaws, updateName, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues } from "./actions/sheetActions";
+import { createNewCharacter, loadCharacter, updateAbilities, updateAgeing, updateArts, updateCharacteristics, updateConfidence, updateDescription, updateFlaws, updateName, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues, updateWarping } from "./actions/sheetActions";
 import { ArsCharacter, State } from "./types";
 
 @connectTo()
@@ -55,6 +55,7 @@ export class MyApp {
         this.store.registerAction('updatePersonalityTraits', updatePersonalityTraits);
         this.store.registerAction('updateAgeing', updateAgeing);
         this.store.registerAction('updateConfidence', updateConfidence);
+        this.store.registerAction('updateWarping', updateWarping);
         store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
         store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
     }

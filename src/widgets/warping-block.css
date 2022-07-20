@@ -1,0 +1,31 @@
+warping-block {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+    float: left;
+    width: 420px;
+}
+
+warping-block > .container {
+    padding: 10px 30px;
+}
+
+warping-block > .container > .grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-auto-rows: 1fr;
+}
+
+warping-block > .container > .grid > * {
+    align-self: center;
+    margin: 1px 2px;
+}
+
+warping-block .warping-level {
+    text-align: center;
+}
+
+warping-block .add-effect-input {
+    margin-top: 15px;
+    border-bottom-style: dashed;
+}

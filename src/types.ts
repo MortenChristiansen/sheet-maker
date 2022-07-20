@@ -12,6 +12,7 @@ export interface ArsCharacter {
     spells: Spell[];
     ageing: Ageing;
     confidence: Confidence;
+    warping: Warping;
 }
 
 export interface Virtue {
@@ -124,6 +125,17 @@ export interface Art {
     level: number;
     xp: number;
     puissant: boolean;
+}
+
+export interface Warping {
+    warpingPoints: number;
+    warpingLevel: number;
+    ongoingEffects: WarpingEffect[];
+}
+
+export interface WarpingEffect {
+    name: string;
+    warpingPointsPerYear: number;
 }
 
 export interface State {

@@ -14,8 +14,6 @@ export class SpellList extends Widget<Spell[]> {
     // TODO: Avoid loss of focus when editing spell
 
     keyPressed = (event: KeyboardEvent) => {
-        if (this.model === undefined)
-            this.model = [];
         if (event.key == "Enter" && this.newSpellText) {
             this.model.push({
                 name: this.newSpellText,

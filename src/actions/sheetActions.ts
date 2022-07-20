@@ -1,6 +1,6 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
 import { stat } from "fs";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -61,6 +61,11 @@ export function createNewCharacter(state: StateHistory<State>) {
         },
         confidence: {
             score: 3
+        },
+        warping: {
+            warpingPoints: 0,
+            warpingLevel: 0,
+            ongoingEffects: []
         }
     };
     return nextStateHistory(state, newState);
@@ -159,6 +164,15 @@ export function updateConfidence(state: StateHistory<State>, confidence: Confide
     console.log("Saving confidence", confidence);
     const newState = deepCopy(state.present);
     newState.character.confidence = confidence;
+    return nextStateHistory(state, newState);
+}
+
+export function updateWarping(state: StateHistory<State>, warping: Warping) {
+    console.log("Saving warping", warping);
+    const newState = deepCopy(state.present);
+    newState.character.warping = warping;
+    newState.character.warping.ongoingEffects = warping.ongoingEffects.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
+    refreshWarpingLevel(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -266,4 +280,8 @@ function calculateFatiguePenalty(state: State) {
 function calculateWoundPenalty(state: State) {
     let status = state.character.physicalStatus;
     return -status.lightWounds + status.mediumWounds * -3 + status.heavyWounds * -5;
+}
+
+function refreshWarpingLevel(state: State) {
+    state.character.warping.warpingLevel = calculateAbilityLevel(state.character.warping.warpingPoints, 0);
 }
