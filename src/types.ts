@@ -14,6 +14,7 @@ export interface ArsCharacter {
     confidence: Confidence;
     warping: Warping;
     activeMagic: ActiveMagic[];
+    xpEntries: XpEntry[];
 }
 
 export interface Virtue {
@@ -143,6 +144,17 @@ export interface ActiveMagic {
     name: string;
     penetration: number;
     active: boolean;
+}
+
+export interface XpEntry {
+    description: string;
+    xp: string;
+    year: number;
+    season: 'Spring' | 'Summer' | 'Fall' | 'Winter';
+    correspondence: string;
+    areaLore: string;
+    plans: string;
+    planningMode: boolean;
 }
 
 export interface State {

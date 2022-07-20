@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -66,7 +66,8 @@ export function createNewCharacter(state: StateHistory<State>) {
             warpingLevel: 0,
             ongoingEffects: []
         },
-        activeMagic: []
+        activeMagic: [],
+        xpEntries: []
     };
     return nextStateHistory(state, newState);
 }
@@ -157,6 +158,7 @@ export function updateAgeing(state: StateHistory<State>, ageing: Ageing) {
     const newState = deepCopy(state.present);
     newState.character.ageing = ageing;
     refreshAgeingStats(newState);
+    refreshXpEntries(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -181,6 +183,13 @@ export function updateActiveMagic(state: StateHistory<State>, activeMagic: Activ
     const newState = deepCopy(state.present);
     newState.character.activeMagic = filterListItems(activeMagic);
     refreshPenetration(newState);
+    return nextStateHistory(state, newState);
+}
+
+export function updateXpEntries(state: StateHistory<State>, xpEntries: XpEntry[]) {
+    console.log("Saving xp entries", xpEntries);
+    const newState = deepCopy(state.present);
+    newState.character.xpEntries = xpEntries;
     return nextStateHistory(state, newState);
 }
 
@@ -304,4 +313,38 @@ function refreshWarpingLevel(state: State) {
 
 function refreshPenetration(state: State) {
     state.character.activeMagic.forEach(m => m.penetration = m.active ? m.penetration : 0);
+}
+
+function refreshXpEntries(state: State) {
+
+    if (!state.character.xpEntries) {
+        state.character.xpEntries = [
+            createXpEntry(state.character.ageing.currentYear, 'Spring'),
+            createXpEntry(state.character.ageing.currentYear, 'Summer'),
+            createXpEntry(state.character.ageing.currentYear, 'Fall'),
+            createXpEntry(state.character.ageing.currentYear, 'Winter')
+        ];
+    }
+    state.character.xpEntries = state.character.xpEntries.filter(x => x.year < state.character.ageing.currentYear + 3);
+    while (state.character.xpEntries[state.character.xpEntries.length - 1].year < state.character.ageing.currentYear + 3) {
+        let year = state.character.xpEntries[state.character.xpEntries.length - 1].year + 1;
+        state.character.xpEntries.push(createXpEntry(year, 'Spring'));
+        state.character.xpEntries.push(createXpEntry(year, 'Summer'));
+        state.character.xpEntries.push(createXpEntry(year, 'Fall'));
+        state.character.xpEntries.push(createXpEntry(year, 'Winter'));
+    }
+    state.character.xpEntries.forEach(x => x.planningMode = x.year >= state.character.ageing.currentYear);
+}
+
+function createXpEntry(year: number, season: 'Spring' | 'Summer' | 'Fall' | 'Winter') {
+    return {
+        year: year,
+        xp: '',
+        correspondence: '',
+        description: '',
+        plans: '',
+        areaLore: '',
+        season: season,
+        planningMode: true
+    };
 }

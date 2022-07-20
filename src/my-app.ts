@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateCharacteristics, updateConfidence, updateDescription, updateFlaws, updateName, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues, updateWarping } from "./actions/sheetActions";
+import { createNewCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateCharacteristics, updateConfidence, updateDescription, updateFlaws, updateName, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { ArsCharacter, State } from "./types";
 
 @connectTo()
@@ -14,10 +14,6 @@ export class MyApp {
     spell levels.
     - Working with multiple sheets. Adding new sheets. Easily switching between sheets.
     - Save sheets to google drive: https://stackoverflow.com/questions/36682784/save-text-from-textarea-to-google-drive-using-javascript
-    - Its awfully specific, but it would be great to have an indicator next to Perception reminding me of my eye flaw. It would also have 
-    a way to read a description of the flaw. This could just be a user definable notification and it may be a standard thing I do for all
-    sorts of things similar to the reminders i have in many places on my current character sheet. All the places that the familiar has
-    an impact could use this.
     - Ability list grouped by ability category.
     - Sorting of abilities list.
 
@@ -61,6 +57,7 @@ export class MyApp {
         this.store.registerAction('updateConfidence', updateConfidence);
         this.store.registerAction('updateWarping', updateWarping);
         this.store.registerAction('updateActiveMagic', updateActiveMagic);
+        this.store.registerAction('updateXpEntries', updateXpEntries);
         store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
         store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
     }

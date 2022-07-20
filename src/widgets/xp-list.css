@@ -1,0 +1,42 @@
+xp-list {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+    float: left;
+}
+
+xp-list > .container {
+    padding: 10px 30px;
+}
+
+xp-list > .container > .grid {
+    display: grid;
+    grid-template-columns: 70px 100px auto auto auto auto auto;
+    grid-auto-rows: 1fr;
+}
+
+xp-list > .container > .grid.past-xp-entry {
+    grid-template-columns: 70px 100px auto auto auto auto;
+    width: fit-content;
+}
+
+xp-list > .container > .grid > * {
+    align-self: center;
+    margin: 1px 2px;
+}
+
+xp-list .description, xp-list .plans {
+    width: 400px;
+}
+
+xp-list .xp {
+    width: 600px;
+}
+
+xp-list .correspondence, xp-list .area-lore  {
+    width: 150px;
+}
+
+xp-list .separator {
+    height: 40px;
+}

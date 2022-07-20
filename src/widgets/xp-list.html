@@ -1,0 +1,27 @@
+<require from="../layout/title"></require>
+<require from="../layout/footer"></require>
+
+<title text="XP ENTRIES"></title>
+<div class="container">
+    <div class="xp-entry grid" repeat.for="entry of planningEntries">
+        <span class="year text"><span if.bind="entry.season == 'Spring'">${entry.year}</span></span>
+        <span class="season text">${entry.season}</span>
+        <input class="description" type="text" value.bind="entry.description" placeholder="Description">
+        <input class="xp" type="text" value.bind="entry.xp" placeholder="XP">
+        <input class="correspondence" type="text" value.bind="entry.correspondence" placeholder="Correspondence">
+        <input class="area-lore" type="text" value.bind="entry.areaLore" placeholder="Area Lore">
+        <input class="plans" type="text" value.bind="entry.plans" placeholder="Plans">
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="past-xp-entry grid" repeat.for="entry of pastEntries">
+        <span class="year text"><span if.bind="entry.season == 'Spring'">${entry.year}</span></span>
+        <span class="season text">${entry.season}</span>
+        <input class="description" type="text" value.bind="entry.description" placeholder="Description">
+        <input class="xp" type="text" value.bind="entry.xp" placeholder="XP">
+        <input class="correspondence" type="text" value.bind="entry.correspondence" placeholder="Correspondence">
+        <input class="area-lore" type="text" value.bind="entry.areaLore" placeholder="Area Lore">
+    </div>
+</div>
+<footer></footer>
