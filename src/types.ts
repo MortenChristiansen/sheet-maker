@@ -13,6 +13,7 @@ export interface ArsCharacter {
     ageing: Ageing;
     confidence: Confidence;
     warping: Warping;
+    activeMagic: ActiveMagic[];
 }
 
 export interface Virtue {
@@ -136,6 +137,12 @@ export interface Warping {
 export interface WarpingEffect {
     name: string;
     warpingPointsPerYear: number;
+}
+
+export interface ActiveMagic {
+    name: string;
+    penetration: number;
+    active: boolean;
 }
 
 export interface State {

@@ -1,6 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { stat } from "fs";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -66,7 +65,8 @@ export function createNewCharacter(state: StateHistory<State>) {
             warpingPoints: 0,
             warpingLevel: 0,
             ongoingEffects: []
-        }
+        },
+        activeMagic: []
     };
     return nextStateHistory(state, newState);
 }
@@ -95,21 +95,21 @@ export function updateName(state: StateHistory<State>, name: string) {
 export function updateAbilities(state: StateHistory<State>, abilities: Ability[]) {
     console.log("Saving abilities", abilities);
     const newState = deepCopy(state.present);
-    newState.character.abilities = abilities.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
+    newState.character.abilities = filterListItems(abilities);
     return nextStateHistory(state, newState);
 }
 
 export function updatePersonalityTraits(state: StateHistory<State>, personalityTraits: PersonalityTrait[]) {
     console.log("Saving personality traits", personalityTraits);
     const newState = deepCopy(state.present);
-    newState.character.personalityTraits = personalityTraits.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
+    newState.character.personalityTraits = filterListItems(personalityTraits);
     return nextStateHistory(state, newState);
 }
 
 export function updateVirtues(state: StateHistory<State>, virtues: Virtue[]) {
     console.log("Saving virtues", virtues);
     const newState = deepCopy(state.present);
-    newState.character.virtues = virtues.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
+    newState.character.virtues = filterListItems(virtues);
     refreshAgeingStats(newState);
     return nextStateHistory(state, newState);
 }
@@ -117,7 +117,7 @@ export function updateVirtues(state: StateHistory<State>, virtues: Virtue[]) {
 export function updateFlaws(state: StateHistory<State>, flaws: Flaw[]) {
     console.log("Saving flaws", flaws);
     const newState = deepCopy(state.present);
-    newState.character.flaws = flaws.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
+    newState.character.flaws = filterListItems(flaws);
     return nextStateHistory(state, newState);
 }
 
@@ -147,7 +147,7 @@ export function updateArts(state: StateHistory<State>, arts: Arts) {
 export function updateSpells(state: StateHistory<State>, spells: Spell[]) {
     console.log("Saving spells", spells);
     const newState = deepCopy(state.present);
-    newState.character.spells = spells.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name)).sort((a, b) => a.arts.slice(2).localeCompare(b.arts.slice(2)));
+    newState.character.spells = filterListItems(spells).sort((a, b) => a.arts.slice(2).localeCompare(b.arts.slice(2)));
     refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
 }
@@ -171,9 +171,25 @@ export function updateWarping(state: StateHistory<State>, warping: Warping) {
     console.log("Saving warping", warping);
     const newState = deepCopy(state.present);
     newState.character.warping = warping;
-    newState.character.warping.ongoingEffects = warping.ongoingEffects.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
+    newState.character.warping.ongoingEffects = filterListItems(warping.ongoingEffects);
     refreshWarpingLevel(newState);
     return nextStateHistory(state, newState);
+}
+
+export function updateActiveMagic(state: StateHistory<State>, activeMagic: ActiveMagic[]) {
+    console.log("Saving active magic", activeMagic);
+    const newState = deepCopy(state.present);
+    newState.character.activeMagic = filterListItems(activeMagic);
+    refreshPenetration(newState);
+    return nextStateHistory(state, newState);
+}
+
+function filterListItems<T extends ListItem>(listItems: T[]) {
+    return listItems.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
+}
+
+interface ListItem {
+    name: string;
 }
 
 function refreshAgeingStats(state: State) {
@@ -284,4 +300,8 @@ function calculateWoundPenalty(state: State) {
 
 function refreshWarpingLevel(state: State) {
     state.character.warping.warpingLevel = calculateAbilityLevel(state.character.warping.warpingPoints, 0);
+}
+
+function refreshPenetration(state: State) {
+    state.character.activeMagic.forEach(m => m.penetration = m.active ? m.penetration : 0);
 }

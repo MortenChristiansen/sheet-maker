@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, loadCharacter, updateAbilities, updateAgeing, updateArts, updateCharacteristics, updateConfidence, updateDescription, updateFlaws, updateName, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues, updateWarping } from "./actions/sheetActions";
+import { createNewCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateCharacteristics, updateConfidence, updateDescription, updateFlaws, updateName, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues, updateWarping } from "./actions/sheetActions";
 import { ArsCharacter, State } from "./types";
 
 @connectTo()
@@ -33,6 +33,10 @@ export class MyApp {
     - Redo does not seem to work. Its as if there never is a future.
     - Undo triggers a save event. This is not a problem per se, but should not be necessary.
 
+    Refactorings
+    - Make a specialisation of Widget that contains logic for working with lists of stuff (or add it to Widget itself).
+        The CSS for this should be standardised as well. The text input could be a component itself.
+    - Make all the components be included by default.
     */
 
     public state: StateHistory<State>;
@@ -56,6 +60,7 @@ export class MyApp {
         this.store.registerAction('updateAgeing', updateAgeing);
         this.store.registerAction('updateConfidence', updateConfidence);
         this.store.registerAction('updateWarping', updateWarping);
+        this.store.registerAction('updateActiveMagic', updateActiveMagic);
         store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
         store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
     }
