@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, loadCharacter, updateAbilities, updateArts, updateCharacteristics, updateDescription, updateFlaws, updateName, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues } from "./actions/sheetActions";
+import { createNewCharacter, loadCharacter, updateAbilities, updateAgeing, updateArts, updateCharacteristics, updateDescription, updateFlaws, updateName, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues } from "./actions/sheetActions";
 import { ArsCharacter, State } from "./types";
 
 @connectTo()
@@ -25,6 +25,8 @@ export class MyApp {
     - Some low contrast flourish between the two groups of characteristics.
     - A name box overlaying the top rune line. Above the line to either side are links to the
     pages of the sheet. Maybe we can use one of the fonts for this.
+    - Stat boxes could have additional modes: skull, shield.
+    - Books are represented by actual book icons.
 
     Bugs
     - Redo does not seem to work. Its as if there never is a future.
@@ -50,6 +52,7 @@ export class MyApp {
         this.store.registerAction('updateArts', updateArts);
         this.store.registerAction('updateSpells', updateSpells);
         this.store.registerAction('updatePersonalityTraits', updatePersonalityTraits);
+        this.store.registerAction('updateAgeing', updateAgeing);
         store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
         store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
     }

@@ -1,0 +1,38 @@
+age-block {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+    float: left;
+}
+
+age-block > .grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto 60px;
+}
+
+age-block > .grid > * {
+    align-self: center;
+    justify-self: center;
+    margin: 4px;
+}
+
+age-block > .grid > .left {
+    justify-self: left;
+}
+
+age-block > .grid > .right {
+    justify-self: right;
+}
+
+age-block > .grid > .bottom {
+    align-self: end;
+}
+
+age-block > .grid > .top {
+    align-self: baseline;
+}
+
+age-block .small-text {
+    font-size: 14px;
+}

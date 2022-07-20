@@ -10,6 +10,7 @@ export interface ArsCharacter {
     abilities: Ability[];
     arts: Arts;
     spells: Spell[];
+    ageing: Ageing;
 }
 
 export interface Virtue {
@@ -23,6 +24,18 @@ export interface Flaw {
 export interface CharacterDescription {
     name: string;
     description: string;
+}
+
+export class Ageing {
+    birthYear: number;
+    currentYear: number;
+    age: number;
+    apparentAge: number;
+    decrepitudePoints: number;
+    decrepitudeLevel: number;
+    longevityModifier: number;
+    ageingRollModifier: number;
+    livingConditionModifier: number;
 }
 
 export interface Characteristics {

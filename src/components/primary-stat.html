@@ -1,4 +1,4 @@
-<div class="container ${active === true ? 'active' : ''} ${mode} ${colorMode} ${size}"
+<div class="container ${active === true ? 'active' : ''} ${readonly ? 'readonly' : ''} ${mode} ${colorMode} ${size}"
      pointerdown.delegate="press()"
      ref="containerElement">
     <span class="content numbers">${getValuePrefix()+value}</div>

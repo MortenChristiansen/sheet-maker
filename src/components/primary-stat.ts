@@ -8,6 +8,7 @@ export class PrimaryStat extends Component {
     @bindable mode: "primary" | "primary-angled" | "secondary" | "secondary-angled" = "primary-angled";
     @bindable size: "xs" | "s" | "m" = "m";
     @bindable prefixPlus: boolean = false;
+    @bindable readonly: boolean = false;
 
     containerElement: Element;
     active: boolean = false;
@@ -23,10 +24,8 @@ export class PrimaryStat extends Component {
     - Todo: Test that the overlay works correctly when scrolling.
     */
 
-    bound(){
-    }
-
     press = () => {
+        if (this.readonly) return;
         this.active = true;
         this.originalValue = this.value;
         this.delta = 0;
@@ -43,11 +42,12 @@ export class PrimaryStat extends Component {
     }
 
     release = () => {
+        if (this.readonly) return;
         this.active = false;
     }
 
     move = (event: PointerEvent) => {
-        if (!this.active) return;
+        if (!this.active || this.readonly) return;
 
         this.delta += event.movementY;
 

@@ -5,12 +5,15 @@ primary-stat {
 primary-stat .container {
     width: 60px;
     height: 60px;
-    cursor: grab;
     background-size: contain;
 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+primary-stat > .container:not(.readonly) {
+    cursor: grab;
 }
 
 primary-stat .container.s {

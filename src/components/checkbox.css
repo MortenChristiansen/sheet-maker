@@ -1,5 +1,8 @@
 checkbox {
     display: inline-block;
+}
+
+checkbox > .container:not(.readonly) {
     cursor: pointer;
 }
 

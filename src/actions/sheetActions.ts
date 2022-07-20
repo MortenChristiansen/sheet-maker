@@ -1,6 +1,6 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
 import { stat } from "fs";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -47,7 +47,18 @@ export function createNewCharacter(state: StateHistory<State>) {
             imaginem: { level: 0, xp: 0, puissant: false },
             vim: { level: 0, xp: 0, puissant: false }
         },
-        spells: []
+        spells: [],
+        ageing: {
+            age: 25,
+            apparentAge: 25,
+            birthYear: 1195,
+            currentYear: 1220,
+            decrepitudeLevel: 0,
+            decrepitudePoints: 0,
+            longevityModifier: 0,
+            ageingRollModifier: 0,
+            livingConditionModifier: 0
+        }
     };
     return nextStateHistory(state, newState);
 }
@@ -91,6 +102,7 @@ export function updateVirtues(state: StateHistory<State>, virtues: Virtue[]) {
     console.log("Saving virtues", virtues);
     const newState = deepCopy(state.present);
     newState.character.virtues = virtues.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
+    refreshAgeingStats(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -130,6 +142,49 @@ export function updateSpells(state: StateHistory<State>, spells: Spell[]) {
     newState.character.spells = spells.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name)).sort((a, b) => a.arts.slice(2).localeCompare(b.arts.slice(2)));
     refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
+}
+
+export function updateAgeing(state: StateHistory<State>, ageing: Ageing) {
+    console.log("Saving ageing", ageing);
+    const newState = deepCopy(state.present);
+    newState.character.ageing = ageing;
+    refreshAgeingStats(newState);
+    return nextStateHistory(state, newState);
+}
+
+function refreshAgeingStats(state: State) {
+    refreshAgeingRollModifier(state);
+    refreshDecrepitudeLevel(state);
+    refreshAge(state);
+}
+
+function refreshAgeingRollModifier(state: State) {
+    let faerieBloodModifier =
+        state.character.virtues.findIndex(v => v.name.indexOf("Strong Faerie Blood") >= 0) >= 0 ? 3 :
+        state.character.virtues.findIndex(v => v.name.indexOf("Faerie Blood") >= 0) >= 0 ? 1 :
+        0;
+
+    state.character.ageing.ageingRollModifier =
+        // TODO: Include lab safety measures
+        // TODO: Include familiar bond
+        state.character.ageing.livingConditionModifier +
+        state.character.ageing.longevityModifier +
+        faerieBloodModifier -
+        Math.ceil(state.character.ageing.age / 10);
+}
+
+function refreshDecrepitudeLevel(state: State) {
+    state.character.ageing.decrepitudeLevel = calculateAbilityLevel(state.character.ageing.decrepitudePoints, 0);
+}
+
+function refreshAge(state: State) {
+    state.character.ageing.age = state.character.ageing.currentYear - state.character.ageing.birthYear;
+}
+
+function calculateAbilityLevel(remainingXp: number, currentLevel: number) {
+    let xpToNextLevel = (currentLevel + 1) * 5;
+    if (xpToNextLevel > remainingXp) return currentLevel;
+    return calculateAbilityLevel(remainingXp - xpToNextLevel, currentLevel + 1);
 }
 
 function refreshCastingTotals(state: State) {
