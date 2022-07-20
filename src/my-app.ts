@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, loadCharacter, updateAbilities, updateAgeing, updateArts, updateCharacteristics, updateDescription, updateFlaws, updateName, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues } from "./actions/sheetActions";
+import { createNewCharacter, loadCharacter, updateAbilities, updateAgeing, updateArts, updateCharacteristics, updateConfidence, updateDescription, updateFlaws, updateName, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues } from "./actions/sheetActions";
 import { ArsCharacter, State } from "./types";
 
 @connectTo()
@@ -27,6 +27,7 @@ export class MyApp {
     pages of the sheet. Maybe we can use one of the fonts for this.
     - Stat boxes could have additional modes: skull, shield.
     - Books are represented by actual book icons.
+    - The age block could have a shield or a banner as background.
 
     Bugs
     - Redo does not seem to work. Its as if there never is a future.
@@ -53,6 +54,7 @@ export class MyApp {
         this.store.registerAction('updateSpells', updateSpells);
         this.store.registerAction('updatePersonalityTraits', updatePersonalityTraits);
         this.store.registerAction('updateAgeing', updateAgeing);
+        this.store.registerAction('updateConfidence', updateConfidence);
         store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
         store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
     }

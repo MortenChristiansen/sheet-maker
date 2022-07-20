@@ -6,7 +6,7 @@ export class PrimaryStat extends Component {
     @bindable max: number = 99;
     @bindable min: number = -99;
     @bindable mode: "primary" | "primary-angled" | "secondary" | "secondary-angled" = "primary-angled";
-    @bindable size: "xs" | "s" | "m" = "m";
+    @bindable size: "xs" | "s" | "m" | "l" = "m";
     @bindable prefixPlus: boolean = false;
     @bindable readonly: boolean = false;
 

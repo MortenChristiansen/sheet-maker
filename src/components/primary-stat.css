@@ -16,6 +16,12 @@ primary-stat > .container:not(.readonly) {
     cursor: grab;
 }
 
+primary-stat .container.l {
+    width: 90px;
+    height: 90px;
+    font-size: 30px;
+}
+
 primary-stat .container.s {
     width: 45px;
     height: 45px;

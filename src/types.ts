@@ -11,6 +11,7 @@ export interface ArsCharacter {
     arts: Arts;
     spells: Spell[];
     ageing: Ageing;
+    confidence: Confidence;
 }
 
 export interface Virtue {
@@ -73,6 +74,10 @@ export interface Ability {
     level: number;
     xp: number;
     puissant: boolean;
+}
+
+export interface Confidence {
+    score: number;
 }
 
 export interface Arts {

@@ -1,6 +1,6 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
 import { stat } from "fs";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -58,6 +58,9 @@ export function createNewCharacter(state: StateHistory<State>) {
             longevityModifier: 0,
             ageingRollModifier: 0,
             livingConditionModifier: 0
+        },
+        confidence: {
+            score: 3
         }
     };
     return nextStateHistory(state, newState);
@@ -149,6 +152,13 @@ export function updateAgeing(state: StateHistory<State>, ageing: Ageing) {
     const newState = deepCopy(state.present);
     newState.character.ageing = ageing;
     refreshAgeingStats(newState);
+    return nextStateHistory(state, newState);
+}
+
+export function updateConfidence(state: StateHistory<State>, confidence: Confidence) {
+    console.log("Saving confidence", confidence);
+    const newState = deepCopy(state.present);
+    newState.character.confidence = confidence;
     return nextStateHistory(state, newState);
 }
 
