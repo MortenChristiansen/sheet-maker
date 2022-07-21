@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -68,7 +68,28 @@ export function createNewCharacter(state: StateHistory<State>) {
         },
         activeMagic: [],
         xpEntries: [],
-        notes: ''
+        notes: '',
+        lab: {
+            art1: { name: '', rating: 0 },
+            art2: { name: '', rating: 0 },
+            art3: { name: '', rating: 0 },
+            art4: { name: '', rating: 0 },
+            specialisation1: { name: '', rating: 0 },
+            specialisation2: { name: '', rating: 0 },
+            auraBonus: 0,
+            description: '',
+            effectiveSafety: 0,
+            flaws: [],
+            virtues: [],
+            intelligenceBonus: 0,
+            labBaseQuality: 0,
+            livingConditionsModifier: 0,
+            magicTheory: 0,
+            occupiedSize: 0,
+            refinement: 0,
+            size: 0,
+            availableModifiers: []
+        }
     };
     return nextStateHistory(state, newState);
 }
@@ -198,6 +219,17 @@ export function updateNotes(state: StateHistory<State>, notes: string) {
     console.log("Saving notes", notes);
     const newState = deepCopy(state.present);
     newState.character.notes = notes;
+    return nextStateHistory(state, newState);
+}
+
+export function updateLab(state: StateHistory<State>, lab: Lab) {
+    console.log("Saving lab", lab);
+    const newState = deepCopy(state.present);
+    newState.character.lab = lab;
+    newState.character.lab.virtues = filterListItems(newState.character.lab.virtues);
+    newState.character.lab.flaws = filterListItems(newState.character.lab.flaws);
+    newState.character.lab.availableModifiers = newState.character.lab.availableModifiers.filter(x => x.name != '');
+    refreshLab(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -355,4 +387,30 @@ function createXpEntry(year: number, season: 'Spring' | 'Summer' | 'Fall' | 'Win
         season: season,
         planningMode: true
     };
+}
+
+function refreshLab(state: State) {
+    refreshModificationModifiers(state.character.lab.virtues, state.character.lab.availableModifiers);
+    refreshModificationModifiers(state.character.lab.flaws, state.character.lab.availableModifiers);
+}
+
+function refreshModificationModifiers(modifications: LabModification[], availableModifications: LabModifierType[]){
+    modifications.forEach(m =>
+        {
+            let oldModifiers = m.modifiers.filter(x => x.rating != 0);
+            m.modifiers = availableModifications.map(x => ({ name: x.name, rating: 0 }));
+            oldModifiers.forEach(x =>
+                {
+                    let index = m.modifiers.findIndex(y => y.name == x.name);
+                    if (index >= 0) {
+                        m.modifiers[index].rating = x.rating;
+                    }
+                });
+
+            if (m.category.length > 1) {
+                if ('outfitting'.startsWith(m.category.toLocaleLowerCase())) m.category = 'Outfitting';
+                if ('stucture'.startsWith(m.category.toLocaleLowerCase())) m.category = 'Structure';
+                if ('supernatural'.startsWith(m.category.toLocaleLowerCase())) m.category = 'Supernatural';
+            }
+        });
 }

@@ -1,0 +1,86 @@
+lab-modifications-list {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+    float: left;
+}
+
+lab-modifications-list > .container {
+    padding: 10px 30px;
+    position: relative;
+}
+
+lab-modifications-list > .container > .grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-auto-rows: 1fr;
+}
+
+lab-modifications-list > .container > .grid > * {
+    align-self: center;
+    margin: 1px 2px;
+}
+
+lab-modifications-list .add-item-input {
+    margin-top: 15px;
+    border-bottom-style: dashed;
+    width: 200px;
+}
+
+lab-modifications-list .container > .title {
+    display: block;
+    margin-top: 30px;
+}
+
+lab-modifications-list .grid > .name {
+    width: 200px;
+}
+
+lab-modifications-list .grid > .category {
+    width: 100px;
+    text-align: center;
+}
+
+lab-modifications-list .grid > .description {
+    width: 400px;
+}
+
+lab-modifications-list .add-item-input.add-modifier-input {
+    position: absolute;
+    right: 10px;
+    top: -15px;
+    width: 60px;
+    text-align: center;
+}
+
+lab-modifications-list .modifier-titles {
+    position: absolute;
+    right: 32px;
+    top: 40px;
+}
+
+lab-modifications-list .modifier-title {
+    font-size: 10px;
+    display: inline-block;
+    width: 33px;
+    margin: 2px;
+    text-align: center;
+    font-family: "Eagle Lake", cursive;
+    border-bottom: none;
+    padding: 0px;
+    font-weight: unset;
+}
+
+lab-modifications-list .modifier-totals {
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+}
+
+lab-modifications-list .modifier-total {
+    font-size: 16px;
+    display: inline-block;
+    width: 33px;
+    margin: 2px;
+    text-align: center;
+}

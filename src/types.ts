@@ -16,6 +16,7 @@ export interface ArsCharacter {
     activeMagic: ActiveMagic[];
     xpEntries: XpEntry[];
     notes: string;
+    lab: Lab;
 }
 
 export interface Virtue {
@@ -156,6 +157,63 @@ export interface XpEntry {
     areaLore: string;
     plans: string;
     planningMode: boolean;
+}
+
+export interface Lab {
+    description: string;
+    virtues: LabModification[];
+    flaws: LabModification[];
+    size: number;
+    occupiedSize: number;
+    refinement: number;
+    effectiveSafety: number;
+    livingConditionsModifier;
+    specialisation1: LabModifier;
+    specialisation2: LabModifier;
+    art1: LabModifier;
+    art2: LabModifier;
+    art3: LabModifier;
+    art4: LabModifier;
+    intelligenceBonus: number;
+    auraBonus: number;
+    magicTheory: number;
+    labBaseQuality: number;
+    availableModifiers: LabModifierType[];
+}
+
+export interface LabModifierType {
+    name: string;
+}
+
+export interface LabModifier {
+    name: string;
+    rating: number;
+}
+
+export interface LabModification {
+    name: string;
+    category: 'Structure' | 'Outfitting' | 'Supernatural';
+    type: 'Virtue' | 'Flaw';
+    cost: number;
+    modifiers: LabModifier[];
+    notes: string;
+}
+
+export interface ResearchProject {
+    arts: string;
+    artModifier: number;
+    focus: boolean;
+    specialisationBonus: number;
+    magicTheorySpecialisation: boolean;
+    talisman: boolean;
+    similarResearchBonus: number;
+    material: string;
+    materialBonus: number;
+    shape: string;
+    shapeBonus: number;
+    labAssistantBonus: number;
+    accumulatedLabTotal: number;
+    description: string;
 }
 
 export interface State {
