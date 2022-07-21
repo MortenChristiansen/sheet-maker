@@ -15,6 +15,7 @@ export interface ArsCharacter {
     warping: Warping;
     activeMagic: ActiveMagic[];
     xpEntries: XpEntry[];
+    notes: string;
 }
 
 export interface Virtue {

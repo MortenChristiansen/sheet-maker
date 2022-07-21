@@ -1,0 +1,15 @@
+notes-block {
+    display: block;
+    margin: 30px;
+    width: 800px;
+    float: left;
+}
+
+notes-block text-box {
+    width: 100%;
+}
+
+
+notes-block text-box textarea {
+    height: 1200px;
+}

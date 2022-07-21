@@ -67,7 +67,8 @@ export function createNewCharacter(state: StateHistory<State>) {
             ongoingEffects: []
         },
         activeMagic: [],
-        xpEntries: []
+        xpEntries: [],
+        notes: ''
     };
     return nextStateHistory(state, newState);
 }
@@ -190,6 +191,13 @@ export function updateXpEntries(state: StateHistory<State>, xpEntries: XpEntry[]
     console.log("Saving xp entries", xpEntries);
     const newState = deepCopy(state.present);
     newState.character.xpEntries = xpEntries;
+    return nextStateHistory(state, newState);
+}
+
+export function updateNotes(state: StateHistory<State>, notes: string) {
+    console.log("Saving notes", notes);
+    const newState = deepCopy(state.present);
+    newState.character.notes = notes;
     return nextStateHistory(state, newState);
 }
 
