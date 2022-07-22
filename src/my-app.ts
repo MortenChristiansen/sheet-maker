@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateCharacteristics, updateConfidence, updateDescription, updateFlaws, updateLab, updateName, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, importCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateCharacteristics, updateConfidence, updateDescription, updateFlaws, updateLab, updateName, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { ArsCharacter, State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -29,6 +29,7 @@ export class MyApp {
     Bugs
     - Redo does not seem to work. Its as if there never is a future.
     - Undo triggers a save event. This is not a problem per se, but should not be necessary.
+    - Dragging the primary-stat control on the research projects widget is interrupted by the save event. I don't know why it sees it as a change.
 
     Refactorings
     - Make a specialisation of Widget that contains logic for working with lists of stuff (or add it to Widget itself).
@@ -61,6 +62,7 @@ export class MyApp {
         this.store.registerAction('updateXpEntries', updateXpEntries);
         this.store.registerAction('updateNotes', updateNotes);
         this.store.registerAction('updateLab', updateLab);
+        this.store.registerAction('importCharacter', importCharacter);
         store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
         store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
     }
@@ -74,6 +76,22 @@ export class MyApp {
     }
 
     export = () => {
-        downloadTextFile(JSON.stringify(this.state.present, null, 4), 'character sheet.json');
+        downloadTextFile(JSON.stringify(this.state.present.character, null, 4), 'character sheet.json');
+    }
+
+    import = () => {
+        this.fileInput.click();
+        this.fileInput.onchange = this.change;
+    }
+
+    fileInput: HTMLInputElement;
+
+    selectedFiles: FileList;
+    get theFile() {
+        return this.selectedFiles && this.selectedFiles.length > 0 ? this.selectedFiles[0] : null;
+    }
+
+    change = () => {
+        this.theFile.text().then(t => this.store.dispatch(importCharacter, t));
     }
 }

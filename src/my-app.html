@@ -49,3 +49,6 @@
 <button click.delegate="undo()" disabled.bind="state.past.length == 0">Undo</button>
 <button click.delegate="redo()" disabled.bind="state.future.length == 0">Redo</button>
 <button click.delegate="export()">Export</button>
+<button click.delegate="import()">Import</button>
+
+<input type='file' accept='.json' files.bind="selectedFiles" ref="fileInput" style="display: none;"><br>

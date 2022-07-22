@@ -238,6 +238,13 @@ export function updateLab(state: StateHistory<State>, lab: Lab) {
     return nextStateHistory(state, newState);
 }
 
+export function importCharacter(state: StateHistory<State>, character: string) {
+    console.log("Importing character");
+    const newState = deepCopy(state.present);
+    newState.character = JSON.parse(character) as ArsCharacter;
+    return nextStateHistory(state, newState);
+}
+
 function filterListItems<T extends ListItem>(listItems: T[]) {
     return listItems.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
 }
