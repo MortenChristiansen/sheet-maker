@@ -7,7 +7,7 @@
 <div class="container">
     <input class="add-item-input add-modifier-input" type="text" keyup.delegate="keyPressed($event, 'modifier')" value.two-way="newModifierText" title="Add Modifier Column">
     <div class="modifier-titles">
-        <input type="text" repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.bind="modifier.name">
+        <input type="text" repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.bind="modifier.name" title="${modifier.name}">
     </div>
 
     <label class="text title">VIRTUES</label>

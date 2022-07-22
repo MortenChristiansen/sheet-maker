@@ -61,7 +61,7 @@ lab-modifications-list .modifier-titles {
 }
 
 lab-modifications-list .modifier-title {
-    font-size: 10px;
+    font-size: 9px;
     display: inline-block;
     width: 33px;
     margin: 2px;
@@ -70,6 +70,7 @@ lab-modifications-list .modifier-title {
     border-bottom: none;
     padding: 0px;
     font-weight: unset;
+    text-overflow: ellipsis;
 }
 
 lab-modifications-list .modifier-totals {

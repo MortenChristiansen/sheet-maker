@@ -88,7 +88,7 @@ export function createNewCharacter(state: StateHistory<State>) {
             occupiedSize: 0,
             refinement: 0,
             size: 0,
-            availableModifiers: [],
+            availableModifiers: [{ name: 'GQ'}, { name: 'Safety'}, { name: 'Health'}, { name: 'Aesthetics'}, { name: 'Upkeep'}, { name: 'Warping'}],
             researchProjects: []
         }
     };
@@ -266,10 +266,10 @@ function refreshAgeingRollModifier(state: State) {
         0;
 
     state.character.ageing.ageingRollModifier =
-        // TODO: Include lab safety measures
         // TODO: Include familiar bond
         state.character.ageing.livingConditionModifier +
         state.character.ageing.longevityModifier +
+        state.character.lab.livingConditionsModifier +
         faerieBloodModifier -
         Math.ceil(state.character.ageing.age / 10);
 }
@@ -407,6 +407,8 @@ function refreshLab(state: State) {
     refreshModificationModifiers(state.character.lab.virtues, state.character.lab.availableModifiers);
     refreshModificationModifiers(state.character.lab.flaws, state.character.lab.availableModifiers);
     refreshResearchProjects(state);
+    refreshLabStats(state);
+    refreshAgeingRollModifier(state);
 }
 
 function refreshModificationModifiers(modifications: LabModification[], availableModifications: LabModifierType[]){
@@ -465,4 +467,21 @@ function refreshResearchProjects(state: State) {
                 (r.talisman ? 5 : 0);
             r.surplusLabTotal = r.labTotal - r.level;
         });
+}
+
+function refreshLabStats(state: State) {
+    let lab = state.character.lab;
+    let modifierTotals = getLabModifierTotals(lab);
+    let totalCosts = lab.virtues.concat(lab.flaws).reduce<number>((partialSum, x) => partialSum + x.cost, 0);
+    lab.occupiedSize = lab.size + totalCosts - lab.refinement;
+    let safety = modifierTotals.find(x => x.name == "Safety")?.rating ?? 0;
+    let health = modifierTotals.find(x => x.name == "Health")?.rating ?? 0;
+    lab.livingConditionsModifier = health >= 0 ? Math.floor(health / 2) : Math.ceil(health / 2);
+    lab.effectiveSafety = safety - Math.max(0, lab.occupiedSize) + lab.refinement;
+    lab.specialisation1.rating = modifierTotals.find(x => x.name == lab.specialisation1.name)?.rating ?? 0;
+    lab.specialisation2.rating = modifierTotals.find(x => x.name == lab.specialisation2.name)?.rating ?? 0;
+    lab.art1.rating = modifierTotals.find(x => x.name == lab.art1.name)?.rating ?? 0;
+    lab.art2.rating = modifierTotals.find(x => x.name == lab.art2.name)?.rating ?? 0;
+    lab.art3.rating = modifierTotals.find(x => x.name == lab.art3.name)?.rating ?? 0;
+    lab.art4.rating = modifierTotals.find(x => x.name == lab.art4.name)?.rating ?? 0;
 }

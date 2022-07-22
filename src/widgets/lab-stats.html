@@ -1,0 +1,45 @@
+<require from="../layout/title"></require>
+<require from="../layout/footer"></require>
+<require from="../components/primary-stat"></require>
+
+<title text="LAB STATS"></title>
+<div class="container">
+    <div class="grid">
+        <span class="text">Size</span>
+        <span class="text">Refinement</span>
+        <span class="text">Occupied Size</span>
+        <span class="text">Effective Safety</span>
+        <span class="text">Living Conditions Modifier</span>
+        <span class="text">Specialisation 1</span>
+        <span class="text">Specialisation 2</span>
+        <span class="text">Art 1 (Any)</span>
+        <span class="text">Art 2 (Any)</span>
+        <span class="text">Art 3 (Form)</span>
+        <span class="text">Art 4 (Form)</span>
+
+        <primary-stat value.two-way="model.size" mode="primary-angled" min="-3"></primary-stat>
+        <primary-stat value.two-way="model.refinement" mode="primary-angled" min="0"></primary-stat>
+        <primary-stat value.two-way="model.occupiedSize" mode="secondary-angled" readonly.bind="true" color-mode="monochrome"></primary-stat>
+        <primary-stat value.two-way="model.effectiveSafety" mode="secondary-angled" readonly.bind="true" color-mode="monochrome"></primary-stat>
+        <primary-stat value.two-way="model.livingConditionsModifier" mode="secondary-angled" readonly.bind="true" color-mode="monochrome" prefix-plus.bind="true"></primary-stat>
+        <primary-stat value.two-way="model.specialisation1.rating" mode="secondary-angled" readonly.bind="true" color-mode="monochrome" prefix-plus.bind="true"></primary-stat>
+        <primary-stat value.two-way="model.specialisation2.rating" mode="secondary-angled" readonly.bind="true" color-mode="monochrome" prefix-plus.bind="true"></primary-stat>
+        <primary-stat value.two-way="model.art1.rating" mode="secondary-angled" readonly.bind="true" color-mode="monochrome" prefix-plus.bind="true"></primary-stat>
+        <primary-stat value.two-way="model.art2.rating" mode="secondary-angled" readonly.bind="true" color-mode="monochrome" prefix-plus.bind="true"></primary-stat>
+        <primary-stat value.two-way="model.art3.rating" mode="secondary-angled" readonly.bind="true" color-mode="monochrome" prefix-plus.bind="true"></primary-stat>
+        <primary-stat value.two-way="model.art4.rating" mode="secondary-angled" readonly.bind="true" color-mode="monochrome" prefix-plus.bind="true"></primary-stat>
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <input class="modifier-selector" type="text" value.bind="model.specialisation1.name" placeholder="Modifier">
+        <input class="modifier-selector" type="text" value.bind="model.specialisation2.name" placeholder="Modifier">
+        <input class="modifier-selector" type="text" value.bind="model.art1.name" placeholder="Modifier">
+        <input class="modifier-selector" type="text" value.bind="model.art2.name" placeholder="Modifier">
+        <input class="modifier-selector" type="text" value.bind="model.art3.name" placeholder="Modifier">
+        <input class="modifier-selector" type="text" value.bind="model.art4.name" placeholder="Modifier">
+    </div>
+</div>
+<footer></footer>

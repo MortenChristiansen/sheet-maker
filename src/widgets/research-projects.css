@@ -34,6 +34,7 @@ research-projects > .container > .grid > * {
 research-projects .description {
     width: 600px;
     margin-left: 40px !important;
+    text-overflow: ellipsis;
 }
 research-projects .arts, research-projects .prerequisites {
     width: 50px;
