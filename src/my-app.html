@@ -15,6 +15,7 @@
 <require from="widgets/xp-list"></require>
 <require from="widgets/notes-block"></require>
 <require from="widgets/lab-modifications-list"></require>
+<require from="widgets/research-projects"></require>
 <require from="layout/rune-edge"></require>
 <require from="layout/page-header"></require>
 <require from="layout/sigil"></require>
@@ -37,6 +38,7 @@
 <active-magic-list></active-magic-list>
 <spell-list></spell-list>
 <xp-list></xp-list>
+<research-projects></research-projects>
 <lab-modifications-list></lab-modifications-list>
 <notes-block></notes-block>
 
@@ -46,3 +48,4 @@
 
 <button click.delegate="undo()" disabled.bind="state.past.length == 0">Undo</button>
 <button click.delegate="redo()" disabled.bind="state.future.length == 0">Redo</button>
+<button click.delegate="export()">Export</button>

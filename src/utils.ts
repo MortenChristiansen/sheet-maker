@@ -45,3 +45,12 @@ export function debounce(func, timeout = 300){
         timer = setTimeout(() => { func.apply(this, args); }, timeout);
     };
   }
+
+  export function downloadTextFile(text, name) {
+    const a = document.createElement('a');
+    const type = name.split(".").pop();
+    a.href = URL.createObjectURL( new Blob([text], { type:`text/${type === "txt" ? "plain" : type}` }) );
+    a.download = name;
+    a.click();
+    a.remove();
+}

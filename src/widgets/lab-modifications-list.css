@@ -2,6 +2,7 @@ lab-modifications-list {
     display: block;
     margin: 30px;
     width: fit-content;
+    min-width: 845px;
     float: left;
 }
 

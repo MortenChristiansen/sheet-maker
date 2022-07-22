@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -88,7 +88,8 @@ export function createNewCharacter(state: StateHistory<State>) {
             occupiedSize: 0,
             refinement: 0,
             size: 0,
-            availableModifiers: []
+            availableModifiers: [],
+            researchProjects: []
         }
     };
     return nextStateHistory(state, newState);
@@ -105,6 +106,7 @@ export function updateCharacteristics(state: StateHistory<State>, characteristic
     const newState = deepCopy(state.present);
     newState.character.characteristics = characteristics;
     refreshCastingTotals(newState);
+    refreshResearchProjects(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -119,6 +121,7 @@ export function updateAbilities(state: StateHistory<State>, abilities: Ability[]
     console.log("Saving abilities", abilities);
     const newState = deepCopy(state.present);
     newState.character.abilities = filterListItems(abilities);
+    refreshResearchProjects(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -164,6 +167,7 @@ export function updateArts(state: StateHistory<State>, arts: Arts) {
     const newState = deepCopy(state.present);
     newState.character.arts = arts;
     refreshCastingTotals(newState);
+    refreshResearchProjects(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -229,6 +233,7 @@ export function updateLab(state: StateHistory<State>, lab: Lab) {
     newState.character.lab.virtues = filterListItems(newState.character.lab.virtues);
     newState.character.lab.flaws = filterListItems(newState.character.lab.flaws);
     newState.character.lab.availableModifiers = newState.character.lab.availableModifiers.filter(x => x.name != '');
+    newState.character.lab.researchProjects = filterListItems(newState.character.lab.researchProjects);
     refreshLab(newState);
     return nextStateHistory(state, newState);
 }
@@ -284,24 +289,26 @@ function refreshCastingTotals(state: State) {
 
 function calculateCastingTotal(state: State, spell: Spell) {
     // TODO: Add stamina specialisation if it counts and other things such as aura, ceremonial/ritual casting
-    return calculateSpellBonus(state, spell) +
+    return calculateArtsScore(state, spell.arts, spell.prerequisites, spell.focus) +
+           spell.attunementBonus +
+           spell.masteryLevel +
            state.character.characteristics.stamina.value +
            calculateWoundPenalty(state) +
            calculateFatiguePenalty(state);
 }
 
-function calculateSpellBonus(state: State, spell: Spell) {
+function calculateArtsScore(state: State, arts: string, prerequisites: string, focus: boolean) {
     // TODO: Support multiple form or technique prerequisites
-    let primaryTechnique = getTechnique(state, spell.arts);
-    let primaryForm = getForm(state, spell.arts);
+    let primaryTechnique = getTechnique(state, arts);
+    let primaryForm = getForm(state, arts);
     if (primaryTechnique === null || primaryForm == null) return 0;
-    let prerequisiteTechnique = getTechnique(state, spell.prerequisites);
-    let prerequisiteForm = getForm(state, spell.prerequisites);
+    let prerequisiteTechnique = getTechnique(state, prerequisites);
+    let prerequisiteForm = getForm(state, prerequisites);
     let techniqueTotal = Math.min(primaryTechnique, prerequisiteTechnique ?? 1000);
     let formTotal = Math.min(primaryForm, prerequisiteForm ?? 1000);
-    let focusBonus = spell.focus ? Math.min(techniqueTotal, formTotal) : 0;
+    let focusBonus = focus ? Math.min(techniqueTotal, formTotal) : 0;
 
-    return techniqueTotal + formTotal + focusBonus + spell.attunementBonus + spell.masteryLevel;
+    return techniqueTotal + formTotal + focusBonus;
 }
 
 function getTechnique(state: State, targetArts: string) {
@@ -392,6 +399,7 @@ function createXpEntry(year: number, season: 'Spring' | 'Summer' | 'Fall' | 'Win
 function refreshLab(state: State) {
     refreshModificationModifiers(state.character.lab.virtues, state.character.lab.availableModifiers);
     refreshModificationModifiers(state.character.lab.flaws, state.character.lab.availableModifiers);
+    refreshResearchProjects(state);
 }
 
 function refreshModificationModifiers(modifications: LabModification[], availableModifications: LabModifierType[]){
@@ -412,5 +420,42 @@ function refreshModificationModifiers(modifications: LabModification[], availabl
                 if ('stucture'.startsWith(m.category.toLocaleLowerCase())) m.category = 'Structure';
                 if ('supernatural'.startsWith(m.category.toLocaleLowerCase())) m.category = 'Supernatural';
             }
+        });
+}
+
+export function getLabModifierTotals(lab: Lab): LabModifier[] {
+    return lab.availableModifiers.map(m => 
+        ({
+            name: m.name,
+            rating:
+                lab.virtues
+                .concat(lab.flaws)
+                .reduce<LabModifier[]>((partialModifiers, a) => partialModifiers.concat(a.modifiers.filter(y => y.name == m.name)), [])
+                .reduce<number>((partialSum, b) => partialSum + b.rating, 0)
+        }));
+}
+
+function refreshResearchProjects(state: State) {
+    let lab = state.character.lab;
+    lab.researchProjects.forEach(r =>
+        {
+            let magicTheory = state.character.abilities.find(a => a.name == 'Magic Theory')?.level ?? 0;
+            let generalQuality = getLabModifierTotals(lab).find(x => x.name == 'GQ')?.rating ?? 0;
+            r.artModifier = calculateArtsScore(state, r.arts, r.prerequisites, r.focus);
+            r.labTotal =
+                lab.auraBonus +
+                lab.labBaseQuality +
+                generalQuality +
+                r.artModifier +
+                r.labAssistantBonus +
+                magicTheory +
+                (r.magicTheorySpecialisation ? 1 : 0) +
+                state.character.characteristics.intelligence.value +
+                (r.intelligenceSpecialisation ? 1 : 0) +
+                r.materialBonus +
+                r.shapeBonus +
+                r.similarResearchBonus +
+                (r.talisman ? 5 : 0);
+            r.surplusLabTotal = r.labTotal - r.level;
         });
 }

@@ -1,5 +1,5 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
-import { updateLab } from "../actions/sheetActions";
+import { getLabModifierTotals, updateLab } from "../actions/sheetActions";
 import { Lab, LabModifier, State } from "../types";
 import { Widget } from "./widget";
 
@@ -14,11 +14,7 @@ export class LabModificationsList extends Widget<Lab> {
 
     get totals() {
         if (!this.model) return [];
-        return this.model.availableModifiers.map(m => 
-            this.model.virtues
-                .concat(this.model.flaws)
-                .reduce<LabModifier[]>((partialModifiers, a) => partialModifiers.concat(a.modifiers.filter(y => y.name == m.name)), [])
-                .reduce<number>((partialSum, b) => partialSum + b.rating, 0));
+        return getLabModifierTotals(this.model).map(x => x.rating);
     }
 
     keyPressed = (event: KeyboardEvent, type: string) => {

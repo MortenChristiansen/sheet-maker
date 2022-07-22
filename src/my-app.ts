@@ -1,6 +1,7 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
 import { createNewCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateCharacteristics, updateConfidence, updateDescription, updateFlaws, updateLab, updateName, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { ArsCharacter, State } from "./types";
+import { downloadTextFile } from "./utils";
 
 @connectTo()
 export class MyApp {
@@ -70,5 +71,9 @@ export class MyApp {
     
     redo = () => {
         this.store.dispatch(jump, 1);
+    }
+
+    export = () => {
+        downloadTextFile(JSON.stringify(this.state.present, null, 4), 'character sheet.json');
     }
 }

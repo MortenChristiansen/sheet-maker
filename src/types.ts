@@ -179,6 +179,7 @@ export interface Lab {
     magicTheory: number;
     labBaseQuality: number;
     availableModifiers: LabModifierType[];
+    researchProjects: ResearchProject[];
 }
 
 export interface LabModifierType {
@@ -200,11 +201,14 @@ export interface LabModification {
 }
 
 export interface ResearchProject {
+    name: string;
     arts: string;
+    prerequisites: string;
     artModifier: number;
     focus: boolean;
     specialisationBonus: number;
     magicTheorySpecialisation: boolean;
+    intelligenceSpecialisation: boolean;
     talisman: boolean;
     similarResearchBonus: number;
     material: string;
@@ -212,8 +216,11 @@ export interface ResearchProject {
     shape: string;
     shapeBonus: number;
     labAssistantBonus: number;
+    labTotal: number;
     accumulatedLabTotal: number;
+    surplusLabTotal: number;
     description: string;
+    level: number;
 }
 
 export interface State {

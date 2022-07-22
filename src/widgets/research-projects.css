@@ -1,0 +1,53 @@
+research-projects {
+    display: block;
+    margin: 30px;
+    width: 1969px;
+    float: left;
+}
+
+research-projects > .container {
+    padding: 10px 30px;
+    position: relative;
+}
+
+research-projects .aura-bonus {
+    display: block;
+}
+
+research-projects .add-item-input {
+    margin-top: 15px;
+    width: 250px;
+    border-bottom-style: dashed;
+}
+
+research-projects > .container > .grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-auto-rows: 1fr;
+}
+
+research-projects > .container > .grid > * {
+    align-self: center;
+    margin: 1px 2px;
+}
+
+research-projects .description {
+    width: 600px;
+    margin-left: 40px !important;
+}
+research-projects .arts, research-projects .prerequisites {
+    width: 50px;
+    text-align: center;
+}
+research-projects .level {
+    margin-right: 40px !important;
+}
+
+research-projects .material, research-projects .shape {
+    width: 150px;
+    text-align: center;
+}
+
+research-projects .total {
+    margin-left: 40px !important;
+}
