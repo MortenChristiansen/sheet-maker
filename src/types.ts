@@ -1,6 +1,7 @@
 export type ColorMode = "color" | "monochrome";
 
 export interface ArsCharacter {
+    type: "magus" | "companion";
     description: CharacterDescription;
     characteristics: Characteristics;
     personalityTraits: PersonalityTrait[];

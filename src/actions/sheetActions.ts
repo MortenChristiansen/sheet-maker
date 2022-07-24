@@ -5,6 +5,7 @@ import { deepCopy } from "../utils";
 export function createNewCharacter(state: StateHistory<State>) {
     const newState = deepCopy(state.present);
     newState.character = {
+        type: 'magus',
         physicalStatus : {
             fatigue : 0,
             lightWounds: 0,
@@ -263,6 +264,14 @@ export function updateSpellcastingStats(state: StateHistory<State>, spellcasting
     console.log("Saving spellcasting stats");
     const newState = deepCopy(state.present);
     newState.character.spellcastingStats = spellcastingStats;
+    refreshCastingTotals(newState);
+    return nextStateHistory(state, newState);
+}
+
+export function updateCharacterType(state: StateHistory<State>, characterType: "magus" | "companion") {
+    console.log("Saving character type");
+    const newState = deepCopy(state.present);
+    newState.character.type = characterType;
     refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
 }

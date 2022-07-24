@@ -18,6 +18,7 @@
 <require from="widgets/research-projects"></require>
 <require from="widgets/lab-stats"></require>
 <require from="widgets/spellcasting-modifiers-block"></require>
+<require from="widgets/character-type-selector"></require>
 <require from="layout/rune-edge"></require>
 <require from="layout/page-header"></require>
 <require from="layout/sigil"></require>
@@ -30,20 +31,20 @@
 <flaws-list></flaws-list>
 <fatigue-block></fatigue-block>
 <damage-block></damage-block>
-<arts-block></arts-block>
+<arts-block if.bind="state.present.character.type == 'magus'"></arts-block>
 <description-block></description-block>
-<sigil></sigil>
+<sigil if.bind="state.present.character.type == 'magus'"></sigil>
 <personality-traits-list></personality-traits-list>
 <age-block></age-block>
 <confidence-block></confidence-block>
 <warping-block></warping-block>
-<spellcasting-modifiers-block></spellcasting-modifiers-block>
+<spellcasting-modifiers-block if.bind="state.present.character.type == 'magus'"></spellcasting-modifiers-block>
 <active-magic-list></active-magic-list>
-<spell-list></spell-list>
+<spell-list if.bind="state.present.character.type == 'magus'"></spell-list>
 <xp-list></xp-list>
-<lab-stats></lab-stats>
-<research-projects></research-projects>
-<lab-modifications-list></lab-modifications-list>
+<lab-stats if.bind="state.present.character.type == 'magus'"></lab-stats>
+<research-projects if.bind="state.present.character.type == 'magus'"></research-projects>
+<lab-modifications-list if.bind="state.present.character.type == 'magus'"></lab-modifications-list>
 <notes-block></notes-block>
 
 <div style="clear:both;"></div>
@@ -55,5 +56,6 @@
 <button click.delegate="export()">Export</button>
 <button click.delegate="import()">Import</button>
 <button click.delegate="newCharacter()">Create New Character</button>
+<character-type-selector></character-type-selector>
 
 <input type='file' accept='.json' files.bind="selectedFiles" ref="fileInput" style="display: none;"><br>

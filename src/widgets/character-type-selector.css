@@ -1,0 +1,11 @@
+character-type-selector {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    color: #446;
+    margin: 20px;
+}
+
+character-type-selector .container > * {
+    vertical-align: middle;
+}

@@ -13,3 +13,7 @@ list .add-item-input {
     margin-top: 15px;
     border-bottom-style: dashed;
 }
+
+list .list-entry {
+    text-overflow: ellipsis;
+}
