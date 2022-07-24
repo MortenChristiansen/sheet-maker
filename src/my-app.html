@@ -54,5 +54,6 @@
 <button click.delegate="redo()" disabled.bind="state.future.length == 0">Redo</button>
 <button click.delegate="export()">Export</button>
 <button click.delegate="import()">Import</button>
+<button click.delegate="newCharacter()">Create New Character</button>
 
 <input type='file' accept='.json' files.bind="selectedFiles" ref="fileInput" style="display: none;"><br>

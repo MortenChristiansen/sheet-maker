@@ -85,6 +85,10 @@ export class MyApp {
         this.fileInput.onchange = this.change;
     }
 
+    newCharacter = () => {
+        this.store.dispatch(createNewCharacter);
+    }
+
     fileInput: HTMLInputElement;
 
     selectedFiles: FileList;
