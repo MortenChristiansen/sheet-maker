@@ -27,7 +27,8 @@ module.exports = function(env, { analyze }) {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: production ? '[name].[contenthash].bundle.js' : '[name].bundle.js'
+      filename: production ? '[name].[contenthash].bundle.js' : '[name].bundle.js',
+      publicPath: '/sheet-maker/'
     },
     resolve: {
       extensions: ['.ts', '.js'],

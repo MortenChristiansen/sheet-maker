@@ -2,6 +2,7 @@
   "name": "sheet-maker",
   "description": "An Aurelia 2 client application.",
   "version": "0.1.0",
+  "homepage": "https://mortenchristiansen.github.io/sheet-maker",
   "repository": {
     "type": "git",
     "url": "???"
@@ -24,6 +25,7 @@
     "css-loader": "^6.7.1",
     "dotenv-webpack": "^7.1.0",
     "eslint": "^8.17.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "htmlhint": "^1.1.4",
     "jest": "^28.1.1",
@@ -49,7 +51,9 @@
     "start": "webpack serve",
     "build": "rimraf dist && webpack --env production",
     "analyze": "rimraf dist && webpack --env production --analyze",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "rimraf dist && webpack --env production",
+    "deploy": "gh-pages -d dist"
   },
   "jest": {
     "testMatch": [
