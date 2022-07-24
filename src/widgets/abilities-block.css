@@ -15,10 +15,12 @@ abilities-block .ability > * {
 
 abilities-block .ability .name {
     width: 200px;
+    text-overflow: ellipsis;
 }
 
 abilities-block .ability.untrained .name {
     opacity: 0.4;
+    text-overflow: ellipsis;
 }
 
 abilities-block .ability .specialisation {
