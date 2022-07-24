@@ -433,6 +433,14 @@ function refreshXpEntries(state: State) {
         ];
     }
     state.character.xpEntries = state.character.xpEntries.filter(x => x.year < state.character.ageing.currentYear + 3);
+    if (state.character.xpEntries.length == 0) {
+        state.character.xpEntries = [
+            createXpEntry(state.character.ageing.currentYear, 'Spring'),
+            createXpEntry(state.character.ageing.currentYear, 'Summer'),
+            createXpEntry(state.character.ageing.currentYear, 'Fall'),
+            createXpEntry(state.character.ageing.currentYear, 'Winter')
+        ];
+    }
     while (state.character.xpEntries[state.character.xpEntries.length - 1].year < state.character.ageing.currentYear + 3) {
         let year = state.character.xpEntries[state.character.xpEntries.length - 1].year + 1;
         state.character.xpEntries.push(createXpEntry(year, 'Spring'));
