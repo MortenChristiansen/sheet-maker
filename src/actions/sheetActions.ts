@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -90,6 +90,19 @@ export function createNewCharacter(state: StateHistory<State>) {
             size: 0,
             availableModifiers: [{ name: 'GQ'}, { name: 'Safety'}, { name: 'Health'}, { name: 'Aesthetics'}, { name: 'Upkeep'}, { name: 'Warping'}],
             researchProjects: []
+        },
+        spellcastingStats: {
+            arts: '',
+            aura: 0,
+            ceremonial: false,
+            cyclicMagicVirtue: false,
+            focus: false,
+            largeGestures: false,
+            loudVoice: false,
+            similarFomulaicSpellBonus: 0,
+            spontaneousCastingTotal: 0,
+            staminaSpecialisation: false,
+            talismanBonus: 0
         }
     };
     return nextStateHistory(state, newState);
@@ -122,6 +135,7 @@ export function updateAbilities(state: StateHistory<State>, abilities: Ability[]
     const newState = deepCopy(state.present);
     newState.character.abilities = filterListItems(abilities);
     refreshResearchProjects(newState);
+    refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -245,6 +259,14 @@ export function importCharacter(state: StateHistory<State>, character: string) {
     return nextStateHistory(state, newState);
 }
 
+export function updateSpellcastingStats(state: StateHistory<State>, spellcastingStats: SpellcastingStats) {
+    console.log("Saving spellcasting stats");
+    const newState = deepCopy(state.present);
+    newState.character.spellcastingStats = spellcastingStats;
+    refreshCastingTotals(newState);
+    return nextStateHistory(state, newState);
+}
+
 function filterListItems<T extends ListItem>(listItems: T[]) {
     return listItems.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
 }
@@ -289,19 +311,50 @@ function calculateAbilityLevel(remainingXp: number, currentLevel: number) {
 }
 
 function refreshCastingTotals(state: State) {
-    if (!state?.character?.arts) return 0;
+    if (!state?.character?.arts) return;
 
-    state.character.spells.forEach(s => s.castingTotal = calculateCastingTotal(state, s));
+    state.character.spellcastingStats.spontaneousCastingTotal = calculateSpontaneousCastingTotal(state);
+    state.character.spells.forEach(s => s.castingTotal = calculateFormulaicCastingTotal(state, s));
 }
 
-function calculateCastingTotal(state: State, spell: Spell) {
-    // TODO: Add stamina specialisation if it counts and other things such as aura, ceremonial/ritual casting
-    return calculateArtsScore(state, spell.arts, spell.prerequisites, spell.focus) +
+function calculateFormulaicCastingTotal(state: State, spell: Spell) {
+    return calculateBaseSpellcastingModifier(state) +
+           calculateArtsScore(state, spell.arts, spell.prerequisites, spell.focus) +
            spell.attunementBonus +
            spell.masteryLevel +
-           state.character.characteristics.stamina.value +
+           (spell.ritual ? calculateSlowSpellBonus(state, 'Ritual') : 0);
+}
+
+function calculateSpontaneousCastingTotal(state: State) {
+    let castingStats = state.character.spellcastingStats;
+    return calculateBaseSpellcastingModifier(state) +
+           calculateArtsScore(state, castingStats.arts, '', castingStats.focus) +
+           castingStats.talismanBonus +
+           castingStats.similarFomulaicSpellBonus +
+           (castingStats.ceremonial ? calculateSlowSpellBonus(state, 'Ceremonial') : 0);
+}
+
+function calculateBaseSpellcastingModifier(state: State) {
+    let castingStats = state.character.spellcastingStats;
+    return state.character.characteristics.stamina.value +
            calculateWoundPenalty(state) +
-           calculateFatiguePenalty(state);
+           calculateFatiguePenalty(state) +
+           castingStats.aura +
+           (castingStats.cyclicMagicVirtue ? 3 : 0) +
+           (castingStats.staminaSpecialisation ? 1 : 0) +
+           (castingStats.largeGestures ? 1 : 0) +
+           (castingStats.loudVoice ? 1 : 0);
+}
+
+function calculateSlowSpellBonus(state: State, specialisation: string) {
+    let artesLiberales = state.character.abilities.find(a => a.name == 'Artes Liberales');
+    let philosophiae = state.character.abilities.find(a => a.name == 'Philosophiae');
+    let artesLiberalesSpecialisation = artesLiberales?.specialisation == specialisation ? 1 : 0;
+    let philosophiaeSpecialisation = philosophiae?.specialisation == specialisation ? 1 : 0;
+    let artesLiberalesPuissant = artesLiberales?.puissant ? 3 : 0;
+    let philosophiaePuissant = philosophiae?.puissant ? 3 : 0;
+    return (artesLiberales?.level ?? 0) + artesLiberalesSpecialisation + artesLiberalesPuissant +
+           (philosophiae?.level ?? 0) + philosophiaeSpecialisation + philosophiaePuissant;
 }
 
 function calculateArtsScore(state: State, arts: string, prerequisites: string, focus: boolean) {

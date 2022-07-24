@@ -24,6 +24,7 @@ export class SpellList extends Widget<Spell[]> {
                 attunementBonus: 0,
                 duration: '',
                 focus: false,
+                ritual: false,
                 masteries: '',
                 masteryLevel: 0,
                 notes: '',

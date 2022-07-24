@@ -17,6 +17,7 @@ export interface ArsCharacter {
     xpEntries: XpEntry[];
     notes: string;
     lab: Lab;
+    spellcastingStats: SpellcastingStats;
 }
 
 export interface Virtue {
@@ -115,6 +116,7 @@ export interface Spell {
     pageNumber: string;
     sourceBook: string;
     focus: boolean;
+    ritual: boolean;
     notes: string;
     sigil: string;
     range: string;
@@ -221,6 +223,20 @@ export interface ResearchProject {
     surplusLabTotal: number;
     description: string;
     level: number;
+}
+
+export interface SpellcastingStats {
+    staminaSpecialisation: boolean;
+    aura: number;
+    cyclicMagicVirtue: boolean;
+    loudVoice: boolean;
+    largeGestures: boolean;
+    ceremonial: boolean;
+    arts: string;
+    talismanBonus: number;
+    similarFomulaicSpellBonus: number;
+    focus: boolean;
+    spontaneousCastingTotal: number;
 }
 
 export interface State {

@@ -9,6 +9,7 @@
         <span class="form-header"></span>
         <input class="name" type="text" value.bind="spell.name" placeholder="Name">
         <checkbox size="xs" value.two-way="spell.focus" title="Focus"></checkbox>
+        <checkbox size="xs" value.two-way="spell.ritual" title="Ritual"></checkbox>
         <input class="arts" type="text" value.bind="spell.arts" placeholder="Arts">
         <input class="prerequisites" type="text" value.bind="spell.prerequisites"  placeholder="Prereq" title="Prerequisites">
         <span class="casting-total-label numbers text">+${spell.castingTotal}</span>

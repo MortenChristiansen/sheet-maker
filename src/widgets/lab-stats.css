@@ -1,7 +1,7 @@
 lab-stats {
     display: block;
     margin: 30px;
-    width: fit-content;
+    width: 1500px;
     float: left;
 }
 
@@ -24,6 +24,7 @@ lab-stats > .container > .grid > * {
 
 lab-stats > .container > .grid > .text {
     font-size: 10px;
+    text-align: center;
 }
 
 lab-stats .modifier-selector {
