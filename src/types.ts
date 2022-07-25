@@ -17,6 +17,7 @@ export interface ArsCharacter {
     activeMagic: ActiveMagic[];
     xpEntries: XpEntry[];
     notes: string;
+    background: string;
     lab: Lab;
     spellcastingStats: SpellcastingStats;
 }

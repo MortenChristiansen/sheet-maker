@@ -70,6 +70,7 @@ export function createNewCharacter(state: StateHistory<State>) {
         activeMagic: [],
         xpEntries: [],
         notes: '',
+        background: '',
         lab: {
             art1: { name: '', rating: 0 },
             art2: { name: '', rating: 0 },
@@ -273,6 +274,13 @@ export function updateCharacterType(state: StateHistory<State>, characterType: "
     const newState = deepCopy(state.present);
     newState.character.type = characterType;
     refreshCastingTotals(newState);
+    return nextStateHistory(state, newState);
+}
+
+export function updateBackground(state: StateHistory<State>, background: string) {
+    console.log("Saving background");
+    const newState = deepCopy(state.present);
+    newState.character.background = background;
     return nextStateHistory(state, newState);
 }
 

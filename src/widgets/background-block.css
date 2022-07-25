@@ -1,0 +1,15 @@
+background-block {
+    display: block;
+    margin: 30px;
+    width: 800px;
+    float: left;
+}
+
+background-block text-box {
+    width: 100%;
+}
+
+
+background-block text-box textarea {
+    height: 1200px;
+}

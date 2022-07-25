@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, importCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateName, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSpellcastingStats, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, importCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateName, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSpellcastingStats, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -43,6 +43,7 @@ export class MyApp {
         this.store.registerAction('rehydrateFromLocalStorage', rehydrateFromLocalStorage);
         this.store.registerAction('createNewCharacter', createNewCharacter);
         this.store.registerAction('loadCharacter', loadCharacter);
+        this.store.registerAction('importCharacter', importCharacter);
         this.store.registerAction('updateCharacteristics', updateCharacteristics);
         this.store.registerAction('updateName', updateName);
         this.store.registerAction('updateAbilities', updateAbilities);
@@ -60,9 +61,9 @@ export class MyApp {
         this.store.registerAction('updateXpEntries', updateXpEntries);
         this.store.registerAction('updateNotes', updateNotes);
         this.store.registerAction('updateLab', updateLab);
-        this.store.registerAction('importCharacter', importCharacter);
         this.store.registerAction('updateSpellcastingStats', updateSpellcastingStats);
         this.store.registerAction('updateCharacterType', updateCharacterType);
+        this.store.registerAction('updateBackground', updateBackground);
         store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
         store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
     }
