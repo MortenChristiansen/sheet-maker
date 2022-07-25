@@ -7,7 +7,7 @@ page-header {
 page-header > .grid {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows:  0 1fr;
 }
 
 page-header .name-box {
@@ -26,4 +26,38 @@ page-header .name-box input {
     font-size: 70px;
     width: 300px;
     border: none;
+}
+
+page-header .left-page-links {
+    align-self: center;
+    justify-self: right;
+    margin: 20px;
+    margin-top: 45px;
+}
+
+page-header .right-page-links {
+    align-self: center;
+    justify-self: left;
+    margin: 20px;
+    margin-top: 45px;
+}
+
+page-header .page-link {
+    margin: 10px;
+    color: #446;;
+}
+
+page-header .page-link {
+    text-decoration: none;
+}
+
+
+
+page-header .page-link:hover:not(.active) {
+    color: black;
+}
+
+page-header .page-link.active{
+    cursor: default;
+    color: darkred;
 }

@@ -1,6 +1,20 @@
 <require from="./rune-edge"></require>
+<require from="../pages/notes"></require>
 
 <div class="grid">
+    <div class="left-page-links">
+        <a class="page-link active" href="description">Description</a>
+        <a class="page-link" href="stats">Stats</a>
+        <a class="page-link" href="magic" if.bind="state.present.character.type == 'magus'">Magic</a>
+        <a class="page-link" href="progression">Progression</a>
+    </div>
+    <div></div>
+    <div class="right-page-links">
+        <a class="page-link" href="lab" if.bind="state.present.character.type == 'magus'">Lab</a>
+        <a class="page-link" href="gear">Gear</a>
+        <a class="page-link" href="notes">Notes</a>
+    </div>
+
     <rune-edge></rune-edge>
     <div class="name-box">
         <input type="text" placeholder="Name" value.bind="name">

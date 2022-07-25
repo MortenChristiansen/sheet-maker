@@ -8,6 +8,7 @@ import { debounce } from "../utils";
 @watch('name', 'nameChanged')
 export class PageHeader {
     name: string = 'undefined';
+    public state: StateHistory<State>;
 
     constructor(private store: Store<StateHistory<State>>) {}
 

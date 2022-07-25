@@ -1,53 +1,18 @@
-<require from="widgets/characteristics-block"></require>
-<require from="widgets/fatigue-block"></require>
-<require from="widgets/abilities-block"></require>
-<require from="widgets/virtues-list"></require>
-<require from="widgets/flaws-list"></require>
-<require from="widgets/description-block"></require>
-<require from="widgets/arts-block"></require>
-<require from="widgets/spell-list"></require>
-<require from="widgets/damage-block"></require>
-<require from="widgets/personality-traits-list"></require>
-<require from="widgets/age-block"></require>
-<require from="widgets/confidence-block"></require>
-<require from="widgets/warping-block"></require>
-<require from="widgets/active-magic-list"></require>
-<require from="widgets/xp-list"></require>
-<require from="widgets/notes-block"></require>
-<require from="widgets/lab-modifications-list"></require>
-<require from="widgets/research-projects"></require>
-<require from="widgets/lab-stats"></require>
-<require from="widgets/spellcasting-modifiers-block"></require>
 <require from="widgets/character-type-selector"></require>
 <require from="layout/rune-edge"></require>
 <require from="layout/page-header"></require>
 <require from="layout/sigil"></require>
+<require from="pages/description"></require>
+<require from="pages/stats"></require>
+<require from="pages/magic"></require>
+<require from="pages/lab"></require>
+<require from="pages/gear"></require>
+<require from="pages/notes"></require>
+<require from="pages/progression"></require>
 
 <page-header></page-header>
 
-<abilities-block></abilities-block>
-<characteristics-block></characteristics-block>
-<virtues-list></virtues-list>
-<flaws-list></flaws-list>
-<fatigue-block></fatigue-block>
-<damage-block></damage-block>
-<arts-block if.bind="state.present.character.type == 'magus'"></arts-block>
-<description-block></description-block>
-<sigil if.bind="state.present.character.type == 'magus'"></sigil>
-<personality-traits-list></personality-traits-list>
-<age-block></age-block>
-<confidence-block></confidence-block>
-<warping-block></warping-block>
-<spellcasting-modifiers-block if.bind="state.present.character.type == 'magus'"></spellcasting-modifiers-block>
-<active-magic-list></active-magic-list>
-<spell-list if.bind="state.present.character.type == 'magus'"></spell-list>
-<xp-list></xp-list>
-<lab-stats if.bind="state.present.character.type == 'magus'"></lab-stats>
-<research-projects if.bind="state.present.character.type == 'magus'"></research-projects>
-<lab-modifications-list if.bind="state.present.character.type == 'magus'"></lab-modifications-list>
-<notes-block></notes-block>
-
-<div style="clear:both;"></div>
+<au-viewport name="main" default="description"></au-viewport>
 
 <rune-edge></rune-edge>
 

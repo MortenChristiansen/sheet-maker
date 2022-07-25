@@ -9,6 +9,7 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
+    "@aurelia/router": "^2.0.0-alpha.36",
     "@aurelia/store-v1": "^2.0.0-alpha.35",
     "aurelia": "latest",
     "rxjs": "^7.5.5"
