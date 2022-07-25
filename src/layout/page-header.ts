@@ -11,6 +11,8 @@ export class PageHeader {
 
     constructor(private store: Store<StateHistory<State>>) {}
 
+    // TODO: Move the textbox out into a widget instead of having custom save logic (the UI can remain here)
+
     stateChanged(newState: StateHistory<State>, oldState: StateHistory<State>) {
         if (newState.present.character) {
             this.name = newState.present.character.description.name;
