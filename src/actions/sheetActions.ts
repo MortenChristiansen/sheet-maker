@@ -105,7 +105,8 @@ export function createNewCharacter(state: StateHistory<State>) {
             spontaneousCastingTotal: 0,
             staminaSpecialisation: false,
             talismanBonus: 0
-        }
+        },
+        sigil: ''
     };
     return nextStateHistory(state, newState);
 }
@@ -281,6 +282,13 @@ export function updateBackground(state: StateHistory<State>, background: string)
     console.log("Saving background");
     const newState = deepCopy(state.present);
     newState.character.background = background;
+    return nextStateHistory(state, newState);
+}
+
+export function updateSigil(state: StateHistory<State>, sigil: string) {
+    console.log("Saving sigil");
+    const newState = deepCopy(state.present);
+    newState.character.sigil = sigil;
     return nextStateHistory(state, newState);
 }
 

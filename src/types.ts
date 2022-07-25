@@ -20,6 +20,7 @@ export interface ArsCharacter {
     background: string;
     lab: Lab;
     spellcastingStats: SpellcastingStats;
+    sigil: string;
 }
 
 export interface Virtue {

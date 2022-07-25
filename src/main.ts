@@ -11,3 +11,12 @@ Aurelia
     .register(RouterConfiguration)
     .app(MyApp)
     .start();
+
+
+window.addEventListener("dragover", function(e) {
+    e.preventDefault();
+}, false);
+
+window.addEventListener("drop", function(e) {
+    e.preventDefault();
+}, false);
