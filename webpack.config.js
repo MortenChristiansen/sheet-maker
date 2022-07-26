@@ -34,7 +34,17 @@ module.exports = function(env, { analyze }) {
       extensions: ['.ts', '.js'],
       modules: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'dev-app'), 'node_modules'],
       alias: production ? {
-        // add your production aliasing here
+        ...[
+          // These two were required when using the Aurelia router
+          'kernel',
+          'runtime-html',
+        ].reduce((map, pkg) => {
+          const name = `@aurelia/${pkg}`;
+          map[name] = path.resolve(__dirname, 'node_modules', name, 'dist/esm/index.mjs');
+          return map;
+        }, {
+          // add your production aliasing here
+        })
       } : {
         ...[
           'fetch-client',
