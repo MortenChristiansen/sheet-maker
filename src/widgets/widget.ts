@@ -1,6 +1,7 @@
 import { connectTo, StateHistory, Store } from "@aurelia/store-v1";
+import { IEventAggregator } from "aurelia";
 import { State } from "../types";
-import { deepCopy } from "../utils";
+import { debounce, deepCopy } from "../utils";
 
 @connectTo()
 export class Widget<TModel> {
@@ -13,7 +14,8 @@ export class Widget<TModel> {
     constructor(
         private store: Store<StateHistory<State>>,
         private pluckModel: (state: State) => TModel,
-        private saveAction: (state: StateHistory<State>, model: TModel) => StateHistory<State>) {
+        private saveAction: (state: StateHistory<State>, model: TModel) => StateHistory<State>,
+        public readonly ea: IEventAggregator) {
     }
 
     stateChanged(newState: StateHistory<State>, oldState: StateHistory<State>) {
@@ -26,10 +28,20 @@ export class Widget<TModel> {
         }
     }
 
+    interacting: boolean = false;
     bound() {
         this.active = true;
         this.checkForChanges();
+
+        this.ea.subscribe('ui-interaction', () => {
+            this.interacting = true;
+            this.stopInteraction();
+        });
     }
+
+    stopInteraction = debounce(() => {
+        this.interacting = false;
+    }, 1000);
 
     unbound() {
         this.active = false;
@@ -50,6 +62,7 @@ export class Widget<TModel> {
     }
 
     saveChanges() {
+        if (this.interacting) return;
         this.store.dispatch(this.saveAction, deepCopy(this.model));
     }
 

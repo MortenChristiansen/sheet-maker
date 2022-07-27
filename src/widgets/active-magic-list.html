@@ -1,13 +1,8 @@
-<require from="../layout/title"></require>
-<require from="../layout/footer"></require>
-<require from="../components/primary-stat"></require>
-<require from="../components/checkbox"></require>
-
 <title text="ACTIVE MAGIC"></title>
 <div class="container">
     <div class="active-magic grid" repeat.for="magic of model">
         <checkbox size="s" mode="angled" value.two-way="magic.active" title="Active"></checkbox>
-        <input class="name" type="text" value.bind="magic.name" placeholder="Name">
+        <text-field class="name" value.two-way="magic.name" placeholder="Name"></text-field>
         <primary-stat mode="secondary" value.two-way="magic.penetration" min="0" size="s" title="Penetration" readonly.bind="!magic.active" color-mode="${magic.active ? 'color' : 'monochrome'}"></primary-stat>
     </div>
     <input class="add-magic-input" type="text" placeholder="Add active magic" keyup.delegate="keyPressed($event)" value.two-way="newMagicText">

@@ -1,0 +1,4 @@
+text-field .input {
+    text-overflow: ellipsis;
+    display: inline-block;
+}

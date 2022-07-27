@@ -1,8 +1,5 @@
-<require from="../layout/title"></require>
-<require from="../layout/footer"></require>
-
 <title text.bind="title"></title>
 <div class="container">
-    <textarea value.bind="text" cols="32" rows="8"></textarea>
+    <textarea value.bind="text" cols="32" rows="8" keydown.delegate="onChange()"></textarea>
 </div>
 <footer></footer>

@@ -1,4 +1,4 @@
-import { bindable } from "aurelia";
+import { bindable, IEventAggregator } from "aurelia";
 import { Component } from "../components/component";
 
 export class PrimaryStat extends Component {
@@ -23,6 +23,10 @@ export class PrimaryStat extends Component {
     - Todo: Test dragging logic on touch device (phone).
     - Todo: Test that the overlay works correctly when scrolling.
     */
+
+    constructor(@IEventAggregator readonly ea: IEventAggregator) {
+        super();
+    }
 
     press = () => {
         if (this.readonly) return;
@@ -53,6 +57,7 @@ export class PrimaryStat extends Component {
 
         let newValue = Math.round(this.originalValue - (this.delta / 10));
         this.value = Math.max(this.min, Math.min(this.max, newValue));
+        this.ea.publish('ui-interaction');
     }
 
     getValuePrefix = () => {

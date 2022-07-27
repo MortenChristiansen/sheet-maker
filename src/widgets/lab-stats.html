@@ -1,7 +1,3 @@
-<require from="../layout/title"></require>
-<require from="../layout/footer"></require>
-<require from="../components/primary-stat"></require>
-
 <title text="LAB STATS"></title>
 <div class="container">
     <div class="grid">
@@ -34,12 +30,12 @@
         <span></span>
         <span></span>
         <span></span>
-        <input class="modifier-selector" type="text" value.bind="model.specialisation1.name" placeholder="Modifier">
-        <input class="modifier-selector" type="text" value.bind="model.specialisation2.name" placeholder="Modifier">
-        <input class="modifier-selector" type="text" value.bind="model.art1.name" placeholder="Modifier">
-        <input class="modifier-selector" type="text" value.bind="model.art2.name" placeholder="Modifier">
-        <input class="modifier-selector" type="text" value.bind="model.art3.name" placeholder="Modifier">
-        <input class="modifier-selector" type="text" value.bind="model.art4.name" placeholder="Modifier">
+        <text-field class="modifier-selector" value.two-way="model.specialisation1.name" placeholder="Modifier"></text-field>
+        <text-field class="modifier-selector" value.two-way="model.specialisation2.name" placeholder="Modifier"></text-field>
+        <text-field class="modifier-selector" value.two-way="model.art1.name" placeholder="Modifier"></text-field>
+        <text-field class="modifier-selector" value.two-way="model.art2.name" placeholder="Modifier"></text-field>
+        <text-field class="modifier-selector" value.two-way="model.art3.name" placeholder="Modifier"></text-field>
+        <text-field class="modifier-selector" value.two-way="model.art4.name" placeholder="Modifier"></text-field>
     </div>
 </div>
 <footer></footer>

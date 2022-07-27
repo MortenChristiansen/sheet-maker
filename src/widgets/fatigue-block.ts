@@ -6,8 +6,8 @@ import { Widget } from "./widget";
 
 export class FatigueBlock extends Widget<PhysicalStatus> {
     
-    constructor(store: Store<StateHistory<State>>, @IEventAggregator readonly ea: IEventAggregator) {
-        super(store, state => state.character?.physicalStatus, updatePhysicalStatus);
+    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
+        super(store, state => state.character?.physicalStatus, updatePhysicalStatus, ea);
     }
 
     bound() {

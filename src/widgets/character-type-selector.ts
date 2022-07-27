@@ -5,8 +5,8 @@ import { State } from "../types";
 import { Widget } from "./widget";
 
 export class CharacterTypeSelector extends Widget<"magus" | "companion"> {
-    constructor(store: Store<StateHistory<State>>, @IEventAggregator readonly ea: IEventAggregator) {
-        super(store, state => state.character?.type, updateCharacterType);
+    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
+        super(store, state => state.character?.type, updateCharacterType, ea);
     }
 
     bound() {

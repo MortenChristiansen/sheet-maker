@@ -1,12 +1,13 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
+import { IEventAggregator } from "aurelia";
 import { updateSpells } from "../actions/sheetActions";
 import { Spell, State } from "../types";
 import { Widget } from "./widget";
 
 export class SpellList extends Widget<Spell[]> {
 
-    constructor(store: Store<StateHistory<State>>) {
-        super(store, state => state.character?.spells, updateSpells);
+    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
+        super(store, state => state.character?.spells, updateSpells, ea);
     }
 
     newSpellText: string = '';

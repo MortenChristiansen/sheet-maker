@@ -1,7 +1,3 @@
-<require from="../layout/title"></require>
-<require from="../layout/footer"></require>
-<require from="../components/primary-stat"></require>
-
 <title text="WARPING"></title>
 <div class="container">
     <div class="warping-level">
@@ -9,7 +5,7 @@
         <primary-stat mode="secondary" readonly.bind="true" value.two-way="model.warpingLevel" min="0" size="m" title="Warping Level"></primary-stat>
     </div>
     <div class="warping-effect grid" repeat.for="effect of model.ongoingEffects">
-        <input class="name" type="text" value.bind="effect.name" placeholder="Name">
+        <text-field class="name" value.two-way="effect.name" placeholder="Name"></text-field>
         <primary-stat mode="secondary" value.two-way="effect.warpingPointsPerYear" min="1" size="s" title="Warping Points Per Year"></primary-stat>
         <span class="text">/year</span>
     </div>

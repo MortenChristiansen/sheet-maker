@@ -1,15 +1,11 @@
-<require from="../layout/title"></require>
-<require from="../layout/footer"></require>
-<require from="../components/primary-stat"></require>
-
 <title text="VIS"></title>
 <div class="container">
     <div class="vis grid" repeat.for="vis of model.vis">
-        <input class="name" type="text" value.bind="vis.name">
+        <text-field class="name" value.two-way="vis.name"></text-field>
         <primary-stat class="lab-vis" mode="secondary" value.two-way="vis.amountInLab" min="0" size="s" title="In lab"></primary-stat>
         <primary-stat class="personal-vis" mode="secondary" value.two-way="vis.amountOnPerson" min="0" size="s" title="On person"></primary-stat>
-        <input class="income" type="text" value.bind="vis.income" placeholder="Income" title="${vis.income}">
-        <input class="notes" type="text" value.bind="vis.notes" placeholder="Notes" title="${vis.notes}">
+        <text-field class="income" value.two-way="vis.income" placeholder="Income" title="${vis.income}"></text-field>
+        <text-field class="notes" value.two-way="vis.notes" placeholder="Notes" title="${vis.notes}"></text-field>
     </div>
     <input class="add-item-input" type="text" placeholder="Add vis type" keyup.delegate="keyPressed($event)" value.two-way="newItemText">
 </div>

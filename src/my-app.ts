@@ -10,13 +10,12 @@ export class MyApp {
     Feature Suggestions
     - Some way to see details for virtues, flaws, abilities and other things that I sometimes have
     to look up. It could just be a user defined summary.
-    - Companion character mode.
     - Character creation mode. Keeps track of virtue/flaw count and types as well as remaining XP and
     spell levels.
     - Working with multiple sheets. Adding new sheets. Easily switching between sheets.
     - Save sheets to google drive: https://stackoverflow.com/questions/36682784/save-text-from-textarea-to-google-drive-using-javascript
     - Ability list grouped by ability category.
-    - Sorting of abilities list.
+    - Puissant arts and abilitis can be identified automatically from virtue names. The same for cyclic magic for determining whether to show such toggle.
 
     Design Ideas
     - Some low contrast flourish between the two groups of characteristics.
@@ -27,15 +26,11 @@ export class MyApp {
     - The age block could have a shield or a banner as background.
 
     Bugs
-    - Redo does not seem to work. Its as if there never is a future.
-    - Undo triggers a save event. This is not a problem per se, but should not be necessary.
-    - Dragging the primary-stat control on the research projects widget is interrupted by the save event. I don't know why it sees it as a change.
     - The routing strips the "/sheet-maker/" part of the url, breaking F5.
 
     Refactorings
     - Make a specialisation of Widget that contains logic for working with lists of stuff (or add it to Widget itself).
         The CSS for this should be standardised as well. The text input could be a component itself.
-    - Make all the components be included by default.
     */
 
     public state: StateHistory<State>;

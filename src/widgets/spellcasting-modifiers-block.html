@@ -1,8 +1,3 @@
-<require from="../layout/title"></require>
-<require from="../layout/footer"></require>
-<require from="../components/primary-stat"></require>
-<require from="../components/checkbox"></require>
-
 <title text="SPELLCASTING STATS"></title>
 <div class="container">
     <div class="grid">
@@ -26,7 +21,7 @@
         <checkbox value.two-way="model.loudVoice" mode="angled"></checkbox>
         <checkbox value.two-way="model.largeGestures" mode="angled"></checkbox>
 
-        <input class="arts" type="text" value.bind="model.arts" placeholder="Arts">
+        <text-field class="arts" value.two-way="model.arts" placeholder="Arts"></text-field>
         <checkbox value.two-way="model.ceremonial" mode="angled" color-mode="monochrome"></checkbox>
         <primary-stat value.two-way="model.talismanBonus" mode="secondary" prefix-plus.bind="true" color-mode="monochrome"></primary-stat>
         <primary-stat value.two-way="model.similarFomulaicSpellBonus" mode="secondary" prefix-plus.bind="true" color-mode="monochrome"></primary-stat>
