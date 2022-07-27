@@ -21,6 +21,7 @@ export interface ArsCharacter {
     lab: Lab;
     spellcastingStats: SpellcastingStats;
     sigil: string;
+    belongings: Belongings;
 }
 
 export interface Virtue {
@@ -240,6 +241,20 @@ export interface SpellcastingStats {
     similarFomulaicSpellBonus: number;
     focus: boolean;
     spontaneousCastingTotal: number;
+}
+
+export interface Belongings {
+    carried: string;
+    inSanctum: string;
+    vis: Vis[];
+}
+
+export interface Vis {
+    name: string;
+    amountInLab: number;
+    amountOnPerson: number;
+    income: string;
+    notes: string;
 }
 
 export interface State {

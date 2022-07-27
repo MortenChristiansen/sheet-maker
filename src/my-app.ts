@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, importCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateName, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSigil, updateSpellcastingStats, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, importCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateName, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSigil, updateSpellcastingStats, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -30,6 +30,7 @@ export class MyApp {
     - Redo does not seem to work. Its as if there never is a future.
     - Undo triggers a save event. This is not a problem per se, but should not be necessary.
     - Dragging the primary-stat control on the research projects widget is interrupted by the save event. I don't know why it sees it as a change.
+    - The routing strips the "/sheet-maker/" part of the url, breaking F5.
 
     Refactorings
     - Make a specialisation of Widget that contains logic for working with lists of stuff (or add it to Widget itself).
@@ -65,6 +66,7 @@ export class MyApp {
         this.store.registerAction('updateCharacterType', updateCharacterType);
         this.store.registerAction('updateBackground', updateBackground);
         this.store.registerAction('updateSigil', updateSigil);
+        this.store.registerAction('updateBelongings', updateBelongings);
         store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
         store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
     }

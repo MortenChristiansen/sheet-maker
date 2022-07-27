@@ -1,0 +1,34 @@
+vis-block {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+    float: left;
+}
+
+vis-block > .container {
+    padding: 10px 30px;
+}
+
+vis-block > .grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-auto-rows: 1fr;
+}
+
+vis-block > .grid > * {
+    align-self: center;
+}
+
+vis-block .add-item-input {
+    margin-top: 15px;
+    width: 100px;
+    border-bottom-style: dashed;
+}
+
+vis-block .name {
+    width: 100px;
+}
+
+vis-block .income, vis-block .notes {
+    text-overflow: ellipsis;
+}

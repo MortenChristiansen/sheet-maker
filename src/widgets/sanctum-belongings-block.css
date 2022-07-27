@@ -1,0 +1,15 @@
+sanctum-belongings-block {
+    display: block;
+    margin: 30px;
+    width: 600px;
+    float: left;
+}
+
+sanctum-belongings-block text-box {
+    width: 100%;
+}
+
+
+sanctum-belongings-block text-box textarea {
+    height: 800px;
+}

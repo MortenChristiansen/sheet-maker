@@ -59,3 +59,7 @@ input[type="text"].specialisation {
   color: #bbb;
   opacity: 1; /* Firefox */
 }
+
+my-app > .page-view {
+  min-height: 1100px;
+}
