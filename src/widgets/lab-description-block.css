@@ -1,0 +1,10 @@
+lab-description-block {
+    display: block;
+    margin: 30px;
+    width: 600px;
+    float: left;
+}
+
+lab-description-block text-box {
+    width: 100%;
+}
