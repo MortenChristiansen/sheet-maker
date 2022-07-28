@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const Dotenv = require('dotenv-webpack');
+const WebpackPwaManifest = require('webpack-pwa-manifest')
 
 const cssLoader = 'css-loader';
 
@@ -89,6 +90,27 @@ module.exports = function(env, { analyze }) {
       ]
     },
     plugins: [
+      new WebpackPwaManifest({
+        name: "Sheet Maker",
+        short_name: "Sheet Maker",
+        start_url: "/sheet-maker/",
+        scope: ".",
+        display: "standalone",
+        background_color: "#FFF",
+        theme_color: "#493174",
+        description: "A character sheet for Ars Magica 5e",
+        dir: "ltr",
+        lang: "en-US",
+        icons: [{
+            src: "content/app.96x96.png",
+            type: "image/png",
+            sizes: "96x96"
+        }, {
+            src: "content/app.512x512.png",
+            type: "image/png",
+            sizes: "512x512"
+        }]
+      }),
       new HtmlWebpackPlugin({ template: 'index.html', favicon: 'favicon.ico' }),
       new Dotenv({
         path: `./.env${production ? '' :  '.' + (process.env.NODE_ENV || 'development')}`,

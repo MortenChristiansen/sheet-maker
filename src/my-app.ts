@@ -13,7 +13,9 @@ export class MyApp {
     - Character creation mode. Keeps track of virtue/flaw count and types as well as remaining XP and
     spell levels.
     - Working with multiple sheets. Adding new sheets. Easily switching between sheets.
-    - Save sheets to google drive: https://stackoverflow.com/questions/36682784/save-text-from-textarea-to-google-drive-using-javascript
+    - Save sheets to google drive:
+        https://stackoverflow.com/questions/36682784/save-text-from-textarea-to-google-drive-using-javascript
+        https://gist.github.com/tanaikech/bd53b366aedef70e35a35f449c51eced
     - Ability list grouped by ability category.
     - Puissant arts and abilitis can be identified automatically from virtue names. The same for cyclic magic for determining whether to show such toggle.
 
