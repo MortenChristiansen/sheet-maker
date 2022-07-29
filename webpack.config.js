@@ -3,7 +3,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const Dotenv = require('dotenv-webpack');
-const WebpackPwaManifest = require('webpack-pwa-manifest')
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const cssLoader = 'css-loader';
 
@@ -97,7 +98,7 @@ module.exports = function(env, { analyze }) {
         scope: ".",
         display: "standalone",
         background_color: "#FFF",
-        theme_color: "#493174",
+        theme_color: "darkred",
         description: "A character sheet for Ars Magica 5e",
         dir: "ltr",
         lang: "en-US",
@@ -110,6 +111,13 @@ module.exports = function(env, { analyze }) {
             type: "image/png",
             sizes: "512x512"
         }]
+      }),
+      new WorkboxPlugin.GenerateSW({
+        // these options encourage the ServiceWorkers to get in there fast
+        // and not allow any straggling "old" SWs to hang around
+        clientsClaim: true,
+        skipWaiting: true,
+        maximumFileSizeToCacheInBytes: 60000000
       }),
       new HtmlWebpackPlugin({ template: 'index.html', favicon: 'favicon.ico' }),
       new Dotenv({
