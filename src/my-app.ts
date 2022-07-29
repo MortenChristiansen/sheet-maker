@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, importCharacter, loadCharacter, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateName, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSigil, updateSpellcastingStats, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSigil, updateSpellcastingStats, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -35,15 +35,17 @@ export class MyApp {
         The CSS for this should be standardised as well. The text input could be a component itself.
     */
 
+    middlewareRegistered: boolean = false;
+    fileHandle: any;
+    isStandalone = window.matchMedia('(display-mode: standalone)').matches;
     public state: StateHistory<State>;
     
     constructor(private store: Store<StateHistory<State>>) {
-        this.store.registerAction('rehydrateFromLocalStorage', rehydrateFromLocalStorage);
         this.store.registerAction('createNewCharacter', createNewCharacter);
         this.store.registerAction('loadCharacter', loadCharacter);
+        this.store.registerAction('loadCharacterFromFile', loadCharacterFromFile);
         this.store.registerAction('importCharacter', importCharacter);
         this.store.registerAction('updateCharacteristics', updateCharacteristics);
-        this.store.registerAction('updateName', updateName);
         this.store.registerAction('updateAbilities', updateAbilities);
         this.store.registerAction('updateVirtues', updateVirtues);
         this.store.registerAction('updateFlaws', updateFlaws);
@@ -64,8 +66,32 @@ export class MyApp {
         this.store.registerAction('updateBackground', updateBackground);
         this.store.registerAction('updateSigil', updateSigil);
         this.store.registerAction('updateBelongings', updateBelongings);
-        store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
-        store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
+        
+        if (this.isStandalone) {
+            this.registerFileLaunchHandler();
+        } else {
+            this.store.registerAction('rehydrateFromLocalStorage', rehydrateFromLocalStorage);
+            store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
+            store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
+        }
+
+    }
+
+    registerFileLaunchHandler() {
+        let launchQueue = (window as any).launchQueue;
+        if (launchQueue) {
+            launchQueue.setConsumer(async (params) => {
+                const [handle] = params.files;
+                if (handle) {
+                    this.fileHandle = handle;
+                    const file = await handle.getFile() as File;
+                    if (file) {
+                        this.store.dispatch(loadCharacterFromFile, file);
+                        this.store.registerMiddleware(this.fileStorageMiddlewareFactory(), MiddlewarePlacement.After);
+                    }
+                }
+            });
+        }
     }
 
     undo = () => {
@@ -76,17 +102,57 @@ export class MyApp {
         this.store.dispatch(jump, 1);
     }
 
-    export = () => {
-        downloadTextFile(JSON.stringify(this.state.present.character, null, 4), 'character sheet.json');
+    save = async () => {
+        if (this.isStandalone) {
+            const opts = {
+                suggestedName: 'character sheet.ars',
+                types: [{
+                    description: 'ARS character sheet',
+                    accept: {'text/json': ['.ars']},
+                }],
+              };
+            this.fileHandle = await (window as any).showSaveFilePicker(opts);
+            await this.saveFile(this.state);
+            if (!this.middlewareRegistered) {
+                this.store.registerMiddleware(this.fileStorageMiddlewareFactory(), MiddlewarePlacement.After);
+                this.isInitialized = true; // Only relevant when loading an existing file
+            }
+        } else {
+            downloadTextFile(JSON.stringify(this.state.present, null, 4), 'character sheet.ars');
+        }
     }
 
-    import = () => {
-        this.fileInput.click();
-        this.fileInput.onchange = this.change;
+    load = async () => {
+        if (this.isStandalone) {
+            const opts = {
+                types: [{
+                    description: 'ARS character sheet',
+                    accept: {'text/json': ['.ars']},
+                }],
+              };
+            let [handle] = await (window as any).showOpenFilePicker(opts);
+            this.fileHandle = handle;
+            this.isInitialized = false;
+            if (!this.middlewareRegistered) {
+                this.store.registerMiddleware(this.fileStorageMiddlewareFactory(), MiddlewarePlacement.After);
+            }
+            this.store.dispatch(loadCharacterFromFile, await this.fileHandle.getFile() as File);
+        } else {
+            this.fileInput.click();
+            this.fileInput.onchange = this.fileInputChanged;
+        }
     }
 
-    newCharacter = () => {
-        this.store.dispatch(createNewCharacter);
+    newCharacter = async () => {
+        if (this.isStandalone) {
+            this.fileHandle = null;
+        }
+
+        await this.store.dispatch(createNewCharacter);
+        
+        if (this.isStandalone) {
+            await this.save();
+        }
     }
 
     fileInput: HTMLInputElement;
@@ -96,7 +162,36 @@ export class MyApp {
         return this.selectedFiles && this.selectedFiles.length > 0 ? this.selectedFiles[0] : null;
     }
 
-    change = () => {
+    fileInputChanged = () => {
         this.theFile.text().then(t => this.store.dispatch(importCharacter, t));
     }
+
+    isInitialized: boolean = false;
+    fileStorageMiddlewareFactory = () => {
+        this.middlewareRegistered = true;
+
+        let middleware = (state: unknown, _: unknown, settings?: { key: string }) => {
+            if (!this.isInitialized) {
+                this.isInitialized = true;
+                // This happens because loading the state causes the middleware to be triggered
+                return;
+            }
+
+            console.log("Saving file to disk");
+            this.saveFile(state as StateHistory<State>);
+        };
+        return middleware;
+    }
+
+    saveFile = async (state: StateHistory<State>) => {
+        if (!this.fileHandle) {
+            console.log("Could not save - file handle not set");
+            return;
+        }
+
+        var writable = await this.fileHandle.createWritable()
+        await writable.write(JSON.stringify(state.present, null, 4));
+        await writable.close();
+    }
 }
+

@@ -262,5 +262,113 @@ export interface State {
 }
 
 export const initialState: State = {
-    character: null
+    character: {
+        type: 'magus',
+        physicalStatus : {
+            fatigue : 0,
+            lightWounds: 0,
+            mediumWounds: 0,
+            heavyWounds: 0
+        },
+        description: {
+            name: '',
+            description: ''
+        },
+        abilities: [],
+        personalityTraits: [],
+        characteristics: {
+            communication: { value: 0, specialisation: '', agingPoints: 0 },
+            dexterity: { value: 0, specialisation: '', agingPoints: 0 },
+            intelligence: { value: 0, specialisation: '', agingPoints: 0 },
+            perception: { value: 0, specialisation: '', agingPoints: 0 },
+            presence: { value: 0, specialisation: '', agingPoints: 0 },
+            quickness: { value: 0, specialisation: '', agingPoints: 0 },
+            stamina: { value: 0, specialisation: '', agingPoints: 0 },
+            strength: { value: 0, specialisation: '', agingPoints: 0 }
+        },
+        flaws: [],
+        virtues: [],
+        arts: {
+            creo: { level: 0, xp: 0, puissant: false },
+            muto: { level: 0, xp: 0, puissant: false },
+            rego: { level: 0, xp: 0, puissant: false },
+            intellego: { level: 0, xp: 0, puissant: false },
+            perdo: { level: 0, xp: 0, puissant: false },
+            animal: { level: 0, xp: 0, puissant: false },
+            auram: { level: 0, xp: 0, puissant: false },
+            aquam: { level: 0, xp: 0, puissant: false },
+            ignem: { level: 0, xp: 0, puissant: false },
+            terram: { level: 0, xp: 0, puissant: false },
+            herbam: { level: 0, xp: 0, puissant: false },
+            mentem: { level: 0, xp: 0, puissant: false },
+            corpus: { level: 0, xp: 0, puissant: false },
+            imaginem: { level: 0, xp: 0, puissant: false },
+            vim: { level: 0, xp: 0, puissant: false }
+        },
+        spells: [],
+        ageing: {
+            age: 25,
+            apparentAge: 25,
+            birthYear: 1195,
+            currentYear: 1220,
+            decrepitudeLevel: 0,
+            decrepitudePoints: 0,
+            longevityModifier: 0,
+            ageingRollModifier: 0,
+            livingConditionModifier: 0
+        },
+        confidence: {
+            score: 3
+        },
+        warping: {
+            warpingPoints: 0,
+            warpingLevel: 0,
+            ongoingEffects: []
+        },
+        activeMagic: [],
+        xpEntries: [],
+        notes: '',
+        background: '',
+        lab: {
+            art1: { name: '', rating: 0 },
+            art2: { name: '', rating: 0 },
+            art3: { name: '', rating: 0 },
+            art4: { name: '', rating: 0 },
+            specialisation1: { name: '', rating: 0 },
+            specialisation2: { name: '', rating: 0 },
+            auraBonus: 0,
+            description: '',
+            effectiveSafety: 0,
+            flaws: [],
+            virtues: [],
+            intelligenceBonus: 0,
+            labBaseQuality: 0,
+            livingConditionsModifier: 0,
+            magicTheory: 0,
+            occupiedSize: 0,
+            refinement: 0,
+            size: 0,
+            availableModifiers: [{ name: 'GQ'}, { name: 'Safety'}, { name: 'Health'}, { name: 'Aesthetics'}, { name: 'Upkeep'}, { name: 'Warping'}],
+            researchProjects: []
+        },
+        spellcastingStats: {
+            arts: '',
+            aura: 0,
+            ceremonial: false,
+            cyclicMagicVirtue: false,
+            focus: false,
+            largeGestures: false,
+            loudVoice: false,
+            similarFomulaicSpellBonus: 0,
+            spontaneousCastingTotal: 0,
+            staminaSpecialisation: false,
+            talismanBonus: 0
+        },
+        sigil: '',
+        belongings: {
+            carried: '',
+            inSanctum: '',
+            vis: []
+        }
+    }
 };

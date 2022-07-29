@@ -17,8 +17,8 @@
 
 <button click.delegate="undo()" disabled.bind="state.past.length == 0">Undo</button>
 <button click.delegate="redo()" disabled.bind="state.future.length == 0">Redo</button>
-<button click.delegate="export()">Export</button>
-<button click.delegate="import()">Import</button>
+<button click.delegate="save()">Save As</button>
+<button click.delegate="load()">Load</button>
 <button click.delegate="newCharacter()">Create New Character</button>
 <character-type-selector></character-type-selector>
 

@@ -46,7 +46,7 @@ export function debounce(func, timeout = 300){
     };
   }
 
-  export function downloadTextFile(text, name) {
+export function downloadTextFile(text, name) {
     const a = document.createElement('a');
     const type = name.split(".").pop();
     a.href = URL.createObjectURL( new Blob([text], { type:`text/${type === "txt" ? "plain" : type}` }) );

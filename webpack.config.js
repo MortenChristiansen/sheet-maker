@@ -110,6 +110,17 @@ module.exports = function(env, { analyze }) {
             src: "content/app.512x512.png",
             type: "image/png",
             sizes: "512x512"
+        }],
+        "file_handlers": [{
+          action: "/",
+          accept: {
+            "text/json": [".ars"]
+          }
+        },{
+          action: "/",
+          accept: {
+            "text/json": [".json"]
+          }
         }]
       }),
       new WorkboxPlugin.GenerateSW({
