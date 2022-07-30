@@ -30,14 +30,6 @@
           ".ars"
         ]
       }
-    },
-    {
-      "action": "/sheet-maker/",
-      "accept": {
-        "text/json": [
-          ".json"
-        ]
-      }
     }
   ]
 }
