@@ -24,7 +24,7 @@
   "lang": "en-US",
   "file_handlers": [
     {
-      "action": "/sheet-maker/",
+      "action": "/",
       "accept": {
         "text/json": [
           ".ars"
