@@ -24,7 +24,7 @@
   "lang": "en-US",
   "file_handlers": [
     {
-      "action": "/",
+      "action": "/sheet-maker/",
       "accept": {
         "text/json": [
           ".ars"
@@ -32,7 +32,7 @@
       }
     },
     {
-      "action": "/",
+      "action": "/sheet-maker/",
       "accept": {
         "text/json": [
           ".json"
