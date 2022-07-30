@@ -233,6 +233,8 @@ export interface SpellcastingStats {
     staminaSpecialisation: boolean;
     aura: number;
     cyclicMagicVirtue: boolean;
+    cyclicMagicFlaw: boolean;
+    positiveCycle: boolean;
     loudVoice: boolean;
     largeGestures: boolean;
     ceremonial: boolean;
@@ -356,6 +358,8 @@ export const initialState: State = {
             aura: 0,
             ceremonial: false,
             cyclicMagicVirtue: false,
+            cyclicMagicFlaw: false,
+            positiveCycle: false,
             focus: false,
             largeGestures: false,
             loudVoice: false,

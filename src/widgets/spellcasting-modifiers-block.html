@@ -3,7 +3,7 @@
     <div class="grid">
         <span class="text">Aura</span>
         <span class="text">Stamina Specialisation</span>
-        <span class="text">Good Cycle</span>
+        <span class="text" if.bind="showGoodCycle">Good Cycle</span>
         <span class="text">Loud Voice</span>
         <span class="text">Large Gestures</span>
 
@@ -14,10 +14,11 @@
         <span class="text">Focus</span>
         <span class="text">Casting Total</span>
 
+        <span if.bind="!showGoodCycle"></span>
 
         <primary-stat value.two-way="model.aura" mode="secondary" prefix-plus.bind="true"></primary-stat></primary-stat>
         <checkbox value.two-way="model.staminaSpecialisation" mode="angled"></checkbox>
-        <checkbox value.two-way="model.cyclicMagicVirtue" mode="angled"></checkbox>
+        <checkbox if.bind="showGoodCycle" value.two-way="model.positiveCycle" mode="angled"></checkbox>
         <checkbox value.two-way="model.loudVoice" mode="angled"></checkbox>
         <checkbox value.two-way="model.largeGestures" mode="angled"></checkbox>
 

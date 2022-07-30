@@ -49,6 +49,7 @@ export function updateVirtues(state: StateHistory<State>, virtues: Virtue[]) {
     const newState = deepCopy(state.present);
     newState.character.virtues = filterListItems(virtues);
     refreshAgeingStats(newState);
+    refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -56,6 +57,7 @@ export function updateFlaws(state: StateHistory<State>, flaws: Flaw[]) {
     console.log("Saving flaws", flaws);
     const newState = deepCopy(state.present);
     newState.character.flaws = filterListItems(flaws);
+    refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -241,6 +243,8 @@ function calculateAbilityLevel(remainingXp: number, currentLevel: number) {
 function refreshCastingTotals(state: State) {
     if (!state?.character?.arts) return;
 
+    state.character.spellcastingStats.cyclicMagicVirtue = state.character.virtues.findIndex(v => v.name.startsWith("Cyclic Magic")) >= 0;
+    state.character.spellcastingStats.cyclicMagicFlaw = state.character.flaws.findIndex(v => v.name.startsWith("Cyclic Magic")) >= 0;
     state.character.spellcastingStats.spontaneousCastingTotal = calculateSpontaneousCastingTotal(state);
     state.character.spells.forEach(s => s.castingTotal = calculateFormulaicCastingTotal(state, s));
 }
@@ -264,11 +268,13 @@ function calculateSpontaneousCastingTotal(state: State) {
 
 function calculateBaseSpellcastingModifier(state: State) {
     let castingStats = state.character.spellcastingStats;
+    let positiveCycleValue = castingStats.cyclicMagicVirtue ? 3 : 0;
+    let negativeCycleValue = castingStats.cyclicMagicFlaw ? -3 : 0;
     return state.character.characteristics.stamina.value +
            calculateWoundPenalty(state) +
            calculateFatiguePenalty(state) +
            castingStats.aura +
-           (castingStats.cyclicMagicVirtue ? 3 : 0) +
+           (castingStats.positiveCycle ? positiveCycleValue : negativeCycleValue) +
            (castingStats.staminaSpecialisation ? 1 : 0) +
            (castingStats.largeGestures ? 1 : 0) +
            (castingStats.loudVoice ? 1 : 0);

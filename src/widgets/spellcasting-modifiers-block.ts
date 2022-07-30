@@ -8,4 +8,8 @@ export class SpellcastingModifiersBlock extends Widget<SpellcastingStats> {
     constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
         super(store, state => state.character?.spellcastingStats, updateSpellcastingStats, ea);
     }
+
+    get showGoodCycle() {
+        return this.model.cyclicMagicVirtue || this.model.cyclicMagicFlaw;
+    }
 }
