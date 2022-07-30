@@ -30,7 +30,7 @@ module.exports = function(env, { analyze }) {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: production ? '[name].[contenthash].bundle.js' : '[name].bundle.js',
-      publicPath: production ? '/sheet-maker/' : ''
+      publicPath: '/sheet-maker/'
     },
     resolve: {
       extensions: ['.ts', '.js'],
@@ -112,7 +112,7 @@ module.exports = function(env, { analyze }) {
             sizes: "512x512"
         }],
         "file_handlers": [{
-          action: production ? "/sheet-maker/" : "/",
+          action: "/sheet-maker/",
           accept: {
             "text/json": [".ars"]
           }

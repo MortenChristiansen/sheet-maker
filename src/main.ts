@@ -33,11 +33,9 @@ window.addEventListener("drop", function(e) {
     e.preventDefault();
 }, false);
 
-const isLocal = window.location.href.indexOf('localhost') >= 0;
-
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register(isLocal ? '/service-worker.js' : '/sheet-maker/service-worker.js').then(registration => {
+        navigator.serviceWorker.register('/sheet-maker/service-worker.js').then(registration => {
             console.log('SW registered: ', registration);
         }).catch(registrationError => {
             console.log('SW registration failed: ', registrationError);
