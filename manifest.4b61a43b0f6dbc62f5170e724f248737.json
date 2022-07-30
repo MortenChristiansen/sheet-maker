@@ -18,8 +18,26 @@
   "start_url": "/sheet-maker/",
   "scope": ".",
   "background_color": "#FFF",
-  "theme_color": "#493174",
+  "theme_color": "darkred",
   "description": "A character sheet for Ars Magica 5e",
   "dir": "ltr",
-  "lang": "en-US"
+  "lang": "en-US",
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "text/json": [
+          ".ars"
+        ]
+      }
+    },
+    {
+      "action": "/",
+      "accept": {
+        "text/json": [
+          ".json"
+        ]
+      }
+    }
+  ]
 }
