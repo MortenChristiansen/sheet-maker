@@ -116,6 +116,11 @@ module.exports = function(env, { analyze }) {
           accept: {
             "text/json": [".ars"]
           }
+        }, {
+          action: "/sheet-maker/",
+          accept: {
+            "text/json": [".json"]
+          }
         }]
       }),
       new WorkboxPlugin.GenerateSW({
