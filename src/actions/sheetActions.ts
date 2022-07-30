@@ -50,6 +50,7 @@ export function updateVirtues(state: StateHistory<State>, virtues: Virtue[]) {
     newState.character.virtues = filterListItems(virtues);
     refreshAgeingStats(newState);
     refreshCastingTotals(newState);
+    refreshLab(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -401,8 +402,8 @@ function createXpEntry(year: number, season: 'Spring' | 'Summer' | 'Fall' | 'Win
 function refreshLab(state: State) {
     refreshModificationModifiers(state.character.lab.virtues, state.character.lab.availableModifiers);
     refreshModificationModifiers(state.character.lab.flaws, state.character.lab.availableModifiers);
-    refreshResearchProjects(state);
     refreshLabStats(state);
+    refreshResearchProjects(state);
     refreshAgeingRollModifier(state);
 }
 
@@ -441,6 +442,8 @@ export function getLabModifierTotals(lab: Lab): LabModifier[] {
 
 function refreshResearchProjects(state: State) {
     let lab = state.character.lab;
+    let newWorkBonus = lab.inventiveGeniusVirtue ? 3 : 0;
+    let experimentBonus = lab.inventiveGeniusVirtue ? 6 : 0;
     lab.researchProjects.forEach(r =>
         {
             let magicTheory = state.character.abilities.find(a => a.name == 'Magic Theory')?.level ?? 0;
@@ -453,6 +456,7 @@ function refreshResearchProjects(state: State) {
                 r.artModifier +
                 r.labAssistantBonus +
                 magicTheory +
+                (Math.max(r.experiment ? experimentBonus : 0, r.newWork ? newWorkBonus : 0)) +
                 (r.magicTheorySpecialisation ? 1 : 0) +
                 state.character.characteristics.intelligence.value +
                 (r.intelligenceSpecialisation ? 1 : 0) +
@@ -479,4 +483,5 @@ function refreshLabStats(state: State) {
     lab.art2.rating = modifierTotals.find(x => x.name == lab.art2.name)?.rating ?? 0;
     lab.art3.rating = modifierTotals.find(x => x.name == lab.art3.name)?.rating ?? 0;
     lab.art4.rating = modifierTotals.find(x => x.name == lab.art4.name)?.rating ?? 0;
+    state.character.lab.inventiveGeniusVirtue = state.character.virtues.findIndex(v => v.name == "Inventive Genius") >= 0;
 }

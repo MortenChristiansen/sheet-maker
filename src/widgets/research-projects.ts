@@ -34,7 +34,9 @@ export class ResearchProjects extends Widget<Lab> {
                 similarResearchBonus: 0,
                 specialisationBonus: 0,
                 talisman: false,
-                level: 1
+                level: 1,
+                experiment: false,
+                newWork: true
              });
             this.newProjectText = '';
         }

@@ -13,6 +13,8 @@
         <checkbox value.two-way="project.intelligenceSpecialisation" title="Intelligence Specialisation"></checkbox>
         <checkbox value.two-way="project.magicTheorySpecialisation" title="Magic Theory Specialisation"></checkbox>
         <checkbox value.two-way="project.talisman" title="Talisman"></checkbox>
+        <checkbox if.bind="model.inventiveGeniusVirtue" value.two-way="project.newWork" title="New Invention"></checkbox>
+        <checkbox if.bind="model.inventiveGeniusVirtue" value.two-way="project.experiment" title="Experiment"></checkbox>
         <primary-stat class="similar-research-bonus" mode="secondary" value.two-way="project.similarResearchBonus" min="0" size="s" title="Similar Research Bonus" prefix-plus.bind="true"></primary-stat>
         <text-field class="material" value.two-way="project.material" placeholder="Material"></text-field>
         <primary-stat class="material-bonus" mode="secondary" value.two-way="project.materialBonus" min="0" size="s" title="Material Bonus" prefix-plus.bind="true"></primary-stat>

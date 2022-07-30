@@ -17,7 +17,7 @@ export class MyApp {
         https://stackoverflow.com/questions/36682784/save-text-from-textarea-to-google-drive-using-javascript
         https://gist.github.com/tanaikech/bd53b366aedef70e35a35f449c51eced
     - Ability list grouped by ability category.
-    - Puissant arts and abilitis can be identified automatically from virtue names. The same for cyclic magic for determining whether to show such toggle.
+    - Puissant arts and abilitis can be identified automatically from virtue names.
 
     Design Ideas
     - Some low contrast flourish between the two groups of characteristics.

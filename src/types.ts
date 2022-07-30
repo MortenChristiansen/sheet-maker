@@ -186,6 +186,7 @@ export interface Lab {
     labBaseQuality: number;
     availableModifiers: LabModifierType[];
     researchProjects: ResearchProject[];
+    inventiveGeniusVirtue: boolean;
 }
 
 export interface LabModifierType {
@@ -211,6 +212,8 @@ export interface ResearchProject {
     arts: string;
     prerequisites: string;
     artModifier: number;
+    newWork: boolean;
+    experiment: boolean;
     focus: boolean;
     specialisationBonus: number;
     magicTheorySpecialisation: boolean;
@@ -351,7 +354,8 @@ export const initialState: State = {
             refinement: 0,
             size: 0,
             availableModifiers: [{ name: 'GQ'}, { name: 'Safety'}, { name: 'Health'}, { name: 'Aesthetics'}, { name: 'Upkeep'}, { name: 'Warping'}],
-            researchProjects: []
+            researchProjects: [],
+            inventiveGeniusVirtue: false
         },
         spellcastingStats: {
             arts: '',
