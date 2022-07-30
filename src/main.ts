@@ -18,7 +18,7 @@ Aurelia
     .register(
         StoreConfiguration.withInitialState(initialState).withOptions({ history: { undoable: true, limit: 20 } })
     )
-    .register(RouterConfiguration)
+    .register(RouterConfiguration.customize({  }))
     .register(Checkbox, List, PrimaryStat, RadioButton, TextBox, TextField) // Components
     .register(Footer, Title, RuneEdge, PageHeader) // Layout elements
     .app(MyApp)
@@ -33,9 +33,11 @@ window.addEventListener("drop", function(e) {
     e.preventDefault();
 }, false);
 
+const isLocal = window.location.href.indexOf('localhost') >= 0;
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js').then(registration => {
+        navigator.serviceWorker.register(isLocal ? '/service-worker.js' : '/sheet-maker/service-worker.js').then(registration => {
             console.log('SW registered: ', registration);
         }).catch(registrationError => {
             console.log('SW registration failed: ', registrationError);

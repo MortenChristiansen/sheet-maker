@@ -112,14 +112,9 @@ module.exports = function(env, { analyze }) {
             sizes: "512x512"
         }],
         "file_handlers": [{
-          action: "/",
+          action: production ? "/sheet-maker/" : "/",
           accept: {
             "text/json": [".ars"]
-          }
-        },{
-          action: "/",
-          accept: {
-            "text/json": [".json"]
           }
         }]
       }),
