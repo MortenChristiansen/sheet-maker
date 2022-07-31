@@ -59,6 +59,7 @@ export function updateFlaws(state: StateHistory<State>, flaws: Flaw[]) {
     const newState = deepCopy(state.present);
     newState.character.flaws = filterListItems(flaws);
     refreshCastingTotals(newState);
+    refreshLab(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -453,6 +454,8 @@ function refreshResearchProjects(state: State) {
     let lab = state.character.lab;
     let newWorkBonus = lab.inventiveGeniusVirtue ? 3 : 0;
     let experimentBonus = lab.inventiveGeniusVirtue ? 6 : 0;
+    let positiveCycleValue = lab.cyclicMagicVirtue ? 3 : 0;
+    let negativeCycleValue = lab.cyclicMagicFlaw ? -3 : 0;
     lab.researchProjects.forEach(r =>
         {
             let magicTheory = state.character.abilities.find(a => a.name == 'Magic Theory')?.level ?? 0;
@@ -466,9 +469,11 @@ function refreshResearchProjects(state: State) {
                 r.labAssistantBonus +
                 magicTheory +
                 (Math.max(r.experiment ? experimentBonus : 0, r.newWork ? newWorkBonus : 0)) +
+                (r.positiveCycle ? positiveCycleValue : negativeCycleValue) +
                 (r.magicTheorySpecialisation ? 1 : 0) +
                 state.character.characteristics.intelligence.value +
                 (r.intelligenceSpecialisation ? 1 : 0) +
+                (r.nocturnal ? 2 : 0) +
                 r.materialBonus +
                 r.shapeBonus +
                 r.similarResearchBonus +
@@ -493,4 +498,6 @@ function refreshLabStats(state: State) {
     lab.art3.rating = modifierTotals.find(x => x.name == lab.art3.name)?.rating ?? 0;
     lab.art4.rating = modifierTotals.find(x => x.name == lab.art4.name)?.rating ?? 0;
     state.character.lab.inventiveGeniusVirtue = state.character.virtues.findIndex(v => v.name == "Inventive Genius") >= 0;
+    state.character.lab.cyclicMagicVirtue = state.character.virtues.findIndex(v => v.name.startsWith("Cyclic Magic")) >= 0;
+    state.character.lab.cyclicMagicFlaw = state.character.flaws.findIndex(v => v.name.startsWith("Cyclic Magic")) >= 0;
 }

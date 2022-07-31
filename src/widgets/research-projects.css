@@ -1,7 +1,7 @@
 research-projects {
     display: block;
     margin: 30px;
-    width: 2062px;
+    width: 2128px;
     float: left;
 }
 
@@ -22,7 +22,7 @@ research-projects .add-item-input {
 
 research-projects > .container > .grid {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
     grid-auto-rows: 1fr;
 }
 

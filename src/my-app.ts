@@ -27,8 +27,7 @@ export class MyApp {
     - The age block could have a shield or a banner as background.
 
     Refactorings
-    - Make a specialisation of Widget that contains logic for working with lists of stuff (or add it to Widget itself).
-        The CSS for this should be standardised as well. The text input could be a component itself.
+    - Use add-item-input component where it makes sense.
     */
 
     middlewareRegistered: boolean = false;

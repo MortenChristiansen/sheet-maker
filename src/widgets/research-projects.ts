@@ -9,6 +9,10 @@ export class ResearchProjects extends Widget<Lab> {
         super(store, state => state.character?.lab, updateLab, ea);
     }
 
+    get showGoodCycle() {
+        return this.model.cyclicMagicVirtue || this.model.cyclicMagicFlaw;
+    }
+
     newProjectText: string = '';
 
     keyPressed = (event: KeyboardEvent) => {
@@ -35,7 +39,9 @@ export class ResearchProjects extends Widget<Lab> {
                 talisman: false,
                 level: 1,
                 experiment: false,
-                newWork: true
+                newWork: true,
+                nocturnal: false,
+                positiveCycle: false
              });
             this.newProjectText = '';
         }

@@ -15,6 +15,17 @@
         <checkbox value.two-way="project.talisman" title="Talisman"></checkbox>
         <checkbox if.bind="model.inventiveGeniusVirtue" value.two-way="project.newWork" title="New Invention"></checkbox>
         <checkbox if.bind="model.inventiveGeniusVirtue" value.two-way="project.experiment" title="Experiment"></checkbox>
+        <checkbox if.bind="showGoodCycle" value.two-way="project.positiveCycle" title="Good Cycle"></checkbox>
+        <checkbox value.two-way="project.nocturnal" title="Nocturnal - An “owl,” the maga’s daily cycle is the opposite of most folk — she
+        works at night and sleeps during the day. This has the advantage that the night
+        is quieter and presents fewer distractions — gain +2 to the Lab Total for
+        the season. Due to lack of sunlight and daylight living, however, she suffers a –1
+        penalty to her Living Conditions modifier for any year in which she has taken at
+        least one Nocturnal season. She also has trouble functioning during the daytime;
+        when dawn breaks, she loses a Long-Term Fatigue level and gains one extra botch
+        die on all activities for the day. She will likely not appreciate being woken up in
+        daylight hours. This routine is commonly taken by characters with the Nocturnal
+        Personality Flaw."></checkbox>
         <primary-stat class="similar-research-bonus" mode="secondary" value.two-way="project.similarResearchBonus" min="0" size="s" title="Similar Research Bonus" prefix-plus.bind="true"></primary-stat>
         <text-field class="material" value.two-way="project.material" placeholder="Material"></text-field>
         <primary-stat class="material-bonus" mode="secondary" value.two-way="project.materialBonus" min="0" size="s" title="Material Bonus" prefix-plus.bind="true"></primary-stat>

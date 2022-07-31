@@ -188,6 +188,8 @@ export interface Lab {
     availableModifiers: LabModifierType[];
     researchProjects: ResearchProject[];
     inventiveGeniusVirtue: boolean;
+    cyclicMagicVirtue: boolean,
+    cyclicMagicFlaw: boolean,
 }
 
 export interface LabModifierType {
@@ -231,6 +233,8 @@ export interface ResearchProject {
     surplusLabTotal: number;
     description: string;
     level: number;
+    nocturnal: boolean;
+    positiveCycle: boolean;
 }
 
 export interface SpellcastingStats {
@@ -384,7 +388,9 @@ export const initialState: State = {
             size: 0,
             availableModifiers: [{ name: 'GQ'}, { name: 'Safety'}, { name: 'Health'}, { name: 'Aesthetics'}, { name: 'Upkeep'}, { name: 'Warping'}],
             researchProjects: [],
-            inventiveGeniusVirtue: false
+            inventiveGeniusVirtue: false,
+            cyclicMagicVirtue: false,
+            cyclicMagicFlaw: false
         },
         spellcastingStats: {
             arts: '',
