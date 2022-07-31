@@ -28,6 +28,13 @@ export class MyApp {
     - Books are represented by actual book icons.
     - The age block could have a shield or a banner as background.
 
+    UX
+    - Page title should start with character name, to make it easier to find the right window.
+
+    Bugs
+    - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.
+        Seems related to the times when the Google Drive file deletion prompt appears.
+
     Refactorings
     - Use add-item-input component where it makes sense.
     */
