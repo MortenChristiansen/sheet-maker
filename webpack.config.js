@@ -18,6 +18,57 @@ const postcssLoader = {
   }
 };
 
+function createPlugins(production, analyze) {
+  let plugins = [
+    new HtmlWebpackPlugin({ template: 'index.html', favicon: 'favicon.ico' }),
+    new Dotenv({
+      path: `./.env${production ? '' :  '.' + (process.env.NODE_ENV || 'development')}`,
+    }),
+    analyze && new BundleAnalyzerPlugin()
+  ];
+  if (!production) return plugins;
+
+  return [...plugins, new WebpackPwaManifest({
+    name: "Sheet Maker",
+    short_name: "Sheet Maker",
+    start_url: "/sheet-maker/",
+    scope: ".",
+    display: "standalone",
+    background_color: "#FFF",
+    theme_color: "darkred",
+    description: "A character sheet for Ars Magica 5e",
+    dir: "ltr",
+    lang: "en-US",
+    icons: [{
+        src: "content/app.96x96.png",
+        type: "image/png",
+        sizes: "96x96"
+    }, {
+        src: "content/app.512x512.png",
+        type: "image/png",
+        sizes: "512x512"
+    }],
+    "file_handlers": [{
+      action: "/sheet-maker/",
+      accept: {
+        "text/json": [".ars"]
+      }
+    }, {
+      action: "/sheet-maker/",
+      accept: {
+        "text/json": [".json"]
+      }
+    }]
+  }),
+  new WorkboxPlugin.GenerateSW({
+    // these options encourage the ServiceWorkers to get in there fast
+    // and not allow any straggling "old" SWs to hang around
+    clientsClaim: true,
+    skipWaiting: true,
+    maximumFileSizeToCacheInBytes: 60000000
+  })];
+}
+
 module.exports = function(env, { analyze }) {
   const production = env.production || process.env.NODE_ENV === 'production';
   return {
@@ -90,51 +141,6 @@ module.exports = function(env, { analyze }) {
         }
       ]
     },
-    plugins: [
-      new WebpackPwaManifest({
-        name: "Sheet Maker",
-        short_name: "Sheet Maker",
-        start_url: "/sheet-maker/",
-        scope: ".",
-        display: "standalone",
-        background_color: "#FFF",
-        theme_color: "darkred",
-        description: "A character sheet for Ars Magica 5e",
-        dir: "ltr",
-        lang: "en-US",
-        icons: [{
-            src: "content/app.96x96.png",
-            type: "image/png",
-            sizes: "96x96"
-        }, {
-            src: "content/app.512x512.png",
-            type: "image/png",
-            sizes: "512x512"
-        }],
-        "file_handlers": [{
-          action: "/sheet-maker/",
-          accept: {
-            "text/json": [".ars"]
-          }
-        }, {
-          action: "/sheet-maker/",
-          accept: {
-            "text/json": [".json"]
-          }
-        }]
-      }),
-      new WorkboxPlugin.GenerateSW({
-        // these options encourage the ServiceWorkers to get in there fast
-        // and not allow any straggling "old" SWs to hang around
-        clientsClaim: true,
-        skipWaiting: true,
-        maximumFileSizeToCacheInBytes: 60000000
-      }),
-      new HtmlWebpackPlugin({ template: 'index.html', favicon: 'favicon.ico' }),
-      new Dotenv({
-        path: `./.env${production ? '' :  '.' + (process.env.NODE_ENV || 'development')}`,
-      }),
-      analyze && new BundleAnalyzerPlugin()
-    ].filter(p => p)
+    plugins: createPlugins(production, analyze).filter(p => p)
   }
 }
