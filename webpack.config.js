@@ -28,7 +28,8 @@ function createPlugins(production, analyze) {
   ];
   if (!production) return plugins;
 
-  return [...plugins, new WebpackPwaManifest({
+  return [...plugins,
+    new WebpackPwaManifest({
     name: "Sheet Maker",
     short_name: "Sheet Maker",
     start_url: "/sheet-maker/",
@@ -59,14 +60,14 @@ function createPlugins(production, analyze) {
         "text/json": [".json"]
       }
     }]
-  }),
-  new WorkboxPlugin.GenerateSW({
-    // these options encourage the ServiceWorkers to get in there fast
-    // and not allow any straggling "old" SWs to hang around
-    clientsClaim: true,
-    skipWaiting: true,
-    maximumFileSizeToCacheInBytes: 60000000
-  })];
+    }),
+    new WorkboxPlugin.GenerateSW({
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true,
+      maximumFileSizeToCacheInBytes: 60000000
+    })];
 }
 
 module.exports = function(env, { analyze }) {

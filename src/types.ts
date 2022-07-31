@@ -22,6 +22,7 @@ export interface ArsCharacter {
     spellcastingStats: SpellcastingStats;
     sigil: string;
     belongings: Belongings;
+    talisman: Talisman;
 }
 
 export interface Virtue {
@@ -262,6 +263,34 @@ export interface Vis {
     notes: string;
 }
 
+export interface Talisman {
+    investedVis: number;
+    spentVis: number;
+    description: string;
+    bonuses: TalismanBonus[];
+    effects: MagicItemEffect[];
+}
+
+export interface TalismanBonus {
+    name: string;
+    source: string;
+    bonus: number;
+    instilled: boolean;
+    notes: string;
+}
+
+export interface MagicItemEffect {
+    name: string;
+    arts: string;
+    level: number;
+    usages: string;
+    range: string;
+    duration: string;
+    target: string;
+    penetration: number;
+    description: string;
+}
+
 export interface State {
     character?: ArsCharacter;
 }
@@ -377,6 +406,13 @@ export const initialState: State = {
             carried: '',
             inSanctum: '',
             vis: []
+        },
+        talisman: {
+            description: '',
+            investedVis: 0,
+            spentVis: 0,
+            bonuses: [],
+            effects: []
         }
     }
 };

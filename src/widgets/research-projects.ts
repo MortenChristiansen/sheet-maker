@@ -13,7 +13,6 @@ export class ResearchProjects extends Widget<Lab> {
 
     keyPressed = (event: KeyboardEvent) => {
         if (event.key == "Enter" && this.newProjectText) {
-            if (!this.model.researchProjects) this.model.researchProjects = [];
             this.model.researchProjects.push({
                 name: this.newProjectText,
                 description: '',

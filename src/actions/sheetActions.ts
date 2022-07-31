@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -195,6 +195,15 @@ export function updateBelongings(state: StateHistory<State>, belongings: Belongi
     const newState = deepCopy(state.present);
     newState.character.belongings = belongings;
     newState.character.belongings.vis = filterListItems(belongings.vis);
+    return nextStateHistory(state, newState);
+}
+
+export function updateTalisman(state: StateHistory<State>, talisman: Talisman) {
+    console.log("Saving talisman");
+    const newState = deepCopy(state.present);
+    newState.character.talisman = talisman;
+    newState.character.talisman.effects = filterListItems(talisman.effects);
+    newState.character.talisman.bonuses = filterListItems(talisman.bonuses);
     return nextStateHistory(state, newState);
 }
 

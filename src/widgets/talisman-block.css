@@ -1,0 +1,50 @@
+talisman-block {
+    display: block;
+    margin: 30px;
+    width: 2062px;
+    float: left;
+}
+
+talisman-block .effects .description {
+    width: 750px;
+    text-overflow: ellipsis;
+}
+
+talisman-block .container > .description {
+    width: 800px;
+    text-overflow: ellipsis;
+}
+
+talisman-block > .container {
+    padding: 10px 30px;
+    position: relative;
+}
+
+talisman-block > .container .bonus.grid {
+    display: grid;
+    grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content;
+    grid-auto-rows: 1fr;
+}
+
+talisman-block > .container .effects.grid {
+    display: grid;
+    grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
+    grid-auto-rows: 1fr;
+}
+
+talisman-block > .container .bonus.grid > *, talisman-block > .container .effects.grid > * {
+    align-self: center;
+    margin: 1px 2px;
+}
+
+talisman-block .bonuses, talisman-block .effects {
+    margin-top: 30px;
+}
+
+talisman-block .effect .notes {
+    width: 400px;
+}
+
+talisman-block .effect .usages, talisman-block .effect .range, talisman-block .effect .duration, talisman-block .effect .target, talisman-block .effect .arts {
+    width: 150px;
+}

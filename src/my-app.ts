@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSigil, updateSpellcastingStats, updateSpells, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSigil, updateSpellcastingStats, updateSpells, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -12,7 +12,6 @@ export class MyApp {
     to look up. It could just be a user defined summary.
     - Character creation mode. Keeps track of virtue/flaw count and types as well as remaining XP and
     spell levels.
-    - Working with multiple sheets. Adding new sheets. Easily switching between sheets.
     - Save sheets to google drive:
         https://stackoverflow.com/questions/36682784/save-text-from-textarea-to-google-drive-using-javascript
         https://gist.github.com/tanaikech/bd53b366aedef70e35a35f449c51eced
@@ -26,9 +25,6 @@ export class MyApp {
     - Stat boxes could have additional modes: skull, shield.
     - Books are represented by actual book icons.
     - The age block could have a shield or a banner as background.
-
-    Bugs
-    - The routing strips the "/sheet-maker/" part of the url, breaking F5.
 
     Refactorings
     - Make a specialisation of Widget that contains logic for working with lists of stuff (or add it to Widget itself).
@@ -66,6 +62,7 @@ export class MyApp {
         this.store.registerAction('updateBackground', updateBackground);
         this.store.registerAction('updateSigil', updateSigil);
         this.store.registerAction('updateBelongings', updateBelongings);
+        this.store.registerAction('updateTalisman', updateTalisman);
         
         if (this.isStandalone) {
             this.registerFileLaunchHandler();

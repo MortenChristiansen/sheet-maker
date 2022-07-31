@@ -13,13 +13,14 @@ import { Title } from './layout/title';
 import { RuneEdge } from './layout/rune-edge';
 import { PageHeader } from './layout/page-header';
 import { TextField } from './components/text-field';
+import { AddItemInput } from './components/add-item-input';
 
 Aurelia
     .register(
         StoreConfiguration.withInitialState(initialState).withOptions({ history: { undoable: true, limit: 20 } })
     )
     .register(RouterConfiguration.customize({  }))
-    .register(Checkbox, List, PrimaryStat, RadioButton, TextBox, TextField) // Components
+    .register(Checkbox, List, PrimaryStat, RadioButton, TextBox, TextField, AddItemInput) // Components
     .register(Footer, Title, RuneEdge, PageHeader) // Layout elements
     .app(MyApp)
     .start();

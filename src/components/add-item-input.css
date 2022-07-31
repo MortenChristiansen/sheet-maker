@@ -1,0 +1,6 @@
+.add-item-input-field {
+    margin-top: 15px;
+    width: 250px;
+    border-bottom-style: dashed !important;
+    display: block;
+}
