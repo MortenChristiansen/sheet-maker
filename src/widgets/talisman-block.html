@@ -2,16 +2,16 @@
 <div class="container">
     <primary-stat class="invested-vis" mode="primary" value.two-way="model.investedVis" min="0" size="m" title="Invested vis"></primary-stat>
     <primary-stat class="spent-vis" mode="secondary" value.two-way="model.spentVis" min="0" max.bind="model.investedVis" size="s" title="Spent vis"></primary-stat>
-    <text-field class="description" value.two-way="model.description" placeholder="Description"></text-field>
+    <text-field class="description" value.two-way="model.description" placeholder="Description" title="${model.description}"></text-field>
 
     <div class="bonuses">
         <span class="title text">Bonuses</span>
         <div class="bonus grid" repeat.for="bonus of model.bonuses">
             <checkbox mode="angled" size="xs" value.two-way="bonus.instilled" title="Instilled"></checkbox>
-            <text-field class="name" value.two-way="bonus.name" placeholder="Name"></text-field>
+            <text-field class="name" value.two-way="bonus.name" placeholder="Name" title="${bonus.name}"></text-field>
             <primary-stat class="bonus-modifier" mode="secondary" value.two-way="bonus.bonus" min="1" size="s" title="Bonus" prefix-plus.bind="true"></primary-stat>
             <text-field class="source" value.two-way="bonus.source" placeholder="Source"></text-field>
-            <text-field class="notes" value.two-way="bonus.nottes" placeholder="Notes"></text-field>
+            <text-field class="notes" value.two-way="bonus.notes" placeholder="Notes" title="${bonus.notes}"></text-field>
         </div>
         <add-item-input on-item-added.bind="bonusAdded" placeholder="Add bonus"></add-item-input>
     </div>
@@ -27,7 +27,7 @@
             <text-field class="range" value.two-way="effect.range" placeholder="Range"></text-field>
             <text-field class="duration" value.two-way="effect.duration" placeholder="Duration"></text-field>
             <text-field class="target" value.two-way="effect.target" placeholder="Target"></text-field>
-            <text-field class="description" value.two-way="effect.description" placeholder="Description"></text-field>
+            <text-field class="description" value.two-way="effect.description" placeholder="Description" title="${effect.description}"></text-field>
         </div>
         <add-item-input on-item-added.bind="effectAdded" placeholder="Add effect"></add-item-input>
     </div>

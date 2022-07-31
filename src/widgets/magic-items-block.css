@@ -1,0 +1,46 @@
+magic-items-block {
+    display: block;
+    margin: 30px;
+    width: 2128px;
+    float: left;
+}
+
+magic-items-block > .container {
+    padding: 10px 30px;
+    position: relative;
+}
+
+magic-items-block > .container > .grid {
+    display: grid;
+    grid-template-columns: min-content min-content min-content min-content auto;
+    grid-auto-rows: auto auto;
+}
+
+magic-items-block > .container > .grid > * {
+    align-self: center;
+    margin: 1px 2px;
+}
+
+magic-items-block .magic-item > .effects {
+    grid-column-start: 1;
+    grid-column-end: 6;
+}
+
+magic-items-block .effects {
+    margin-top: 30px;
+}
+
+magic-items-block .description {
+    width: 750px;
+    text-overflow: ellipsis;
+}
+
+magic-items-block .effect .usages, magic-items-block .effect .range, magic-items-block .effect .duration, magic-items-block .effect .target, magic-items-block .effect .arts {
+    width: 150px;
+}
+
+magic-items-block .magic-item {
+    border-left: 3px solid darkred;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}

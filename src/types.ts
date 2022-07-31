@@ -23,6 +23,7 @@ export interface ArsCharacter {
     sigil: string;
     belongings: Belongings;
     talisman: Talisman;
+    magicItems: MagicItem[];
 }
 
 export interface Virtue {
@@ -283,6 +284,14 @@ export interface TalismanBonus {
     notes: string;
 }
 
+export interface MagicItem {
+    name: string;
+    investedVis: number;
+    spentVis: number;
+    description: string;
+    effects: MagicItemEffect[];
+}
+
 export interface MagicItemEffect {
     name: string;
     arts: string;
@@ -419,6 +428,7 @@ export const initialState: State = {
             spentVis: 0,
             bonuses: [],
             effects: []
-        }
+        },
+        magicItems: []
     }
 };

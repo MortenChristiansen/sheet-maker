@@ -41,6 +41,10 @@ talisman-block .bonuses, talisman-block .effects {
     margin-top: 30px;
 }
 
+talisman-block .bonuses .name {
+    text-overflow: ellipsis;
+}
+
 talisman-block .effect .notes {
     width: 400px;
 }

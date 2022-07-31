@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSigil, updateSpellcastingStats, updateSpells, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateMagicItems, updateNotes, updatePersonalityTraits, updatePhysicalStatus, updateSigil, updateSpellcastingStats, updateSpells, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -17,6 +17,8 @@ export class MyApp {
         https://gist.github.com/tanaikech/bd53b366aedef70e35a35f449c51eced
     - Ability list grouped by ability category.
     - Puissant arts and abilitis can be identified automatically from virtue names.
+    - Somehow remind myself of temporary modifiers to aging roll such as use of the Nocturnal lab rule.
+    - Look into PWA jumplist integration.
 
     Design Ideas
     - Some low contrast flourish between the two groups of characteristics.
@@ -62,6 +64,7 @@ export class MyApp {
         this.store.registerAction('updateSigil', updateSigil);
         this.store.registerAction('updateBelongings', updateBelongings);
         this.store.registerAction('updateTalisman', updateTalisman);
+        this.store.registerAction('updateMagicItems', updateMagicItems);
         
         if (this.isStandalone) {
             this.registerFileLaunchHandler();
