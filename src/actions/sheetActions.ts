@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -213,6 +213,13 @@ export function updateMagicItems(state: StateHistory<State>, magicItems: MagicIt
     const newState = deepCopy(state.present);
     newState.character.magicItems = filterListItems(magicItems);
     newState.character.magicItems.forEach(mi => mi.effects = filterListItems(mi.effects))
+    return nextStateHistory(state, newState);
+}
+
+export function updateQuests(state: StateHistory<State>, quests: Quest[]) {
+    console.log("Saving quests");
+    const newState = deepCopy(state.present);
+    newState.character.quests = filterListItems(quests).sort((a, b) => a.priority - b.priority);
     return nextStateHistory(state, newState);
 }
 

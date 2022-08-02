@@ -26,6 +26,7 @@ abilities-block .ability.untrained .name {
 abilities-block .ability .specialisation {
     width: 150px;
     text-align: center;
+    text-overflow: ellipsis;
 }
 
 abilities-block .ability.untrained .specialisation {

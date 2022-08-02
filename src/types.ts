@@ -24,6 +24,7 @@ export interface ArsCharacter {
     belongings: Belongings;
     talisman: Talisman;
     magicItems: MagicItem[];
+    quests: Quest[];
 }
 
 export interface Virtue {
@@ -304,6 +305,12 @@ export interface MagicItemEffect {
     description: string;
 }
 
+export interface Quest {
+    name: string;
+    priority: number;
+    focused: boolean;
+}
+
 export interface State {
     character?: ArsCharacter;
 }
@@ -429,6 +436,7 @@ export const initialState: State = {
             bonuses: [],
             effects: []
         },
-        magicItems: []
+        magicItems: [],
+        quests: []
     }
 };

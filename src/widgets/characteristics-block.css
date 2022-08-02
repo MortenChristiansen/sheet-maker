@@ -38,3 +38,7 @@ characteristics-block .grid primary-stat {
 characteristics-block footer {
     margin-top: 5px;
 }
+
+characteristics-block .specialisation {
+    text-overflow: ellipsis;
+}
