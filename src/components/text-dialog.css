@@ -1,0 +1,9 @@
+text-box.text-dialog-input textarea {
+    height: 230px;
+    width: 405px;
+    padding: 7px;
+}
+
+text-box.text-dialog-input .container {
+    margin: 0;
+}

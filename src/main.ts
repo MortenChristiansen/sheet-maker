@@ -1,4 +1,5 @@
 import Aurelia from 'aurelia';
+import { DialogDefaultConfiguration } from '@aurelia/runtime-html';
 import { StoreConfiguration } from '@aurelia/store-v1';
 import { RouterConfiguration } from '@aurelia/router'; 
 import { MyApp } from './my-app';
@@ -14,16 +15,22 @@ import { RuneEdge } from './layout/rune-edge';
 import { PageHeader } from './layout/page-header';
 import { TextField } from './components/text-field';
 import { AddItemInput } from './components/add-item-input';
+import { DialogBox } from './components/dialog-box';
+import { TextDialog } from './components/text-dialog';
 
-Aurelia
+let app = Aurelia
     .register(
         StoreConfiguration.withInitialState(initialState).withOptions({ history: { undoable: true, limit: 20 } })
     )
     .register(RouterConfiguration.customize({  }))
-    .register(Checkbox, List, PrimaryStat, RadioButton, TextBox, TextField, AddItemInput) // Components
+    .register(DialogDefaultConfiguration)
+    .register(Checkbox, List, PrimaryStat, RadioButton, TextBox, TextField, AddItemInput, DialogBox, TextDialog) // Components
     .register(Footer, Title, RuneEdge, PageHeader) // Layout elements
-    .app(MyApp)
-    .start();
+    .app(MyApp);
+
+export const container = app.container;
+
+app.start();
 
 
 window.addEventListener("dragover", function(e) {

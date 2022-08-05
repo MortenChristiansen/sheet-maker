@@ -29,3 +29,7 @@ quest-list .name {
 quest-list .priority {
     margin-left: 10px !important;
 }
+
+quest-list .add-item-input-field {
+    width: 600px;
+}

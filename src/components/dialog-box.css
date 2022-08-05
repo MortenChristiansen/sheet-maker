@@ -1,0 +1,28 @@
+dialog-box {
+    display: block;
+}
+
+dialog-box .dialog-container {
+    padding: 20px;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.371));
+}
+
+dialog-box  .inner-container {
+    margin: 10px 20px;
+}
+
+dialog-box .dialog-container.m {
+    width: 960px;
+    height: 710px;
+    background-image: url('../../content/popup-background-8x6.png');
+}
+
+dialog-box .dialog-container.s {
+    width: 460px;
+    height: 335px;
+    background-image: url('../../content/popup-background-4x3.png');
+}
+
+dialog-box {
+    /*animation: fadeIn 0.5s ease-in;*/
+}

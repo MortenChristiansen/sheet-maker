@@ -1,5 +1,5 @@
-<title text.bind="title"></title>
+<title text.bind="title" if.bind="showBorders"></title>
 <div class="container">
     <textarea value.bind="text" cols="32" rows="8" keydown.delegate="onChange()" autocomplete="chrome-off"></textarea>
 </div>
-<footer></footer>
+<footer if.bind="showBorders"></footer>
