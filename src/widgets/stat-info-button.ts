@@ -13,11 +13,12 @@ export class StatInfoButton extends Widget<Information[]> {
     @bindable stat: string;
 
     get isActive() {
+        if (!this.model) this.model = [];
         return this.model.findIndex(m => m.target == this.stat) >= 0;
     }
 
     activate = () => {
-        if (!this.model)  this.model = [];
+        if (!this.model) this.model = [];
         let statInformation = this.model.find(m => m.target == this.stat);
         let model = { value: statInformation?.value ?? '', title: 'INFORMATION' };
 
