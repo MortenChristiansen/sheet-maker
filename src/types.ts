@@ -25,6 +25,12 @@ export interface ArsCharacter {
     talisman: Talisman;
     magicItems: MagicItem[];
     quests: Quest[];
+    statInformation: Information[];
+}
+
+export interface Information {
+    target: string;
+    value: string;
 }
 
 export interface Virtue {
@@ -318,6 +324,7 @@ export interface State {
 export const initialState: State = {
     character: {
         type: 'magus',
+        statInformation: [],
         physicalStatus : {
             fatigue : 0,
             lightWounds: 0,

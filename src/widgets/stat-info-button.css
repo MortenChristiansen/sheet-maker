@@ -1,0 +1,22 @@
+stat-info-button {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+}
+
+stat-info-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+stat-info-button .button {
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../content/info-button-checked.png');
+    background-size: contain;
+}
+
+stat-info-button .button.active {
+    opacity: 1;
+}
