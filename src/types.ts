@@ -26,6 +26,7 @@ export interface ArsCharacter {
     magicItems: MagicItem[];
     quests: Quest[];
     statInformation: Information[];
+    npcs: Npc[];
 }
 
 export interface Information {
@@ -317,6 +318,11 @@ export interface Quest {
     focused: boolean;
 }
 
+export interface Npc {
+    name: string;
+    description: string;
+}
+
 export interface State {
     character?: ArsCharacter;
 }
@@ -444,6 +450,7 @@ export const initialState: State = {
             effects: []
         },
         magicItems: [],
-        quests: []
+        quests: [],
+        npcs: []
     }
 };

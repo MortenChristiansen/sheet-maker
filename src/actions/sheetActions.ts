@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Information } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Information, Npc } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -227,6 +227,13 @@ export function updateStatInformation(state: StateHistory<State>, statInformatio
     console.log("Saving stat information");
     const newState = deepCopy(state.present);
     newState.character.statInformation = statInformation.filter(s => s.value != '' && s.target != '');
+    return nextStateHistory(state, newState);
+}
+
+export function updateNpcs(state: StateHistory<State>, npcs: Npc[]) {
+    console.log("Saving npcs");
+    const newState = deepCopy(state.present);
+    newState.character.npcs = filterListItems(npcs);
     return nextStateHistory(state, newState);
 }
 

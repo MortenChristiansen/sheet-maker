@@ -1,0 +1,36 @@
+npc-list {
+    display: block;
+    margin: 30px;
+    width: 800px;
+    float: left;
+}
+
+npc-list > .container {
+    padding: 10px 30px;
+    position: relative;
+}
+
+npc-list > .container > .grid {
+    display: grid;
+    grid-template-columns: min-content min-content min-content;
+    grid-auto-rows: 1fr;
+}
+
+npc-list > .container > .grid > * {
+    align-self: center;
+    margin: 1px 2px;
+}
+
+npc-list .name {
+    width: 250px;
+    text-overflow: ellipsis;
+}
+
+npc-list .description {
+    width: 450px;
+    text-overflow: ellipsis;
+}
+
+npc-list .add-item-input-field {
+    width: 250px;
+}
