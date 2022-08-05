@@ -1,37 +1,5 @@
-# sheet-maker
+# Sheet Maker
 
-This project is bootstrapped by [aurelia/new](https://github.com/aurelia/new).
-
-## Start dev web server
-
-    npm start
-
-## Build the app in production mode
-
-    npm run build
-
-It builds all files to dist folder. To deploy to production server, copy all the `dist/*` files to production root folder.
-
-For example
-```
-dist/index.html
-dist/foo.12345.js
-```
-Copy to production root folder
-```
-root_folder/index.html
-root_folder/foo.12345.js
-```
-
-## Unit Tests
-
-    npm run test
-
-Run unit tests in watch mode.
-
-    npm run test:watch
-
-
-## Analyze webpack bundle
-
-    npm run analyze
+This is both a toolkit for building character sheets for tabletop RPGs and a demo of how to use it. The demo
+can be found at https://mortenchristiansen.github.io/sheet-maker/#/ and is an example of how to use the
+toolkit to create an Ars Magica 5e character sheet. If you try it out, start by pressing the "Create New Character" button at the buttom of the page. You can also install the web app as a PWA. The code is only tested on Chrome and Windows.
