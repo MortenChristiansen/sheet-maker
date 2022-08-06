@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Information, Npc } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Npc } from "../types";
 import { deepCopy } from "../utils";
 
 export function createNewCharacter(state: StateHistory<State>) {
@@ -162,7 +162,7 @@ export function importCharacter(state: StateHistory<State>, character: string) {
 }
 
 export function updateSpellcastingStats(state: StateHistory<State>, spellcastingStats: SpellcastingStats) {
-    console.log("Saving spellcasting stats");
+    console.log("Saving spellcasting stats", spellcastingStats);
     const newState = deepCopy(state.present);
     newState.character.spellcastingStats = spellcastingStats;
     refreshCastingTotals(newState);
@@ -170,7 +170,7 @@ export function updateSpellcastingStats(state: StateHistory<State>, spellcasting
 }
 
 export function updateCharacterType(state: StateHistory<State>, characterType: "magus" | "companion") {
-    console.log("Saving character type");
+    console.log("Saving character type", characterType);
     const newState = deepCopy(state.present);
     newState.character.type = characterType;
     refreshCastingTotals(newState);
@@ -178,21 +178,21 @@ export function updateCharacterType(state: StateHistory<State>, characterType: "
 }
 
 export function updateBackground(state: StateHistory<State>, background: string) {
-    console.log("Saving background");
+    console.log("Saving background", background);
     const newState = deepCopy(state.present);
     newState.character.background = background;
     return nextStateHistory(state, newState);
 }
 
 export function updateSigil(state: StateHistory<State>, sigil: string) {
-    console.log("Saving sigil");
+    console.log("Saving sigil", sigil);
     const newState = deepCopy(state.present);
     newState.character.sigil = sigil;
     return nextStateHistory(state, newState);
 }
 
 export function updateBelongings(state: StateHistory<State>, belongings: Belongings) {
-    console.log("Saving belongings");
+    console.log("Saving belongings", belongings);
     const newState = deepCopy(state.present);
     newState.character.belongings = belongings;
     newState.character.belongings.vis = filterListItems(belongings.vis);
@@ -200,7 +200,7 @@ export function updateBelongings(state: StateHistory<State>, belongings: Belongi
 }
 
 export function updateTalisman(state: StateHistory<State>, talisman: Talisman) {
-    console.log("Saving talisman");
+    console.log("Saving talisman", talisman);
     const newState = deepCopy(state.present);
     newState.character.talisman = talisman;
     newState.character.talisman.effects = filterListItems(talisman.effects);
@@ -209,7 +209,7 @@ export function updateTalisman(state: StateHistory<State>, talisman: Talisman) {
 }
 
 export function updateMagicItems(state: StateHistory<State>, magicItems: MagicItem[]) {
-    console.log("Saving magic items");
+    console.log("Saving magic items", magicItems);
     const newState = deepCopy(state.present);
     newState.character.magicItems = filterListItems(magicItems);
     newState.character.magicItems.forEach(mi => mi.effects = filterListItems(mi.effects))
@@ -217,21 +217,14 @@ export function updateMagicItems(state: StateHistory<State>, magicItems: MagicIt
 }
 
 export function updateQuests(state: StateHistory<State>, quests: Quest[]) {
-    console.log("Saving quests");
+    console.log("Saving quests", quests);
     const newState = deepCopy(state.present);
     newState.character.quests = filterListItems(quests).sort((a, b) => a.priority - b.priority);
     return nextStateHistory(state, newState);
 }
 
-export function updateStatInformation(state: StateHistory<State>, statInformation: Information[]) {
-    console.log("Saving stat information");
-    const newState = deepCopy(state.present);
-    newState.character.statInformation = statInformation.filter(s => s.value != '' && s.target != '');
-    return nextStateHistory(state, newState);
-}
-
 export function updateNpcs(state: StateHistory<State>, npcs: Npc[]) {
-    console.log("Saving npcs");
+    console.log("Saving npcs", npcs);
     const newState = deepCopy(state.present);
     newState.character.npcs = filterListItems(npcs);
     return nextStateHistory(state, newState);

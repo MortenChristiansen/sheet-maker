@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSigil, updateSpellcastingStats, updateSpells, updateStatInformation, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSigil, updateSpellcastingStats, updateSpells, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -35,6 +35,7 @@ export class MyApp {
     Bugs
     - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.
         Seems related to the times when the Google Drive file deletion prompt appears.
+    - Dialogs do not work when scrolling (they are centered to the unscrolled page)
 
     Refactorings
     - Use add-item-input component where it makes sense.
@@ -74,7 +75,6 @@ export class MyApp {
         this.store.registerAction('updateTalisman', updateTalisman);
         this.store.registerAction('updateMagicItems', updateMagicItems);
         this.store.registerAction('updateQuests', updateQuests);
-        this.store.registerAction('updateStatInformation', updateStatInformation);
         this.store.registerAction('updateNpcs', updateNpcs);
         
         if (this.isStandalone) {

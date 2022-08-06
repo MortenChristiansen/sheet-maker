@@ -13,7 +13,8 @@ export class NpcList extends Widget<Npc[]> {
         if (!this.model) this.model = [];
         this.model.push({
             name: name,
-            description: ''
+            description: '',
+            additionalInfo: ''
         });
         this.model.sort((a, b) => a.name.localeCompare(b.name));
     }

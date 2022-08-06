@@ -3,6 +3,8 @@ import { IEventAggregator } from "aurelia";
 import { State } from "../types";
 import { debounce, deepCopy } from "../utils";
 
+const debug: boolean = false;
+
 @connectTo()
 export class Widget<TModel> {
     model: TModel = undefined;
@@ -53,6 +55,9 @@ export class Widget<TModel> {
         }
 
         if (this.hasChanges()) {
+            if (debug) {
+                console.log("SAVING", JSON.stringify(this.modelState), JSON.stringify(this.model))
+            }
             this.saveChanges();
         }
 

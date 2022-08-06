@@ -22,15 +22,15 @@ npc-list > .container > .grid > * {
 }
 
 npc-list .name {
-    width: 250px;
+    width: 200px;
     text-overflow: ellipsis;
 }
 
 npc-list .description {
-    width: 450px;
+    width: 500px;
     text-overflow: ellipsis;
 }
 
 npc-list .add-item-input-field {
-    width: 250px;
+    width: 200px;
 }
