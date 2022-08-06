@@ -1,4 +1,4 @@
-<title text="SPELLS"></title>
+<title text="SPELL WISHLIST"></title>
 <div class="container">
     <div class="spell grid ${spell.arts.slice(2).toLowerCase()}-form" repeat.for="spell of model">
         <span class="form-header"></span>
@@ -7,21 +7,17 @@
         <checkbox size="xs" value.two-way="spell.ritual" title="Ritual"></checkbox>
         <text-field class="arts" value.two-way="spell.arts" placeholder="Arts"></text-field>
         <text-field class="prerequisites" value.two-way="spell.prerequisites"  placeholder="Prereq" title="Prerequisites"></text-field>
-        <span class="casting-total-label numbers text">+${spell.castingTotal}</span>
         <primary-stat class="level" mode="secondary" value.two-way="spell.level" min="0" size="s" title="Spell level"></primary-stat>
         <primary-stat class="attunement-bonus" mode="secondary" value.two-way="spell.attunementBonus" min="0" size="xs" color-mode="monochrome" title="Attunement bonus"></primary-stat>
         <text-field class="attunement" value.two-way="spell.attunement" placeholder="Attunement"></text-field>
         <text-field class="masteries" value.two-way="spell.masteries" placeholder="Masteries"></text-field>
-        <primary-stat class="mastery-level" mode="secondary" value.two-way="spell.masteryLevel" min="0" size="s" color-mode="monochrome" title="Mastery level"></primary-stat>
-        <primary-stat class="xp" mode="secondary" value.two-way="spell.xp" min="0" size="xs" color-mode="monochrome" title="Excess XP"></primary-stat>
         <text-field class="range" value.two-way="spell.range" placeholder="Range"></text-field>
         <text-field class="duration" value.two-way="spell.duration" placeholder="Duration"></text-field>
         <text-field class="target" value.two-way="spell.target" placeholder="Target"></text-field>
         <text-field class="notes" value.two-way="spell.notes" placeholder="Notes" title="${spell.notes}"></text-field>
-        <text-field class="sigil" value.two-way="spell.sigil" placeholder="Sigil" title="${spell.sigil}"></text-field>
         <text-field class="page" value.two-way="spell.pageNumber" placeholder="Page"></text-field>
         <text-field class="book" value.two-way="spell.sourceBook" placeholder="Book"></text-field>
-        <cross-button click.delegate="unlearnSpell(spell)" title="Unlearn spell" mode="angled"></cross-button>
+        <cross-button click.delegate="learnSpell(spell)" title="Learn spell"></cross-button>
     </div>
     <add-item-input placeholder="Add spell" on-item-added.bind="spellAdded"></add-item-input>
 </div>

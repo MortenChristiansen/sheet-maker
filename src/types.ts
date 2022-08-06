@@ -11,6 +11,7 @@ export interface ArsCharacter {
     abilities: Ability[];
     arts: Arts;
     spells: Spell[];
+    spellWishlist: Spell[];
     ageing: Ageing;
     confidence: Confidence;
     warping: Warping;
@@ -133,6 +134,7 @@ export interface Spell {
     attunementBonus: number;
     attunement: string;
     castingTotal: number;
+    onWishlist: boolean;
 }
 
 export interface Art {
@@ -367,6 +369,7 @@ export const initialState: State = {
             vim: { level: 0, xp: 0, puissant: false }
         },
         spells: [],
+        spellWishlist: [],
         ageing: {
             age: 25,
             apparentAge: 25,

@@ -10,6 +10,7 @@ export class Widget<TModel> {
     model: TModel = undefined;
     modelState: TModel = undefined;
     active: boolean = false;
+    state: StateHistory<State>;
 
     // TODO: Save if you leave or refresh the page (it does not work to just call saveChanges in the unbound method)
 

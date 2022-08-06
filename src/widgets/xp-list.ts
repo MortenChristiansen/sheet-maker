@@ -18,4 +18,9 @@ export class XpList extends Widget<XpEntry[]> {
         if (!this.model) return [];
         return this.model.filter(x => !x.planningMode);
     }
+
+    deletePreviousEntries = () => {
+        let currentYear = this.state.present.character.ageing.currentYear;
+        this.model = this.model.filter(m => m.year >= currentYear);
+    }
 }

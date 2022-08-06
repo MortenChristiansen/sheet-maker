@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSigil, updateSpellcastingStats, updateSpells, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSigil, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -58,6 +58,7 @@ export class MyApp {
         this.store.registerAction('updatePhysicalStatus', updatePhysicalStatus);
         this.store.registerAction('updateArts', updateArts);
         this.store.registerAction('updateSpells', updateSpells);
+        this.store.registerAction('updateSpellWishlist', updateSpellWishlist);
         this.store.registerAction('updatePersonalityTraits', updatePersonalityTraits);
         this.store.registerAction('updateAgeing', updateAgeing);
         this.store.registerAction('updateConfidence', updateConfidence);

@@ -91,7 +91,16 @@ export function updateSpells(state: StateHistory<State>, spells: Spell[]) {
     console.log("Saving spells", spells);
     const newState = deepCopy(state.present);
     newState.character.spells = filterListItems(spells).sort((a, b) => a.arts.slice(2).localeCompare(b.arts.slice(2)));
+    refreshSpellLists(newState);
     refreshCastingTotals(newState);
+    return nextStateHistory(state, newState);
+}
+
+export function updateSpellWishlist(state: StateHistory<State>, spellWishlist: Spell[]) {
+    console.log("Saving spell wishlist", spellWishlist);
+    const newState = deepCopy(state.present);
+    newState.character.spellWishlist = filterListItems(spellWishlist).sort((a, b) => a.arts.slice(2).localeCompare(b.arts.slice(2)));
+    refreshSpellLists(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -228,6 +237,13 @@ export function updateNpcs(state: StateHistory<State>, npcs: Npc[]) {
     const newState = deepCopy(state.present);
     newState.character.npcs = filterListItems(npcs);
     return nextStateHistory(state, newState);
+}
+
+function refreshSpellLists(state: State) {
+    let learnedSpells = state.character.spellWishlist.filter(s => !s.onWishlist);
+    let unlearnedSpells = state.character.spells.filter(s => s.onWishlist);
+    state.character.spellWishlist = state.character.spellWishlist.filter(s => s.onWishlist).concat(unlearnedSpells);
+    state.character.spells = state.character.spells.filter(s => !s.onWishlist).concat(learnedSpells);
 }
 
 function filterListItems<T extends ListItem>(listItems: T[]) {

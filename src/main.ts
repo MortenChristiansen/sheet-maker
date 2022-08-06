@@ -18,6 +18,7 @@ import { AddItemInput } from './components/add-item-input';
 import { DialogBox } from './components/dialog-box';
 import { TextDialog } from './components/text-dialog';
 import { StatInfoButton } from './components/stat-info-button';
+import { CrossButton } from './components/cross-button';
 
 let app = Aurelia
     .register(
@@ -25,8 +26,23 @@ let app = Aurelia
     )
     .register(RouterConfiguration.customize({  }))
     .register(DialogDefaultConfiguration)
-    .register(Checkbox, List, PrimaryStat, RadioButton, TextBox, TextField, AddItemInput, DialogBox, TextDialog, StatInfoButton) // Components
-    .register(Footer, Title, RuneEdge, PageHeader) // Layout elements
+    .register( // Components
+        Checkbox,
+        List,
+        PrimaryStat,
+        RadioButton,
+        TextBox,
+        TextField,
+        AddItemInput,
+        DialogBox,
+        TextDialog,
+        StatInfoButton,
+        CrossButton)
+    .register( // Layout elements
+        Footer,
+        Title,
+        RuneEdge,
+        PageHeader)
     .app(MyApp);
 
 export const container = app.container;

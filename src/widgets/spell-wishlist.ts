@@ -1,16 +1,17 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
 import { IEventAggregator } from "aurelia";
-import { updateSpells } from "../actions/sheetActions";
+import { updateSpells, updateSpellWishlist } from "../actions/sheetActions";
 import { Spell, State } from "../types";
 import { Widget } from "./widget";
 
-export class SpellList extends Widget<Spell[]> {
+export class SpellWishlist extends Widget<Spell[]> {
 
     constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
-        super(store, state => state.character?.spells, updateSpells, ea);
+        super(store, state => state.character?.spellWishlist, updateSpellWishlist, ea);
     }
 
     spellAdded = (spell: string) => {
+        if (!this.model) this.model = [];
         this.model.push({
             name: spell,
             level: 0,
@@ -31,12 +32,12 @@ export class SpellList extends Widget<Spell[]> {
             sourceBook: 'Core',
             target: '',
             castingTotal: 0,
-            onWishlist: false
+            onWishlist: true
         });
         this.model.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    unlearnSpell = (spell: Spell) => {
-        spell.onWishlist = true;
+    learnSpell = (spell: Spell) => {
+        spell.onWishlist = false;
     }
 }

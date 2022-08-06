@@ -1,0 +1,118 @@
+spell-wishlist {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+    float: left;
+}
+
+spell-wishlist > .container {
+    padding: 10px 30px;
+}
+
+spell-wishlist > .container > .grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-auto-rows: 1fr;
+}
+
+spell-wishlist > .container > .grid > * {
+    align-self: center;
+    margin: 1px 2px;
+}
+
+spell-wishlist .add-item-input-field {
+    width: 300px;
+}
+
+spell-wishlist  > .container > .grid input[type=text] {
+    width: 100px;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+spell-wishlist  > .container > .grid input[type=text].name {
+    width: 300px;
+    text-align: left;
+}
+
+spell-wishlist  > .container > .grid input[type=text].notes {
+    width: 300px;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+spell-wishlist  > .container > .grid input[type=text].arts {
+    width: 50px;
+}
+
+spell-wishlist  > .container > .grid input[type=text].prerequisites {
+    width: 50px;
+}
+
+spell-wishlist  > .container > .grid input[type=text].page {
+    width: 50px;
+}
+
+spell-wishlist  > .container > .grid .casting-total-label {
+    width: 25px;
+}
+
+spell-wishlist  > .container > .grid input[type=text].sigil {
+    width: 200px;
+}
+
+spell-wishlist .spell {
+    position: relative;
+}
+
+spell-wishlist .co-form .form-header::before {
+    content: 'Co';
+}
+spell-wishlist .an-form .form-header::before {
+    content: 'An';
+}
+spell-wishlist .au-form .form-header::before {
+    content: 'Au';
+}
+spell-wishlist .aq-form .form-header::before {
+    content: 'Aq';
+}
+spell-wishlist .he-form .form-header::before {
+    content: 'He';
+}
+spell-wishlist .vi-form .form-header::before {
+    content: 'Vi';
+}
+spell-wishlist .te-form .form-header::before {
+    content: 'Te';
+}
+spell-wishlist .ig-form .form-header::before {
+    content: 'Ig';
+}
+spell-wishlist .me-form .form-header::before {
+    content: 'Me';
+}
+spell-wishlist .im-form .form-header::before {
+    content: 'Im';
+}
+
+spell-wishlist .form-header::before {
+    position: absolute;
+    left: -25px;
+    top: 5px;
+    font-size: 16px;
+    color: #bbb;
+}
+
+spell-wishlist .co-form ~ .co-form .form-header::before,
+spell-wishlist .an-form ~ .an-form .form-header::before,
+spell-wishlist .au-form ~ .au-form .form-header::before,
+spell-wishlist .aq-form ~ .aq-form .form-header::before,
+spell-wishlist .he-form ~ .he-form .form-header::before,
+spell-wishlist .vi-form ~ .vi-form .form-header::before,
+spell-wishlist .te-form ~ .te-form .form-header::before,
+spell-wishlist .ig-form ~ .ig-form .form-header::before,
+spell-wishlist .me-form ~ .me-form .form-header::before,
+spell-wishlist .im-form ~ .im-form .form-header::before {
+    content: '';
+}
