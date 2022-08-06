@@ -9,6 +9,7 @@ export class DialogBox {
     }
 
     attaching() {
+      document.body.classList.add("disable-scrolling");
         const animation = this.host.animate(
           [{ transform: 'scale(0.8)', opacity: '0' }, { transform: 'scale(1)', opacity: '1' }],
           { duration: 200 },
@@ -17,6 +18,7 @@ export class DialogBox {
       }
     
       detaching() {
+        document.body.classList.remove("disable-scrolling");
         const animation = this.host.animate(
           [{ transform: 'scale(1)', opacity: '1' }, { transform: 'scale(0.8)', opacity: '0' }],
           { duration: 200 },

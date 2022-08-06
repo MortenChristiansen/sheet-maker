@@ -73,3 +73,7 @@ my-app > .page-view {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+.disable-scrolling {
+  overflow: hidden;
+}

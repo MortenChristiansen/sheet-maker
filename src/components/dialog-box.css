@@ -23,6 +23,10 @@ dialog-box .dialog-container.s {
     background-image: url('../../content/popup-background-4x3.png');
 }
 
-dialog-box {
-    /*animation: fadeIn 0.5s ease-in;*/
+/* Fixes rendering error for the built in dialog UI, which does not work with scrolling */
+au-dialog-overlay {
+    position: fixed !important;
+}
+au-dialog-container {
+    position: fixed !important;
 }

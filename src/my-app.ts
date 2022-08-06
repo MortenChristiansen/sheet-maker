@@ -35,7 +35,6 @@ export class MyApp {
     Bugs
     - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.
         Seems related to the times when the Google Drive file deletion prompt appears.
-    - Dialogs do not work when scrolling (they are centered to the unscrolled page)
 
     Refactorings
     - Use add-item-input component where it makes sense.
