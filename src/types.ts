@@ -78,6 +78,7 @@ export interface PhysicalStatus {
     lightWounds: number;
     mediumWounds: number;
     heavyWounds: number;
+    totalPenaly: number;
 }
 
 export interface PersonalityTrait {
@@ -334,7 +335,8 @@ export const initialState: State = {
             fatigue : 0,
             lightWounds: 0,
             mediumWounds: 0,
-            heavyWounds: 0
+            heavyWounds: 0,
+            totalPenaly: 0
         },
         description: {
             name: '',

@@ -74,6 +74,7 @@ export function updatePhysicalStatus(state: StateHistory<State>, physicalStatus:
     console.log("Saving physical status", physicalStatus);
     const newState = deepCopy(state.present);
     newState.character.physicalStatus = physicalStatus;
+    refreshPhysicalPentalties(newState);
     refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
 }
@@ -254,6 +255,26 @@ interface ListItem {
     name: string;
 }
 
+function refreshPhysicalPentalties(state: State) {
+    state.character.physicalStatus.totalPenaly =
+        calculateWoundPenalty(state) +
+        calculateFatiguePenalty(state);
+}
+
+function calculateFatiguePenalty(state: State) {
+    let fatigue = state.character.physicalStatus.fatigue;
+    if (fatigue <= 1) return 0;
+    if (fatigue === 2) return -1;
+    if (fatigue === 3) return -3;
+    if (fatigue === 4) return -5;
+    return 0;
+}
+
+function calculateWoundPenalty(state: State) {
+    let status = state.character.physicalStatus;
+    return -status.lightWounds + status.mediumWounds * -3 + status.heavyWounds * -5;
+}
+
 function refreshAgeingStats(state: State) {
     refreshAgeingRollModifier(state);
     refreshDecrepitudeLevel(state);
@@ -320,8 +341,7 @@ function calculateBaseSpellcastingModifier(state: State) {
     let positiveCycleValue = castingStats.cyclicMagicVirtue ? 3 : 0;
     let negativeCycleValue = castingStats.cyclicMagicFlaw ? -3 : 0;
     return state.character.characteristics.stamina.value +
-           calculateWoundPenalty(state) +
-           calculateFatiguePenalty(state) +
+           state.character.physicalStatus.totalPenaly +
            castingStats.aura +
            (castingStats.positiveCycle ? positiveCycleValue : negativeCycleValue) +
            (castingStats.staminaSpecialisation ? 1 : 0) +
@@ -381,20 +401,6 @@ function getForm(state: State, targetArts: string) {
 
 function calculateArtScore(art: Art) {
     return art.level + (art.puissant ? 3 : 0);
-}
-
-function calculateFatiguePenalty(state: State) {
-    let fatigue = state.character.physicalStatus.fatigue;
-    if (fatigue <= 1) return 0;
-    if (fatigue === 2) return -1;
-    if (fatigue === 3) return -3;
-    if (fatigue === 4) return -5;
-    return 0;
-}
-
-function calculateWoundPenalty(state: State) {
-    let status = state.character.physicalStatus;
-    return -status.lightWounds + status.mediumWounds * -3 + status.heavyWounds * -5;
 }
 
 function refreshWarpingLevel(state: State) {
