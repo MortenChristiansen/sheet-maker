@@ -7,3 +7,8 @@ text-box.text-dialog-input textarea {
 text-box.text-dialog-input .container {
     margin: 0;
 }
+
+.dialog-container.m text-box.text-dialog-input textarea {
+    height: 600px;
+    width: 905px;
+}

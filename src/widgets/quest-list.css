@@ -12,7 +12,7 @@ quest-list > .container {
 
 quest-list > .container > .grid {
     display: grid;
-    grid-template-columns: min-content min-content min-content;
+    grid-template-columns: min-content min-content min-content min-content;
     grid-auto-rows: 1fr;
 }
 

@@ -14,7 +14,8 @@ export class QuestList extends Widget<Quest[]> {
         this.model.push({
             name: quest,
             focused: false,
-            priority: 0
+            priority: 0,
+            additionalInfo: ''
         });
         this.model.sort((a, b) => a.name.localeCompare(b.name)).sort((a, b) => a.priority - b.priority);
     }

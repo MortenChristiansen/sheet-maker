@@ -31,10 +31,12 @@ export interface ArsCharacter {
 
 export interface Virtue {
     name: string;
+    additionalInfo: string;
 }
 
 export interface Flaw {
     name: string;
+    additionalInfo: string;
 }
 
 export interface CharacterDescription {
@@ -312,6 +314,7 @@ export interface Quest {
     name: string;
     priority: number;
     focused: boolean;
+    additionalInfo: string;
 }
 
 export interface Npc {
