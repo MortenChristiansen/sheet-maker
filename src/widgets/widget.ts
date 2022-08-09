@@ -1,6 +1,6 @@
 import { connectTo, StateHistory, Store } from "@aurelia/store-v1";
 import { IEventAggregator } from "aurelia";
-import { State } from "../types";
+import { initialState, State } from "../types";
 import { debounce, deepCopy } from "../utils";
 
 const debug: boolean = false;
@@ -23,7 +23,12 @@ export class Widget<TModel> {
 
     stateChanged(newState: StateHistory<State>, oldState: StateHistory<State>) {
         if (newState.present) {
+            let defaultValue = this.pluckModel(initialState)
             this.modelState = this.pluckModel(newState.present);
+            if (this.modelState === undefined) {
+                this.modelState = defaultValue;
+            }
+
             // This check prevents us from losing focus when manipulating the widget since we do not rebind the UI when we do not need to
             if (this.hasChanges()) {
                 this.model = deepCopy(this.modelState);
