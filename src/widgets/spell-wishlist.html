@@ -14,9 +14,9 @@
         <text-field class="range" value.two-way="spell.range" placeholder="Range"></text-field>
         <text-field class="duration" value.two-way="spell.duration" placeholder="Duration"></text-field>
         <text-field class="target" value.two-way="spell.target" placeholder="Target"></text-field>
-        <text-field class="notes" value.two-way="spell.notes" placeholder="Notes" title="${spell.notes}"></text-field>
         <text-field class="page" value.two-way="spell.pageNumber" placeholder="Page"></text-field>
         <text-field class="book" value.two-way="spell.sourceBook" placeholder="Book"></text-field>
+        <stat-info-button source.bind="spell" property="additionalInfo"></stat-info-button>
         <cross-button click.delegate="learnSpell(spell)" title="Learn spell"></cross-button>
     </div>
     <add-item-input placeholder="Add spell" on-item-added.bind="spellAdded"></add-item-input>

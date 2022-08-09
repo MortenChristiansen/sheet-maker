@@ -23,7 +23,7 @@ export class SpellList extends Widget<Spell[]> {
             ritual: false,
             masteries: '',
             masteryLevel: 0,
-            notes: '',
+            additionalInfo: '',
             pageNumber: '',
             prerequisites: '',
             range: '',

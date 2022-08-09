@@ -19,7 +19,6 @@ export class MyApp {
     - Puissant arts and abilitis can be identified automatically from virtue names.
     - Somehow remind myself of temporary modifiers to aging roll such as use of the Nocturnal lab rule.
     - Look into PWA jumplist integration.
-    - Allow quests to have sub items
 
     Design Ideas
     - Some low contrast flourish between the two groups of characteristics.

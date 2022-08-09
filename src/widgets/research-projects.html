@@ -37,7 +37,7 @@
         <primary-stat class="surplus" mode="secondary" readonly.bind="true" value.two-way="project.surplusLabTotal" min="0" size="s" title="Surplus Lab Total"></primary-stat>
         <primary-stat class="accumulated-total" mode="secondary" value.two-way="project.accumulatedLabTotal" min="0" size="s" title="Accumulated Lab Total"></primary-stat>
         
-        <text-field class="description" value.two-way="project.description" placeholder="Description" title="${project.description}"></text-field>
+        <stat-info-button source.bind="project" property="additionalInfo"></stat-info-button>
     </div>
     <input class="add-item-input" type="text" placeholder="Add project" keyup.delegate="keyPressed($event)" value.two-way="newProjectText">
 </div>

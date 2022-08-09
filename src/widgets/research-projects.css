@@ -1,7 +1,7 @@
 research-projects {
     display: block;
     margin: 30px;
-    width: 2128px;
+    width: 1480px;
     float: left;
 }
 
@@ -22,7 +22,7 @@ research-projects .add-item-input {
 
 research-projects > .container > .grid {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content;
     grid-auto-rows: 1fr;
 }
 
@@ -31,17 +31,15 @@ research-projects > .container > .grid > * {
     margin: 1px 2px;
 }
 
-research-projects .description {
-    width: 600px;
-    margin-left: 40px !important;
-    text-overflow: ellipsis;
+research-projects stat-info-button {
+    margin-left: 20px !important;
 }
 research-projects .arts, research-projects .prerequisites {
     width: 50px;
     text-align: center;
 }
 research-projects .level {
-    margin-right: 40px !important;
+    margin-right: 30px !important;
 }
 
 research-projects .material, research-projects .shape {
@@ -50,5 +48,5 @@ research-projects .material, research-projects .shape {
 }
 
 research-projects .total {
-    margin-left: 40px !important;
+    margin-left: 30px !important;
 }

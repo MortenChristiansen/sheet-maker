@@ -19,7 +19,6 @@ export class ResearchProjects extends Widget<Lab> {
         if (event.key == "Enter" && this.newProjectText) {
             this.model.researchProjects.push({
                 name: this.newProjectText,
-                description: '',
                 accumulatedLabTotal: 0,
                 surplusLabTotal: 0,
                 artModifier: 0,
@@ -41,7 +40,8 @@ export class ResearchProjects extends Widget<Lab> {
                 experiment: false,
                 newWork: true,
                 nocturnal: false,
-                positiveCycle: false
+                positiveCycle: false,
+                additionalInfo: ''
              });
             this.newProjectText = '';
         }

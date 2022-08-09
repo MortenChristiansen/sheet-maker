@@ -17,7 +17,8 @@ export class ActiveMagicList extends Widget<ActiveMagic[]> {
             this.model.push({
                 name: this.newMagicText,
                 penetration: 0,
-                active: true
+                active: true,
+                additionalInfo: ''
              });
              this.model.sort((a, b) => a.name.localeCompare(b.name));
             this.newMagicText = '';

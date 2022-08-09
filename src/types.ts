@@ -129,7 +129,7 @@ export interface Spell {
     sourceBook: string;
     focus: boolean;
     ritual: boolean;
-    notes: string;
+    additionalInfo: string;
     sigil: string;
     range: string;
     duration: string;
@@ -161,6 +161,7 @@ export interface ActiveMagic {
     name: string;
     penetration: number;
     active: boolean;
+    additionalInfo: string;
 }
 
 export interface XpEntry {
@@ -239,10 +240,10 @@ export interface ResearchProject {
     labTotal: number;
     accumulatedLabTotal: number;
     surplusLabTotal: number;
-    description: string;
     level: number;
     nocturnal: boolean;
     positiveCycle: boolean;
+    additionalInfo: string;
 }
 
 export interface SpellcastingStats {

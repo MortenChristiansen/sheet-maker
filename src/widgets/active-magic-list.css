@@ -3,7 +3,6 @@ active-magic-list {
     margin: 30px;
     width: fit-content;
     float: left;
-    width: 366px;
 }
 
 active-magic-list > .container {
@@ -12,7 +11,7 @@ active-magic-list > .container {
 
 active-magic-list > .container > .grid {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     grid-auto-rows: 1fr;
 }
 
