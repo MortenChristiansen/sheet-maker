@@ -2,6 +2,10 @@ primary-stat {
     display: inline-block;
 }
 
+primary-stat .container.fade {
+    opacity: 0.4;
+}
+
 primary-stat .container {
     width: 60px;
     height: 60px;

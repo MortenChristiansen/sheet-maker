@@ -56,21 +56,23 @@ lab-modifications-list .add-item-input.add-modifier-input {
 
 lab-modifications-list .modifier-titles {
     position: absolute;
-    right: 32px;
-    top: 40px;
+    right: 3px;
+    top: 10px;
 }
 
 lab-modifications-list .modifier-title {
     font-size: 9px;
     display: inline-block;
-    width: 31.5px;
+    width: 27px;
     text-align: center;
     font-family: "Eagle Lake", cursive;
     border-bottom: none;
-    padding: 0px;
+    padding: 0;
     font-weight: unset;
     text-overflow: ellipsis;
+    text-indent: 0;
 }
+
 
 lab-modifications-list .modifier-totals {
     position: absolute;
@@ -84,4 +86,9 @@ lab-modifications-list .modifier-total {
     width: 33px;
     margin: 2px;
     text-align: center;
+}
+
+lab-modifications-list .block {
+    margin-top: 30px;
+    position: relative;
 }

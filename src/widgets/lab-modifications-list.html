@@ -1,29 +1,38 @@
 <title text="LAB MODIFICATIONS"></title>
 <div class="container">
     <input class="add-item-input add-modifier-input" type="text" keyup.delegate="keyPressed($event, 'modifier')" value.two-way="newModifierText" title="Add Modifier Column">
-    <div class="modifier-titles">
-        <text-field repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.two-way="modifier.name" title="${modifier.name}"></text-field>
+    
+    <div class="block">
+        <div class="modifier-titles">
+            <text-field repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.two-way="modifier.name" title="${modifier.name}"></text-field>
+        </div>
+
+        <label class="text title">VIRTUES</label>
+        <div class="virtue grid" repeat.for="virtue of model.virtues">
+            <text-field class="name" value.two-way="virtue.name" placeholder="Name"></text-field>
+            <text-field class="category" value.two-way="virtue.category" placeholder="Category"></text-field>
+            <text-field class="description" value.two-way="virtue.description" placeholder="Description"></text-field>
+            <primary-stat class="cost" mode="secondary" value.two-way="virtue.cost" min="0" size="s" title="Cost"></primary-stat>
+            <primary-stat class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of virtue.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></primary-stat>
+        </div>
+        <input class="add-item-input" type="text" placeholder="Add virtue" keyup.delegate="keyPressed($event, 'virtue')" value.two-way="newVirtueText">
     </div>
 
-    <label class="text title">VIRTUES</label>
-    <div class="virtue grid" repeat.for="virtue of model.virtues">
-        <text-field class="name" value.two-way="virtue.name" placeholder="Name"></text-field>
-        <text-field class="category" value.two-way="virtue.category" placeholder="Category"></text-field>
-        <text-field class="description" value.two-way="virtue.description" placeholder="Description"></text-field>
-        <primary-stat class="cost" mode="secondary" value.two-way="virtue.cost" min="0" size="s" title="Cost"></primary-stat>
-        <primary-stat class="modifier" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of virtue.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></primary-stat>
-    </div>
-    <input class="add-item-input" type="text" placeholder="Add virtue" keyup.delegate="keyPressed($event, 'virtue')" value.two-way="newVirtueText">
+    <div class="block">
+        <div class="modifier-titles">
+            <text-field repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.two-way="modifier.name" title="${modifier.name}"></text-field>
+        </div>
 
-    <label class="text title">FLAWS</label>
-    <div class="flaw grid" repeat.for="flaw of model.flaws">
-        <text-field class="name" value.two-way="flaw.name" placeholder="Name"></text-field>
-        <text-field class="category" value.two-way="flaw.category" placeholder="Category"></text-field>
-        <text-field class="description" value.two-way="flaw.description" placeholder="Description"></text-field>
-        <primary-stat class="cost" mode="secondary" value.two-way="flaw.cost" max="0" size="s" title="Cost"></primary-stat>
-        <primary-stat class="modifier" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of flaw.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></primary-stat>
+        <label class="text title">FLAWS</label>
+        <div class="flaw grid" repeat.for="flaw of model.flaws">
+            <text-field class="name" value.two-way="flaw.name" placeholder="Name"></text-field>
+            <text-field class="category" value.two-way="flaw.category" placeholder="Category"></text-field>
+            <text-field class="description" value.two-way="flaw.description" placeholder="Description"></text-field>
+            <primary-stat class="cost" mode="secondary" value.two-way="flaw.cost" max="0" size="s" title="Cost"></primary-stat>
+            <primary-stat class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of flaw.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></primary-stat>
+        </div>
+        <input class="add-item-input" type="text" placeholder="Add flaw" keyup.delegate="keyPressed($event, 'flaw')" value.two-way="newFlawText">
     </div>
-    <input class="add-item-input" type="text" placeholder="Add flaw" keyup.delegate="keyPressed($event, 'flaw')" value.two-way="newFlawText">
 
     <div class="modifier-totals">
         <span class="numbers modifier-total" repeat.for="total of totals" class="modifier-title text">${total}</span>

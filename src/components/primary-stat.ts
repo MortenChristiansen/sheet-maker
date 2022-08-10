@@ -11,6 +11,7 @@ export class PrimaryStat extends Component {
     @bindable readonly: boolean = false;
     @bindable header: string = '';
     @bindable showHeader: boolean = true;
+    @bindable fadeZero:boolean = false;
 
     containerElement: Element;
     active: boolean = false;
