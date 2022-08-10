@@ -1,3 +1,4 @@
+<span class="text title">Sigil</span>
 <div class="container" drop.delegate="onDrop($event)" active-drag.class="dragging" dragenter.delegate="dragging = true" dragleave.delegate="dragging = false">
     <div class="sigil-image-placeholder" if.bind="!model"></div>
     <img class="sigil-image" if.bind="model" src="${model}"/>

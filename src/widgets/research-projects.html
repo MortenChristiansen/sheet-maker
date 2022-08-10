@@ -1,7 +1,8 @@
 <title text="RESEARCH PROJECTS"></title>
+<div class="block">
+    <primary-stat class="aura-bonus" header="Aura Bonus" mode="primary-angled" value.two-way="model.auraBonus" size="s" title="Aura Bonus" prefix-plus.bind="true"></primary-stat>
+</div>
 <div class="container">
-    <primary-stat class="aura-bonus" mode="secondary" value.two-way="model.auraBonus" size="s" title="Aura Bonus" prefix-plus.bind="true"></primary-stat>
-
     <div class="project grid" repeat.for="project of model.researchProjects">
         <text-field class="name" value.two-way="project.name" placeholder="Name"></text-field>
         <text-field class="arts" value.two-way="project.arts" placeholder="Arts"></text-field>

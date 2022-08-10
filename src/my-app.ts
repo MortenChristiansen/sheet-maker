@@ -30,6 +30,8 @@ export class MyApp {
 
     UX
     - Page title should start with character name, to make it easier to find the right window.
+    - The research project options could be accessible through a popup where they can have more space. As
+    it is now, you have to hover over each control anyway to see what it does.
 
     Bugs
     - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.

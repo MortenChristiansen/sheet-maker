@@ -24,6 +24,7 @@ primary-stat .header {
     width: 60px;
     font-size: 13px;
     color: #446;
+    line-height: 120%;
 }
 
 primary-stat > .container:not(.readonly) {

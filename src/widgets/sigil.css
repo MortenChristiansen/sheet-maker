@@ -2,6 +2,7 @@ sigil {
     display: block;
     height: auto;
     float: left;
+    text-align: center;
 }
 
 sigil > .container {

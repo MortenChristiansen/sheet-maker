@@ -10,8 +10,8 @@ research-projects > .container {
     position: relative;
 }
 
-research-projects .aura-bonus {
-    display: block;
+research-projects .block {
+    text-align: center;
 }
 
 research-projects .add-item-input {
