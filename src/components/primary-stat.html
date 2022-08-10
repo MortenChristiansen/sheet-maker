@@ -1,3 +1,4 @@
+<span if.bind="showHeader && header" class="header ${mode} ${size}">${header}</span>
 <div class="container ${active === true ? 'active' : ''} ${readonly ? 'readonly' : ''} ${mode} ${colorMode} ${size}"
      pointerdown.delegate="press()"
      ref="containerElement">

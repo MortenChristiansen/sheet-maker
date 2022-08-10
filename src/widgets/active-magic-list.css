@@ -16,8 +16,15 @@ active-magic-list > .container > .grid {
 }
 
 active-magic-list > .container > .grid > * {
-    align-self: center;
+    align-self: end;
     margin: 1px 2px;
+}
+active-magic-list > .container > .grid > checkbox {
+    margin-bottom: 10px;
+}
+active-magic-list > .container > .grid > stat-info-button {
+    margin-bottom: 6px;
+    margin-left: 6px;
 }
 
 active-magic-list .add-magic-input {

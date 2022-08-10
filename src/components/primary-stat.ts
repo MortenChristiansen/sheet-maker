@@ -9,6 +9,8 @@ export class PrimaryStat extends Component {
     @bindable size: "xs" | "s" | "m" | "l" = "m";
     @bindable prefixPlus: boolean = false;
     @bindable readonly: boolean = false;
+    @bindable header: string = '';
+    @bindable showHeader: boolean = true;
 
     containerElement: Element;
     active: boolean = false;

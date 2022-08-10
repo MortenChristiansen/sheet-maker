@@ -37,6 +37,7 @@ export class MyApp {
 
     Refactorings
     - Use add-item-input component where it makes sense.
+    - Create a table component which allows for headers and such.
     */
 
     middlewareRegistered: boolean = false;

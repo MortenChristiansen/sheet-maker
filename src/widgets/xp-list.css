@@ -40,3 +40,7 @@ xp-list .correspondence, xp-list .area-lore  {
 xp-list .separator {
     height: 40px;
 }
+
+xp-list .center-button-box {
+    text-align: center;
+}

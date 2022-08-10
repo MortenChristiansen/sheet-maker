@@ -6,10 +6,20 @@ primary-stat .container {
     width: 60px;
     height: 60px;
     background-size: contain;
+    margin-left: auto;
+    margin-right: auto;
 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+primary-stat .header {
+    display: inline-block;
+    text-align: center;
+    width: 60px;
+    font-size: 13px;
+    color: #446;
 }
 
 primary-stat > .container:not(.readonly) {
@@ -22,15 +32,30 @@ primary-stat .container.l {
     font-size: 30px;
 }
 
+primary-stat .header.l {
+    width: 90px;
+    font-size: 15px;
+}
+
 primary-stat .container.s {
     width: 45px;
     height: 45px;
     font-size: 13px;
 }
 
+primary-stat .header.s {
+    width: 45px;
+    font-size: 10px;
+}
+
 primary-stat .container.xs {
     width: 36px;
     height: 36px;
+    font-size: 10px;
+}
+
+primary-stat .header.xs {
+    width: 36px;
     font-size: 10px;
 }
 
@@ -54,6 +79,16 @@ primary-stat .container.secondary.s {
 primary-stat .container.secondary.xs {
     width: 24px;
     height: 24px;
+}
+
+primary-stat .header.secondary {
+    width: 44px;
+}
+primary-stat .header.secondary.s {
+    width: 33px;
+}
+primary-stat .header.secondary.xs {
+    width: 24px;
 }
 
 primary-stat .container.secondary-angled {

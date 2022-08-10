@@ -11,7 +11,9 @@
     </div>
 
     <div class="separator"></div>
-    <cross-button click.delegate="deletePreviousEntries()" title="Delete previous entries" mode="angled"></cross-button>
+    <div class="center-button-box">
+        <cross-button click.delegate="deletePreviousEntries()" title="Delete previous entries" mode="angled"></cross-button>
+    </div>
 
     <div class="past-xp-entry grid" repeat.for="entry of pastEntries">
         <span class="year text"><span if.bind="entry.season == 'Spring'">${entry.year}</span></span>

@@ -1,8 +1,8 @@
 <title text="WARPING"></title>
 <div class="container">
     <div class="warping-level">
-        <primary-stat mode="secondary" value.two-way="model.warpingPoints" min="0" max="999" size="s" title="Warping Points"></primary-stat>
-        <primary-stat mode="secondary" readonly.bind="true" value.two-way="model.warpingLevel" min="0" size="m" title="Warping Level"></primary-stat>
+        <primary-stat header="WPs" mode="secondary" value.two-way="model.warpingPoints" min="0" max="999" size="s" title="Warping Points"></primary-stat>
+        <primary-stat header="Level" mode="secondary" readonly.bind="true" value.two-way="model.warpingLevel" min="0" size="m" title="Warping Level"></primary-stat>
     </div>
     <div class="warping-effect grid" repeat.for="effect of model.ongoingEffects">
         <text-field class="name" value.two-way="effect.name" placeholder="Name"></text-field>
