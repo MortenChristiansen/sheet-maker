@@ -1,34 +1,5 @@
 export type ColorMode = "color" | "monochrome";
 
-export interface ArsCharacter {
-    type: "magus" | "companion";
-    description: CharacterDescription;
-    characteristics: Characteristics;
-    personalityTraits: PersonalityTrait[];
-    virtues: Virtue[];
-    flaws: Flaw[];
-    physicalStatus: PhysicalStatus;
-    abilities: Ability[];
-    arts: Arts;
-    spells: Spell[];
-    spellWishlist: Spell[];
-    ageing: Ageing;
-    confidence: Confidence;
-    warping: Warping;
-    activeMagic: ActiveMagic[];
-    xpEntries: XpEntry[];
-    notes: string;
-    background: string;
-    lab: Lab;
-    spellcastingStats: SpellcastingStats;
-    sigil: string;
-    belongings: Belongings;
-    talisman: Talisman;
-    magicItems: MagicItem[];
-    quests: Quest[];
-    npcs: Npc[];
-}
-
 export interface Virtue {
     name: string;
     additionalInfo: string;
@@ -325,8 +296,50 @@ export interface Npc {
     additionalInfo: string;
 }
 
+export interface Familiar {
+    name: string;
+    description: string;
+    arts: string;
+    additionalInfo: string;
+    isSpirit: boolean;
+    bronzeBondLevel: number;
+    silverBondLevel: number;
+    goldBondLevel: number;
+    effects: MagicItemEffect[];
+}
+
 export interface State {
     character?: ArsCharacter;
+}
+
+export interface ArsCharacter {
+    type: "magus" | "companion";
+    description: CharacterDescription;
+    characteristics: Characteristics;
+    personalityTraits: PersonalityTrait[];
+    virtues: Virtue[];
+    flaws: Flaw[];
+    physicalStatus: PhysicalStatus;
+    abilities: Ability[];
+    arts: Arts;
+    spells: Spell[];
+    spellWishlist: Spell[];
+    ageing: Ageing;
+    confidence: Confidence;
+    warping: Warping;
+    activeMagic: ActiveMagic[];
+    xpEntries: XpEntry[];
+    notes: string;
+    background: string;
+    lab: Lab;
+    spellcastingStats: SpellcastingStats;
+    sigil: string;
+    belongings: Belongings;
+    talisman: Talisman;
+    magicItems: MagicItem[];
+    quests: Quest[];
+    npcs: Npc[];
+    familiar: Familiar;
 }
 
 export const initialState: State = {
@@ -454,6 +467,17 @@ export const initialState: State = {
         },
         magicItems: [],
         quests: [],
-        npcs: []
+        npcs: [],
+        familiar: {
+            name: '',
+            arts: '',
+            bronzeBondLevel: 0,
+            silverBondLevel: 0,
+            goldBondLevel: 0,
+            description: '',
+            isSpirit: false,
+            additionalInfo: '',
+            effects: []
+        }
     }
 };

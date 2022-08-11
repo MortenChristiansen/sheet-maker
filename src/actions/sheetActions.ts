@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Npc } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Npc, Familiar } from "../types";
 import { deepCopy } from "../utils";
 
 export const globalCharacterInfo = {
@@ -245,6 +245,16 @@ export function updateNpcs(state: StateHistory<State>, npcs: Npc[]) {
     return nextStateHistory(state, newState);
 }
 
+export function updateFamiliar(state: StateHistory<State>, familiar: Familiar) {
+    console.log("Saving familiar", familiar);
+    const newState = deepCopy(state.present);
+    newState.character.familiar = familiar;
+    newState.character.familiar.effects = filterListItems(familiar.effects);
+    refreshAgeingRollModifier(newState);
+    refreshCastingTotals(newState);
+    return nextStateHistory(state, newState);
+}
+
 function refreshPuissantAbilitiesAndArts(state: State) {
     state.character.abilities.forEach(a => {
         a.puissant = state.character.virtues.findIndex(v => v.name == `Puissant ${a.name}`) >= 0;
@@ -314,7 +324,7 @@ function refreshAgeingRollModifier(state: State) {
         0;
 
     state.character.ageing.ageingRollModifier =
-        // TODO: Include familiar bond
+        state.character.familiar.bronzeBondLevel +
         state.character.ageing.livingConditionModifier +
         state.character.ageing.longevityModifier +
         state.character.lab.livingConditionsModifier +
@@ -366,8 +376,10 @@ function calculateBaseSpellcastingModifier(state: State) {
     let castingStats = state.character.spellcastingStats;
     let positiveCycleValue = castingStats.cyclicMagicVirtue ? 3 : 0;
     let negativeCycleValue = castingStats.cyclicMagicFlaw ? -3 : 0;
+    let spiritFamiliarBonus = state.character.familiar.isSpirit ? state.character.familiar.bronzeBondLevel : 0;
     return state.character.characteristics.stamina.value +
            state.character.physicalStatus.totalPenalty +
+           spiritFamiliarBonus +
            castingStats.aura +
            (castingStats.positiveCycle ? positiveCycleValue : negativeCycleValue) +
            (castingStats.staminaSpecialisation ? 1 : 0) +

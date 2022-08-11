@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, globalCharacterInfo, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSigil, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, globalCharacterInfo, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFamiliar, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSigil, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -21,11 +21,11 @@ export class MyApp {
     - Current correspondence (and perhaps a correspondence history)
 
     Remaining widgets
-    - Familiar
     - Arcane connections
     - Books
     - Reputations
     - Avatar/character image
+    - Calculations of various rolls (particularly those which the familiar bond gives bonuses for)
 
     Design Ideas
     - Some low contrast flourish between the two groups of characteristics.
@@ -41,6 +41,7 @@ export class MyApp {
     - I can edit the lab mod list in a dialog. That way the headers can just be text rather than inputs.
     - Make page content scrollable rather than having the entire page be scrollable.
     - Collapse spell wishlist
+    - Selecting arts could be changed to a dialog rather than a text field.
 
     Bugs
     - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.
@@ -87,6 +88,7 @@ export class MyApp {
         this.store.registerAction('updateMagicItems', updateMagicItems);
         this.store.registerAction('updateQuests', updateQuests);
         this.store.registerAction('updateNpcs', updateNpcs);
+        this.store.registerAction('updateFamiliar', updateFamiliar);
         
         if (this.isStandalone) {
             this.registerFileLaunchHandler();

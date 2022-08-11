@@ -1,0 +1,43 @@
+familiar-block {
+    display: block;
+    margin: 30px;
+    width: fit-content;
+    float: left;
+}
+
+familiar-block > .container {
+    padding: 10px 30px;
+}
+
+familiar-block > .grid {
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    grid-template-rows: 1fr;
+}
+
+familiar-block > .grid > * {
+    align-self: center;
+    margin: 1px 2px;
+}
+
+familiar-block > .grid > .arts {
+    width: 50px;
+    text-align: center;
+}
+
+familiar-block > .container > .description {
+    width: 700px;
+}
+
+familiar-block .block {
+    text-align: center;
+}
+
+familiar-block .effect .usages, familiar-block .effect .range, familiar-block .effect .duration, familiar-block .effect .target, familiar-block .effect .arts {
+    width: 150px;
+}
+
+familiar-block .description {
+    width: 750px;
+    text-overflow: ellipsis;
+}

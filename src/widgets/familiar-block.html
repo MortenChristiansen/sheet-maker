@@ -1,0 +1,30 @@
+<title text="FAMILIAR"></title>
+<div class="container text">
+    <div class="grid">
+        <text-field class="name" value.two-way="model.name" placeholder="Name"></text-field>
+        <text-field class="arts" value.two-way="model.arts" placeholder="Arts"></text-field>
+        <checkbox value.two-way="model.isSpirit" title="Is spirit"></checkbox>
+        <stat-info-button source.bind="model" property="additionalInfo"></stat-info-button>
+    </div>
+    <text-field class="description" value.two-way="model.description" placeholder="Description"></text-field>
+    <div class="block">
+        <stat-box header="Bronze" value.two-way="model.bronzeBondLevel" min="0" size="m"></stat-box>
+        <stat-box header="Silver" value.two-way="model.silverBondLevel" min="0" size="m"></stat-box>
+        <stat-box header="Gold" value.two-way="model.goldBondLevel" min="0" size="m"></stat-box>
+    </div>
+
+    <label class="text title">Powers</label>
+    <div class="effect grid" repeat.for="effect of model.effects">
+        <text-field class="name" value.two-way="effect.name" placeholder="Name"></text-field>
+        <text-field class="arts" value.two-way="effect.arts" placeholder="Arts"></text-field>
+        <stat-box class="level" mode="secondary" value.two-way="effect.level" min="1" size="m" title="Level"></stat-box>
+        <stat-box class="penetration" mode="secondary" value.two-way="effect.penetration" min="0" size="s" title="Penetration"></stat-box>
+        <text-field class="usages" value.two-way="effect.usages" placeholder="Usages"></text-field>
+        <text-field class="range" value.two-way="effect.range" placeholder="Range"></text-field>
+        <text-field class="duration" value.two-way="effect.duration" placeholder="Duration"></text-field>
+        <text-field class="target" value.two-way="effect.target" placeholder="Target"></text-field>
+        <text-field class="description" value.two-way="effect.description" placeholder="Description" title="${effect.description}"></text-field>
+    </div>
+    <add-item-input on-item-added.bind="itemAdded" placeholder="Add power"></add-item-input>
+</div>
+<footer></footer>
