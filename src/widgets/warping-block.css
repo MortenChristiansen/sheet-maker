@@ -24,8 +24,3 @@ warping-block > .container > .grid > * {
 warping-block .warping-level {
     text-align: center;
 }
-
-warping-block .add-effect-input {
-    margin-top: 15px;
-    border-bottom-style: dashed;
-}

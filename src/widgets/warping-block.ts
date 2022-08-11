@@ -9,16 +9,11 @@ export class WarpingBlock extends Widget<Warping> {
         super(store, state => state.character?.warping, updateWarping, ea);
     }
 
-    newEffectText: string = '';
-
-    keyPressed = (event: KeyboardEvent) => {
-        if (event.key == "Enter" && this.newEffectText) {
-            this.model.ongoingEffects.push({
-                name: this.newEffectText,
-                warpingPointsPerYear: 1
-             });
-             this.model.ongoingEffects.sort((a, b) => a.name.localeCompare(b.name));
-            this.newEffectText = '';
-        }
+    itemAdded = (name: string) => {
+        this.model.ongoingEffects.push({
+            name,
+            warpingPointsPerYear: 1
+        });
+        this.model.ongoingEffects.sort((a, b) => a.name.localeCompare(b.name));
     }
 }

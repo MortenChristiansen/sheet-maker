@@ -2,9 +2,10 @@ import { bindable, containerless } from "aurelia";
 
 @containerless
 export class AddItemInput {
-    @bindable placeholder: string;
+    @bindable placeholder: string = '';
     @bindable onItemAdded: (itemName: string, parent?: any) => void;
     @bindable parent: any;
+    @bindable class: string = '';
 
     newItemString: string = '';
 

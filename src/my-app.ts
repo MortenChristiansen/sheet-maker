@@ -37,7 +37,6 @@ export class MyApp {
         Seems related to the times when the Google Drive file deletion prompt appears.
 
     Refactorings
-    - Use add-item-input component where it makes sense.
     - Create a table component which allows for headers and such.
     */
 

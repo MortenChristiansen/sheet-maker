@@ -8,6 +8,6 @@
         <primary-stat class="xp" mode="secondary" value.two-way="item.xp" min="0" size="xs" color-mode="monochrome" title="Excess XP"></primary-stat>
         <span class="puissant-label"><span class="numbers text" if.bind="item.puissant">+2</span></span>
     </div>
-    <input class="add-item-input" type="text" placeholder="Add item" keyup.delegate="keyPressed($event)" value.two-way="newItemText">
+    <add-item-input on-item-added.bind="itemAdded" placeholder="Add ability"></add-item-input>
 </div>
 <footer></footer>

@@ -26,8 +26,3 @@ active-magic-list > .container > .grid > stat-info-button {
     margin-bottom: 6px;
     margin-left: 6px;
 }
-
-active-magic-list .add-magic-input {
-    margin-top: 15px;
-    border-bottom-style: dashed;
-}

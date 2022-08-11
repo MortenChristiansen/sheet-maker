@@ -5,17 +5,12 @@ import { Ability, State } from "../types";
 import { Widget } from "./widget";
 
 export class AbilitiesBlock extends Widget<Ability[]> {
-    newItemText: string = '';
-
     constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
         super(store, s => s.character?.abilities, updateAbilities, ea);
     }
 
-    keyPressed = (event: KeyboardEvent) => {
-        if (event.key == "Enter" && this.newItemText) {
-            this.model.push({ name: this.newItemText, specialisation: '', level: 0, xp: 0, puissant: false });
-             this.model.sort((a, b) => a.name.localeCompare(b.name));
-             this.newItemText = '';
-        }
+    itemAdded = (name: string) => {
+        this.model.push({ name, specialisation: '', level: 0, xp: 0, puissant: false });
+        this.model.sort((a, b) => a.name.localeCompare(b.name));
     }
 }

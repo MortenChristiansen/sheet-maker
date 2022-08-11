@@ -40,6 +40,6 @@
         
         <stat-info-button source.bind="project" property="additionalInfo"></stat-info-button>
     </div>
-    <input class="add-item-input" type="text" placeholder="Add project" keyup.delegate="keyPressed($event)" value.two-way="newProjectText">
+    <add-item-input placeholder="Add project" on-item-added.bind="itemAdded"></add-item-input>
 </div>
 <footer></footer>

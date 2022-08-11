@@ -6,6 +6,6 @@
         <primary-stat header="Pen." show-header.bind="$first" mode="secondary" value.two-way="magic.penetration" min="0" size="s" title="Penetration" readonly.bind="!magic.active" color-mode="${magic.active ? 'color' : 'monochrome'}"></primary-stat>
         <stat-info-button source.bind="magic" property="additionalInfo"></stat-info-button>
     </div>
-    <input class="add-magic-input" type="text" placeholder="Add active magic" keyup.delegate="keyPressed($event)" value.two-way="newMagicText">
+    <add-item-input class="add-magic-input" placeholder="Add active magic" on-item-added.bind="itemAdded"></add-item-input>
 </div>
 <footer></footer>

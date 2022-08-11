@@ -9,6 +9,6 @@
         <primary-stat mode="secondary" value.two-way="effect.warpingPointsPerYear" min="1" size="s" title="Warping Points Per Year"></primary-stat>
         <span class="text">/year</span>
     </div>
-    <input class="add-effect-input" type="text" placeholder="Add ongoing effect" keyup.delegate="keyPressed($event)" value.two-way="newEffectText">
+    <add-item-input placeholder="Add ongoing effect" on-item-added.bind="itemAdded"></add-item-input>
 </div>
 <footer></footer>

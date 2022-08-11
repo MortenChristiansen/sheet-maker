@@ -9,15 +9,10 @@ export class VisBlock extends Widget<Belongings> {
         super(store, state => state.character?.belongings, updateBelongings, ea);
     }
 
-    newItemText: string = '';
-
-    keyPressed = (event: KeyboardEvent) => {
-        if (event.key == "Enter" && this.newItemText) {
-            if (!this.model) this.model = { carried: '', inSanctum: '', vis: [] };
-            if (!this.model.vis) this.model.vis = [];
-            this.model.vis.push({ name: this.newItemText,  amountInLab: 0, amountOnPerson: 0, income: '', notes: '' });
-            this.model.vis.sort((a, b) => a.name.localeCompare(b.name));
-            this.newItemText = '';
-        }
+    itemAdded = (name: string) => {
+        if (!this.model) this.model = { carried: '', inSanctum: '', vis: [] };
+        if (!this.model.vis) this.model.vis = [];
+        this.model.vis.push({ name,  amountInLab: 0, amountOnPerson: 0, income: '', notes: '' });
+        this.model.vis.sort((a, b) => a.name.localeCompare(b.name));
     }
 }

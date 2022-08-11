@@ -14,12 +14,6 @@ research-projects .block {
     text-align: center;
 }
 
-research-projects .add-item-input {
-    margin-top: 15px;
-    width: 250px;
-    border-bottom-style: dashed;
-}
-
 research-projects > .container > .grid {
     display: grid;
     grid-template-columns: min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content;

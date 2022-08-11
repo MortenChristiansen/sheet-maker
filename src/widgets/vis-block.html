@@ -7,6 +7,6 @@
         <text-field class="income" value.two-way="vis.income" placeholder="Income" title="${vis.income}"></text-field>
         <text-field class="notes" value.two-way="vis.notes" placeholder="Notes" title="${vis.notes}"></text-field>
     </div>
-    <input class="add-item-input" type="text" placeholder="Add vis type" keyup.delegate="keyPressed($event)" value.two-way="newItemText">
+    <add-item-input placeholder="Add vis type" on-item-added.bind="itemAdded"></add-item-input>
 </div>
 <footer></footer>

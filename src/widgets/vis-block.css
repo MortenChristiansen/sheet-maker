@@ -19,10 +19,8 @@ vis-block > .grid > * {
     align-self: center;
 }
 
-vis-block .add-item-input {
-    margin-top: 15px;
+vis-block .add-item-input-field {
     width: 100px;
-    border-bottom-style: dashed;
 }
 
 vis-block .name {

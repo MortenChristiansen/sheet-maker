@@ -9,13 +9,8 @@ export class PersonalityTraitsList extends Widget<PersonalityTrait[]> {
         super(store, state => state.character?.personalityTraits, updatePersonalityTraits, ea);
     }
 
-    newTraitText: string = '';
-
-    keyPressed = (event: KeyboardEvent) => {
-        if (event.key == "Enter" && this.newTraitText) {
-            this.model.push({ name: this.newTraitText, rating: 0 });
-             this.model.sort((a, b) => a.name.localeCompare(b.name));
-             this.newTraitText = '';
-        }
+    itemAdded = (name: string) => {
+        this.model.push({ name, rating: 0 });
+        this.model.sort((a, b) => a.name.localeCompare(b.name));
     }
 }

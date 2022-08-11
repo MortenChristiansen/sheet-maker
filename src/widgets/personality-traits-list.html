@@ -4,6 +4,6 @@
         <text-field value.two-way="trait.name"></text-field>
         <primary-stat mode="secondary" size="s" value.two-way="trait.rating" prefix-plus.bind="true"></primary-stat>
     </div>
-    <input type="text" class="add-item-input" placeholder="Add trait" keyup.delegate="keyPressed($event)" value.two-way="newTraitText">
+    <add-item-input placeholder="Add trait" on-item-added.bind="itemAdded"></add-item-input>
 </div>
 <footer></footer>

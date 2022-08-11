@@ -13,37 +13,32 @@ export class ResearchProjects extends Widget<Lab> {
         return this.model.cyclicMagicVirtue || this.model.cyclicMagicFlaw;
     }
 
-    newProjectText: string = '';
-
-    keyPressed = (event: KeyboardEvent) => {
-        if (event.key == "Enter" && this.newProjectText) {
-            this.model.researchProjects.push({
-                name: this.newProjectText,
-                accumulatedLabTotal: 0,
-                surplusLabTotal: 0,
-                artModifier: 0,
-                arts: '',
-                prerequisites: '',
-                focus: false,
-                labTotal: 0,
-                labAssistantBonus: 0,
-                magicTheorySpecialisation: false,
-                intelligenceSpecialisation: true,
-                material: '',
-                materialBonus: 0,
-                shape: '',
-                shapeBonus: 0,
-                similarResearchBonus: 0,
-                specialisationBonus: 0,
-                talisman: false,
-                level: 1,
-                experiment: false,
-                newWork: true,
-                nocturnal: false,
-                positiveCycle: false,
-                additionalInfo: ''
-             });
-            this.newProjectText = '';
-        }
+    itemAdded = (name: string) => {
+        this.model.researchProjects.push({
+            name,
+            accumulatedLabTotal: 0,
+            surplusLabTotal: 0,
+            artModifier: 0,
+            arts: '',
+            prerequisites: '',
+            focus: false,
+            labTotal: 0,
+            labAssistantBonus: 0,
+            magicTheorySpecialisation: false,
+            intelligenceSpecialisation: true,
+            material: '',
+            materialBonus: 0,
+            shape: '',
+            shapeBonus: 0,
+            similarResearchBonus: 0,
+            specialisationBonus: 0,
+            talisman: false,
+            level: 1,
+            experiment: false,
+            newWork: true,
+            nocturnal: false,
+            positiveCycle: false,
+            additionalInfo: ''
+            });
     }
 }

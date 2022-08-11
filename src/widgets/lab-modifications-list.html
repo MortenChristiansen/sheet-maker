@@ -1,6 +1,6 @@
 <title text="LAB MODIFICATIONS"></title>
 <div class="container">
-    <input class="add-item-input add-modifier-input" type="text" keyup.delegate="keyPressed($event, 'modifier')" value.two-way="newModifierText" title="Add Modifier Column">
+    <add-item-input class="add-modifier-input" title="Add Modifier Column" on-item-added.bind="modifierAdded"></add-item-input>
     
     <div class="block">
         <div class="modifier-titles">
@@ -15,7 +15,7 @@
             <primary-stat class="cost" fade-zero.bind="true" mode="secondary-angled" value.two-way="virtue.cost" min="0" size="xs" title="Cost"></primary-stat>
             <primary-stat class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of virtue.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></primary-stat>
         </div>
-        <input class="add-item-input" type="text" placeholder="Add virtue" keyup.delegate="keyPressed($event, 'virtue')" value.two-way="newVirtueText">
+        <add-item-input placeholder="Add virtue" on-item-added.bind="virtueAdded"></add-item-input>
     </div>
 
     <div class="block">
@@ -31,7 +31,7 @@
             <primary-stat class="cost" fade-zero.bind="true" mode="secondary-angled" value.two-way="flaw.cost" max="0" size="xs" title="Cost"></primary-stat>
             <primary-stat class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of flaw.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></primary-stat>
         </div>
-        <input class="add-item-input" type="text" placeholder="Add flaw" keyup.delegate="keyPressed($event, 'flaw')" value.two-way="newFlawText">
+        <add-item-input placeholder="Add flaw" on-item-added.bind="flawAdded"></add-item-input>
     </div>
 
     <div class="block last-block">
