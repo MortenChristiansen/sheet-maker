@@ -282,7 +282,7 @@ interface ListItem {
 }
 
 function refreshPhysicalPentalties(state: State) {
-    state.character.physicalStatus.totalPenaly =
+    state.character.physicalStatus.totalPenalty =
         calculateWoundPenalty(state) +
         calculateFatiguePenalty(state);
 }
@@ -367,7 +367,7 @@ function calculateBaseSpellcastingModifier(state: State) {
     let positiveCycleValue = castingStats.cyclicMagicVirtue ? 3 : 0;
     let negativeCycleValue = castingStats.cyclicMagicFlaw ? -3 : 0;
     return state.character.characteristics.stamina.value +
-           state.character.physicalStatus.totalPenaly +
+           state.character.physicalStatus.totalPenalty +
            castingStats.aura +
            (castingStats.positiveCycle ? positiveCycleValue : negativeCycleValue) +
            (castingStats.staminaSpecialisation ? 1 : 0) +

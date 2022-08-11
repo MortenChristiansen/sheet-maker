@@ -8,8 +8,6 @@ export class MyApp {
 
     /* 
     Feature Suggestions
-    - Some way to see details for virtues, flaws, abilities and other things that I sometimes have
-    to look up. It could just be a user defined summary.
     - Character creation mode. Keeps track of virtue/flaw count and types as well as remaining XP and
     spell levels.
     - Save sheets to google drive:
@@ -29,6 +27,7 @@ export class MyApp {
     UX
     - The research project options could be accessible through a popup where they can have more space. As
     it is now, you have to hover over each control anyway to see what it does.
+    - I can edit the lab mod list in a dialog. That way the headers can just be text rather than inputs.
 
     Bugs
     - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.
