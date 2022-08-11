@@ -15,6 +15,17 @@ export class MyApp {
         https://gist.github.com/tanaikech/bd53b366aedef70e35a35f449c51eced
     - Ability list grouped by ability category.
     - Somehow remind myself of temporary modifiers to aging roll such as use of the Nocturnal lab rule.
+    - Show popup in case of error
+    - Lab lab should have a “Construction Year” indicator as well as a button to set it to the current year. This should control the maximum refinement level (along with magic theory)
+    - A spontaneous spell list might also be relevant for commonly cast spells.
+    - Current correspondence (and perhaps a correspondence history)
+
+    Remaining widgets
+    - Familiar
+    - Arcane connections
+    - Books
+    - Reputations
+    - Avatar/character image
 
     Design Ideas
     - Some low contrast flourish between the two groups of characteristics.
@@ -24,10 +35,12 @@ export class MyApp {
     - Books are represented by actual book icons.
     - The age block could have a shield or a banner as background.
 
-    UX
+    UX/Layout
     - The research project options could be accessible through a popup where they can have more space. As
     it is now, you have to hover over each control anyway to see what it does.
     - I can edit the lab mod list in a dialog. That way the headers can just be text rather than inputs.
+    - Make page content scrollable rather than having the entire page be scrollable.
+    - Collapse spell wishlist
 
     Bugs
     - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.
@@ -35,6 +48,7 @@ export class MyApp {
 
     Refactorings
     - Create a table component which allows for headers and such.
+
     */
 
     middlewareRegistered: boolean = false;

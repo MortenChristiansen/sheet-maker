@@ -18,15 +18,6 @@ export class PrimaryStat extends Component {
     delta: number = 0;
     originalValue: number;
 
-    /* TODO
-    - Bug: The dragging logic does not work with a pen.
-    - Bug: The dragging logic does not work correctly when scrolling.
-    - Bug: The pointer does not show the "dragging" cursor as expected.
-    - Bug: The container is not big enough to hold values such as "-20". Maybe we ignore this, as this is not a value we expect.
-    - Todo: Test dragging logic on touch device (phone).
-    - Todo: Test that the overlay works correctly when scrolling.
-    */
-
     constructor(@IEventAggregator readonly ea: IEventAggregator) {
         super();
     }
