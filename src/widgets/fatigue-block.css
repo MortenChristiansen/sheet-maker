@@ -1,8 +1,7 @@
 fatigue-block {
     display: block;
     margin: 30px;
-    min-width: 280px;
-    width: fit-content;
+    width: 280px;
     float: left;
 }
 
