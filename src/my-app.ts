@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSigil, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, globalCharacterInfo, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSigil, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -29,7 +29,6 @@ export class MyApp {
     - The age block could have a shield or a banner as background.
 
     UX
-    - Page title should start with character name, to make it easier to find the right window.
     - The research project options could be accessible through a popup where they can have more space. As
     it is now, you have to hover over each control anyway to see what it does.
 
@@ -86,7 +85,10 @@ export class MyApp {
             store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
             store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
         }
+    }
 
+    stateChanged(newState: StateHistory<State>, oldState: StateHistory<State>) {
+        globalCharacterInfo.name = newState.present?.character?.description.name ?? '';
     }
 
     registerFileLaunchHandler() {

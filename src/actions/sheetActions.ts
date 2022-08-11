@@ -2,6 +2,10 @@ import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
 import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Npc } from "../types";
 import { deepCopy } from "../utils";
 
+export const globalCharacterInfo = {
+    name: ''
+};
+
 export function createNewCharacter(state: StateHistory<State>) {
     const newState = deepCopy(initialState);
     return nextStateHistory(state, newState);
