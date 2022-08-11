@@ -52,6 +52,7 @@ export function updateVirtues(state: StateHistory<State>, virtues: Virtue[]) {
     console.log("Saving virtues", virtues);
     const newState = deepCopy(state.present);
     newState.character.virtues = filterListItems(virtues);
+    refreshPuissantAbilitiesAndArts(newState);
     refreshAgeingStats(newState);
     refreshCastingTotals(newState);
     refreshLab(newState);
@@ -242,6 +243,27 @@ export function updateNpcs(state: StateHistory<State>, npcs: Npc[]) {
     const newState = deepCopy(state.present);
     newState.character.npcs = filterListItems(npcs);
     return nextStateHistory(state, newState);
+}
+
+function refreshPuissantAbilitiesAndArts(state: State) {
+    state.character.abilities.forEach(a => {
+        a.puissant = state.character.virtues.findIndex(v => v.name == `Puissant ${a.name}`) >= 0;
+    });
+    state.character.arts.animal.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Animal') >= 0;
+    state.character.arts.aquam.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Aquam') >= 0;
+    state.character.arts.auram.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Auram') >= 0;
+    state.character.arts.corpus.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Corpus') >= 0;
+    state.character.arts.creo.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Creo') >= 0;
+    state.character.arts.herbam.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Herbam') >= 0;
+    state.character.arts.ignem.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Ignem') >= 0;
+    state.character.arts.imaginem.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Imaginem') >= 0;
+    state.character.arts.intellego.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Intellego') >= 0;
+    state.character.arts.mentem.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Mentem') >= 0;
+    state.character.arts.muto.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Muto') >= 0;
+    state.character.arts.perdo.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Perdo') >= 0;
+    state.character.arts.rego.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Rego') >= 0;
+    state.character.arts.terram.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Terram') >= 0;
+    state.character.arts.vim.puissant = state.character.virtues.findIndex(v => v.name == 'Puissant Vim') >= 0;
 }
 
 function refreshSpellLists(state: State) {

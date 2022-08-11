@@ -1,7 +1,6 @@
 <title text="ABILITIES"></title>
 <div class="container">
     <div class="ability ${item.level === 0 ? 'untrained' : ''}" repeat.for="item of model">
-        <checkbox size="xs" mode="angled" value.two-way="item.puissant" title="Puissant ability"></checkbox>
         <text-field class="name" value.two-way="item.name"></text-field>
         <text-field class="specialisation" value.two-way="item.specialisation" placeholder="Specialisation"></text-field>
         <primary-stat class="level" mode="secondary" value.two-way="item.level" min="0" size="s" title="Ability level"></primary-stat>

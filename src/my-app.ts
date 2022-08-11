@@ -16,9 +16,7 @@ export class MyApp {
         https://stackoverflow.com/questions/36682784/save-text-from-textarea-to-google-drive-using-javascript
         https://gist.github.com/tanaikech/bd53b366aedef70e35a35f449c51eced
     - Ability list grouped by ability category.
-    - Puissant arts and abilitis can be identified automatically from virtue names.
     - Somehow remind myself of temporary modifiers to aging roll such as use of the Nocturnal lab rule.
-    - Look into PWA jumplist integration.
 
     Design Ideas
     - Some low contrast flourish between the two groups of characteristics.
