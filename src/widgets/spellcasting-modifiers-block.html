@@ -16,7 +16,7 @@
 
         <span if.bind="!showGoodCycle"></span>
 
-        <primary-stat value.two-way="model.aura" mode="secondary" prefix-plus.bind="true"></primary-stat></primary-stat>
+        <stat-box value.two-way="model.aura" mode="secondary" prefix-plus.bind="true"></stat-box></stat-box>
         <checkbox value.two-way="model.staminaSpecialisation" mode="angled"></checkbox>
         <checkbox if.bind="showGoodCycle" value.two-way="model.positiveCycle" mode="angled"></checkbox>
         <checkbox value.two-way="model.loudVoice" mode="angled"></checkbox>
@@ -24,10 +24,10 @@
 
         <text-field class="arts" value.two-way="model.arts" placeholder="Arts"></text-field>
         <checkbox value.two-way="model.ceremonial" mode="angled" color-mode="monochrome"></checkbox>
-        <primary-stat value.two-way="model.talismanBonus" mode="secondary" prefix-plus.bind="true" color-mode="monochrome"></primary-stat>
-        <primary-stat value.two-way="model.similarFomulaicSpellBonus" mode="secondary" prefix-plus.bind="true" color-mode="monochrome"></primary-stat>
+        <stat-box value.two-way="model.talismanBonus" mode="secondary" prefix-plus.bind="true" color-mode="monochrome"></stat-box>
+        <stat-box value.two-way="model.similarFomulaicSpellBonus" mode="secondary" prefix-plus.bind="true" color-mode="monochrome"></stat-box>
         <checkbox value.two-way="model.focus" mode="angled" color-mode="monochrome"></checkbox>
-        <primary-stat value.two-way="model.spontaneousCastingTotal" mode="primary-angled" readonly.bind="true" prefix-plus.bind="true" color-mode="monochrome"></primary-stat>
+        <stat-box value.two-way="model.spontaneousCastingTotal" mode="primary-angled" readonly.bind="true" prefix-plus.bind="true" color-mode="monochrome"></stat-box>
     </div>
 </div>
 <footer></footer>

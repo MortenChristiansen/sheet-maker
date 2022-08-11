@@ -1,12 +1,12 @@
 <title text="WARPING"></title>
 <div class="container">
     <div class="warping-level">
-        <primary-stat header="WPs" mode="secondary" value.two-way="model.warpingPoints" min="0" max="999" size="s" title="Warping Points"></primary-stat>
-        <primary-stat header="Level" mode="secondary" readonly.bind="true" value.two-way="model.warpingLevel" min="0" size="m" title="Warping Level"></primary-stat>
+        <stat-box header="WPs" mode="secondary" value.two-way="model.warpingPoints" min="0" max="999" size="s" title="Warping Points"></stat-box>
+        <stat-box header="Level" mode="secondary" readonly.bind="true" value.two-way="model.warpingLevel" min="0" size="m" title="Warping Level"></stat-box>
     </div>
     <div class="warping-effect grid" repeat.for="effect of model.ongoingEffects">
         <text-field class="name" value.two-way="effect.name" placeholder="Name"></text-field>
-        <primary-stat mode="secondary" value.two-way="effect.warpingPointsPerYear" min="1" size="s" title="Warping Points Per Year"></primary-stat>
+        <stat-box mode="secondary" value.two-way="effect.warpingPointsPerYear" min="1" size="s" title="Warping Points Per Year"></stat-box>
         <span class="text">/year</span>
     </div>
     <add-item-input placeholder="Add ongoing effect" on-item-added.bind="itemAdded"></add-item-input>

@@ -1,7 +1,7 @@
 import { bindable, IEventAggregator } from "aurelia";
-import { Component } from "../components/component";
+import { Component } from "./component";
 
-export class PrimaryStat extends Component {
+export class StatBox extends Component {
     @bindable value: number;
     @bindable max: number = 99;
     @bindable min: number = -99;

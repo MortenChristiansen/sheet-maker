@@ -1,17 +1,17 @@
 <div class="container grid">
-    <primary-stat class="small-text" mode="secondary-angled" size="m" value.two-way="model.birthYear" min="0" max="2000" title="Birth Year"></primary-stat>
+    <stat-box class="small-text" mode="secondary-angled" size="m" value.two-way="model.birthYear" min="0" max="2000" title="Birth Year"></stat-box>
     <div>
-        <primary-stat mode="secondary" size="s" value.two-way="model.age" readonly.bind="true" min="0" title="Age"></primary-stat>
-        <primary-stat mode="secondary" size="s" value.two-way="model.apparentAge" min="0" title="Apparent Age"></primary-stat>
+        <stat-box mode="secondary" size="s" value.two-way="model.age" readonly.bind="true" min="0" title="Age"></stat-box>
+        <stat-box mode="secondary" size="s" value.two-way="model.apparentAge" min="0" title="Apparent Age"></stat-box>
     </div>
-    <primary-stat class="small-text" mode="secondary-angled" size="m" value.two-way="model.currentYear" min="0" max="2000" title="Current Year"></primary-stat>
+    <stat-box class="small-text" mode="secondary-angled" size="m" value.two-way="model.currentYear" min="0" max="2000" title="Current Year"></stat-box>
 
-    <primary-stat mode="secondary" size="s" value.two-way="model.livingConditionModifier" prefix-plus.bind="true" title="Living condition modifier"></primary-stat>
-    <primary-stat mode="primary" value.two-way="model.ageingRollModifier" prefix-plus.bind="true" title="Ageing roll bonus" readonly.bind="true"></primary-stat>
-    <primary-stat mode="secondary" size="s" value.two-way="model.longevityModifier" min="0" prefix-plus.bind="true" title="Longevity ritual modifier"></primary-stat>
+    <stat-box mode="secondary" size="s" value.two-way="model.livingConditionModifier" prefix-plus.bind="true" title="Living condition modifier"></stat-box>
+    <stat-box mode="primary" value.two-way="model.ageingRollModifier" prefix-plus.bind="true" title="Ageing roll bonus" readonly.bind="true"></stat-box>
+    <stat-box mode="secondary" size="s" value.two-way="model.longevityModifier" min="0" prefix-plus.bind="true" title="Longevity ritual modifier"></stat-box>
 
     <checkbox class="left" mode="angled" readonly.bind="true" value.bind="model.decrepitudeLevel >= 1" title="Decrepitude level 1"></checkbox>
-    <primary-stat mode="primary" value.two-way="model.decrepitudePoints" min="0" title="Decrepitude points"></primary-stat>
+    <stat-box mode="primary" value.two-way="model.decrepitudePoints" min="0" title="Decrepitude points"></stat-box>
     <checkbox class="right" mode="angled" readonly.bind="true" value.bind="model.decrepitudeLevel >= 5" title="Decrepitude level 5"></checkbox>
 
     <checkbox class="right top" mode="angled" readonly.bind="true" value.bind="model.decrepitudeLevel >= 2" title="Decrepitude level 2"></checkbox>

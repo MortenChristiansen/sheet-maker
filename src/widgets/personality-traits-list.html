@@ -2,7 +2,7 @@
 <div class="container">
     <div repeat.for="trait of model">
         <text-field value.two-way="trait.name"></text-field>
-        <primary-stat mode="secondary" size="s" value.two-way="trait.rating" prefix-plus.bind="true"></primary-stat>
+        <stat-box mode="secondary" size="s" value.two-way="trait.rating" prefix-plus.bind="true"></stat-box>
     </div>
     <add-item-input placeholder="Add trait" on-item-added.bind="itemAdded"></add-item-input>
 </div>

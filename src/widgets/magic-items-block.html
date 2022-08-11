@@ -2,8 +2,8 @@
 <div class="container">
     <div class="magic-item grid" repeat.for="magicItem of model">
         <text-field class="name" value.two-way="magicItem.name" placeholder="Name"></text-field>
-        <primary-stat class="invested-vis" mode="primary" value.two-way="magicItem.investedVis" min="0" size="m" title="Invested vis"></primary-stat>
-        <primary-stat class="spent-vis" mode="secondary" value.two-way="magicItem.spentVis" min="0" max.bind="magicItem.investedVis" size="s" title="Spent vis"></primary-stat>
+        <stat-box class="invested-vis" mode="primary" value.two-way="magicItem.investedVis" min="0" size="m" title="Invested vis"></stat-box>
+        <stat-box class="spent-vis" mode="secondary" value.two-way="magicItem.spentVis" min="0" max.bind="magicItem.investedVis" size="s" title="Spent vis"></stat-box>
         <text-field class="description" value.two-way="magicItem.description" placeholder="Description" title="${magicItem.description}"></text-field>
         <span></span>
 
@@ -12,8 +12,8 @@
             <div class="effect grid" repeat.for="effect of magicItem.effects">
                 <text-field class="name" value.two-way="effect.name" placeholder="Name"></text-field>
                 <text-field class="arts" value.two-way="effect.arts" placeholder="Arts"></text-field>
-                <primary-stat class="level" mode="secondary" value.two-way="effect.level" min="1" size="m" title="Level"></primary-stat>
-                <primary-stat class="penetration" mode="secondary" value.two-way="effect.penetration" min="0" size="s" title="Penetration"></primary-stat>
+                <stat-box class="level" mode="secondary" value.two-way="effect.level" min="1" size="m" title="Level"></stat-box>
+                <stat-box class="penetration" mode="secondary" value.two-way="effect.penetration" min="0" size="s" title="Penetration"></stat-box>
                 <text-field class="usages" value.two-way="effect.usages" placeholder="Usages"></text-field>
                 <text-field class="range" value.two-way="effect.range" placeholder="Range"></text-field>
                 <text-field class="duration" value.two-way="effect.duration" placeholder="Duration"></text-field>

@@ -1,16 +1,16 @@
 <title text="RESEARCH PROJECTS"></title>
 <div class="block">
-    <primary-stat class="aura-bonus" header="Aura Bonus" mode="primary-angled" value.two-way="model.auraBonus" size="s" title="Aura Bonus" prefix-plus.bind="true"></primary-stat>
+    <stat-box class="aura-bonus" header="Aura Bonus" mode="primary-angled" value.two-way="model.auraBonus" size="s" title="Aura Bonus" prefix-plus.bind="true"></stat-box>
 </div>
 <div class="container">
     <div class="project grid" repeat.for="project of model.researchProjects">
         <text-field class="name" value.two-way="project.name" placeholder="Name"></text-field>
         <text-field class="arts" value.two-way="project.arts" placeholder="Arts"></text-field>
         <text-field class="prerequisites" value.two-way="project.prerequisites" placeholder="Prereq"></text-field>
-        <primary-stat class="level" mode="secondary" value.two-way="project.level" min="1" size="m" title="Level"></primary-stat>
+        <stat-box class="level" mode="secondary" value.two-way="project.level" min="1" size="m" title="Level"></stat-box>
 
         <checkbox value.two-way="project.focus" title="Focus"></checkbox>
-        <primary-stat class="specialisation-bonus" mode="secondary" value.two-way="project.specialisationBonus" min="0" size="s" title="Lab Specialisation Bonus" prefix-plus.bind="true"></primary-stat>
+        <stat-box class="specialisation-bonus" mode="secondary" value.two-way="project.specialisationBonus" min="0" size="s" title="Lab Specialisation Bonus" prefix-plus.bind="true"></stat-box>
         <checkbox value.two-way="project.intelligenceSpecialisation" title="Intelligence Specialisation"></checkbox>
         <checkbox value.two-way="project.magicTheorySpecialisation" title="Magic Theory Specialisation"></checkbox>
         <checkbox value.two-way="project.talisman" title="Talisman"></checkbox>
@@ -27,16 +27,16 @@
         die on all activities for the day. She will likely not appreciate being woken up in
         daylight hours. This routine is commonly taken by characters with the Nocturnal
         Personality Flaw."></checkbox>
-        <primary-stat class="similar-research-bonus" mode="secondary" value.two-way="project.similarResearchBonus" min="0" size="s" title="Similar Research Bonus" prefix-plus.bind="true"></primary-stat>
+        <stat-box class="similar-research-bonus" mode="secondary" value.two-way="project.similarResearchBonus" min="0" size="s" title="Similar Research Bonus" prefix-plus.bind="true"></stat-box>
         <text-field class="material" value.two-way="project.material" placeholder="Material"></text-field>
-        <primary-stat class="material-bonus" mode="secondary" value.two-way="project.materialBonus" min="0" size="s" title="Material Bonus" prefix-plus.bind="true"></primary-stat>
+        <stat-box class="material-bonus" mode="secondary" value.two-way="project.materialBonus" min="0" size="s" title="Material Bonus" prefix-plus.bind="true"></stat-box>
         <text-field class="shape" value.two-way="project.shape" placeholder="Shape"></text-field>
-        <primary-stat class="shape-bonus" mode="secondary" value.two-way="project.shapeBonus" min="0" size="s" title="Shape Bonus" prefix-plus.bind="true"></primary-stat>
-        <primary-stat class="lab-assistant-bonus" mode="secondary" value.two-way="project.labAssistantBonus" min="0" size="s" title="Lab Assistant Bonus" prefix-plus.bind="true"></primary-stat>
+        <stat-box class="shape-bonus" mode="secondary" value.two-way="project.shapeBonus" min="0" size="s" title="Shape Bonus" prefix-plus.bind="true"></stat-box>
+        <stat-box class="lab-assistant-bonus" mode="secondary" value.two-way="project.labAssistantBonus" min="0" size="s" title="Lab Assistant Bonus" prefix-plus.bind="true"></stat-box>
         
-        <primary-stat class="total" mode="primary" readonly.bind="true" value.two-way="project.labTotal" min="0" size="m" title="Lab Total"></primary-stat>
-        <primary-stat class="surplus" mode="secondary" readonly.bind="true" value.two-way="project.surplusLabTotal" min="0" size="s" title="Surplus Lab Total"></primary-stat>
-        <primary-stat class="accumulated-total" mode="secondary" value.two-way="project.accumulatedLabTotal" min="0" size="s" title="Accumulated Lab Total"></primary-stat>
+        <stat-box class="total" mode="primary" readonly.bind="true" value.two-way="project.labTotal" min="0" size="m" title="Lab Total"></stat-box>
+        <stat-box class="surplus" mode="secondary" readonly.bind="true" value.two-way="project.surplusLabTotal" min="0" size="s" title="Surplus Lab Total"></stat-box>
+        <stat-box class="accumulated-total" mode="secondary" value.two-way="project.accumulatedLabTotal" min="0" size="s" title="Accumulated Lab Total"></stat-box>
         
         <stat-info-button source.bind="project" property="additionalInfo"></stat-info-button>
     </div>

@@ -6,7 +6,7 @@ import { MyApp } from './my-app';
 import { initialState } from './types';
 import { Checkbox } from './components/checkbox';
 import { List } from './components/list';
-import { PrimaryStat } from './components/primary-stat';
+import { StatBox } from './components/stat-box';
 import { RadioButton } from './components/radio-button';
 import { TextBox } from './components/text-box';
 import { Footer } from './layout/footer';
@@ -40,7 +40,7 @@ let app = Aurelia
     .register( // Components
         Checkbox,
         List,
-        PrimaryStat,
+        StatBox,
         RadioButton,
         TextBox,
         TextField,

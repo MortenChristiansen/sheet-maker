@@ -1,7 +1,7 @@
 <title text="TALISMAN"></title>
 <div class="container">
-    <primary-stat class="invested-vis" mode="primary" value.two-way="model.investedVis" min="0" size="m" title="Invested vis"></primary-stat>
-    <primary-stat class="spent-vis" mode="secondary" value.two-way="model.spentVis" min="0" max.bind="model.investedVis" size="s" title="Spent vis"></primary-stat>
+    <stat-box class="invested-vis" mode="primary" value.two-way="model.investedVis" min="0" size="m" title="Invested vis"></stat-box>
+    <stat-box class="spent-vis" mode="secondary" value.two-way="model.spentVis" min="0" max.bind="model.investedVis" size="s" title="Spent vis"></stat-box>
     <text-field class="description" value.two-way="model.description" placeholder="Description" title="${model.description}"></text-field>
 
     <div class="bonuses">
@@ -9,7 +9,7 @@
         <div class="bonus grid" repeat.for="bonus of model.bonuses">
             <checkbox mode="angled" size="xs" value.two-way="bonus.instilled" title="Instilled"></checkbox>
             <text-field class="name" value.two-way="bonus.name" placeholder="Name" title="${bonus.name}"></text-field>
-            <primary-stat class="bonus-modifier" mode="secondary" value.two-way="bonus.bonus" min="1" size="s" title="Bonus" prefix-plus.bind="true"></primary-stat>
+            <stat-box class="bonus-modifier" mode="secondary" value.two-way="bonus.bonus" min="1" size="s" title="Bonus" prefix-plus.bind="true"></stat-box>
             <text-field class="source" value.two-way="bonus.source" placeholder="Source"></text-field>
             <text-field class="notes" value.two-way="bonus.notes" placeholder="Notes" title="${bonus.notes}"></text-field>
         </div>
@@ -21,8 +21,8 @@
         <div class="effect grid" repeat.for="effect of model.effects">
             <text-field class="name" value.two-way="effect.name" placeholder="Name"></text-field>
             <text-field class="arts" value.two-way="effect.arts" placeholder="Arts"></text-field>
-            <primary-stat class="level" mode="secondary" value.two-way="effect.level" min="1" size="m" title="Level"></primary-stat>
-            <primary-stat class="penetration" mode="secondary" value.two-way="effect.penetration" min="0" size="s" title="Penetration"></primary-stat>
+            <stat-box class="level" mode="secondary" value.two-way="effect.level" min="1" size="m" title="Level"></stat-box>
+            <stat-box class="penetration" mode="secondary" value.two-way="effect.penetration" min="0" size="s" title="Penetration"></stat-box>
             <text-field class="usages" value.two-way="effect.usages" placeholder="Usages"></text-field>
             <text-field class="range" value.two-way="effect.range" placeholder="Range"></text-field>
             <text-field class="duration" value.two-way="effect.duration" placeholder="Duration"></text-field>

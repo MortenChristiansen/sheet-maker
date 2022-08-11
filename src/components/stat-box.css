@@ -1,12 +1,12 @@
-primary-stat {
+stat-box {
     display: inline-block;
 }
 
-primary-stat .container.fade {
+stat-box .container.fade {
     opacity: 0.4;
 }
 
-primary-stat .container {
+stat-box .container {
     width: 60px;
     height: 60px;
     background-size: contain;
@@ -18,7 +18,7 @@ primary-stat .container {
     align-items: center;
 }
 
-primary-stat .header {
+stat-box .header {
     display: inline-block;
     text-align: center;
     width: 60px;
@@ -27,88 +27,88 @@ primary-stat .header {
     line-height: 120%;
 }
 
-primary-stat > .container:not(.readonly) {
+stat-box > .container:not(.readonly) {
     cursor: grab;
 }
 
-primary-stat .container.l {
+stat-box .container.l {
     width: 90px;
     height: 90px;
     font-size: 30px;
 }
 
-primary-stat .header.l {
+stat-box .header.l {
     width: 90px;
     font-size: 15px;
 }
 
-primary-stat .container.s {
+stat-box .container.s {
     width: 45px;
     height: 45px;
     font-size: 13px;
 }
 
-primary-stat .header.s {
+stat-box .header.s {
     width: 45px;
     font-size: 10px;
 }
 
-primary-stat .container.xs {
+stat-box .container.xs {
     width: 36px;
     height: 36px;
     font-size: 10px;
 }
 
-primary-stat .header.xs {
+stat-box .header.xs {
     width: 36px;
     font-size: 10px;
 }
 
-primary-stat .container.primary {
+stat-box .container.primary {
     background-image: url('../../content/Stat box.png');
 }
 
-primary-stat .container.primary-angled {
+stat-box .container.primary-angled {
     background-image: url('../../content/Stat box angled.png');
 }
 
-primary-stat .container.secondary {
+stat-box .container.secondary {
     background-image: url('../../content/Simple stat box.png');
     width: 44px;
     height: 44px;
 }
-primary-stat .container.secondary.s {
+stat-box .container.secondary.s {
     width: 33px;
     height: 33px;
 }
-primary-stat .container.secondary.xs {
+stat-box .container.secondary.xs {
     width: 24px;
     height: 24px;
 }
 
-primary-stat .header.secondary {
+stat-box .header.secondary {
     width: 44px;
 }
-primary-stat .header.secondary.s {
+stat-box .header.secondary.s {
     width: 33px;
 }
-primary-stat .header.secondary.xs {
+stat-box .header.secondary.xs {
     width: 24px;
 }
 
-primary-stat .container.secondary-angled {
+stat-box .container.secondary-angled {
     background-image: url('../../content/Simple stat box angled.png');
 }
 
-primary-stat .container.active {
+stat-box .container.active {
     cursor: grabbing;
 }
 
-primary-stat .container .content {
+stat-box .container .content {
     user-select: none;
 }
 
-primary-stat .overlay {
+stat-box .overlay {
     position: fixed;
     left: 0;
     top: 0;

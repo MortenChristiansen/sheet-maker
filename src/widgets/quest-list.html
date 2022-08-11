@@ -2,7 +2,7 @@
 <div class="container">
     <div class="quest grid" repeat.for="quest of model">
         <checkbox mode="angled" size="xs" value.two-way="quest.focused" title="Focused"></checkbox>
-        <primary-stat class="priority" mode="secondary" value.two-way="quest.priority" min="1" size="xs" title="Priority"></primary-stat>
+        <stat-box class="priority" mode="secondary" value.two-way="quest.priority" min="1" size="xs" title="Priority"></stat-box>
         <text-field class="name" value.two-way="quest.name" placeholder="Name" title="${quest.name}"></text-field>
         <stat-info-button source.bind="quest" property="additionalInfo"></stat-info-button>
     </div>
