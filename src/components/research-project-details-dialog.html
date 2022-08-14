@@ -1,0 +1,57 @@
+<dialog-box title="${model.name}" size="m">
+    <div class="project-details">
+        <span class="text">Focus</span>
+        <checkbox value.two-way="model.focus"></checkbox>
+
+        <span class="text">Lab Specialisation Bonus</span>
+        <stat-box class="specialisation-bonus" mode="secondary" value.two-way="model.specialisationBonus" min="0" size="s" prefix-plus.bind="true"></stat-box>
+
+        <span class="text">Intelligence Specialisation</span>
+        <checkbox value.two-way="model.intelligenceSpecialisation"></checkbox>
+
+        <span class="text">Magic Theory Specialisation</span>
+        <checkbox value.two-way="model.magicTheorySpecialisation"></checkbox>
+
+        <span class="text">Talisman</span>
+        <checkbox value.two-way="model.talisman"></checkbox>
+
+        <span if.bind="model.inventiveGeniusVirtue" class="text">New Invention</span>
+        <checkbox if.bind="model.inventiveGeniusVirtue" value.two-way="model.newWork"></checkbox>
+
+        <span if.bind="model.inventiveGeniusVirtue" class="text">Experiment</span>
+        <checkbox if.bind="model.inventiveGeniusVirtue" value.two-way="model.experiment"></checkbox>
+
+        <span if.bind="showGoodCycle" class="text">Good Cycle</span>
+        <checkbox if.bind="showGoodCycle" value.two-way="model.positiveCycle"></checkbox>
+
+        <span class="text">Nocturnal</span>
+        <checkbox value.two-way="model.nocturnal" title="An “owl,” the maga’s daily cycle is the opposite of most folk — she
+        works at night and sleeps during the day. This has the advantage that the night
+        is quieter and presents fewer distractions — gain +2 to the Lab Total for
+        the season. Due to lack of sunlight and daylight living, however, she suffers a –1
+        penalty to her Living Conditions modifier for any year in which she has taken at
+        least one Nocturnal season. She also has trouble functioning during the daytime;
+        when dawn breaks, she loses a Long-Term Fatigue level and gains one extra botch
+        die on all activities for the day. She will likely not appreciate being woken up in
+        daylight hours. This routine is commonly taken by characters with the Nocturnal
+        Personality Flaw."></checkbox>
+
+        <span class="text">Similar Research Bonus</span>
+        <stat-box class="similar-research-bonus" mode="secondary" value.two-way="model.similarResearchBonus" min="0" size="s" prefix-plus.bind="true"></stat-box>
+
+        <span class="text">Lab Assistant Bonus</span>
+        <stat-box class="lab-assistant-bonus" mode="secondary" value.two-way="model.labAssistantBonus" min="0" size="s" prefix-plus.bind="true"></stat-box>
+
+        <span class="text">Material</span>
+        <text-field class="material" value.two-way="model.material"></text-field>
+
+        <span class="text">Material Bonus</span>
+        <stat-box class="material-bonus" mode="secondary" value.two-way="model.materialBonus" min="0" size="s" prefix-plus.bind="true"></stat-box>
+
+        <span class="text">Shape</span>
+        <text-field class="shape" value.two-way="model.shape"></text-field>
+
+        <span class="text">Shape Bonus</span>
+        <stat-box class="shape-bonus" mode="secondary" value.two-way="model.shapeBonus" min="0" size="s" prefix-plus.bind="true"></stat-box>
+    </div>
+</dialog-box>

@@ -1,0 +1,21 @@
+.project-details {
+    display: grid;
+    grid-template-columns: 200px auto 200px auto;
+    grid-auto-rows: 1fr;
+    margin-bottom: 348px;
+}
+
+.project-details > * {
+    align-self: center;
+    justify-content: left;
+    margin: 1px 2px;
+}
+
+.project-details stat-box .container {
+    margin-left: unset;
+    margin-right: unset;
+}
+
+.project-details input[type=text] {
+    margin-right: 20px;
+}

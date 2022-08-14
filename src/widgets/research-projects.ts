@@ -1,7 +1,8 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
 import { IEventAggregator } from "aurelia";
 import { updateLab } from "../actions/sheetActions";
-import { Lab, State } from "../types";
+import { ResearchProjectDetailsDialog } from "../components/research-project-details-dialog";
+import { Lab, ResearchProject, State } from "../types";
 import { Widget } from "./widget";
 
 export class ResearchProjects extends Widget<Lab> {
@@ -40,5 +41,9 @@ export class ResearchProjects extends Widget<Lab> {
             positiveCycle: false,
             additionalInfo: ''
             });
+    }
+
+    editDetails = (project: ResearchProject) => {
+        ResearchProjectDetailsDialog.open(project);
     }
 }
