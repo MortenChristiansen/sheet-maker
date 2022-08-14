@@ -8,12 +8,14 @@
         </div>
 
         <label class="text title">VIRTUES</label>
-        <div class="virtue grid" repeat.for="virtue of model.virtues">
-            <stat-box class="cost" fade-zero.bind="true" mode="secondary-angled" value.two-way="virtue.cost" min="0" size="xs" title="Cost"></stat-box>
-            <text-field class="name" value.two-way="virtue.name" placeholder="Name"></text-field>
-            <text-field class="category" value.two-way="virtue.category" placeholder="Category"></text-field>
-            <text-field class="description" value.two-way="virtue.description" placeholder="Description"></text-field>
-            <stat-box class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of virtue.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></stat-box>
+        <div class="items">
+            <div class="virtue grid" repeat.for="virtue of model.virtues">
+                <stat-box class="cost" fade-zero.bind="true" mode="secondary-angled" value.two-way="virtue.cost" min="0" size="xs" title="Cost"></stat-box>
+                <text-field class="name" value.two-way="virtue.name" placeholder="Name"></text-field>
+                <text-field class="category" value.two-way="virtue.category" placeholder="Category"></text-field>
+                <text-field class="description" value.two-way="virtue.description" placeholder="Description"></text-field>
+                <stat-box class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of virtue.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></stat-box>
+            </div>
         </div>
         <add-item-input placeholder="Add virtue" on-item-added.bind="virtueAdded"></add-item-input>
     </div>
@@ -24,12 +26,14 @@
         </div>
 
         <label class="text title">FLAWS</label>
-        <div class="flaw grid" repeat.for="flaw of model.flaws">
-            <stat-box class="cost" fade-zero.bind="true" mode="secondary-angled" value.two-way="flaw.cost" max="0" size="xs" title="Cost"></stat-box>
-            <text-field class="name" value.two-way="flaw.name" placeholder="Name"></text-field>
-            <text-field class="category" value.two-way="flaw.category" placeholder="Category"></text-field>
-            <text-field class="description" value.two-way="flaw.description" placeholder="Description"></text-field>
-            <stat-box class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of flaw.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></stat-box>
+        <div class="items">
+            <div class="flaw grid" repeat.for="flaw of model.flaws">
+                <stat-box class="cost" fade-zero.bind="true" mode="secondary-angled" value.two-way="flaw.cost" max="0" size="xs" title="Cost"></stat-box>
+                <text-field class="name" value.two-way="flaw.name" placeholder="Name"></text-field>
+                <text-field class="category" value.two-way="flaw.category" placeholder="Category"></text-field>
+                <text-field class="description" value.two-way="flaw.description" placeholder="Description"></text-field>
+                <stat-box class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of flaw.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></stat-box>
+            </div>
         </div>
         <add-item-input placeholder="Add flaw" on-item-added.bind="flawAdded"></add-item-input>
     </div>

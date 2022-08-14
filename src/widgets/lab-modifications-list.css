@@ -1,6 +1,6 @@
 lab-modifications-list {
     display: block;
-    margin: 30px;
+    margin: 0 20px 20px 0;
     width: fit-content;
     min-width: 845px;
     float: left;
@@ -11,13 +11,13 @@ lab-modifications-list > .container {
     position: relative;
 }
 
-lab-modifications-list > .container > .grid {
+lab-modifications-list > .container > .items > .grid {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
     grid-auto-rows: 1fr;
 }
 
-lab-modifications-list > .container > .grid > * {
+lab-modifications-list > .container > .items > .grid > * {
     align-self: center;
     margin: 1px 2px;
 }
@@ -44,10 +44,15 @@ lab-modifications-list .grid > .description {
     width: 400px;
 }
 
+lab-modifications-list .items {
+    overflow-y: auto;
+    height: 124px;
+}
+
 lab-modifications-list .add-item-input-field.add-modifier-input {
     position: absolute;
-    right: 10px;
-    top: -15px;
+    right: 45px;
+    top: -25px;
     width: 60px;
     text-align: center;
 }
@@ -58,8 +63,8 @@ lab-modifications-list .modifier {
 
 lab-modifications-list .modifier-titles {
     position: absolute;
-    right: 3px;
-    top: 10px;
+    right: 13px;
+    top: 5px;
 }
 
 lab-modifications-list .modifier-title {
@@ -91,7 +96,7 @@ lab-modifications-list .modifier-total {
 }
 
 lab-modifications-list .block {
-    margin-top: 20px;
+    margin-top: 5px;
     position: relative;
 }
 

@@ -1,23 +1,15 @@
 <require from="../widgets/name-block"></require>
 
 <div class="grid">
-    <div class="left-page-links">
-        <a class="page-link active" href="/description">Description</a>
-        <a class="page-link" href="/stats">Stats</a>
-        <a class="page-link" href="/magic" if.bind="state.present.character.type == 'magus'">Magic</a>
-        <a class="page-link" href="/progression">Progression</a>
+    <div class="page-links">
+        <a class="page-link description active" href="/description"></a>
+        <a class="page-link stats" href="/stats"></a>
+        <a class="page-link magic" href="/magic" if.bind="state.present.character.type == 'magus'"></a>
+        <a class="page-link progression" href="/progression"></a>
+        <a class="page-link lab" href="/lab" if.bind="state.present.character.type == 'magus'"></a>
+        <a class="page-link belongings" href="/belongings"></a>
+        <a class="page-link enchantments" href="/enchantments" if.bind="state.present.character.type == 'magus'"></a>
+        <a class="page-link notes" href="/notes"></a>
+        <a class="page-link settings" href="/settings"></a>
     </div>
-    <div></div>
-    <div class="right-page-links">
-        <a class="page-link" href="/lab" if.bind="state.present.character.type == 'magus'">Lab</a>
-        <a class="page-link" href="/belongings">Belongings</a>
-        <a class="page-link" href="/enchantments" if.bind="state.present.character.type == 'magus'">Enchantments</a>
-        <a class="page-link" href="/notes">Notes</a>
-    </div>
-
-    <rune-edge></rune-edge>
-    <div class="name-box">
-        <name-block></name-block>
-    </div>
-    <rune-edge></rune-edge>
 </div>

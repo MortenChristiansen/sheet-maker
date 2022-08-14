@@ -1,10 +1,14 @@
 lab-description-block {
     display: block;
-    margin: 30px;
+    margin: 0 20px 20px 0;
     width: 600px;
     float: left;
 }
 
 lab-description-block text-box {
     width: 100%;
+}
+
+lab-description-block text-box textarea {
+    height: 198px;
 }

@@ -1,4 +1,3 @@
-<require from="widgets/character-type-selector"></require>
 <require from="pages/description"></require>
 <require from="pages/stats"></require>
 <require from="pages/magic"></require>
@@ -7,20 +6,20 @@
 <require from="pages/notes"></require>
 <require from="pages/progression"></require>
 <require from="pages/enchantments"></require>
+<require from="pages/settings"></require>
 
 <page-header></page-header>
-
-<div class="page-view">
-    <au-viewport name="main" default="description"></au-viewport>
+<div class="main-paper">
+    <div class="page-view">
+        <au-viewport name="main" default="description"></au-viewport>
+    </div>
 </div>
-
-<rune-edge></rune-edge>
-
-<button click.delegate="undo()" disabled.bind="state.past.length == 0">Undo</button>
-<button click.delegate="redo()" disabled.bind="state.future.length == 0">Redo</button>
-<button click.delegate="save()">Save As</button>
-<button click.delegate="load()">Load</button>
-<button click.delegate="newCharacter()">Create New Character</button>
-<character-type-selector></character-type-selector>
-
-<input type='file' accept='.json' files.bind="selectedFiles" ref="fileInput" style="display: none;"><br>
+<div class="buttons">
+    <button click.delegate="undo()" disabled.bind="state.past.length == 0">Undo</button>
+    <button click.delegate="redo()" disabled.bind="state.future.length == 0">Redo</button>
+    <button click.delegate="save()">Save As</button>
+    <button click.delegate="load()">Load</button>
+    <button click.delegate="newCharacter()">Create New Character</button>
+    
+    <input type='file' accept='.json' files.bind="selectedFiles" ref="fileInput" style="display: none;"><br>
+</div>

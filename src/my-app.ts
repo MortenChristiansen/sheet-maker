@@ -42,6 +42,7 @@ export class MyApp {
     - Make page content scrollable rather than having the entire page be scrollable.
     - Collapse spell wishlist
     - Selecting arts could be changed to a dialog rather than a text field.
+    - If the name field is not prominent on every page, maybe the background should be different for different character types.
 
     Bugs
     - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.
@@ -49,6 +50,14 @@ export class MyApp {
 
     Refactorings
     - Create a table component which allows for headers and such.
+    - Unify symbols into the Symbol component
+    - Create a component (or modify the List component) to allow lists of items of a generic kind. It should have
+        a button for adding items and support a fixed height.
+        <list add-item-placeholder="Add spell" item-added.bind="spellAdded">
+            <div class="spell" repeat.for="spell of model">
+                ...
+            </div>
+        </list>
 
     */
 

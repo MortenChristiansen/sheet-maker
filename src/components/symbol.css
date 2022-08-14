@@ -1,0 +1,22 @@
+symbol {
+    display: inline-block;
+}
+
+.symbol-container {
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+
+    transform: scale(1);
+    transition-duration: 0.1s;
+    transition-property: transform;
+}
+
+.symbol-container.three-dots {
+    background-image: url('../../content/symbols/three-dots-symbol.png');
+}
+
+.symbol-container:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

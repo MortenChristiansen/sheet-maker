@@ -1,6 +1,7 @@
 <title text="LAB STATS"></title>
 <div class="container">
     <div class="grid">
+        <span class="text">Aura Bonus</span>
         <span class="text">Size</span>
         <span class="text">Refinement</span>
         <span class="text">Occupied Size</span>
@@ -13,6 +14,7 @@
         <span class="text">Art 3 (Form)</span>
         <span class="text">Art 4 (Form)</span>
 
+        <stat-box value.two-way="model.auraBonus" prefix-plus.bind="true"></stat-box>
         <stat-box value.two-way="model.size" mode="primary-angled" min="-3"></stat-box>
         <stat-box value.two-way="model.refinement" mode="primary-angled" min="0"></stat-box>
         <stat-box value.two-way="model.occupiedSize" mode="secondary-angled" readonly.bind="true" color-mode="monochrome"></stat-box>
@@ -25,6 +27,7 @@
         <stat-box value.two-way="model.art3.rating" mode="secondary" readonly.bind="true" color-mode="monochrome" prefix-plus.bind="true"></stat-box>
         <stat-box value.two-way="model.art4.rating" mode="secondary" readonly.bind="true" color-mode="monochrome" prefix-plus.bind="true"></stat-box>
 
+        <span></span>
         <span></span>
         <span></span>
         <span></span>

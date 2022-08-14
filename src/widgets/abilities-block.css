@@ -1,12 +1,21 @@
 abilities-block {
     display: block;
-    margin: 30px;
-    width: fit-content;
+    margin: 0 20px 20px 0;
+    width: 1534px;
     float: left;
 }
 
 abilities-block > .container {
     margin: 0 25px 20px 20px;
+}
+
+abilities-block .ability {
+    display: inline-block;
+}
+
+abilities-block .puissant-label {
+    display: inline-block;
+    width: 40px;
 }
 
 abilities-block .ability > * {
@@ -35,8 +44,4 @@ abilities-block .ability.untrained .specialisation {
 
 abilities-block .add-item-input-field {
     width: 200px;
-}
-
-abilities-block .puissant-label {
-    width: 0;
 }

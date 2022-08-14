@@ -1,22 +1,27 @@
 npc-list {
     display: block;
-    margin: 30px;
+    margin: 0 20px 20px 0;
     width: 800px;
     float: left;
 }
 
 npc-list > .container {
-    padding: 10px 30px;
+    padding: 10px;
     position: relative;
 }
 
-npc-list > .container > .grid {
+npc-list .npcs {
+    overflow-y: auto;
+    height: 369px;
+}
+
+npc-list > .container > .npcs > .grid {
     display: grid;
     grid-template-columns: min-content min-content min-content;
     grid-auto-rows: 1fr;
 }
 
-npc-list > .container > .grid > * {
+npc-list > .container > .npcs > .grid > * {
     align-self: center;
     margin: 1px 2px;
 }

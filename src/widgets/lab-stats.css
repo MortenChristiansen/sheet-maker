@@ -1,6 +1,6 @@
 lab-stats {
     display: block;
-    margin: 30px;
+    margin: 0 20px 20px 0;
     width: fit-content;
     float: left;
 }
@@ -12,7 +12,7 @@ lab-stats > .container {
 
 lab-stats > .container > .grid {
     display: grid;
-    grid-template-columns: 110px 110px 110px 110px 110px 110px 110px 110px 110px 110px 110px;
+    grid-template-columns: 110px 110px 110px 110px 110px 110px 110px 110px 110px 110px 110px 110px;
     grid-auto-rows: auto auto auto;
 }
 

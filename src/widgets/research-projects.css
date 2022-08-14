@@ -1,6 +1,6 @@
 research-projects {
     display: block;
-    margin: 30px;
+    margin: 0 20px 20px 0;
     width: 1480px;
     float: left;
 }
@@ -10,17 +10,22 @@ research-projects > .container {
     position: relative;
 }
 
+research-projects .projects {
+    height: 143px;
+    overflow-y: auto;
+}
+
 research-projects .block {
     text-align: center;
 }
 
-research-projects > .container > .grid {
+research-projects > .container > .projects > .grid {
     display: grid;
     grid-template-columns: min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content min-content;
     grid-auto-rows: 1fr;
 }
 
-research-projects > .container > .grid > * {
+research-projects > .container > .projects > .grid > * {
     align-self: center;
     margin: 1px 2px;
 }

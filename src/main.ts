@@ -20,6 +20,7 @@ import { TextDialog } from './components/text-dialog';
 import { StatInfoButton } from './components/stat-info-button';
 import { CrossButton } from './components/cross-button';
 import { globalCharacterInfo } from './actions/sheetActions';
+import { Symbol } from './components/symbol';
 
 let app = Aurelia
     .register(
@@ -48,7 +49,8 @@ let app = Aurelia
         DialogBox,
         TextDialog,
         StatInfoButton,
-        CrossButton)
+        CrossButton,
+        Symbol)
     .register( // Layout elements
         Footer,
         Title,

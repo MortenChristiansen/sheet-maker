@@ -4,7 +4,7 @@ dialog-box {
 
 dialog-box .dialog-container {
     padding: 20px;
-    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.371));
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.571));
 }
 
 dialog-box  .inner-container {
@@ -12,15 +12,15 @@ dialog-box  .inner-container {
 }
 
 dialog-box .dialog-container.m {
-    width: 960px;
-    height: 710px;
-    background-image: url('../../content/popup-background-8x6.png');
+    width: 1083px;
+    height: 763px;
+    background-image: url('../../content/dialog-paper-background.png');
 }
 
 dialog-box .dialog-container.s {
-    width: 460px;
-    height: 335px;
-    background-image: url('../../content/popup-background-4x3.png');
+    width: 614px;
+    height: 418px;
+    background-image: url('../../content/dialog-paper-background-small.png');
 }
 
 /* Fixes rendering error for the built in dialog UI, which does not work with scrolling */
@@ -29,4 +29,5 @@ au-dialog-overlay {
 }
 au-dialog-container {
     position: fixed !important;
+    z-index: 3;
 }

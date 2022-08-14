@@ -1,0 +1,21 @@
+<dialog-box title="${model.name}" size="s">
+    <div class="spell-details">
+        <span class="text">Focus</span>
+        <checkbox size="xs" value.two-way="model.focus"></checkbox>
+
+        <span class="text">Ritual Spell</span>
+        <checkbox size="xs" value.two-way="model.ritual"></checkbox>
+
+        <span class="text">Attunement Bonus</span>
+        <stat-box class="attunement-bonus" mode="secondary" value.two-way="model.attunementBonus" min="0" size="xs" color-mode="monochrome" prefix-plus.bind="true"></stat-box>
+
+        <span class="text">Attunement Type</span>
+        <text-field class="attunement" value.two-way="model.attunement"></text-field>
+
+        <span class="text">Masteries</span>
+        <text-field class="masteries" value.two-way="model.masteries"></text-field>
+
+        <span class="text">Mastery XP</span>
+        <stat-box class="xp" mode="secondary" value.two-way="model.xp" min="0" size="xs" color-mode="monochrome" title="Excess XP"></stat-box>
+    </div>
+</dialog-box>

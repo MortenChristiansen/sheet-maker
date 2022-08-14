@@ -1,21 +1,29 @@
 spell-list {
     display: block;
-    margin: 30px;
+    margin: 0 20px 20px 0;
     width: fit-content;
     float: left;
 }
 
 spell-list > .container {
-    padding: 10px 30px;
+    padding: 10px;
+    padding-right: 0;
 }
 
-spell-list > .container > .grid {
+spell-list .spells {
+    height: 582px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 25px;
+}
+
+spell-list > .container > .spells > .grid {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
     grid-auto-rows: 1fr;
 }
 
-spell-list > .container > .grid > * {
+spell-list > .container > .spells > .grid > * {
     align-self: center;
     margin: 1px 2px;
 }
@@ -24,41 +32,47 @@ spell-list .add-item-input-field {
     width: 300px;
 }
 
-spell-list  > .container > .grid input[type=text] {
+spell-list  > .container > .spells > .grid input[type=text] {
     width: 100px;
     text-align: center;
     text-overflow: ellipsis;
 }
 
-spell-list  > .container > .grid input[type=text].name {
+spell-list  > .container > .spells > .grid input[type=text].name {
     width: 300px;
     text-align: left;
 }
 
-spell-list  > .container > .grid input[type=text].notes {
+spell-list  > .container > .spells > .grid input[type=text].notes {
     width: 300px;
     text-align: left;
     text-overflow: ellipsis;
 }
 
-spell-list  > .container > .grid input[type=text].arts {
+spell-list  > .container > .spells > .grid input[type=text].arts {
     width: 50px;
 }
 
-spell-list  > .container > .grid input[type=text].prerequisites {
+spell-list  > .container > .spells > .grid input[type=text].prerequisites {
     width: 50px;
 }
 
-spell-list  > .container > .grid input[type=text].page {
+spell-list  > .container > .spells > .grid input[type=text].page {
     width: 50px;
 }
 
-spell-list  > .container > .grid .casting-total-label {
+spell-list  > .container > .spells > .grid .casting-total-label {
     width: 25px;
 }
 
-spell-list  > .container > .grid input[type=text].sigil {
+spell-list  > .container > .spells > .grid input[type=text].sigil {
     width: 200px;
+}
+
+spell-list  > .container > .spells > .grid input[type=text].range,
+spell-list  > .container > .spells > .grid input[type=text].duration,
+spell-list  > .container > .spells > .grid input[type=text].target {
+    width: 50px;
 }
 
 spell-list .spell {
@@ -101,7 +115,7 @@ spell-list .form-header::before {
     left: -25px;
     top: 5px;
     font-size: 16px;
-    color: #bbb;
+    color: #aaa;
 }
 
 spell-list .co-form ~ .co-form .form-header::before,

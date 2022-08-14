@@ -1,12 +1,14 @@
 xp-list {
     display: block;
-    margin: 30px;
+    margin: 0 20px 20px 0;
     width: fit-content;
     float: left;
 }
 
 xp-list > .container {
     padding: 10px 30px;
+    height: 934px;
+    overflow-y: auto;
 }
 
 xp-list > .container > .grid {
@@ -27,14 +29,17 @@ xp-list > .container > .grid > * {
 
 xp-list .description, xp-list .plans {
     width: 400px;
+    text-overflow: ellipsis;
 }
 
 xp-list .xp {
-    width: 600px;
+    width: 440px;
+    text-overflow: ellipsis;
 }
 
 xp-list .correspondence, xp-list .area-lore  {
     width: 150px;
+    text-overflow: ellipsis;
 }
 
 xp-list .separator {

@@ -1,23 +1,17 @@
 <title text="SPELL WISHLIST"></title>
 <div class="container">
-    <div class="spell grid ${spell.arts.slice(2).toLowerCase()}-form" repeat.for="spell of model">
-        <span class="form-header"></span>
-        <text-field class="name" value.two-way="spell.name" placeholder="Name"></text-field>
-        <checkbox size="xs" value.two-way="spell.focus" title="Focus"></checkbox>
-        <checkbox size="xs" value.two-way="spell.ritual" title="Ritual"></checkbox>
-        <text-field class="arts" value.two-way="spell.arts" placeholder="Arts"></text-field>
-        <text-field class="prerequisites" value.two-way="spell.prerequisites"  placeholder="Prereq" title="Prerequisites"></text-field>
-        <stat-box class="level" mode="secondary" value.two-way="spell.level" min="0" size="s" title="Spell level"></stat-box>
-        <stat-box class="attunement-bonus" mode="secondary" value.two-way="spell.attunementBonus" min="0" size="xs" color-mode="monochrome" title="Attunement bonus"></stat-box>
-        <text-field class="attunement" value.two-way="spell.attunement" placeholder="Attunement"></text-field>
-        <text-field class="masteries" value.two-way="spell.masteries" placeholder="Masteries"></text-field>
-        <text-field class="range" value.two-way="spell.range" placeholder="Range"></text-field>
-        <text-field class="duration" value.two-way="spell.duration" placeholder="Duration"></text-field>
-        <text-field class="target" value.two-way="spell.target" placeholder="Target"></text-field>
-        <text-field class="page" value.two-way="spell.pageNumber" placeholder="Page"></text-field>
-        <text-field class="book" value.two-way="spell.sourceBook" placeholder="Book"></text-field>
-        <stat-info-button source.bind="spell" property="additionalInfo"></stat-info-button>
-        <cross-button click.delegate="learnSpell(spell)" title="Learn spell"></cross-button>
+    <div class="spells">
+        <div class="spell grid ${spell.arts.slice(2).toLowerCase()}-form" repeat.for="spell of model">
+            <span class="form-header"></span>
+            <text-field class="name" value.two-way="spell.name" placeholder="Name"></text-field>
+            <text-field class="arts" value.two-way="spell.arts" placeholder="Arts"></text-field>
+            <text-field class="prerequisites" value.two-way="spell.prerequisites"  placeholder="Prereq" title="Prerequisites"></text-field>
+            <stat-box class="level" mode="secondary" value.two-way="spell.level" min="0" size="s" title="Spell level"></stat-box>
+            <text-field class="page" value.two-way="spell.pageNumber" placeholder="Page"></text-field>
+            <text-field class="book" value.two-way="spell.sourceBook" placeholder="Book"></text-field>
+            <stat-info-button source.bind="spell" property="additionalInfo"></stat-info-button>
+            <cross-button click.delegate="learnSpell(spell)" title="Learn spell"></cross-button>
+        </div>
     </div>
     <add-item-input placeholder="Add spell" on-item-added.bind="spellAdded"></add-item-input>
 </div>
