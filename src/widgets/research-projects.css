@@ -13,6 +13,7 @@ research-projects > .container {
 research-projects .projects {
     height: 143px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 research-projects .block {

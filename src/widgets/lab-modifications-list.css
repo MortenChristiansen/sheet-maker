@@ -83,7 +83,7 @@ lab-modifications-list .modifier-title {
 
 lab-modifications-list .modifier-totals {
     position: absolute;
-    right: -0;
+    right: 8px;
     bottom: 10px;
 }
 
