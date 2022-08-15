@@ -1,12 +1,11 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
-import { IEventAggregator } from "aurelia";
 import { updateMagicItems } from "../actions/sheetActions";
 import { MagicItem, State } from "../types";
 import { Widget } from "./widget";
 
 export class MagicItemsBlock extends Widget<MagicItem[]> {
-    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
-        super(store, state => state.character?.magicItems, updateMagicItems, ea);
+    constructor(store: Store<StateHistory<State>>) {
+        super(store, state => state.character?.magicItems, updateMagicItems);
     }
 
     itemAdded = (name: string) => {

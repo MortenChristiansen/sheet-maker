@@ -1,13 +1,12 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
-import { IEventAggregator } from "aurelia";
 import { updateLab } from "../actions/sheetActions";
 import { ResearchProjectDetailsDialog } from "../components/research-project-details-dialog";
 import { Lab, ResearchProject, State } from "../types";
 import { Widget } from "./widget";
 
 export class ResearchProjects extends Widget<Lab> {
-    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
-        super(store, state => state.character?.lab, updateLab, ea);
+    constructor(store: Store<StateHistory<State>>) {
+        super(store, state => state.character?.lab, updateLab);
     }
 
     get showGoodCycle() {

@@ -1,5 +1,4 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
-import { IEventAggregator } from "aurelia";
 import { updateSpells } from "../actions/sheetActions";
 import { SpellDetailsDialog } from "../components/spell-details-dialog";
 import { Spell, State } from "../types";
@@ -7,8 +6,8 @@ import { Widget } from "./widget";
 
 export class SpellList extends Widget<Spell[]> {
 
-    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
-        super(store, state => state.character?.spells, updateSpells, ea);
+    constructor(store: Store<StateHistory<State>>) {
+        super(store, state => state.character?.spells, updateSpells);
     }
 
     spellAdded = (spell: string) => {

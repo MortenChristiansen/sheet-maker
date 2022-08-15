@@ -1,5 +1,6 @@
 import { connectTo, StateHistory, Store } from "@aurelia/store-v1";
 import { IEventAggregator } from "aurelia";
+import { container } from "../main";
 import { initialState, State } from "../types";
 import { debounce, deepCopy } from "../utils";
 
@@ -12,21 +13,22 @@ export class Widget<TModel> {
     active: boolean = false;
     state: StateHistory<State>;
 
+    ea: IEventAggregator;
+
     // TODO: Save if you leave or refresh the page (it does not work to just call saveChanges in the unbound method)
 
     constructor(
         private store: Store<StateHistory<State>>,
         private pluckModel: (state: State) => TModel,
-        private saveAction: (state: StateHistory<State>, model: TModel) => StateHistory<State>,
-        public readonly ea: IEventAggregator) {
+        private saveAction: (state: StateHistory<State>, model: TModel) => StateHistory<State>) {
+        this.ea = container.get(IEventAggregator);
     }
 
     stateChanged(newState: StateHistory<State>, oldState: StateHistory<State>) {
         if (newState.present) {
-            let defaultValue = this.pluckModel(initialState)
             this.modelState = this.pluckModel(newState.present);
             if (this.modelState === undefined) {
-                this.modelState = defaultValue;
+                this.modelState = this.pluckModel(initialState)
             }
 
             // This check prevents us from losing focus when manipulating the widget since we do not rebind the UI when we do not need to

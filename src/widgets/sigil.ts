@@ -1,12 +1,11 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
-import { IEventAggregator } from "aurelia";
 import { updateSigil } from "../actions/sheetActions";
 import { State } from "../types";
 import { Widget } from "./widget";
 
 export class Sigil extends Widget<string> {
-    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
-        super(store, state => state.character?.sigil, updateSigil, ea);
+    constructor(store: Store<StateHistory<State>>) {
+        super(store, state => state.character?.sigil, updateSigil);
     }
 
     dragging: boolean = false;

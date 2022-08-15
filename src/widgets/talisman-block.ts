@@ -1,12 +1,11 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
-import { IEventAggregator } from "aurelia";
 import { updateTalisman } from "../actions/sheetActions";
 import { State, Talisman } from "../types";
 import { Widget } from "./widget";
 
 export class TalismanBlock extends Widget<Talisman> {
-    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
-        super(store, state => state.character?.talisman, updateTalisman, ea);
+    constructor(store: Store<StateHistory<State>>) {
+        super(store, state => state.character?.talisman, updateTalisman);
     }
 
     bonusAdded = (bonus: string) => {

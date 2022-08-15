@@ -1,12 +1,11 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
-import { IEventAggregator } from "aurelia";
 import { updateQuests } from "../actions/sheetActions";
 import { Quest, State } from "../types";
 import { Widget } from "./widget";
 
 export class QuestList extends Widget<Quest[]> {
-    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
-        super(store, state => state.character?.quests, updateQuests, ea);
+    constructor(store: Store<StateHistory<State>>) {
+        super(store, state => state.character?.quests, updateQuests);
     }
 
     questAdded = (quest: string) => {

@@ -1,12 +1,11 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
-import { IEventAggregator } from "aurelia";
 import { getLabModifierTotals, updateLab } from "../actions/sheetActions";
 import { Lab, State } from "../types";
 import { Widget } from "./widget";
 
 export class LabModificationsList extends Widget<Lab> {
-    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
-        super(store, state => state.character?.lab, updateLab, ea);
+    constructor(store: Store<StateHistory<State>>) {
+        super(store, state => state.character?.lab, updateLab);
     }
 
     get totals() {

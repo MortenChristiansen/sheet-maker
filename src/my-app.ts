@@ -36,11 +36,7 @@ export class MyApp {
     - The age block could have a shield or a banner as background.
 
     UX/Layout
-    - The research project options could be accessible through a popup where they can have more space. As
-    it is now, you have to hover over each control anyway to see what it does.
     - I can edit the lab mod list in a dialog. That way the headers can just be text rather than inputs.
-    - Make page content scrollable rather than having the entire page be scrollable.
-    - Collapse spell wishlist
     - Selecting arts could be changed to a dialog rather than a text field.
     - If the name field is not prominent on every page, maybe the background should be different for different character types.
 

@@ -1,12 +1,11 @@
 import { StateHistory, Store } from "@aurelia/store-v1";
-import { IEventAggregator } from "aurelia";
 import { updateFamiliar } from "../actions/sheetActions";
 import { Familiar, State } from "../types";
 import { Widget } from "./widget";
 
 export class FamiliarBlock extends Widget<Familiar> {
-    constructor(store: Store<StateHistory<State>>, @IEventAggregator ea: IEventAggregator) {
-        super(store, state => state.character?.familiar, updateFamiliar, ea);
+    constructor(store: Store<StateHistory<State>>) {
+        super(store, state => state.character?.familiar, updateFamiliar);
     }
 
     itemAdded = (name: string) => {
