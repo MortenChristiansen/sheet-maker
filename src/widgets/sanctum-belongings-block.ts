@@ -1,9 +1,9 @@
-import { updateBelongings } from "../actions/sheetActions";
+import { updateSanctumBelongings } from "../actions/sheetActions";
 import { Belongings } from "../types";
-import { Widget } from "./widget";
+import { SubWidget } from "./widget";
 
-export class SanctumBelongingsBlock extends Widget<Belongings> {
+export class SanctumBelongingsBlock extends SubWidget<Belongings, string> {
     constructor() {
-        super(state => state.character?.belongings, updateBelongings);
+        super(state => state.character?.belongings, b => b.inSanctum, (b, s) => b.inSanctum = s, updateSanctumBelongings);
     }
 }

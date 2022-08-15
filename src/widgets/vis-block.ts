@@ -1,10 +1,10 @@
-import { updateBelongings } from "../actions/sheetActions";
-import { Belongings } from "../types";
-import { Widget } from "./widget";
+import { updateVis } from "../actions/sheetActions";
+import { Belongings, Vis } from "../types";
+import { SubWidget } from "./widget";
 
-export class VisBlock extends Widget<Belongings> {
+export class VisBlock extends SubWidget<Belongings, Vis[]> {
     constructor() {
-        super(state => state.character?.belongings, updateBelongings);
+        super(state => state.character?.belongings, b => b.vis, (b, s) => b.vis = s, updateVis);
     }
 
     itemAdded = (name: string) => {

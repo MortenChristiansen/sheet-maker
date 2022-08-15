@@ -4,42 +4,23 @@ import { container } from "../main";
 import { initialState, State } from "../types";
 import { debounce, deepCopy } from "../utils";
 
-const debug: boolean = false;
-
 @connectTo()
-export class Widget<TModel> {
-    model: TModel = undefined;
-    modelState: TModel = undefined;
-    active: boolean = false;
+export class WidgetBase {
     state: StateHistory<State>;
     store: Store<StateHistory<State>>;
     ea: IEventAggregator;
+    active: boolean = false;
+    interacting: boolean = false;
 
-    // TODO: Save if you leave or refresh the page (it does not work to just call saveChanges in the unbound method)
-
-    constructor(
-        private pluckModel: (state: State) => TModel,
-        private saveAction: (state: StateHistory<State>, model: TModel) => StateHistory<State>) {
-
+    constructor() {
         this.store = container.get(Store<StateHistory<State>>);
         this.ea = container.get(IEventAggregator);
     }
 
-    stateChanged(newState: StateHistory<State>, oldState: StateHistory<State>) {
-        if (newState.present) {
-            this.modelState = this.pluckModel(newState.present);
-            if (this.modelState === undefined) {
-                this.modelState = this.pluckModel(initialState)
-            }
+    stopInteraction = debounce(() => {
+        this.interacting = false;
+    }, 1000);
 
-            // This check prevents us from losing focus when manipulating the widget since we do not rebind the UI when we do not need to
-            if (this.hasChanges()) {
-                this.model = deepCopy(this.modelState);
-            }
-        }
-    }
-
-    interacting: boolean = false;
     bound() {
         this.active = true;
         this.checkForChanges();
@@ -49,10 +30,6 @@ export class Widget<TModel> {
             this.stopInteraction();
         });
     }
-
-    stopInteraction = debounce(() => {
-        this.interacting = false;
-    }, 1000);
 
     unbound() {
         this.active = false;
@@ -64,15 +41,47 @@ export class Widget<TModel> {
         }
 
         if (this.hasChanges()) {
-            if (debug) {
-                console.log("SAVING", JSON.stringify(this.modelState), JSON.stringify(this.model))
-            }
             this.saveChanges();
         }
 
         setTimeout(() => {
             this.checkForChanges();
         }, 2000);
+    }
+    
+    saveChanges() {
+    }
+
+    hasChanges() {
+        return false;
+    }
+}
+
+export class Widget<TModel> extends WidgetBase {
+    model: TModel = undefined;
+    modelState: TModel = undefined;
+    
+    // TODO: Save if you leave or refresh the page (it does not work to just call saveChanges in the unbound method)
+
+    constructor(
+        private pluckModel: (state: State) => TModel,
+        private saveAction: (state: StateHistory<State>, model: TModel) => StateHistory<State>) {
+            super();
+        
+    }
+
+    stateChanged(newState: StateHistory<State>, oldState: StateHistory<State>) {
+        if (newState.present) {
+            this.modelState = this.pluckModel(newState.present);
+            if (this.modelState === undefined) {
+                this.modelState = this.pluckModel(initialState);
+            }
+
+            // This check prevents us from losing focus when manipulating the widget since we do not rebind the UI when we do not need to
+            if (this.hasChanges()) {
+                this.model = deepCopy(this.modelState);
+            }
+        }
     }
 
     saveChanges() {
@@ -82,5 +91,49 @@ export class Widget<TModel> {
 
     hasChanges() {
         return JSON.stringify(this.modelState) !== JSON.stringify(this.model);
+    }
+}
+
+export class SubWidget<TModel, TSubModel> extends WidgetBase {
+    model: TModel = undefined;
+    modelState: TSubModel = undefined;
+
+    constructor(
+        private pluckModel: (state: State) => TModel,
+        private pluckSubModel: (model: TModel) => TSubModel,
+        private updateSubModel: (model:TModel, subModel: TSubModel) => void,
+        private saveAction: (state: StateHistory<State>, model: TSubModel) => StateHistory<State>) {
+            super();
+    }
+
+    stateChanged(newState: StateHistory<State>, oldState: StateHistory<State>) {
+        if (newState.present) {
+            let modelStateCandidate = this.pluckSubModel(this.pluckModel(newState.present));
+            let hasChanges = JSON.stringify(this.modelState) !== JSON.stringify(modelStateCandidate);
+            if (!hasChanges) return;
+
+            this.modelState = this.pluckSubModel(this.pluckModel(newState.present));
+            if (this.modelState === undefined) {
+                this.modelState = this.pluckSubModel(this.pluckModel(initialState));
+            }
+
+            if (this.model === undefined) {
+                this.model = this.pluckModel(newState.present);
+            } 
+
+            // This check prevents us from losing focus when manipulating the widget since we do not rebind the UI when we do not need to
+            if (this.hasChanges()) {
+                this.updateSubModel(this.model, deepCopy(this.modelState));
+            }
+        }
+    }
+
+    saveChanges() {
+        if (this.interacting) return;
+        this.store.dispatch(this.saveAction, deepCopy(this.pluckSubModel(this.model)));
+    }
+
+    hasChanges() {
+        return JSON.stringify(this.modelState) !== JSON.stringify(this.pluckSubModel(this.model));
     }
 }

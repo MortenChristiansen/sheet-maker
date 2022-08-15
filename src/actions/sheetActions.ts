@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Npc, Familiar } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Npc, Familiar, Vis } from "../types";
 import { deepCopy } from "../utils";
 
 export const globalCharacterInfo = {
@@ -206,11 +206,24 @@ export function updateSigil(state: StateHistory<State>, sigil: string) {
     return nextStateHistory(state, newState);
 }
 
-export function updateBelongings(state: StateHistory<State>, belongings: Belongings) {
-    console.log("Saving belongings", belongings);
+export function updateCarriedBelongings(state: StateHistory<State>, carriedBelongings: string) {
+    console.log("Saving carried belongings", carriedBelongings);
     const newState = deepCopy(state.present);
-    newState.character.belongings = belongings;
-    newState.character.belongings.vis = filterListItems(belongings.vis);
+    newState.character.belongings.carried = carriedBelongings;
+    return nextStateHistory(state, newState);
+}
+
+export function updateSanctumBelongings(state: StateHistory<State>, sanctumBelongings: string) {
+    console.log("Saving sanctum belongings", sanctumBelongings);
+    const newState = deepCopy(state.present);
+    newState.character.belongings.inSanctum = sanctumBelongings;
+    return nextStateHistory(state, newState);
+}
+
+export function updateVis(state: StateHistory<State>, vis: Vis[]) {
+    console.log("Saving vis", vis);
+    const newState = deepCopy(state.present);
+    newState.character.belongings.vis = filterListItems(vis);
     return nextStateHistory(state, newState);
 }
 

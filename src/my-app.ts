@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, globalCharacterInfo, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFamiliar, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSigil, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, globalCharacterInfo, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateCarriedBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFamiliar, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSanctumBelongings, updateSigil, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateVis, updateWarping, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -88,7 +88,9 @@ export class MyApp {
         this.store.registerAction('updateCharacterType', updateCharacterType);
         this.store.registerAction('updateBackground', updateBackground);
         this.store.registerAction('updateSigil', updateSigil);
-        this.store.registerAction('updateBelongings', updateBelongings);
+        this.store.registerAction('updateCarriedBelongings', updateCarriedBelongings);
+        this.store.registerAction('updateSanctumBelongings', updateSanctumBelongings);
+        this.store.registerAction('updateVis', updateVis);
         this.store.registerAction('updateTalisman', updateTalisman);
         this.store.registerAction('updateMagicItems', updateMagicItems);
         this.store.registerAction('updateQuests', updateQuests);
