@@ -1,11 +1,10 @@
-import { StateHistory, Store } from "@aurelia/store-v1";
 import { getLabModifierTotals, updateLab } from "../actions/sheetActions";
-import { Lab, State } from "../types";
+import { Lab } from "../types";
 import { Widget } from "./widget";
 
 export class LabModificationsList extends Widget<Lab> {
-    constructor(store: Store<StateHistory<State>>) {
-        super(store, state => state.character?.lab, updateLab);
+    constructor() {
+        super(state => state.character?.lab, updateLab);
     }
 
     get totals() {

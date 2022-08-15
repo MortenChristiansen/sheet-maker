@@ -12,15 +12,16 @@ export class Widget<TModel> {
     modelState: TModel = undefined;
     active: boolean = false;
     state: StateHistory<State>;
-
+    store: Store<StateHistory<State>>;
     ea: IEventAggregator;
 
     // TODO: Save if you leave or refresh the page (it does not work to just call saveChanges in the unbound method)
 
     constructor(
-        private store: Store<StateHistory<State>>,
         private pluckModel: (state: State) => TModel,
         private saveAction: (state: StateHistory<State>, model: TModel) => StateHistory<State>) {
+
+        this.store = container.get(Store<StateHistory<State>>);
         this.ea = container.get(IEventAggregator);
     }
 

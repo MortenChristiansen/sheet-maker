@@ -1,11 +1,10 @@
-import { StateHistory, Store } from "@aurelia/store-v1";
 import { updateFamiliar } from "../actions/sheetActions";
-import { Familiar, State } from "../types";
+import { Familiar } from "../types";
 import { Widget } from "./widget";
 
 export class FamiliarBlock extends Widget<Familiar> {
-    constructor(store: Store<StateHistory<State>>) {
-        super(store, state => state.character?.familiar, updateFamiliar);
+    constructor() {
+        super(state => state.character?.familiar, updateFamiliar);
     }
 
     itemAdded = (name: string) => {

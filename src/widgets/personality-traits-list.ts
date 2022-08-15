@@ -1,11 +1,10 @@
-import { StateHistory, Store } from "@aurelia/store-v1";
 import { updatePersonalityTraits } from "../actions/sheetActions";
-import { PersonalityTrait, State } from "../types";
+import { PersonalityTrait } from "../types";
 import { Widget } from "./widget";
 
 export class PersonalityTraitsList extends Widget<PersonalityTrait[]> {
-    constructor(store: Store<StateHistory<State>>) {
-        super(store, state => state.character?.personalityTraits, updatePersonalityTraits);
+    constructor() {
+        super(state => state.character?.personalityTraits, updatePersonalityTraits);
     }
 
     itemAdded = (name: string) => {

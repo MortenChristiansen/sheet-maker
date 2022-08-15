@@ -1,11 +1,10 @@
-import { StateHistory, Store } from "@aurelia/store-v1";
 import { updateXpEntries } from "../actions/sheetActions";
-import { State, XpEntry } from "../types";
+import { XpEntry } from "../types";
 import { Widget } from "./widget";
 
 export class XpList extends Widget<XpEntry[]> {
-    constructor(store: Store<StateHistory<State>>) {
-        super(store, state => state.character?.xpEntries, updateXpEntries);
+    constructor() {
+        super(state => state.character?.xpEntries, updateXpEntries);
     }
 
     get planningEntries() {

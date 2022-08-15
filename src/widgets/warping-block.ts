@@ -1,11 +1,10 @@
-import { StateHistory, Store } from "@aurelia/store-v1";
 import { updateWarping } from "../actions/sheetActions";
-import { State, Warping } from "../types";
+import { Warping } from "../types";
 import { Widget } from "./widget";
 
 export class WarpingBlock extends Widget<Warping> {
-    constructor(store: Store<StateHistory<State>>) {
-        super(store, state => state.character?.warping, updateWarping);
+    constructor() {
+        super(state => state.character?.warping, updateWarping);
     }
 
     itemAdded = (name: string) => {

@@ -1,11 +1,10 @@
-import { StateHistory, Store } from "@aurelia/store-v1";
 import { updateTalisman } from "../actions/sheetActions";
-import { State, Talisman } from "../types";
+import { Talisman } from "../types";
 import { Widget } from "./widget";
 
 export class TalismanBlock extends Widget<Talisman> {
-    constructor(store: Store<StateHistory<State>>) {
-        super(store, state => state.character?.talisman, updateTalisman);
+    constructor() {
+        super(state => state.character?.talisman, updateTalisman);
     }
 
     bonusAdded = (bonus: string) => {

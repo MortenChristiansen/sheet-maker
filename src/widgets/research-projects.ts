@@ -1,12 +1,11 @@
-import { StateHistory, Store } from "@aurelia/store-v1";
 import { updateLab } from "../actions/sheetActions";
 import { ResearchProjectDetailsDialog } from "../components/research-project-details-dialog";
-import { Lab, ResearchProject, State } from "../types";
+import { Lab, ResearchProject } from "../types";
 import { Widget } from "./widget";
 
 export class ResearchProjects extends Widget<Lab> {
-    constructor(store: Store<StateHistory<State>>) {
-        super(store, state => state.character?.lab, updateLab);
+    constructor() {
+        super(state => state.character?.lab, updateLab);
     }
 
     get showGoodCycle() {

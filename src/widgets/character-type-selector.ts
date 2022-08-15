@@ -1,11 +1,9 @@
-import { StateHistory, Store } from "@aurelia/store-v1";
 import { updateCharacterType } from "../actions/sheetActions";
-import { State } from "../types";
 import { Widget } from "./widget";
 
 export class CharacterTypeSelector extends Widget<"magus" | "companion"> {
-    constructor(store: Store<StateHistory<State>>) {
-        super(store, state => state.character?.type, updateCharacterType);
+    constructor() {
+        super(state => state.character?.type, updateCharacterType);
     }
 
     bound() {
