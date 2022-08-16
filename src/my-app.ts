@@ -15,7 +15,6 @@ export class MyApp {
         https://gist.github.com/tanaikech/bd53b366aedef70e35a35f449c51eced
     - Ability list grouped by ability category.
     - Somehow remind myself of temporary modifiers to aging roll such as use of the Nocturnal lab rule.
-    - Show popup in case of error
     - Lab lab should have a “Construction Year” indicator as well as a button to set it to the current year. This should control the maximum refinement level (along with magic theory)
     - A spontaneous spell list might also be relevant for commonly cast spells.
     - Current correspondence (and perhaps a correspondence history)
@@ -61,6 +60,7 @@ export class MyApp {
     fileHandle: any;
     isStandalone = window.matchMedia('(display-mode: standalone)').matches;
     public state: StateHistory<State>;
+    hasError: boolean = false;
     
     constructor(private store: Store<StateHistory<State>>) {
         this.store.registerAction('createNewCharacter', createNewCharacter);
@@ -104,6 +104,11 @@ export class MyApp {
             this.store.registerAction('rehydrateFromLocalStorage', rehydrateFromLocalStorage);
             store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
             store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
+        }
+
+        window.onerror = (msg, url, linenumber) => {
+            this.hasError = true;
+            return false;
         }
     }
 
