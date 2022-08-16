@@ -46,10 +46,14 @@ export interface Characteristic {
 
 export interface PhysicalStatus {
     fatigue: number;
+    wounds: Wounds;
+    totalPenalty: number;
+}
+
+export interface Wounds {
     lightWounds: number;
     mediumWounds: number;
     heavyWounds: number;
-    totalPenalty: number;
 }
 
 export interface PersonalityTrait {
@@ -347,9 +351,11 @@ export const initialState: State = {
         type: 'magus',
         physicalStatus : {
             fatigue : 0,
-            lightWounds: 0,
-            mediumWounds: 0,
-            heavyWounds: 0,
+            wounds: {
+                lightWounds: 0,
+                mediumWounds: 0,
+                heavyWounds: 0,
+            },
             totalPenalty: 0
         },
         description: {

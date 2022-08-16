@@ -1,5 +1,5 @@
 import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Npc, Familiar, Vis } from "../types";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Npc, Familiar, Vis, Wounds } from "../types";
 import { deepCopy } from "../utils";
 
 export const globalCharacterInfo = {
@@ -75,10 +75,19 @@ export function updateDescription(state: StateHistory<State>, description: Chara
     return nextStateHistory(state, newState);
 }
 
-export function updatePhysicalStatus(state: StateHistory<State>, physicalStatus: PhysicalStatus) {
-    console.log("Saving physical status", physicalStatus);
+export function updateFatigue(state: StateHistory<State>, fatigue: number) {
+    console.log("Saving fatigue", fatigue);
     const newState = deepCopy(state.present);
-    newState.character.physicalStatus = physicalStatus;
+    newState.character.physicalStatus.fatigue = fatigue;
+    refreshPhysicalPentalties(newState);
+    refreshCastingTotals(newState);
+    return nextStateHistory(state, newState);
+}
+
+export function updateWounds(state: StateHistory<State>, wounds: Wounds) {
+    console.log("Saving wounds", wounds);
+    const newState = deepCopy(state.present);
+    newState.character.physicalStatus.wounds = wounds;
     refreshPhysicalPentalties(newState);
     refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
@@ -320,8 +329,8 @@ function calculateFatiguePenalty(state: State) {
 }
 
 function calculateWoundPenalty(state: State) {
-    let status = state.character.physicalStatus;
-    return -status.lightWounds + status.mediumWounds * -3 + status.heavyWounds * -5;
+    let wounds = state.character.physicalStatus.wounds;
+    return -wounds.lightWounds + wounds.mediumWounds * -3 + wounds.heavyWounds * -5;
 }
 
 function refreshAgeingStats(state: State) {

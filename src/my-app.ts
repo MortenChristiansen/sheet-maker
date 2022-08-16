@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, globalCharacterInfo, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateCarriedBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFamiliar, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updatePhysicalStatus, updateQuests, updateSanctumBelongings, updateSigil, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateVis, updateWarping, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, globalCharacterInfo, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateCarriedBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFamiliar, updateFatigue, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updateQuests, updateSanctumBelongings, updateSigil, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateVis, updateWarping, updateWounds, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -72,7 +72,8 @@ export class MyApp {
         this.store.registerAction('updateVirtues', updateVirtues);
         this.store.registerAction('updateFlaws', updateFlaws);
         this.store.registerAction('updateDescription', updateDescription);
-        this.store.registerAction('updatePhysicalStatus', updatePhysicalStatus);
+        this.store.registerAction('updateFatigue', updateFatigue);
+        this.store.registerAction('updateWounds', updateWounds);
         this.store.registerAction('updateArts', updateArts);
         this.store.registerAction('updateSpells', updateSpells);
         this.store.registerAction('updateSpellWishlist', updateSpellWishlist);
