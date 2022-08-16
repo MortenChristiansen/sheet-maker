@@ -42,6 +42,7 @@ export class MyApp {
     Bugs
     - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.
         Seems related to the times when the Google Drive file deletion prompt appears.
+    - The PWA shows the app name twice in the title.
 
     Refactorings
     - Create a table component which allows for headers and such.
@@ -217,7 +218,9 @@ export class MyApp {
             }
 
             console.log("Saving file to disk");
-            this.saveFile(state as StateHistory<State>);
+            this.saveFile(state as StateHistory<State>).catch(r => {
+                console.error("Error saving file", r);
+            });
         };
         return middleware;
     }
