@@ -3,7 +3,6 @@ import { PhysicalStatus } from "../types";
 import { SubWidget } from "./widget";
 
 export class FatigueBlock extends SubWidget<PhysicalStatus, number> {
-    
     constructor() {
         super(state => state.character?.physicalStatus, b => b.fatigue, (m, s) => m.fatigue = s, updateFatigue);
     }
