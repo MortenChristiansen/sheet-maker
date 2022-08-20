@@ -1,5 +1,5 @@
 import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, globalCharacterInfo, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateCarriedBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFamiliar, updateFatigue, updateFlaws, updateLab, updateMagicItems, updateNotes, updateNpcs, updatePersonalityTraits, updateQuests, updateSanctumBelongings, updateSigil, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateVis, updateWarping, updateWounds, updateXpEntries } from "./actions/sheetActions";
+import { createNewCharacter, globalCharacterInfo, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateCarriedBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFamiliar, updateFatigue, updateFlaws, updateFullAvatar, updateLab, updateMagicItems, updateName, updateNotes, updateNpcs, updatePersonalityTraits, updateQuests, updateSanctumBelongings, updateSigil, updateSmallAvatar, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateVis, updateWarping, updateWounds, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -43,6 +43,11 @@ export class MyApp {
     - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.
         Seems related to the times when the Google Drive file deletion prompt appears.
     - The PWA shows the app name twice in the title.
+    - When local storage is full, the app silently fails to update it, but you won't notice until you refresh the page. Especially likely if you
+        use big avatars. It is a problem that each edit makes a copy of all the images in the history. To combat this I have set the history limit
+        to 1. Apart from the concrete bug, it seems incredibly wasteful to copy the images with each edit (we copy the full model multiple times).
+        We could consider storing the images as files within the ARS file in zip format, but that would not help with the localstorage version. I
+        could also only allow remote images to be used.
 
     Refactorings
     - Create a table component which allows for headers and such.
@@ -73,6 +78,9 @@ export class MyApp {
         this.store.registerAction('updateVirtues', updateVirtues);
         this.store.registerAction('updateFlaws', updateFlaws);
         this.store.registerAction('updateDescription', updateDescription);
+        this.store.registerAction('updateName', updateName);
+        this.store.registerAction('updateSmallAvatar', updateSmallAvatar);
+        this.store.registerAction('updateFullAvatar', updateFullAvatar);
         this.store.registerAction('updateFatigue', updateFatigue);
         this.store.registerAction('updateWounds', updateWounds);
         this.store.registerAction('updateArts', updateArts);

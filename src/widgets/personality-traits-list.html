@@ -1,9 +1,8 @@
 <title text="PERSONALITY"></title>
 <div class="container">
-    <div repeat.for="trait of model">
+    <div class="trait" repeat.for="trait of model">
         <text-field value.two-way="trait.name"></text-field>
-        <stat-box mode="secondary" size="s" value.two-way="trait.rating" prefix-plus.bind="true"></stat-box>
+        <stat-box if.bind="trait.name" mode="secondary" size="s" value.two-way="trait.rating" prefix-plus.bind="true"></stat-box>
     </div>
-    <add-item-input placeholder="Add trait" on-item-added.bind="itemAdded"></add-item-input>
 </div>
 <footer></footer>

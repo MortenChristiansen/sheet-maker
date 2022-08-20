@@ -2,12 +2,10 @@ warping-block {
     display: block;
     margin: 0 20px 20px 0;
     width: fit-content;
-    float: left;
-    width: 420px;
-}
-
-warping-block > .container {
-    padding: 10px 30px;
+    width: 318px;
+    position: absolute;
+    left: 44px;
+    top: 315px;
 }
 
 warping-block > .container > .grid {
@@ -23,4 +21,9 @@ warping-block > .container > .grid > * {
 
 warping-block .warping-level {
     text-align: center;
+}
+
+warping-block .name {
+    width: 200px;
+    text-overflow: ellipsis;
 }

@@ -1,0 +1,38 @@
+droppable-image {
+    display: block;
+    width: 100%;
+    height: 98%; /* 100% lets a white edge out below */
+}
+
+droppable-image {
+    display: block;
+    text-align: center;
+}
+
+droppable-image > .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+droppable-image > .container .image-placeholder {
+    width: 70px;
+    height: 35px;
+    background-size: contain;
+    background-image: url('../../content/default-sigil.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+droppable-image > .container .image {
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+droppable-image > .container.active-drag {
+    opacity: 0.6;
+}

@@ -1,7 +1,7 @@
 quest-list {
     display: block;
     margin: 0 20px 20px 0;
-    width: 800px;
+    width: 700px;
     float: left;
 }
 
@@ -12,7 +12,7 @@ quest-list > .container {
 
 quest-list .quests {
     overflow-y: auto;
-    height: 369px;
+    height: 884px;
 }
 
 quest-list > .container > .quests > .grid {
@@ -27,7 +27,7 @@ quest-list > .container > .quests > .grid > * {
 }
 
 quest-list .name {
-    width: 650px;
+    width: 580px;
     text-overflow: ellipsis;
 }
 

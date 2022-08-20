@@ -7,8 +7,10 @@ export class PersonalityTraitsList extends Widget<PersonalityTrait[]> {
         super(state => state.character?.personalityTraits, updatePersonalityTraits);
     }
 
-    itemAdded = (name: string) => {
-        this.model.push({ name, rating: 0 });
-        this.model.sort((a, b) => a.name.localeCompare(b.name));
+    transformModel(model: PersonalityTrait[]) {
+        while (model.length < 10) {
+            model.push({ name: '', rating: 0 });
+        }
+        return model;
     }
 }

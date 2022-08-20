@@ -1,7 +1,7 @@
 npc-list {
     display: block;
     margin: 0 20px 20px 0;
-    width: 800px;
+    width: 700px;
     float: left;
 }
 
@@ -12,7 +12,7 @@ npc-list > .container {
 
 npc-list .npcs {
     overflow-y: auto;
-    height: 369px;
+    height: 884px;
 }
 
 npc-list > .container > .npcs > .grid {
@@ -32,7 +32,7 @@ npc-list .name {
 }
 
 npc-list .description {
-    width: 500px;
+    width: 410px;
     text-overflow: ellipsis;
 }
 

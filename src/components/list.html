@@ -2,8 +2,8 @@
 <div class="container">
     <div repeat.for="item of items">
         <text-field class="list-entry" value.two-way="item.name" title="${item.name}"></text-field>
-        <stat-info-button if.bind="hasAdditionalInfo" source.bind="item" property="additionalInfo"></stat-info-button>
+        <stat-info-button if.bind="hasAdditionalInfo && item.name" source.bind="item" property="additionalInfo"></stat-info-button>
     </div>
-    <add-item-input placeholder="Add item" on-item-added.bind="itemAdded"></add-item-input>
+    <add-item-input if.bind="canAddItems" placeholder="Add item" on-item-added.bind="itemAdded"></add-item-input>
 </div>
 <footer></footer>

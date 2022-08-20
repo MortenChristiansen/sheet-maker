@@ -4,6 +4,7 @@ export class List {
     @bindable title: string;
     @bindable items: { name: string, additionalInfo: string }[] = [];
     @bindable hasAdditionalInfo: boolean = false;
+    @bindable canAddItems: boolean = true;
 
     itemAdded = (name: string) => {
         this.items.push({ name, additionalInfo: '' });

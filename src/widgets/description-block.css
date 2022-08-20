@@ -1,6 +1,8 @@
 description-block {
     display: block;
     margin: 0 20px 20px 0;
-    width: fit-content;
-    float: left;
+}
+
+description-block text-box {
+    width: 100%;
 }

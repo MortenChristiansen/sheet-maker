@@ -1,0 +1,4 @@
+<div class="container" drop.delegate="onDrop($event)" active-drag.class="dragging" dragenter.delegate="dragging = true" dragleave.delegate="dragging = false">
+    <div class="image-placeholder" if.bind="!value"></div>
+    <img class="image" if.bind="value" src="${value}"/>
+</div>

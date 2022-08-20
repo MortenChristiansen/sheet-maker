@@ -1,7 +1,7 @@
 import { connectTo, StateHistory, Store } from "@aurelia/store-v1";
 import { IEventAggregator } from "aurelia";
 import { container } from "../main";
-import { initialState, State } from "../types";
+import { State } from "../types";
 import { debounce, deepCopy } from "../utils";
 
 @connectTo()
@@ -15,6 +15,10 @@ export class WidgetBase {
     constructor() {
         this.store = container.get(Store<StateHistory<State>>);
         this.ea = container.get(IEventAggregator);
+    }
+
+    get typename() {
+        return "BASE";
     }
 
     stopInteraction = debounce(() => {
@@ -72,9 +76,18 @@ export class Widget<TModel> extends WidgetBase {
 
     stateChanged(newState: StateHistory<State>, oldState: StateHistory<State>) {
         if (newState.present) {
+            let modelStateCandidate = this.pluckModel(newState.present);
+            let hasChanges = JSON.stringify(this.modelState) !== JSON.stringify(modelStateCandidate);
+            if (!hasChanges) return;
+
             this.modelState = this.pluckModel(newState.present);
             if (this.modelState === undefined) {
-                this.modelState = this.pluckModel(initialState);
+                return;
+            }
+            this.modelState = this.transformModel(this.modelState);
+
+            if (this.model === undefined) {
+                this.model = deepCopy(this.pluckModel(newState.present));
             }
 
             // This check prevents us from losing focus when manipulating the widget since we do not rebind the UI when we do not need to
@@ -82,6 +95,10 @@ export class Widget<TModel> extends WidgetBase {
                 this.model = deepCopy(this.modelState);
             }
         }
+    }
+
+    transformModel(model: TModel) {
+        return model;
     }
 
     saveChanges() {
@@ -114,11 +131,11 @@ export class SubWidget<TModel, TSubModel> extends WidgetBase {
 
             this.modelState = this.pluckSubModel(this.pluckModel(newState.present));
             if (this.modelState === undefined) {
-                this.modelState = this.pluckSubModel(this.pluckModel(initialState));
+                return;
             }
 
             if (this.model === undefined) {
-                this.model = this.pluckModel(newState.present);
+                this.model = deepCopy(this.pluckModel(newState.present));
             } 
 
             // This check prevents us from losing focus when manipulating the widget since we do not rebind the UI when we do not need to
@@ -134,6 +151,7 @@ export class SubWidget<TModel, TSubModel> extends WidgetBase {
     }
 
     hasChanges() {
+        if (this.model === undefined) return false;
         return JSON.stringify(this.modelState) !== JSON.stringify(this.pluckSubModel(this.model));
     }
 }

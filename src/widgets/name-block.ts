@@ -1,9 +1,9 @@
-import { updateDescription } from "../actions/sheetActions";
+import { updateName } from "../actions/sheetActions";
 import { CharacterDescription } from "../types";
-import { Widget } from "./widget";
+import { SubWidget } from "./widget";
 
-export class NameBlock extends Widget<CharacterDescription> {
+export class NameBlock extends SubWidget<CharacterDescription, string> {
     constructor() {
-        super(state => state.character?.description, updateDescription);
+        super(state => state.character?.description, b => b.name, (m, s) => m.name = s, updateName);
     }
 }

@@ -1,0 +1,22 @@
+avatar-small-block {
+    display: block;
+    margin: 20px 40px 40px 20px;
+    background-image: url('../../content/small-avatar-paper.png');
+    background-size: contain;
+    filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.371));
+    height: 241px;
+    background-repeat: no-repeat;
+    padding: 31px;
+    width: 243px;
+    margin-top: -6px;
+}
+
+avatar-small-block droppable-image > .container .image-placeholder {
+    display: none;
+}
+
+
+avatar-small-block .image {
+    max-width: 230px;
+    max-height: 230px;
+}

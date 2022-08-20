@@ -44,14 +44,14 @@ export function updateAbilities(state: StateHistory<State>, abilities: Ability[]
 export function updatePersonalityTraits(state: StateHistory<State>, personalityTraits: PersonalityTrait[]) {
     console.log("Saving personality traits", personalityTraits);
     const newState = deepCopy(state.present);
-    newState.character.personalityTraits = filterListItems(personalityTraits);
+    newState.character.personalityTraits = personalityTraits;
     return nextStateHistory(state, newState);
 }
 
 export function updateVirtues(state: StateHistory<State>, virtues: Virtue[]) {
     console.log("Saving virtues", virtues);
     const newState = deepCopy(state.present);
-    newState.character.virtues = filterListItems(virtues);
+    newState.character.virtues = virtues;
     refreshPuissantAbilitiesAndArts(newState);
     refreshAgeingStats(newState);
     refreshCastingTotals(newState);
@@ -62,16 +62,37 @@ export function updateVirtues(state: StateHistory<State>, virtues: Virtue[]) {
 export function updateFlaws(state: StateHistory<State>, flaws: Flaw[]) {
     console.log("Saving flaws", flaws);
     const newState = deepCopy(state.present);
-    newState.character.flaws = filterListItems(flaws);
+    newState.character.flaws = flaws;
     refreshCastingTotals(newState);
     refreshLab(newState);
     return nextStateHistory(state, newState);
 }
 
-export function updateDescription(state: StateHistory<State>, description: CharacterDescription) {
+export function updateDescription(state: StateHistory<State>, description: string) {
     console.log("Saving description", description);
     const newState = deepCopy(state.present);
-    newState.character.description = description;
+    newState.character.description.description = description;
+    return nextStateHistory(state, newState);
+}
+
+export function updateName(state: StateHistory<State>, name: string) {
+    console.log("Saving name", name);
+    const newState = deepCopy(state.present);
+    newState.character.description.name = name;
+    return nextStateHistory(state, newState);
+}
+
+export function updateSmallAvatar(state: StateHistory<State>, avatar: string) {
+    console.log("Saving small avatar", avatar);
+    const newState = deepCopy(state.present);
+    newState.character.description.smallAvatar = avatar;
+    return nextStateHistory(state, newState);
+}
+
+export function updateFullAvatar(state: StateHistory<State>, avatar: string) {
+    console.log("Saving full avatar", avatar);
+    const newState = deepCopy(state.present);
+    newState.character.description.fullAvatar = avatar;
     return nextStateHistory(state, newState);
 }
 
@@ -305,8 +326,12 @@ function refreshSpellLists(state: State) {
     state.character.spells = state.character.spells.filter(s => !s.onWishlist).concat(learnedSpells);
 }
 
+function sortListItems<T extends ListItem>(listItems: T[]) {
+    return listItems.sort((a, b) => a.name.localeCompare(b.name));
+}
+
 function filterListItems<T extends ListItem>(listItems: T[]) {
-    return listItems.filter(x => x.name != '').sort((a, b) => a.name.localeCompare(b.name));
+    return sortListItems(listItems.filter(x => x.name != ''));
 }
 
 interface ListItem {
@@ -398,7 +423,7 @@ function calculateBaseSpellcastingModifier(state: State) {
     let castingStats = state.character.spellcastingStats;
     let positiveCycleValue = castingStats.cyclicMagicVirtue ? 3 : 0;
     let negativeCycleValue = castingStats.cyclicMagicFlaw ? -3 : 0;
-    let spiritFamiliarBonus = state.character.familiar.isSpirit ? state.character.familiar.bronzeBondLevel : 0;
+    let spiritFamiliarBonus = state.character.familiar?.isSpirit === true ? state.character.familiar.bronzeBondLevel : 0;
     return state.character.characteristics.stamina.value +
            state.character.physicalStatus.totalPenalty +
            spiritFamiliarBonus +

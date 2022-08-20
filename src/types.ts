@@ -13,6 +13,8 @@ export interface Flaw {
 export interface CharacterDescription {
     name: string;
     description: string;
+    smallAvatar?: string;
+    fullAvatar?: string;
 }
 
 export class Ageing {
@@ -360,7 +362,9 @@ export const initialState: State = {
         },
         description: {
             name: '',
-            description: ''
+            description: '',
+            fullAvatar: null,
+            smallAvatar: null
         },
         abilities: [],
         personalityTraits: [],
@@ -374,8 +378,8 @@ export const initialState: State = {
             stamina: { value: 0, specialisation: '', agingPoints: 0 },
             strength: { value: 0, specialisation: '', agingPoints: 0 }
         },
-        flaws: [],
-        virtues: [],
+        flaws: [{ name: '', additionalInfo: '' }],
+        virtues: [{ name: '', additionalInfo: '' }],
         arts: {
             creo: { level: 0, xp: 0, puissant: false },
             muto: { level: 0, xp: 0, puissant: false },

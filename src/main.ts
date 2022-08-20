@@ -21,10 +21,11 @@ import { StatInfoButton } from './components/stat-info-button';
 import { CrossButton } from './components/cross-button';
 import { globalCharacterInfo } from './actions/sheetActions';
 import { Symbol } from './components/symbol';
+import { DroppableImage } from './components/droppable-image';
 
 let app = Aurelia
     .register(
-        StoreConfiguration.withInitialState(initialState).withOptions({ history: { undoable: true, limit: 20 } })
+        StoreConfiguration.withInitialState(initialState).withOptions({ history: { undoable: true, limit: 1 } })
     )
     .register(RouterConfiguration.customize({ title: {
         transformTitle: (title: string, instruction: RoutingInstruction, navigation: Navigation) => {
@@ -50,7 +51,8 @@ let app = Aurelia
         TextDialog,
         StatInfoButton,
         CrossButton,
-        Symbol)
+        Symbol,
+        DroppableImage)
     .register( // Layout elements
         Footer,
         Title,

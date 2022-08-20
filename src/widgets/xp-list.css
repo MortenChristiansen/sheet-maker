@@ -2,12 +2,11 @@ xp-list {
     display: block;
     margin: 0 20px 20px 0;
     width: fit-content;
-    float: left;
+    float: right;
 }
 
 xp-list > .container {
-    padding: 10px 30px;
-    height: 934px;
+    height: 955px;
     overflow-y: auto;
 }
 
@@ -28,12 +27,12 @@ xp-list > .container > .grid > * {
 }
 
 xp-list .description, xp-list .plans {
-    width: 400px;
+    width: 370px;
     text-overflow: ellipsis;
 }
 
 xp-list .xp {
-    width: 440px;
+    width: 450px;
     text-overflow: ellipsis;
 }
 
