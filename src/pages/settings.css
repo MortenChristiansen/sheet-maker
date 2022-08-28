@@ -1,0 +1,28 @@
+settings {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: min-content 1fr;
+    grid-auto-flow: column;
+}
+
+settings decoration {
+    position: absolute;
+}
+
+settings > * {
+  grid-row: 2;
+  position: relative;
+}
+
+settings > name-block {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    justify-self: center;
+    width: 337px;
+}
+
+settings > character-type-selector {
+    grid-column-start: 1;
+    grid-column-end: span 6;
+}

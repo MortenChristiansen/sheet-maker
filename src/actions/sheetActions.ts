@@ -35,7 +35,7 @@ export function updateCharacteristics(state: StateHistory<State>, characteristic
 export function updateAbilities(state: StateHistory<State>, abilities: Ability[]) {
     console.log("Saving abilities", abilities);
     const newState = deepCopy(state.present);
-    newState.character.abilities = filterListItems(abilities);
+    newState.character.abilities = abilities;
     refreshResearchProjects(newState);
     refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
@@ -168,8 +168,8 @@ export function updateWarping(state: StateHistory<State>, warping: Warping) {
 export function updateActiveMagic(state: StateHistory<State>, activeMagic: ActiveMagic[]) {
     console.log("Saving active magic", activeMagic);
     const newState = deepCopy(state.present);
-    newState.character.activeMagic = filterListItems(activeMagic);
-    refreshPenetration(newState);
+    newState.character.activeMagic = activeMagic;
+    refreshInactiveMagics(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -193,8 +193,6 @@ export function updateLab(state: StateHistory<State>, lab: Lab) {
     newState.character.lab = lab;
     newState.character.lab.virtues = filterListItems(newState.character.lab.virtues);
     newState.character.lab.flaws = filterListItems(newState.character.lab.flaws);
-    newState.character.lab.availableModifiers = newState.character.lab.availableModifiers.filter(x => x.name != '');
-    newState.character.lab.researchProjects = filterListItems(newState.character.lab.researchProjects);
     refreshLab(newState);
     return nextStateHistory(state, newState);
 }
@@ -253,7 +251,7 @@ export function updateSanctumBelongings(state: StateHistory<State>, sanctumBelon
 export function updateVis(state: StateHistory<State>, vis: Vis[]) {
     console.log("Saving vis", vis);
     const newState = deepCopy(state.present);
-    newState.character.belongings.vis = filterListItems(vis);
+    newState.character.belongings.vis = vis;
     return nextStateHistory(state, newState);
 }
 
@@ -277,14 +275,14 @@ export function updateMagicItems(state: StateHistory<State>, magicItems: MagicIt
 export function updateQuests(state: StateHistory<State>, quests: Quest[]) {
     console.log("Saving quests", quests);
     const newState = deepCopy(state.present);
-    newState.character.quests = filterListItems(quests).sort((a, b) => a.priority - b.priority);
+    newState.character.quests = quests;
     return nextStateHistory(state, newState);
 }
 
 export function updateNpcs(state: StateHistory<State>, npcs: Npc[]) {
     console.log("Saving npcs", npcs);
     const newState = deepCopy(state.present);
-    newState.character.npcs = filterListItems(npcs);
+    newState.character.npcs = npcs;
     return nextStateHistory(state, newState);
 }
 
@@ -492,8 +490,13 @@ function refreshWarpingLevel(state: State) {
     state.character.warping.warpingLevel = calculateAbilityLevel(state.character.warping.warpingPoints, 0);
 }
 
-function refreshPenetration(state: State) {
-    state.character.activeMagic.forEach(m => m.penetration = m.active ? m.penetration : 0);
+function refreshInactiveMagics(state: State) {
+    state.character.activeMagic.forEach(m => {
+        if (!m.active) {
+            m.penetration = 0;
+            m.additionalInfo = '';
+        }
+    });
 }
 
 function refreshXpEntries(state: State) {
@@ -506,7 +509,7 @@ function refreshXpEntries(state: State) {
             createXpEntry(state.character.ageing.currentYear, 'Winter')
         ];
     }
-    state.character.xpEntries = state.character.xpEntries.filter(x => x.year < state.character.ageing.currentYear + 3);
+    state.character.xpEntries = state.character.xpEntries.filter(x => x.year < state.character.ageing.currentYear + 2);
     if (state.character.xpEntries.length == 0) {
         state.character.xpEntries = [
             createXpEntry(state.character.ageing.currentYear, 'Spring'),
@@ -515,7 +518,7 @@ function refreshXpEntries(state: State) {
             createXpEntry(state.character.ageing.currentYear, 'Winter')
         ];
     }
-    while (state.character.xpEntries[state.character.xpEntries.length - 1].year < state.character.ageing.currentYear + 3) {
+    while (state.character.xpEntries[state.character.xpEntries.length - 1].year < state.character.ageing.currentYear + 2) {
         let year = state.character.xpEntries[state.character.xpEntries.length - 1].year + 1;
         state.character.xpEntries.push(createXpEntry(year, 'Spring'));
         state.character.xpEntries.push(createXpEntry(year, 'Summer'));

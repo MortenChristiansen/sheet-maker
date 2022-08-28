@@ -39,4 +39,19 @@ export class LabModificationsList extends Widget<Lab> {
     modifierAdded = (name: string) => {
         this.model.availableModifiers.push({ name });
     }
+
+    transformModel(model: Lab) {
+        while (model.availableModifiers.length < 12) {
+            model.availableModifiers.push({ name: '' });
+        }
+        if (model.availableModifiers.length > 12) model.availableModifiers = model.availableModifiers.slice(0, 12);
+
+        model.flaws.concat(model.virtues).forEach(f => {
+            while (f.modifiers.length < 12) {
+                f.modifiers.push({ name: '', rating: 0 });
+            }
+            if (f.modifiers.length > 12) f.modifiers = f.modifiers.slice(0, 12);
+        });
+        return model;
+    }
 }

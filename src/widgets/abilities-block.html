@@ -1,12 +1,10 @@
 <title text="ABILITIES"></title>
 <div class="container">
     <div class="ability ${item.level === 0 ? 'untrained' : ''}" repeat.for="item of model">
-        <text-field class="name" value.two-way="item.name"></text-field>
+        <text-field class="name" value.two-way="item.name" placeholder="Name"></text-field>
         <text-field class="specialisation" value.two-way="item.specialisation" placeholder="Specialisation"></text-field>
         <stat-box class="level" mode="secondary" value.two-way="item.level" min="0" size="s" title="Ability level"></stat-box>
         <stat-box class="xp" mode="secondary" value.two-way="item.xp" min="0" size="xs" color-mode="monochrome" title="Excess XP"></stat-box>
         <span class="puissant-label"><span class="numbers text" if.bind="item.puissant">+2</span></span>
     </div>
-    <add-item-input on-item-added.bind="itemAdded" placeholder="Add ability"></add-item-input>
 </div>
-<footer></footer>

@@ -6,13 +6,13 @@ xp-list {
 }
 
 xp-list > .container {
-    height: 955px;
+    height: 816px;
     overflow-y: auto;
 }
 
 xp-list > .container > .grid {
     display: grid;
-    grid-template-columns: 70px 100px auto auto auto auto auto;
+    grid-template-columns: 60px 90px auto auto auto auto auto;
     grid-auto-rows: 1fr;
 }
 
@@ -27,22 +27,22 @@ xp-list > .container > .grid > * {
 }
 
 xp-list .description, xp-list .plans {
-    width: 370px;
+    width: 300px;
     text-overflow: ellipsis;
 }
 
 xp-list .xp {
-    width: 450px;
+    width: 400px;
     text-overflow: ellipsis;
 }
 
 xp-list .correspondence, xp-list .area-lore  {
-    width: 150px;
+    width: 120px;
     text-overflow: ellipsis;
 }
 
 xp-list .separator {
-    height: 40px;
+    height: 20px;
 }
 
 xp-list .center-button-box {

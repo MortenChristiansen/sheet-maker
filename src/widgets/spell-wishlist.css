@@ -6,7 +6,7 @@ spell-wishlist {
 }
 
 spell-wishlist .spells {
-    height: 582px;
+    height: 462px;
     overflow-y: auto;
     overflow-x: hidden;
     padding-left: 25px;
@@ -19,7 +19,7 @@ spell-wishlist > .container {
 
 spell-wishlist > .container > .spells > .grid {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
     grid-auto-rows: 1fr;
 }
 

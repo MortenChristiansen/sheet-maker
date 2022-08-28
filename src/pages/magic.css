@@ -1,0 +1,50 @@
+magic {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: min-content 1fr min-content;
+    grid-auto-flow: column;
+}
+
+magic > * {
+  grid-row: 2;
+  position: relative;
+}
+
+magic > name-block {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    justify-self: center;
+    width: 337px;
+}
+
+magic > arts-block {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+}
+
+magic > spellcasting-modifiers-block {
+    grid-column-start: 3;
+    grid-column-end: span 4;
+}
+
+magic > sigil {
+    grid-column-start: 3;
+    grid-column-end: span 4;
+    justify-self: right;
+    margin-right: 40px;
+    margin-top: 40px;
+}
+
+magic > spell-list {
+    grid-row: 3;
+    grid-column-start: 1;
+    grid-column-end: span 4;
+}
+
+magic > spell-wishlist {
+    grid-row: 3;
+    grid-column-start: 5;
+    grid-column-end: span 2;
+    margin-left: -5px;
+}

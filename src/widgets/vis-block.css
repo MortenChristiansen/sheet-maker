@@ -5,10 +5,6 @@ vis-block {
     float: left;
 }
 
-vis-block > .container {
-    padding: 10px 30px;
-}
-
 vis-block > .grid {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
@@ -29,4 +25,5 @@ vis-block .name {
 
 vis-block .income, vis-block .notes {
     text-overflow: ellipsis;
+    width: 175px;
 }

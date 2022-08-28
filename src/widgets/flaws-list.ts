@@ -10,9 +10,10 @@ export class FlawsList extends Widget<Flaw[]> {
     }
 
     transformModel(model: Flaw[]) {
-        while (model.length < 15) {
+        while (model.length < 13) {
             model.push({ name: '', additionalInfo: '' });
         }
+        if (model.length > 13) return model.slice(0, 13);
         return model;
     }
 }

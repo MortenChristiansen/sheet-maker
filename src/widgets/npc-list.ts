@@ -10,10 +10,22 @@ export class NpcList extends Widget<Npc[]> {
     npcAdded = (name: string) => {
         if (!this.model) this.model = [];
         this.model.push({
-            name: name,
+            name,
             description: '',
             additionalInfo: ''
         });
         this.model.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    transformModel(model: Npc[]) {
+        while (model.length < 20) {
+            model.push({
+                name: '',
+                description: '',
+                additionalInfo: ''
+            });
+        }
+        if (model.length > 20) return model.slice(0, 20);
+        return model;
     }
 }

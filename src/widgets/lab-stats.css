@@ -6,7 +6,6 @@ lab-stats {
 }
 
 lab-stats > .container {
-    padding: 10px 30px;
     position: relative;
 }
 

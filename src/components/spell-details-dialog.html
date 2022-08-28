@@ -1,4 +1,4 @@
-<dialog-box title="${model.name}" size="s">
+<dialog-box title="${model.name}" size="s" show-footer.bind="false">
     <div class="spell-details">
         <span class="text">Focus</span>
         <checkbox size="xs" value.two-way="model.focus"></checkbox>
@@ -17,5 +17,11 @@
 
         <span class="text">Mastery XP</span>
         <stat-box class="xp" mode="secondary" value.two-way="model.xp" min="0" size="xs" color-mode="monochrome" title="Excess XP"></stat-box>
+
+        <span class="text">Book</span>
+        <text-field class="book" value.two-way="model.sourceBook"></text-field>
+
+        <span class="text">Page</span>
+        <text-field class="page" value.two-way="model.pageNumber"></text-field>
     </div>
 </dialog-box>

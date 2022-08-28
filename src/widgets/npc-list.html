@@ -4,9 +4,7 @@
         <div class="npc grid" repeat.for="npc of model">
             <text-field class="name" value.two-way="npc.name" placeholder="Name" title="${npc.name}"></text-field>
             <text-field class="description" value.two-way="npc.description" placeholder="Description" title="${npc.description}"></text-field>
-            <stat-info-button source.bind="npc" property="additionalInfo"></stat-info-button>
+            <stat-info-button if.bind="npc.name" source.bind="npc" property="additionalInfo"></stat-info-button>
         </div>
     </div>
-    <add-item-input placeholder="Add person" on-item-added.bind="npcAdded">
 </div>
-<footer></footer>

@@ -1,12 +1,12 @@
 talisman-block {
     display: block;
     margin: 0 20px 20px 0;
-    width: 2062px;
+    width: fit-content;
     float: left;
 }
 
 talisman-block .effects .description {
-    width: 750px;
+    width: 740px;
     text-overflow: ellipsis;
 }
 
@@ -16,7 +16,6 @@ talisman-block .container > .description {
 }
 
 talisman-block > .container {
-    padding: 10px 30px;
     position: relative;
 }
 
@@ -38,7 +37,7 @@ talisman-block > .container .bonus.grid > *, talisman-block > .container .effect
 }
 
 talisman-block .bonuses, talisman-block .effects {
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 talisman-block .bonuses .name {
@@ -50,5 +49,5 @@ talisman-block .effect .notes {
 }
 
 talisman-block .effect .usages, talisman-block .effect .range, talisman-block .effect .duration, talisman-block .effect .target, talisman-block .effect .arts {
-    width: 150px;
+    width: 115px;
 }

@@ -1,0 +1,42 @@
+progression {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: min-content 1fr;
+    grid-auto-flow: column;
+}
+
+progression decoration {
+    position: absolute;
+}
+
+progression > * {
+  grid-row: 2;
+  position: relative;
+}
+
+progression > name-block {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    justify-self: center;
+    width: 337px;
+}
+
+progression > age-block {
+    grid-column-start: 1;
+    grid-column-end: span 1;
+    justify-self: center;
+}
+
+progression > warping-block {
+    grid-column-start: 1;
+    grid-column-end: span 1;
+    margin-top: 80px;
+    margin-left: 70px;
+    justify-self: center;
+}
+
+progression > xp-list {
+    grid-column-start: 2;
+    grid-column-end: span 5;
+}

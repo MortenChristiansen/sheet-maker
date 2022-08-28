@@ -1,17 +1,20 @@
 research-projects {
     display: block;
-    margin: 0 20px 20px 0;
-    width: 2035px;
+    margin: 0 0 20px 0;
+    width: 1787px;
     float: left;
 }
 
 research-projects > .container {
-    padding: 10px 30px;
     position: relative;
+    width: 2000px;
+}
+
+research-projects .name {
+    width: 200px;
 }
 
 research-projects .projects {
-    height: 142px;
     overflow-y: auto;
     overflow-x: hidden;
 }

@@ -1,9 +1,12 @@
 name-block {
     display: block;
-    margin: 0 20px 20px 0;
+    margin-bottom: 10px;
     width: fit-content;
 }
 
 name-block input[type=text] {
     text-align: center;
+    border-bottom: none;
+    color: darkred;
+    font-size: 36px;
 }

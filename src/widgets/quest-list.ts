@@ -7,14 +7,27 @@ export class QuestList extends Widget<Quest[]> {
         super(state => state.character?.quests, updateQuests);
     }
 
-    questAdded = (quest: string) => {
+    questAdded = (name: string) => {
         if (!this.model) this.model = [];
         this.model.push({
-            name: quest,
+            name,
             focused: false,
             priority: 0,
             additionalInfo: ''
         });
         this.model.sort((a, b) => a.name.localeCompare(b.name)).sort((a, b) => a.priority - b.priority);
+    }
+
+    transformModel(model: Quest[]) {
+        while (model.length < 20) {
+            model.push({
+                name: '',
+                focused: false,
+                priority: 0,
+                additionalInfo: ''
+            });
+        }
+        if (model.length > 20) return model.slice(0, 20);
+        return model;
     }
 }

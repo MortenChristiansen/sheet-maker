@@ -1,7 +1,5 @@
 notes-block {
     display: block;
-    width: 630px;
-    float: left;
     margin: 0 20px 20px 0;
 }
 
@@ -11,5 +9,5 @@ notes-block text-box {
 
 
 notes-block text-box textarea {
-    height: 940px;
+    height: 800px;
 }

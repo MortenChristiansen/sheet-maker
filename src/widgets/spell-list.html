@@ -13,8 +13,6 @@
             <text-field class="duration" value.two-way="spell.duration" placeholder="Duration"></text-field>
             <text-field class="target" value.two-way="spell.target" placeholder="Target"></text-field>
             <text-field class="sigil" value.two-way="spell.sigil" placeholder="Sigil" title="${spell.sigil}"></text-field>
-            <text-field class="page" value.two-way="spell.pageNumber" placeholder="Page"></text-field>
-            <text-field class="book" value.two-way="spell.sourceBook" placeholder="Book"></text-field>
             <stat-info-button source.bind="spell" property="additionalInfo"></stat-info-button>
             <symbol click.delegate="editDetails(spell)" title="Edit details"></symbol>
             <cross-button click.delegate="unlearnSpell(spell)" title="Unlearn spell" mode="angled"></cross-button>
@@ -22,4 +20,3 @@
     </div>
     <add-item-input placeholder="Add spell" on-item-added.bind="spellAdded"></add-item-input>
 </div>
-<footer></footer>

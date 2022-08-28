@@ -1,10 +1,8 @@
 <title text="LAB MODIFICATIONS"></title>
-<div class="container">
-    <add-item-input class="add-modifier-input" title="Add Modifier Column" on-item-added.bind="modifierAdded"></add-item-input>
-    
+<div class="container">    
     <div class="block">
         <div class="modifier-titles">
-            <text-field repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.two-way="modifier.name" title="${modifier.name}"></text-field>
+            <text-field repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.two-way="modifier.name" title="${modifier.name}" placeholder="Stat"></text-field>
         </div>
 
         <label class="text title">VIRTUES</label>
@@ -22,7 +20,7 @@
 
     <div class="block">
         <div class="modifier-titles">
-            <text-field repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.two-way="modifier.name" title="${modifier.name}"></text-field>
+            <text-field repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.two-way="modifier.name" title="${modifier.name}" placeholder="Stat"></text-field>
         </div>
 
         <label class="text title">FLAWS</label>
@@ -40,11 +38,10 @@
 
     <div class="block last-block">
         <div class="modifier-titles">
-            <text-field repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.two-way="modifier.name" title="${modifier.name}"></text-field>
+            <text-field repeat.for="modifier of model.availableModifiers" class="modifier-title text" value.two-way="modifier.name" title="${modifier.name}" placeholder="Stat"></text-field>
         </div>
         <div class="modifier-totals">
             <span class="numbers modifier-total" repeat.for="total of totals" class="modifier-title text">${total > 0 ? '+' : ''}${total}</span>
         </div>
     </div>
 </div>
-<footer></footer>

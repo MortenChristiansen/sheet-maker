@@ -21,8 +21,8 @@ body {
 
 my-app {
   display: grid;
-  grid-template-columns: 1fr 2200px 1fr;
-  grid-template-rows: 1fr 1100px 1fr;
+  grid-template-columns: 1fr 2000px 1fr;
+  grid-template-rows: 1fr 1000px 1fr;
   width: 100%;
   height: 100%;
 }
@@ -35,12 +35,12 @@ page-header {
 }
 
 .main-paper {
-  background-image:  url('../content/main-paper-background.png');
+  background-image:  url('../content/main-paper-background-2.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
-  width: 100%;
-  height: 100%;
+  width: 2000px;
+  height: 1000px;
   grid-column: 2;
   grid-column-end: 2;
   grid-row: 2;
@@ -52,7 +52,7 @@ page-header {
 
 .page-view {
   pointer-events: all;
-  margin: 40px;
+  margin: 30px 90px 0px 110px;
 }
 
 .error-indicator {
@@ -115,6 +115,10 @@ font-family: 'MedievalSharp', cursive;
 .text {
     font-size: 16px;
     color: #446;
+}
+
+.mirror{
+  transform: scaleX(-1);
 }
 
 input[type="text"] {
@@ -191,6 +195,6 @@ button:disabled {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: darkred;
+  background: #8b0000;
   border-radius: 10px;
 }

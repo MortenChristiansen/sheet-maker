@@ -1,14 +1,13 @@
 lab-modifications-list {
     display: block;
-    margin: 0 20px 20px 0;
-    width: fit-content;
-    min-width: 845px;
+    margin: 0 0 20px 0;
+    width: 1176px;
     float: left;
 }
 
 lab-modifications-list > .container {
-    padding: 10px 30px;
     position: relative;
+    width: fit-content;
 }
 
 lab-modifications-list > .container > .items > .grid {
@@ -32,7 +31,7 @@ lab-modifications-list .container > .title {
 }
 
 lab-modifications-list .grid > .name {
-    width: 200px;
+    width: 150px;
 }
 
 lab-modifications-list .grid > .category {
@@ -41,20 +40,12 @@ lab-modifications-list .grid > .category {
 }
 
 lab-modifications-list .grid > .description {
-    width: 400px;
+    width: 328px;
 }
 
 lab-modifications-list .items {
     overflow-y: auto;
-    height: 124px;
-}
-
-lab-modifications-list .add-item-input-field.add-modifier-input {
-    position: absolute;
-    right: 45px;
-    top: -25px;
-    width: 60px;
-    text-align: center;
+    height: 127px;
 }
 
 lab-modifications-list .modifier {
@@ -63,7 +54,7 @@ lab-modifications-list .modifier {
 
 lab-modifications-list .modifier-titles {
     position: absolute;
-    right: 13px;
+    left: 676px;
     top: 5px;
 }
 
@@ -83,7 +74,7 @@ lab-modifications-list .modifier-title {
 
 lab-modifications-list .modifier-totals {
     position: absolute;
-    right: 8px;
+    left: 673px;
     bottom: 10px;
 }
 

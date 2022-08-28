@@ -1,0 +1,47 @@
+lab {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: min-content 1fr min-content min-content;
+    grid-auto-flow: column;
+}
+
+lab decoration {
+    position: absolute;
+}
+
+lab > * {
+  grid-row: 2;
+  position: relative;
+}
+
+lab > name-block {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    justify-self: center;
+    width: 337px;
+}
+
+lab > lab-stats {
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    justify-self: center;
+}
+
+lab > research-projects {
+    grid-row: 3;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+}
+
+lab > lab-modifications-list {
+    grid-row: 4;
+    grid-column-start: 1;
+    grid-column-end: span 4;
+}
+
+lab > lab-description-block {
+    grid-row: 4;
+    grid-column-start: 5;
+    grid-column-end: span 2;
+}

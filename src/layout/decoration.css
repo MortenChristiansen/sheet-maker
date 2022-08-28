@@ -1,0 +1,46 @@
+decoration {
+    display: block;
+    mix-blend-mode: darken;
+}
+
+.decoration {
+    display: block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.decoration.bottles {
+    width: 140px;
+    height: 140px;
+    background-image: url('../../content/decorations/bottles.png');
+}
+.decoration.cross {
+    width: 100px;
+    height: 110px;
+    background-image: url('../../content/decorations/cross.png');
+}
+.decoration.gargoyle {
+    width: 80px;
+    height: 100px;
+    background-image: url('../../content/decorations/gargoyle.png');
+}
+.decoration.griffon {
+    width: 150px;
+    height: 140px;
+    background-image: url('../../content/decorations/griffon.png');
+}
+.decoration.h-diamond {
+    width: 70px;
+    height: 50px;
+    background-image: url('../../content/decorations/horizontal diamond.png');
+}
+.decoration.v-diamond {
+    width: 50px;
+    height: 70px;
+    background-image: url('../../content/decorations/vertical diamond.png');
+}
+.decoration.square {
+    width: 100px;
+    height: 100px;
+    background-image: url('../../content/decorations/square.png');
+}

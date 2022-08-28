@@ -1,12 +1,11 @@
 magic-items-block {
     display: block;
     margin: 0 20px 20px 0;
-    width: 2061px;
+    width: fit-content;
     float: left;
 }
 
 magic-items-block > .container {
-    padding: 10px 30px;
     position: relative;
 }
 
@@ -31,12 +30,12 @@ magic-items-block .effects {
 }
 
 magic-items-block .description {
-    width: 750px;
+    width: 715px;
     text-overflow: ellipsis;
 }
 
 magic-items-block .effect .usages, magic-items-block .effect .range, magic-items-block .effect .duration, magic-items-block .effect .target, magic-items-block .effect .arts {
-    width: 150px;
+    width: 115px;
 }
 
 magic-items-block .magic-item {

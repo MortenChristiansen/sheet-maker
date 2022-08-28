@@ -1,7 +1,6 @@
 carried-belongings-block {
     display: block;
     margin: 0 20px 20px 0;
-    width: 630px;
     float: left;
 }
 
@@ -11,5 +10,5 @@ carried-belongings-block text-box {
 
 
 carried-belongings-block text-box textarea {
-    height: 940px;
+    height: 800px;
 }

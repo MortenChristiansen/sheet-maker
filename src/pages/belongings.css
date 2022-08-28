@@ -1,0 +1,38 @@
+belongings {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: min-content 1fr;
+    grid-auto-flow: column;
+}
+
+belongings decoration {
+    position: absolute;
+}
+
+belongings > * {
+  grid-row: 2;
+  position: relative;
+}
+
+belongings > name-block {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    justify-self: center;
+    width: 337px;
+}
+
+belongings > carried-belongings-block {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+}
+
+belongings > sanctum-belongings-block {
+    grid-column-start: 3;
+    grid-column-end: span 2;
+}
+
+belongings > vis-block {
+    grid-column-start: 5;
+    grid-column-end: span 2;
+}

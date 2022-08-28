@@ -1,0 +1,67 @@
+stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: min-content 1fr min-content;
+    grid-auto-flow: column;
+}
+
+stats decoration {
+    position: absolute;
+}
+
+stats > * {
+    grid-row: 2;
+    position: relative;
+}
+
+stats > name-block {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    justify-self: center;
+    width: 337px;
+}
+
+stats > characteristics-block {
+    grid-column-start: 3;
+    grid-column-end: span 2;
+}
+
+stats > fatigue-block {
+    grid-column-start: 1;
+    grid-column-end: span 1;
+}
+
+stats > damage-block {
+    grid-column-start: 1;
+    grid-column-end: span 1;
+    margin-top: 205px;
+}
+
+stats > physical-penalty-block {
+    grid-column-start: 2;
+    grid-column-end: span 1;
+    align-self: center;
+    justify-self: right;
+    margin-right: 40px;
+}
+
+stats > confidence-block {
+    grid-column-start: 5;
+    grid-column-end: span 1;
+    align-self: center;
+    justify-self: left;
+    margin-left: 130px;
+}
+
+stats > active-magic-list {
+    grid-column-start: 6;
+    grid-column-end: span 1;
+}
+
+stats > abilities-block {
+    grid-row: 3;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    justify-self: center;
+}

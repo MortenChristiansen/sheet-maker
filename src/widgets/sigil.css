@@ -3,6 +3,7 @@ sigil {
     height: fit-content;
     width: fit-content;
     float: left;
+    text-align: center;
 }
 
 sigil droppable-image {

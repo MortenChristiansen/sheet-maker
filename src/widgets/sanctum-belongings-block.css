@@ -1,7 +1,6 @@
 sanctum-belongings-block {
     display: block;
     margin: 0 20px 20px 0;
-    width: 630px;
     float: left;
 }
 
@@ -11,5 +10,5 @@ sanctum-belongings-block text-box {
 
 
 sanctum-belongings-block text-box textarea {
-    height: 940px;
+    height: 800px;
 }

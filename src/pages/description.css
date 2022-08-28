@@ -5,6 +5,10 @@ description {
     grid-auto-flow: column;
 }
 
+description decoration {
+    position: absolute;
+}
+
 description > * {
   grid-row: 2;
   position: relative;
@@ -12,15 +16,17 @@ description > * {
 
 description > name-block {
     grid-row: 1;
-    grid-column-start: 3;
-    grid-column-end: span 2;
+    grid-column-start: 1;
+    grid-column-end: span 6;
     justify-self: center;
+    width: 337px;
 }
 description > avatar-small-block {
     justify-self: center;
     grid-column-start: 5;
     grid-column-end: span 2;
 }
+
 description > description-block {
     grid-column-start: 3;
     grid-column-end: span 2;
@@ -36,19 +42,19 @@ description > description-block text-box textarea {
 description > avatar-full-block {
     grid-column-start: 1;
     grid-column-end: span 2;
-    margin-top: 290px;
-    justify-self: center;
+    margin-top: 240px;
+    margin-left: 60px;
 }
 description > .virtues {
     grid-column: 5;
-    margin-top: 300px;
+    margin-top: 290px;
 }
 description > .flaws {
     grid-column: 6;
-    margin-top: 300px;
+    margin-top: 290px;
 }
 description > .flaws input[type=text], description > .virtues input[type=text] {
-    width: 274px;
+    width: 237px;
 }
 description > personality-traits-list {
     grid-column-start: 1;
@@ -57,12 +63,11 @@ description > personality-traits-list {
 description > background-block {
     grid-column-start: 3;
     grid-column-end: span 2;
-    margin-top: 290px;
+    margin-top: 250px;
 }
 description > background-block text-box {
-    height: 690px;
-    height: 598px;
+    height: 580px;
 }
 description > background-block text-box textarea {
-    height: 598px;
+    height: 564px;
 }

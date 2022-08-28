@@ -1,12 +1,7 @@
 active-magic-list {
     display: block;
-    margin: 0 20px 20px 0;
+    margin: 0 20px 0 0;
     width: fit-content;
-    float: left;
-}
-
-active-magic-list > .container {
-    padding: 10px 30px;
 }
 
 active-magic-list > .container > .grid {

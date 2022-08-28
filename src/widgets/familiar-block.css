@@ -5,10 +5,6 @@ familiar-block {
     float: left;
 }
 
-familiar-block > .container {
-    padding: 10px 30px;
-}
-
 familiar-block > .grid {
     display: grid;
     grid-template-columns: auto auto auto ;
@@ -34,7 +30,7 @@ familiar-block .block {
 }
 
 familiar-block .effect .usages, familiar-block .effect .range, familiar-block .effect .duration, familiar-block .effect .target, familiar-block .effect .arts {
-    width: 150px;
+    width: 115px;
 }
 
 familiar-block .description {

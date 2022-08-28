@@ -22,6 +22,7 @@ import { CrossButton } from './components/cross-button';
 import { globalCharacterInfo } from './actions/sheetActions';
 import { Symbol } from './components/symbol';
 import { DroppableImage } from './components/droppable-image';
+import { Decoration } from './layout/decoration';
 
 let app = Aurelia
     .register(
@@ -57,7 +58,8 @@ let app = Aurelia
         Footer,
         Title,
         RuneEdge,
-        PageHeader)
+        PageHeader,
+        Decoration)
     .app(MyApp);
 
 export const container = app.container;

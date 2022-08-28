@@ -1,0 +1,40 @@
+enchantments {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: min-content 1fr min-content min-content;
+    grid-auto-flow: column;
+}
+
+enchantments decoration {
+    position: absolute;
+}
+
+enchantments > * {
+  grid-row: 2;
+  position: relative;
+}
+
+enchantments > name-block {
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+    justify-self: center;
+    width: 337px;
+}
+
+enchantments > talisman-block {
+    grid-column-start: 1;
+    grid-column-end: span 6;
+}
+
+enchantments > magic-items-block {
+    grid-row: 3;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+}
+
+enchantments > familiar-block {
+    grid-row: 4;
+    grid-column-start: 1;
+    grid-column-end: span 6;
+}

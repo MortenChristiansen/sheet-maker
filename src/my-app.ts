@@ -33,11 +33,19 @@ export class MyApp {
     - Stat boxes could have additional modes: skull, shield.
     - Books are represented by actual book icons.
     - The age block could have a shield or a banner as background.
+    - The focus checkbox for the Quest widget items could be an eye instead.
 
     UX/Layout
     - I can edit the lab mod list in a dialog. That way the headers can just be text rather than inputs.
     - Selecting arts could be changed to a dialog rather than a text field.
     - If the name field is not prominent on every page, maybe the background should be different for different character types.
+    - Maybe the Notes widget should be a list of entries with an Additional Info button. That way you could have much more info before needing to scroll.
+    - All images must scale to 125% and 150% cleanly. This means that all images must be defined at 150% scale and render without fractions at 5/6 and 2/3 scale.
+        150%    125%    100%
+        3000    2500    2000
+         240     200     160
+         300     250     200
+        1500    1200    1000
 
     Bugs
     - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.

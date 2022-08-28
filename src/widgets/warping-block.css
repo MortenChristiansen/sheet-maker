@@ -1,8 +1,7 @@
 warping-block {
     display: block;
-    margin: 0 20px 20px 0;
     width: fit-content;
-    width: 318px;
+    width: 278px;
     position: absolute;
     left: 44px;
     top: 315px;
@@ -24,6 +23,6 @@ warping-block .warping-level {
 }
 
 warping-block .name {
-    width: 200px;
+    width: 180px;
     text-overflow: ellipsis;
 }

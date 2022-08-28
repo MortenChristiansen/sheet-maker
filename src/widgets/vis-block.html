@@ -1,12 +1,10 @@
 <title text="VIS"></title>
 <div class="container">
     <div class="vis grid" repeat.for="vis of model.vis">
-        <text-field class="name" value.two-way="vis.name"></text-field>
+        <text-field class="name" value.two-way="vis.name" placeholder="Type"></text-field>
         <stat-box class="lab-vis" mode="secondary" value.two-way="vis.amountInLab" min="0" size="s" title="In lab"></stat-box>
         <stat-box class="personal-vis" mode="secondary" value.two-way="vis.amountOnPerson" min="0" size="s" title="On person"></stat-box>
         <text-field class="income" value.two-way="vis.income" placeholder="Income" title="${vis.income}"></text-field>
         <text-field class="notes" value.two-way="vis.notes" placeholder="Notes" title="${vis.notes}"></text-field>
     </div>
-    <add-item-input placeholder="Add vis type" on-item-added.bind="itemAdded"></add-item-input>
 </div>
-<footer></footer>

@@ -133,6 +133,7 @@ export class SubWidget<TModel, TSubModel> extends WidgetBase {
             if (this.modelState === undefined) {
                 return;
             }
+            this.modelState = this.transformModel(this.modelState);
 
             if (this.model === undefined) {
                 this.model = deepCopy(this.pluckModel(newState.present));
@@ -153,5 +154,9 @@ export class SubWidget<TModel, TSubModel> extends WidgetBase {
     hasChanges() {
         if (this.model === undefined) return false;
         return JSON.stringify(this.modelState) !== JSON.stringify(this.pluckSubModel(this.model));
+    }
+
+    transformModel(model: TSubModel) {
+        return model;
     }
 }

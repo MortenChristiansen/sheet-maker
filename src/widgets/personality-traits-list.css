@@ -1,7 +1,7 @@
 personality-traits-list {
     display: block;
     margin: 0 20px 20px 0;
-    height: 440px;
+    height: 400px;
 }
 
 personality-traits-list > .container {
@@ -9,13 +9,11 @@ personality-traits-list > .container {
 }
 
 personality-traits-list stat-box {
-    margin-left: 10px;
 }
 
 personality-traits-list .trait {
     display: inline-block;
-    width: 303px;
-    margin-left: 40px;
+    width: 287px;
 }
 
 personality-traits-list .trait > * {
@@ -23,5 +21,5 @@ personality-traits-list .trait > * {
 }
 
 personality-traits-list .trait input[type=text] {
-    width: 230px;
+    width: 226px;
 }

@@ -4,6 +4,7 @@ import { bindable, inject } from "aurelia";
 export class DialogBox {
     @bindable title: string;
     @bindable size: "s" | "m" = "m";
+    @bindable showFooter: boolean = true;
 
     constructor(private host: Element) {
     }

@@ -7,12 +7,9 @@
             <text-field class="arts" value.two-way="spell.arts" placeholder="Arts"></text-field>
             <text-field class="prerequisites" value.two-way="spell.prerequisites"  placeholder="Prereq" title="Prerequisites"></text-field>
             <stat-box class="level" mode="secondary" value.two-way="spell.level" min="0" size="s" title="Spell level"></stat-box>
-            <text-field class="page" value.two-way="spell.pageNumber" placeholder="Page"></text-field>
-            <text-field class="book" value.two-way="spell.sourceBook" placeholder="Book"></text-field>
             <stat-info-button source.bind="spell" property="additionalInfo"></stat-info-button>
             <cross-button click.delegate="learnSpell(spell)" title="Learn spell"></cross-button>
         </div>
     </div>
     <add-item-input placeholder="Add spell" on-item-added.bind="spellAdded"></add-item-input>
 </div>
-<footer></footer>
