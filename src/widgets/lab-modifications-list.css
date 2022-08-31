@@ -1,8 +1,6 @@
 lab-modifications-list {
     display: block;
-    margin: 0 0 20px 0;
     width: 1176px;
-    float: left;
 }
 
 lab-modifications-list > .container {
@@ -40,7 +38,7 @@ lab-modifications-list .grid > .category {
 }
 
 lab-modifications-list .grid > .description {
-    width: 328px;
+    width: 205px;
 }
 
 lab-modifications-list .items {
@@ -54,7 +52,7 @@ lab-modifications-list .modifier {
 
 lab-modifications-list .modifier-titles {
     position: absolute;
-    left: 676px;
+    left: 553px;
     top: 5px;
 }
 
@@ -74,7 +72,7 @@ lab-modifications-list .modifier-title {
 
 lab-modifications-list .modifier-totals {
     position: absolute;
-    left: 673px;
+    left: 550px;
     bottom: 10px;
 }
 

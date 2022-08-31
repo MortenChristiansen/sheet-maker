@@ -552,15 +552,12 @@ function refreshLab(state: State) {
 function refreshModificationModifiers(modifications: LabModification[], availableModifications: LabModifierType[]){
     modifications.forEach(m =>
         {
-            let oldModifiers = m.modifiers.filter(x => x.rating != 0);
-            m.modifiers = availableModifications.map(x => ({ name: x.name, rating: 0 }));
-            oldModifiers.forEach(x =>
-                {
-                    let index = m.modifiers.findIndex(y => y.name == x.name);
-                    if (index >= 0) {
-                        m.modifiers[index].rating = x.rating;
-                    }
-                });
+            m.modifiers.forEach((mf, idx) => {
+                mf.name = availableModifications[idx].name;
+                if (mf.name == '') {
+                    mf.rating = 0;
+                }
+            });
 
             if (m.category.length > 1) {
                 if ('outfitting'.startsWith(m.category.toLocaleLowerCase())) m.category = 'Outfitting';
@@ -578,7 +575,7 @@ export function getLabModifierTotals(lab: Lab): LabModifier[] {
                 lab.virtues
                 .concat(lab.flaws)
                 .reduce<LabModifier[]>((partialModifiers, a) => partialModifiers.concat(a.modifiers.filter(y => y.name == m.name)), [])
-                .reduce<number>((partialSum, b) => partialSum + b.rating, 0)
+                .reduce<number>((partialSum, b) => partialSum + (b.name != '' ? b.rating : 0), 0)
         }));
 }
 

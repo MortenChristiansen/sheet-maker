@@ -1,12 +1,8 @@
-import { updateLab } from "../actions/sheetActions";
 import { ResearchProjectDetailsDialog } from "../components/research-project-details-dialog";
 import { Lab, ResearchProject } from "../types";
-import { Widget } from "./widget";
+import { LabBase } from "./lab-base";
 
-export class ResearchProjects extends Widget<Lab> {
-    constructor() {
-        super(state => state.character?.lab, updateLab);
-    }
+export class ResearchProjects extends LabBase {
 
     itemAdded = (name: string) => {
         this.model.researchProjects.push({

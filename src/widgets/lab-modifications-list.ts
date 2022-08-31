@@ -1,12 +1,7 @@
-import { getLabModifierTotals, updateLab } from "../actions/sheetActions";
-import { Lab } from "../types";
-import { Widget } from "./widget";
+import { getLabModifierTotals } from "../actions/sheetActions";
+import { LabBase } from "./lab-base";
 
-export class LabModificationsList extends Widget<Lab> {
-    constructor() {
-        super(state => state.character?.lab, updateLab);
-    }
-
+export class LabModificationsList extends LabBase {
     get totals() {
         if (!this.model) return [];
         return getLabModifierTotals(this.model).map(x => x.rating);
@@ -38,20 +33,5 @@ export class LabModificationsList extends Widget<Lab> {
 
     modifierAdded = (name: string) => {
         this.model.availableModifiers.push({ name });
-    }
-
-    transformModel(model: Lab) {
-        while (model.availableModifiers.length < 12) {
-            model.availableModifiers.push({ name: '' });
-        }
-        if (model.availableModifiers.length > 12) model.availableModifiers = model.availableModifiers.slice(0, 12);
-
-        model.flaws.concat(model.virtues).forEach(f => {
-            while (f.modifiers.length < 12) {
-                f.modifiers.push({ name: '', rating: 0 });
-            }
-            if (f.modifiers.length > 12) f.modifiers = f.modifiers.slice(0, 12);
-        });
-        return model;
     }
 }

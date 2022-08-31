@@ -11,8 +11,8 @@
                 <stat-box class="cost" fade-zero.bind="true" mode="secondary-angled" value.two-way="virtue.cost" min="0" size="xs" title="Cost"></stat-box>
                 <text-field class="name" value.two-way="virtue.name" placeholder="Name"></text-field>
                 <text-field class="category" value.two-way="virtue.category" placeholder="Category"></text-field>
-                <text-field class="description" value.two-way="virtue.description" placeholder="Description"></text-field>
-                <stat-box class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of virtue.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></stat-box>
+                <text-field class="description" value.two-way="virtue.notes" placeholder="Description" title="${virtue.notes}"></text-field>
+                <stat-box class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" readonly.bind="modifier.name == ''" repeat.for="modifier of virtue.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></stat-box>
             </div>
         </div>
         <add-item-input placeholder="Add virtue" on-item-added.bind="virtueAdded"></add-item-input>
@@ -29,8 +29,8 @@
                 <stat-box class="cost" fade-zero.bind="true" mode="secondary-angled" value.two-way="flaw.cost" max="0" size="xs" title="Cost"></stat-box>
                 <text-field class="name" value.two-way="flaw.name" placeholder="Name"></text-field>
                 <text-field class="category" value.two-way="flaw.category" placeholder="Category"></text-field>
-                <text-field class="description" value.two-way="flaw.description" placeholder="Description"></text-field>
-                <stat-box class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" repeat.for="modifier of flaw.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></stat-box>
+                <text-field class="description" value.two-way="flaw.notes" placeholder="Description" title="${flaw.notes}"></text-field>
+                <stat-box class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" readonly.bind="modifier.name == ''" repeat.for="modifier of flaw.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></stat-box>
             </div>
         </div>
         <add-item-input placeholder="Add flaw" on-item-added.bind="flawAdded"></add-item-input>
