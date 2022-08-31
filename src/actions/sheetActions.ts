@@ -625,7 +625,7 @@ function refreshLabStats(state: State) {
     let lab = state.character.lab;
     let modifierTotals = getLabModifierTotals(lab);
     let totalCosts = lab.virtues.concat(lab.flaws).reduce<number>((partialSum, x) => partialSum + x.cost, 0);
-    lab.occupiedSize = lab.size + totalCosts - lab.refinement;
+    lab.occupiedSize = totalCosts - lab.refinement;
     let safety = modifierTotals.find(x => x.name == "Safety")?.rating ?? 0;
     let health = modifierTotals.find(x => x.name == "Health")?.rating ?? 0;
     lab.livingConditionsModifier = health >= 0 ? Math.floor(health / 2) : Math.ceil(health / 2);
