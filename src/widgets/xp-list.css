@@ -17,7 +17,7 @@ xp-list > .container > .grid {
 }
 
 xp-list > .container > .grid.past-xp-entry {
-    grid-template-columns: 70px 100px auto auto auto auto;
+    grid-template-columns: 60px 90px auto auto auto auto;
     width: fit-content;
 }
 

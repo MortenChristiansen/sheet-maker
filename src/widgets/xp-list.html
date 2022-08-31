@@ -3,11 +3,11 @@
     <div class="xp-entry grid" repeat.for="entry of planningEntries">
         <span class="year text"><span if.bind="entry.season == 'Spring'">${entry.year}</span></span>
         <span class="season text">${entry.season}</span>
-        <text-field class="description" value.two-way="entry.description" placeholder="Description"></text-field>
-        <text-field class="xp" value.two-way="entry.xp" placeholder="XP"></text-field>
-        <text-field class="correspondence" value.two-way="entry.correspondence" placeholder="Correspondence"></text-field>
-        <text-field class="area-lore" value.two-way="entry.areaLore" placeholder="Area Lore"></text-field>
-        <text-field class="plans" value.two-way="entry.plans" placeholder="Plans"></text-field>
+        <text-field class="description" value.two-way="entry.description" placeholder="Description" title="${entry.description}"></text-field>
+        <text-field class="xp" value.two-way="entry.xp" placeholder="XP" title="${entry.xp}"></text-field>
+        <text-field class="correspondence" value.two-way="entry.correspondence" placeholder="Correspondence" title="${entry.correspondence}"></text-field>
+        <text-field class="area-lore" value.two-way="entry.areaLore" placeholder="Area Lore" title="${entry.areaLore}"></text-field>
+        <text-field class="plans" value.two-way="entry.plans" placeholder="Plans" title="${entry.plans}"></text-field>
     </div>
 
     <div class="separator"></div>
@@ -18,9 +18,9 @@
     <div class="past-xp-entry grid" repeat.for="entry of pastEntries">
         <span class="year text"><span if.bind="entry.season == 'Spring'">${entry.year}</span></span>
         <span class="season text">${entry.season}</span>
-        <text-field class="description" value.two-way="entry.description" placeholder="Description"></text-field>
-        <text-field class="xp" value.two-way="entry.xp" placeholder="XP"></text-field>
-        <text-field class="correspondence" value.two-way="entry.correspondence" placeholder="Correspondence"></text-field>
-        <text-field class="area-lore" value.two-way="entry.areaLore" placeholder="Area Lore"></text-field>
+        <text-field class="description" value.two-way="entry.description" placeholder="Description" title="${entry.description}"></text-field>
+        <text-field class="xp" value.two-way="entry.xp" placeholder="XP" title="${entry.xp}"></text-field>
+        <text-field class="correspondence" value.two-way="entry.correspondence" placeholder="Correspondence" title="${entry.correspondence}"></text-field>
+        <text-field class="area-lore" value.two-way="entry.areaLore" placeholder="Area Lore" title="${entry.areaLore}"></text-field>
     </div>
 </div>
