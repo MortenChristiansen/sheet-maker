@@ -11,7 +11,7 @@ research-projects > .container {
 }
 
 research-projects .name {
-    width: 200px;
+    width: 190px;
 }
 
 research-projects .projects {
@@ -37,7 +37,7 @@ research-projects > .container > .projects > .grid > * {
 
 
 research-projects .arts, research-projects .prerequisites {
-    width: 50px;
+    width: 55px;
     text-align: center;
 }
 

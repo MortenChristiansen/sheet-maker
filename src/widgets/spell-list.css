@@ -50,7 +50,7 @@ spell-list  > .container > .spells > .grid input[type=text].notes {
 }
 
 spell-list  > .container > .spells > .grid input[type=text].arts {
-    width: 50px;
+    width: 55px;
 }
 
 spell-list  > .container > .spells > .grid input[type=text].prerequisites {

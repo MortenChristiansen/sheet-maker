@@ -50,7 +50,7 @@ spell-wishlist  > .container > .spells > .grid input[type=text].notes {
 }
 
 spell-wishlist  > .container > .spells > .grid input[type=text].arts {
-    width: 50px;
+    width: 55px;
 }
 
 spell-wishlist  > .container > .spells > .grid input[type=text].prerequisites {
