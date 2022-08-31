@@ -35,7 +35,7 @@ export function updateCharacteristics(state: StateHistory<State>, characteristic
 export function updateAbilities(state: StateHistory<State>, abilities: Ability[]) {
     console.log("Saving abilities", abilities);
     const newState = deepCopy(state.present);
-    newState.character.abilities = abilities;
+    newState.character.abilities = sortListItems(abilities);
     refreshResearchProjects(newState);
     refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
@@ -275,7 +275,9 @@ export function updateMagicItems(state: StateHistory<State>, magicItems: MagicIt
 export function updateQuests(state: StateHistory<State>, quests: Quest[]) {
     console.log("Saving quests", quests);
     const newState = deepCopy(state.present);
-    newState.character.quests = quests;
+    newState.character.quests = sortListItems(quests);
+    refreshQuests(newState);
+    newState.character.quests = newState.character.quests.sort((a, b) => a.name == '' ? 1 : b.name == '' ? -1 : a.priority - b.priority);
     return nextStateHistory(state, newState);
 }
 
@@ -294,6 +296,14 @@ export function updateFamiliar(state: StateHistory<State>, familiar: Familiar) {
     refreshAgeingRollModifier(newState);
     refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
+}
+
+function refreshQuests(state: State) {
+    state.character.quests.filter(q => q.name == '').forEach(q => {
+        q.priority = 0;
+        q.additionalInfo = '';
+        q.focused = false;
+    });
 }
 
 function refreshPuissantAbilitiesAndArts(state: State) {
@@ -325,7 +335,7 @@ function refreshSpellLists(state: State) {
 }
 
 function sortListItems<T extends ListItem>(listItems: T[]) {
-    return listItems.sort((a, b) => a.name.localeCompare(b.name));
+    return listItems.sort((a, b) => a.name == '' ? 1 : b.name == '' ? -1 : a.name.localeCompare(b.name));
 }
 
 function filterListItems<T extends ListItem>(listItems: T[]) {
