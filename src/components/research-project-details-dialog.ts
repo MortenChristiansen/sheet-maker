@@ -1,23 +1,29 @@
 import { containerless, IDialogService } from "aurelia";
 import { container } from "../main";
-import { ResearchProject } from "../types";
+import { Lab, ResearchProject } from "../types";
 import { deepCopy } from "../utils";
 
 @containerless
 export class ResearchProjectDetailsDialog {
     model: ResearchProject;
+    lab: Lab;
 
-    activate (model: ResearchProject) {
-        this.model = model;
+    get showGoodCycle() {
+        return this.lab.cyclicMagicVirtue || this.lab.cyclicMagicFlaw;
     }
 
-    static open(model: ResearchProject, onSuccess?: () => void) {
+    activate (args: { model: ResearchProject, lab: Lab }) {
+        this.model = args.model;
+        this.lab = args.lab;
+    }
+
+    static open(model: ResearchProject, lab: Lab, onSuccess?: () => void) {
         let dialogService = container.get(IDialogService);
         let modelCopy = deepCopy(model);
         dialogService.open({
             component: () => ResearchProjectDetailsDialog,
             overlayDismiss: true,
-            model: modelCopy
+            model: { model: modelCopy, lab }
         }).whenClosed(_ => {
             model.focus = modelCopy.focus;
             model.specialisationBonus = modelCopy.specialisationBonus;
@@ -31,6 +37,9 @@ export class ResearchProjectDetailsDialog {
             model.materialBonus = modelCopy.materialBonus;
             model.shape = modelCopy.shape;
             model.shapeBonus = modelCopy.shapeBonus;
+            model.positiveCycle = modelCopy.positiveCycle;
+            model.newWork = modelCopy.newWork;
+            model.experiment = modelCopy.experiment;
             if (onSuccess) {
                 onSuccess();
             }

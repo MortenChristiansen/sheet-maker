@@ -12,14 +12,11 @@
         <span class="text">Magic Theory Specialisation</span>
         <checkbox value.two-way="model.magicTheorySpecialisation"></checkbox>
 
-        <span class="text">Talisman</span>
-        <checkbox value.two-way="model.talisman"></checkbox>
+        <span if.bind="lab.inventiveGeniusVirtue" class="text">New Invention</span>
+        <checkbox if.bind="lab.inventiveGeniusVirtue" value.two-way="model.newWork"></checkbox>
 
-        <span if.bind="model.inventiveGeniusVirtue" class="text">New Invention</span>
-        <checkbox if.bind="model.inventiveGeniusVirtue" value.two-way="model.newWork"></checkbox>
-
-        <span if.bind="model.inventiveGeniusVirtue" class="text">Experiment</span>
-        <checkbox if.bind="model.inventiveGeniusVirtue" value.two-way="model.experiment"></checkbox>
+        <span if.bind="lab.inventiveGeniusVirtue" class="text">Experiment</span>
+        <checkbox if.bind="lab.inventiveGeniusVirtue" value.two-way="model.experiment"></checkbox>
 
         <span if.bind="showGoodCycle" class="text">Good Cycle</span>
         <checkbox if.bind="showGoodCycle" value.two-way="model.positiveCycle"></checkbox>
@@ -53,5 +50,8 @@
 
         <span class="text">Shape Bonus</span>
         <stat-box class="shape-bonus" mode="secondary" value.two-way="model.shapeBonus" min="0" size="s" prefix-plus.bind="true"></stat-box>
+
+        <span class="text">Talisman</span>
+        <checkbox value.two-way="model.talisman"></checkbox>
     </div>
 </dialog-box>

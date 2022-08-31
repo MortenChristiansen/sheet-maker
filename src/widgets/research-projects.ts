@@ -8,10 +8,6 @@ export class ResearchProjects extends Widget<Lab> {
         super(state => state.character?.lab, updateLab);
     }
 
-    get showGoodCycle() {
-        return this.model.cyclicMagicVirtue || this.model.cyclicMagicFlaw;
-    }
-
     itemAdded = (name: string) => {
         this.model.researchProjects.push({
             name,
@@ -42,7 +38,7 @@ export class ResearchProjects extends Widget<Lab> {
     }
 
     editDetails = (project: ResearchProject) => {
-        ResearchProjectDetailsDialog.open(project);
+        ResearchProjectDetailsDialog.open(project, this.model);
     }
 
     transformModel(model: Lab) {
