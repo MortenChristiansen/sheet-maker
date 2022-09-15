@@ -3,6 +3,10 @@ decoration {
     mix-blend-mode: darken;
 }
 
+.animating decoration {
+    opacity: 0.01;
+}
+
 .decoration {
     display: block;
     background-repeat: no-repeat;

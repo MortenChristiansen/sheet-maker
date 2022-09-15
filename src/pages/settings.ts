@@ -1,3 +1,5 @@
-export class Settings {
+import { BasePage } from "./base-page";
+
+export class Settings extends BasePage {
     
 }

@@ -1,3 +1,5 @@
-export class Magic {
+import { BasePage } from "./base-page";
+
+export class Magic extends BasePage {
     
 }
