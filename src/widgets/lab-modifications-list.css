@@ -30,6 +30,7 @@ lab-modifications-list .container > .title {
 
 lab-modifications-list .grid > .name {
     width: 150px;
+    text-overflow: ellipsis;
 }
 
 lab-modifications-list .grid > .category {

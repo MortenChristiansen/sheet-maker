@@ -9,7 +9,7 @@
         <div class="items">
             <div class="virtue grid" repeat.for="virtue of model.virtues">
                 <stat-box class="cost" fade-zero.bind="true" mode="secondary-angled" value.two-way="virtue.cost" min="0" size="xs" title="Cost"></stat-box>
-                <text-field class="name" value.two-way="virtue.name" placeholder="Name"></text-field>
+                <text-field class="name" value.two-way="virtue.name" placeholder="Name" title="${virtue.name}"></text-field>
                 <text-field class="category" value.two-way="virtue.category" placeholder="Category"></text-field>
                 <text-field class="description" value.two-way="virtue.notes" placeholder="Description" title="${virtue.notes}"></text-field>
                 <stat-box class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" readonly.bind="modifier.name == ''" repeat.for="modifier of virtue.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></stat-box>
@@ -27,7 +27,7 @@
         <div class="items">
             <div class="flaw grid" repeat.for="flaw of model.flaws">
                 <stat-box class="cost" fade-zero.bind="true" mode="secondary-angled" value.two-way="flaw.cost" max="0" size="xs" title="Cost"></stat-box>
-                <text-field class="name" value.two-way="flaw.name" placeholder="Name"></text-field>
+                <text-field class="name" value.two-way="flaw.name" placeholder="Name" title="${flaw.name}"></text-field>
                 <text-field class="category" value.two-way="flaw.category" placeholder="Category"></text-field>
                 <text-field class="description" value.two-way="flaw.notes" placeholder="Description" title="${flaw.notes}"></text-field>
                 <stat-box class="modifier" fade-zero.bind="true" prefix-plus.bind="true" mode="secondary" readonly.bind="modifier.name == ''" repeat.for="modifier of flaw.modifiers" value.two-way="modifier.rating" size="s" title="${modifier.name} modifier" color-mode="monochrome"></stat-box>
