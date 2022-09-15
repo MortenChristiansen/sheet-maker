@@ -45,3 +45,14 @@ research-projects .material, research-projects .shape {
     width: 150px;
     text-align: center;
 }
+
+research-projects .inactive > .arts,
+research-projects .inactive > .prerequisites,
+research-projects .inactive > .level,
+research-projects .inactive > .total,
+research-projects .inactive > .surplus,
+research-projects .inactive > .accumulated-total,
+research-projects .inactive > symbol,
+research-projects .inactive > stat-info-button {
+    opacity: 0.1;
+}

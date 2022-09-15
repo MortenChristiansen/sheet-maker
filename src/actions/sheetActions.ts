@@ -591,6 +591,29 @@ export function getLabModifierTotals(lab: Lab): LabModifier[] {
 
 function refreshResearchProjects(state: State) {
     let lab = state.character.lab;
+    lab.researchProjects.filter(r => r.name === "").forEach(r =>
+        {
+            r.accumulatedLabTotal = 0;
+            r.additionalInfo = "";
+            r.arts = "";
+            r.experiment = false;
+            r.focus = false;
+            r.intelligenceSpecialisation = true;
+            r.labAssistantBonus = 0;
+            r.level = 1;
+            r.magicTheorySpecialisation = false;
+            r.material = "";
+            r.materialBonus = 0;
+            r.newWork = true;
+            r.nocturnal = true;
+            r.positiveCycle = true;
+            r.prerequisites = "";
+            r.shape = "";
+            r.shapeBonus = 0;
+            r.similarResearchBonus = 0;
+            r.specialisationBonus = 0;
+            r.talisman = false;
+        });
     let newWorkBonus = lab.inventiveGeniusVirtue ? 3 : 0;
     let experimentBonus = lab.inventiveGeniusVirtue ? 6 : 0;
     let positiveCycleValue = lab.cyclicMagicVirtue ? 3 : 0;

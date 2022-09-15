@@ -16,6 +16,13 @@
     margin-right: unset;
 }
 
+.project-details .items-header {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    justify-self: center;
+    font-size: 20px;
+}
+
 .project-details input[type=text] {
     margin-right: 20px;
 }

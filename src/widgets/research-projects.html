@@ -1,7 +1,7 @@
 <title text="RESEARCH PROJECTS"></title>
 <div class="container">
     <div class="projects">
-        <div class="project grid" repeat.for="project of model.researchProjects">
+        <div class="project grid ${project.name === '' ? 'inactive' : ''}" repeat.for="project of model.researchProjects">
             <text-field class="name" value.two-way="project.name" placeholder="Name"></text-field>
             <text-field class="arts" value.two-way="project.arts" placeholder="Arts"></text-field>
             <text-field class="prerequisites" value.two-way="project.prerequisites" placeholder="Prereq"></text-field>
