@@ -48,8 +48,6 @@ export class MyApp {
         1500    1200    1000
 
     Bugs
-    - Sometimes the PWA is stuck in a save loop for different widgets. Not sure if it is specific to the PWA app.
-        Seems related to the times when the Google Drive file deletion prompt appears.
     - The PWA shows the app name twice in the title.
     - When local storage is full, the app silently fails to update it, but you won't notice until you refresh the page. Especially likely if you
         use big avatars. It is a problem that each edit makes a copy of all the images in the history. To combat this I have set the history limit
