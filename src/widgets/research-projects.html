@@ -11,7 +11,7 @@
             <stat-box class="surplus" mode="secondary" readonly.bind="true" value.two-way="project.surplusLabTotal" min="0" size="s" title="Surplus Lab Total"></stat-box>
             <stat-box class="accumulated-total" mode="secondary" value.two-way="project.accumulatedLabTotal" min="0" size="s" title="Accumulated Lab Total"></stat-box>
             
-            <symbol click.delegate="editDetails(project)" title="Edit details"></symbol>
+            <symbol click.trigger="editDetails(project)" title="Edit details"></symbol>
             <stat-info-button source.bind="project" property="additionalInfo"></stat-info-button>
         </div>
     </div>

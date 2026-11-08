@@ -1,4 +1,5 @@
 import { connectTo, localStorageMiddleware, MiddlewarePlacement, StateHistory, Store } from "@aurelia/store-v1";
+import { resolve } from "aurelia";
 import { createNewCharacter, globalCharacterInfo, loadCharacterFromLocalStorage, redoChange, saveWidgetChanges, undoChange, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateCarriedBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFamiliar, updateFatigue, updateFlaws, updateFullAvatar, updateLab, updateMagicItems, updateName, updateNotes, updateNpcs, updatePersonalityTraits, updateQuests, updateSanctumBelongings, updateSigil, updateSmallAvatar, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateVis, updateWarping, updateWounds, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
@@ -74,7 +75,9 @@ export class MyApp {
     public state: StateHistory<State>;
     hasError: boolean = false;
     
-    constructor(private store: Store<StateHistory<State>>) {
+    private store: Store<StateHistory<State>> = resolve(Store<StateHistory<State>>);
+
+    constructor() {
         this.store.registerAction('saveWidgetChanges', saveWidgetChanges);
         this.store.registerAction('undoChange', undoChange);
         this.store.registerAction('redoChange', redoChange);
@@ -120,8 +123,8 @@ export class MyApp {
             this.registerFileLaunchHandler();
         } else {
             this.store.registerAction('loadCharacterFromLocalStorage', loadCharacterFromLocalStorage);
-            store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
-            store.dispatch(loadCharacterFromLocalStorage, 'character-sheets');
+            this.store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
+            this.store.dispatch(loadCharacterFromLocalStorage, 'character-sheets');
         }
 
         window.onerror = (msg, url, linenumber) => {

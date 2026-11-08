@@ -1,4 +1,4 @@
-import { bindable, IEventAggregator } from "aurelia";
+import { bindable, IEventAggregator, resolve } from "aurelia";
 import { Component } from "./component";
 
 export class RadioButton extends Component {
@@ -8,7 +8,9 @@ export class RadioButton extends Component {
 
     element: Element;
 
-    constructor(@IEventAggregator readonly ea: IEventAggregator) {
+    readonly ea = resolve(IEventAggregator);
+
+    constructor() {
         super();
     }
 

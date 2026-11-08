@@ -1,5 +1,5 @@
 import { bindable } from "aurelia";
 
-export class Symbol {
+export class SymbolCustomElement {
     @bindable icon: "three-dots" = "three-dots";
 }

@@ -1,4 +1,5 @@
-import { containerless, IDialogService } from "aurelia";
+import { containerless } from "aurelia";
+import { IDialogService } from "@aurelia/dialog";
 import { container } from "../main";
 import { Lab, ResearchProject } from "../types";
 import { deepCopy } from "../utils";
@@ -22,7 +23,7 @@ export class ResearchProjectDetailsDialog {
         let modelCopy = deepCopy(model);
         dialogService.open({
             component: () => ResearchProjectDetailsDialog,
-            overlayDismiss: true,
+            options: { overlayDismiss: true },
             model: { model: modelCopy, lab }
         }).whenClosed(_ => {
             model.focus = modelCopy.focus;

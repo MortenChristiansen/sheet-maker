@@ -1,4 +1,4 @@
-import { bindable, containerless, IEventAggregator } from "aurelia";
+import { bindable, containerless, IEventAggregator, resolve } from "aurelia";
 
 @containerless
 export class TextField {
@@ -7,7 +7,9 @@ export class TextField {
     @bindable title: string = '';
     @bindable class: string = '';
 
-    constructor(@IEventAggregator readonly ea: IEventAggregator) {
+    readonly ea = resolve(IEventAggregator);
+
+    constructor() {
     }
 
     onChange = () => {

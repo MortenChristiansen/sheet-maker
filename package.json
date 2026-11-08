@@ -9,73 +9,49 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
-    "@aurelia/router": "^2.0.0-alpha.36",
-    "@aurelia/store-v1": "^2.0.0-alpha.35",
-    "aurelia": "latest",
-    "rxjs": "^7.5.5"
+    "@aurelia/dialog": "2.0.0-rc.2",
+    "@aurelia/router-direct": "2.0.0-rc.2",
+    "@aurelia/store-v1": "2.0.0-rc.2",
+    "aurelia": "2.0.0-rc.2"
   },
   "devDependencies": {
-    "@aurelia/testing": "latest",
-    "@aurelia/ts-jest": "latest",
-    "@aurelia/webpack-loader": "latest",
-    "@types/jest": "^28.1.1",
-    "@types/node": "^17.0.41",
-    "@typescript-eslint/eslint-plugin": "^5.27.1",
-    "@typescript-eslint/parser": "^5.27.1",
-    "autoprefixer": "^10.4.7",
-    "css-loader": "^6.7.1",
-    "dotenv-webpack": "^7.1.0",
-    "eslint": "^8.17.0",
-    "gh-pages": "^4.0.0",
-    "html-webpack-plugin": "^5.5.0",
-    "htmlhint": "^1.1.4",
-    "jest": "^28.1.1",
-    "jest-environment-jsdom": "^28.1.1",
-    "jest-transform-stub": "^2.0.0",
-    "postcss": "^8.4.14",
-    "postcss-loader": "^7.0.0",
-    "rimraf": "^3.0.2",
-    "style-loader": "^3.3.1",
-    "ts-loader": "^9.3.0",
-    "tslib": "^2.4.0",
-    "typescript": "^4.7.3",
-    "webpack": "^5.73.0",
-    "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.9.2",
-    "webpack-pwa-manifest": "^4.0.0",
-    "workbox-webpack-plugin": "^6.5.4"
+    "@aurelia/webpack-loader": "2.0.0-rc.2",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.2",
+    "autoprefixer": "^10.6.2",
+    "css-loader": "^7.1.5",
+    "dotenv-webpack": "^9.0.0",
+    "eslint": "^10.14.0",
+    "gh-pages": "^6.3.0",
+    "globals": "^17.14.0",
+    "html-webpack-plugin": "^5.6.8",
+    "htmlhint": "^1.9.2",
+    "postcss": "^8.5.32",
+    "postcss-loader": "^8.2.1",
+    "rimraf": "^6.1.4",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.6.2",
+    "tslib": "^2.9.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "webpack": "^5.112.2",
+    "webpack-bundle-analyzer": "^5.4.2",
+    "webpack-cli": "^7.3.1",
+    "webpack-dev-server": "^6.1.0",
+    "workbox-webpack-plugin": "^7.4.1"
   },
   "scripts": {
-    "lint:js": "eslint src test --ext .js,.ts",
+    "lint:js": "eslint src",
     "lint:html": "htmlhint -c .htmlhintrc src",
     "lint": "npm run lint:js && npm run lint:html",
-    "pretest": "npm run lint",
     "start": "webpack serve",
     "build": "rimraf dist && webpack --env production",
     "analyze": "rimraf dist && webpack --env production --analyze",
-    "test": "jest",
     "predeploy": "rimraf dist && webpack --env production",
     "deploy": "gh-pages -d dist"
   },
-  "jest": {
-    "testMatch": [
-      "<rootDir>/test/**/*.spec.ts"
-    ],
-    "testEnvironment": "jsdom",
-    "transform": {
-      "\\.(css|less|sass|scss|styl|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "jest-transform-stub",
-      "\\.(ts|html)$": "@aurelia/ts-jest"
-    },
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.ts",
-      "!src/**/*.d.ts"
-    ],
-    "globals": {
-      "ts-jest": {
-        "isolatedModules": true
-      }
-    }
+  "overrides": {
+    "glob": "^14.0.4",
+    "minimatch": "^11.0.5"
   }
 }

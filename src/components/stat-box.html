@@ -1,7 +1,7 @@
 <span if.bind="showHeader && header" class="header ${mode} ${size}">${header}</span>
 <div class="container ${active === true ? 'active' : ''} ${readonly ? 'readonly' : ''} ${fadeZero && value == 0 ? 'fade' : ''} ${mode} ${colorMode} ${size}"
-     pointerdown.delegate="press()"
+     pointerdown.trigger="press()"
      ref="containerElement">
     <span class="content numbers">${getValuePrefix()+value}</div>
 </div>
-<div class="overlay" if.bind="active"  pointerup.delegate="release()" pointermove.delegate="move($event)"></div>
+<div class="overlay" if.bind="active"  pointerup.trigger="release()" pointermove.trigger="move($event)"></div>

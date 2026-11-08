@@ -15,11 +15,11 @@
     </div>
 </div>
 <div class="buttons">
-    <button click.delegate="undo()" disabled.bind="state.past.length == 0">Undo</button>
-    <button click.delegate="redo()" disabled.bind="state.future.length == 0">Redo</button>
-    <button click.delegate="save()">Save As</button>
-    <button click.delegate="load()">Load</button>
-    <button click.delegate="newCharacter()">Create New Character</button>
+    <button click.trigger="undo()" disabled.bind="state.past.length == 0">Undo</button>
+    <button click.trigger="redo()" disabled.bind="state.future.length == 0">Redo</button>
+    <button click.trigger="save()">Save As</button>
+    <button click.trigger="load()">Load</button>
+    <button click.trigger="newCharacter()">Create New Character</button>
     
     <input type='file' accept='.ars,.json' files.bind="selectedFiles" ref="fileInput" style="display: none;"><br>
 </div>

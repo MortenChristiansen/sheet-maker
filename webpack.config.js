@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const Dotenv = require('dotenv-webpack');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
+const crypto = require('crypto');
+const fs = require('fs');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const cssLoader = 'css-loader';
@@ -18,6 +18,69 @@ const postcssLoader = {
   }
 };
 
+const manifest = {
+  name: "Sheet Maker",
+  short_name: "Sheet Maker",
+  orientation: "portrait",
+  display: "standalone",
+  start_url: "/sheet-maker/",
+  scope: ".",
+  background_color: "#FFF",
+  theme_color: "darkred",
+  description: "A character sheet for Ars Magica 5e",
+  dir: "ltr",
+  lang: "en-US",
+  icons: [
+    { src: "content/app.512x512.png", sizes: "512x512", type: "image/png" },
+    { src: "content/app.96x96.png", sizes: "96x96", type: "image/png" }
+  ],
+  file_handlers: [
+    { action: "/sheet-maker/", accept: { "text/json": [".ars"] } },
+    { action: "/sheet-maker/", accept: { "text/json": [".json"] } }
+  ]
+};
+
+// Emits the web app manifest and its icons with content hashes and links the manifest from index.html
+class PwaManifestPlugin {
+  constructor(manifest) {
+    this.manifest = manifest;
+  }
+
+  apply(compiler) {
+    const { RawSource } = compiler.webpack.sources;
+    const hash = content => crypto.createHash('md5').update(content).digest('hex');
+
+    compiler.hooks.thisCompilation.tap('PwaManifestPlugin', compilation => {
+      const publicPath = compilation.outputOptions.publicPath;
+      let manifestFile;
+
+      compilation.hooks.processAssets.tap(
+        { name: 'PwaManifestPlugin', stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL },
+        () => {
+          const icons = this.manifest.icons.map(icon => {
+            const source = path.resolve(__dirname, icon.src);
+            const content = fs.readFileSync(source);
+            const file = `icon_${icon.sizes}.${hash(content)}.png`;
+            compilation.fileDependencies.add(source);
+            compilation.emitAsset(file, new RawSource(content));
+            return { ...icon, src: publicPath + file };
+          });
+
+          const json = JSON.stringify({ ...this.manifest, icons }, null, 2);
+          manifestFile = `manifest.${hash(json)}.json`;
+          compilation.emitAsset(manifestFile, new RawSource(json));
+        });
+
+      HtmlWebpackPlugin.getCompilationHooks(compilation).alterAssetTagGroups.tap('PwaManifestPlugin', data => {
+        data.headTags.push(
+          HtmlWebpackPlugin.createHtmlTagObject('meta', { name: 'theme-color', content: this.manifest.theme_color }),
+          HtmlWebpackPlugin.createHtmlTagObject('link', { rel: 'manifest', href: publicPath + manifestFile }));
+        return data;
+      });
+    });
+  }
+}
+
 function createPlugins(production, analyze) {
   let plugins = [
     new HtmlWebpackPlugin({ template: 'index.html', favicon: 'favicon.ico' }),
@@ -29,38 +92,7 @@ function createPlugins(production, analyze) {
   if (!production) return plugins;
 
   return [...plugins,
-    new WebpackPwaManifest({
-    name: "Sheet Maker",
-    short_name: "Sheet Maker",
-    start_url: "/sheet-maker/",
-    scope: ".",
-    display: "standalone",
-    background_color: "#FFF",
-    theme_color: "darkred",
-    description: "A character sheet for Ars Magica 5e",
-    dir: "ltr",
-    lang: "en-US",
-    icons: [{
-        src: "content/app.96x96.png",
-        type: "image/png",
-        sizes: "96x96"
-    }, {
-        src: "content/app.512x512.png",
-        type: "image/png",
-        sizes: "512x512"
-    }],
-    "file_handlers": [{
-      action: "/sheet-maker/",
-      accept: {
-        "text/json": [".ars"]
-      }
-    }, {
-      action: "/sheet-maker/",
-      accept: {
-        "text/json": [".json"]
-      }
-    }]
-    }),
+    new PwaManifestPlugin(manifest),
     new WorkboxPlugin.GenerateSW({
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
@@ -86,43 +118,8 @@ module.exports = function(env, { analyze }) {
     },
     resolve: {
       extensions: ['.ts', '.js'],
-      modules: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'dev-app'), 'node_modules'],
-      alias: production ? {
-        ...[
-          // These two were required when using the Aurelia router
-          'kernel',
-          'runtime-html',
-        ].reduce((map, pkg) => {
-          const name = `@aurelia/${pkg}`;
-          map[name] = path.resolve(__dirname, 'node_modules', name, 'dist/esm/index.mjs');
-          return map;
-        }, {
-          // add your production aliasing here
-        })
-      } : {
-        ...[
-          'fetch-client',
-          'kernel',
-          'metadata',
-          'platform',
-          'platform-browser',
-          'plugin-conventions',
-          'route-recognizer',
-          'router',
-          'router-lite',
-          'runtime',
-          'runtime-html',
-          'testing',
-          'webpack-loader',
-        ].reduce((map, pkg) => {
-          const name = `@aurelia/${pkg}`;
-          map[name] = path.resolve(__dirname, 'node_modules', name, 'dist/esm/index.dev.mjs');
-          return map;
-        }, {
-          'aurelia': path.resolve(__dirname, 'node_modules/aurelia/dist/esm/index.dev.mjs'),
-          // add your development aliasing here
-        })
-      }
+      // Aurelia packages pick their development or production build through the mode's export condition
+      modules: [path.resolve(__dirname, 'src'), 'node_modules']
     },
     devServer: {
       historyApiFallback: true,

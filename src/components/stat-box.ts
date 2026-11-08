@@ -1,4 +1,4 @@
-import { bindable, IEventAggregator } from "aurelia";
+import { bindable, IEventAggregator, resolve } from "aurelia";
 import { Component } from "./component";
 
 export class StatBox extends Component {
@@ -18,7 +18,9 @@ export class StatBox extends Component {
     delta: number = 0;
     originalValue: number;
 
-    constructor(@IEventAggregator readonly ea: IEventAggregator) {
+    readonly ea = resolve(IEventAggregator);
+
+    constructor() {
         super();
     }
 

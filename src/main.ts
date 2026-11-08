@@ -1,7 +1,7 @@
 import Aurelia from 'aurelia';
-import { DialogDefaultConfiguration } from '@aurelia/runtime-html';
+import { DialogConfigurationClassic } from "@aurelia/dialog";
 import { StoreConfiguration } from '@aurelia/store-v1';
-import { Navigation, RouterConfiguration, RoutingInstruction } from '@aurelia/router'; 
+import { Navigation, RouterConfiguration, RoutingInstruction } from '@aurelia/router-direct'; 
 import { MyApp } from './my-app';
 import { Checkbox } from './components/checkbox';
 import { List } from './components/list';
@@ -19,7 +19,7 @@ import { TextDialog } from './components/text-dialog';
 import { StatInfoButton } from './components/stat-info-button';
 import { CrossButton } from './components/cross-button';
 import { createInitialState, globalCharacterInfo } from './actions/sheetActions';
-import { Symbol } from './components/symbol';
+import { SymbolCustomElement } from './components/symbol';
 import { DroppableImage } from './components/droppable-image';
 import { Decoration } from './layout/decoration';
 
@@ -38,7 +38,7 @@ let app = Aurelia
           },
           appTitle: '${componentTitles}${appTitleSeparator}Sheet Maker'
     } }))
-    .register(DialogDefaultConfiguration)
+    .register(DialogConfigurationClassic)
     .register( // Components
         Checkbox,
         List,
@@ -51,7 +51,7 @@ let app = Aurelia
         TextDialog,
         StatInfoButton,
         CrossButton,
-        Symbol,
+        SymbolCustomElement,
         DroppableImage)
     .register( // Layout elements
         Footer,

@@ -1,13 +1,11 @@
-import { bindable, inject } from "aurelia";
+import { bindable, INode, resolve } from "aurelia";
 
-@inject(Element)
 export class DialogBox {
     @bindable title: string;
     @bindable size: "s" | "m" = "m";
     @bindable showFooter: boolean = true;
 
-    constructor(private host: Element) {
-    }
+    private host = resolve(INode) as HTMLElement;
 
     attaching() {
       document.body.classList.add("disable-scrolling");
