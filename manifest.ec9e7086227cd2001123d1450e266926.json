@@ -1,16 +1,4 @@
 {
-  "icons": [
-    {
-      "src": "/sheet-maker/icon_512x512.8ea7f4ccbd92ca5eaf32a472ae9a870b.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/sheet-maker/icon_96x96.e55aa82a10a9e29196e6f5f421cace1a.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    }
-  ],
   "name": "Sheet Maker",
   "short_name": "Sheet Maker",
   "orientation": "portrait",
@@ -22,6 +10,18 @@
   "description": "A character sheet for Ars Magica 5e",
   "dir": "ltr",
   "lang": "en-US",
+  "icons": [
+    {
+      "src": "/sheet-maker/icon_512x512.3a9a1ee0134be94b99e51a181c7dacdb.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/sheet-maker/icon_96x96.beb44be1b95c3f7e9008ead28fc05835.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
   "file_handlers": [
     {
       "action": "/sheet-maker/",
