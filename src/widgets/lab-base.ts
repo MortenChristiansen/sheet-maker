@@ -17,7 +17,7 @@ export class LabBase extends Widget<Lab> {
 
         model.flaws.concat(model.virtues).forEach(f => {
             while (f.modifiers.length < this.modifierCount) {
-                f.modifiers.push({ name: '', rating: 0 });
+                f.modifiers.push({ name: model.availableModifiers[f.modifiers.length]?.name ?? '', rating: 0 });
             }
             if (f.modifiers.length > this.modifierCount) f.modifiers = f.modifiers.slice(0, this.modifierCount);
         });

@@ -12,7 +12,7 @@ export class LabModificationsList extends LabBase {
             name,
             category: 'Outfitting',
             cost: 0,
-            modifiers: [],
+            modifiers: this.createModifiers(),
             notes: '',
             type: 'Virtue'
         });
@@ -24,11 +24,16 @@ export class LabModificationsList extends LabBase {
             name,
             category: 'Outfitting',
             cost: 0,
-            modifiers: [],
+            modifiers: this.createModifiers(),
             notes: '',
             type: 'Flaw'
             });
         this.model.flaws.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    // Name each modifier after its column right away, since modifiers without a name are read-only
+    private createModifiers() {
+        return this.model.availableModifiers.map(m => ({ name: m.name, rating: 0 }));
     }
 
     modifierAdded = (name: string) => {

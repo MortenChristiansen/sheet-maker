@@ -1,25 +1,106 @@
-import { nextStateHistory, StateHistory } from "@aurelia/store-v1";
-import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Npc, Familiar, Vis, Wounds } from "../types";
+import { jump, nextStateHistory, rehydrateFromLocalStorage, StateHistory } from "@aurelia/store-v1";
+import { Ability, ArsCharacter, CharacterDescription as CharacterDescription, Art, Arts, Characteristics, Flaw, PhysicalStatus, Spell, State, Virtue, PersonalityTrait, Ageing, Confidence, Warping, ActiveMagic, XpEntry, Lab, LabModification, LabModifierType, LabModifier, SpellcastingStats, Belongings, initialState, Talisman, MagicItem, Quest, Npc, Familiar, Vis, Wounds, createResearchProject } from "../types";
 import { deepCopy } from "../utils";
 
 export const globalCharacterInfo = {
     name: ''
 };
 
+/**
+ * Incremented whenever the whole character is replaced (new, load, import, undo/redo), so widgets
+ * discard their unsaved edits instead of merging them into the replacement.
+ */
+export const characterGeneration = {
+    value: 0
+};
+
+/**
+ * Applies a widget's changes, unless the character was replaced after the widget last read it. A save
+ * can be queued behind a load, and must not then overwrite the loaded character. The widget's changes
+ * are applied to the state as it is when the save runs, so a save queued behind another widget's save
+ * of the same data does not undo it.
+ */
+export function saveWidgetChanges<T>(
+    state: StateHistory<State>,
+    saveAction: (state: StateHistory<State>, model: T) => StateHistory<State>,
+    applyChanges: (present: State) => T,
+    generation: number) {
+    if (generation !== characterGeneration.value) return false;
+    return saveAction(state, applyChanges(state.present));
+}
+
+export function undoChange(state: StateHistory<State>) {
+    characterGeneration.value++;
+    return jump(state, -1) as StateHistory<State>;
+}
+
+export function redoChange(state: StateHistory<State>) {
+    characterGeneration.value++;
+    return jump(state, 1) as StateHistory<State>;
+}
+
+export function createInitialState(): State {
+    return normalizeState(deepCopy(initialState));
+}
+
+/**
+ * Prepares state loaded from a file or local storage. Saved files hold the whole state, but a bare
+ * character is accepted too. Fields added since the file was saved are filled in from the defaults.
+ */
+export function normalizeState(loaded: unknown): State {
+    const loadedObject = loaded as { character?: unknown };
+    const state = (loadedObject?.character !== undefined ? loadedObject : { character: loadedObject }) as State;
+    fillMissingFields(state as unknown as Record<string, unknown>, initialState);
+    if (state.character.xpEntries.length === 0) {
+        refreshXpEntries(state);
+    }
+    return state;
+}
+
+function fillMissingFields(target: Record<string, unknown>, defaults: object) {
+    Object.entries(defaults).forEach(([key, defaultValue]) => {
+        const value = target[key];
+        if (value === undefined || value === null) {
+            target[key] = deepCopy(defaultValue);
+        } else if (isObject(value) && isObject(defaultValue)) {
+            fillMissingFields(value as Record<string, unknown>, defaultValue);
+        }
+    });
+}
+
+function isObject(value: unknown) {
+    return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
 export function createNewCharacter(state: StateHistory<State>) {
-    const newState = deepCopy(initialState);
-    return nextStateHistory(state, newState);
+    characterGeneration.value++;
+    return nextStateHistory(state, createInitialState());
 }
 
 export async function loadCharacterFromFile(state: StateHistory<State>, file: File) {
     const stateText = await file.text();
-    const newState = JSON.parse(stateText);
+    const newState = normalizeState(JSON.parse(stateText));
+    characterGeneration.value++;
     return nextStateHistory(state, newState);
+}
+
+export function loadCharacterFromLocalStorage(state: StateHistory<State>, key: string) {
+    const rehydrated = rehydrateFromLocalStorage(state, key) as StateHistory<State>;
+    if (rehydrated === state || !rehydrated?.present) return state;
+    const normalized = {
+        ...rehydrated,
+        past: (rehydrated.past ?? []).map(normalizeState),
+        present: normalizeState(rehydrated.present),
+        future: (rehydrated.future ?? []).map(normalizeState)
+    };
+    characterGeneration.value++;
+    return normalized;
 }
 
 export function loadCharacter(state: StateHistory<State>, character: ArsCharacter) {
     const newState = deepCopy(state.present);
     newState.character = character;
+    characterGeneration.value++;
     return nextStateHistory(state, newState);
 }
 
@@ -36,6 +117,7 @@ export function updateAbilities(state: StateHistory<State>, abilities: Ability[]
     console.log("Saving abilities", abilities);
     const newState = deepCopy(state.present);
     newState.character.abilities = sortListItems(abilities);
+    refreshPuissantAbilitiesAndArts(newState);
     refreshResearchProjects(newState);
     refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
@@ -137,6 +219,7 @@ export function updateSpellWishlist(state: StateHistory<State>, spellWishlist: S
     const newState = deepCopy(state.present);
     newState.character.spellWishlist = filterListItems(spellWishlist).sort((a, b) => a.arts.slice(2).localeCompare(b.arts.slice(2)));
     refreshSpellLists(newState);
+    refreshCastingTotals(newState);
     return nextStateHistory(state, newState);
 }
 
@@ -199,8 +282,9 @@ export function updateLab(state: StateHistory<State>, lab: Lab) {
 
 export function importCharacter(state: StateHistory<State>, character: string) {
     console.log("Importing character");
-    const newState = deepCopy(state.present);
-    newState.character = JSON.parse(character) as ArsCharacter;
+    // Save As exports the whole state, so this accepts that as well as a bare character
+    const newState = normalizeState(JSON.parse(character));
+    characterGeneration.value++;
     return nextStateHistory(state, newState);
 }
 
@@ -367,9 +451,9 @@ function calculateWoundPenalty(state: State) {
 }
 
 function refreshAgeingStats(state: State) {
+    refreshAge(state);
     refreshAgeingRollModifier(state);
     refreshDecrepitudeLevel(state);
-    refreshAge(state);
 }
 
 function refreshAgeingRollModifier(state: State) {
@@ -447,8 +531,8 @@ function calculateSlowSpellBonus(state: State, specialisation: string) {
     let philosophiae = state.character.abilities.find(a => a.name == 'Philosophiae');
     let artesLiberalesSpecialisation = artesLiberales?.specialisation == specialisation ? 1 : 0;
     let philosophiaeSpecialisation = philosophiae?.specialisation == specialisation ? 1 : 0;
-    let artesLiberalesPuissant = artesLiberales?.puissant ? 3 : 0;
-    let philosophiaePuissant = philosophiae?.puissant ? 3 : 0;
+    let artesLiberalesPuissant = artesLiberales?.puissant ? 2 : 0;
+    let philosophiaePuissant = philosophiae?.puissant ? 2 : 0;
     return (artesLiberales?.level ?? 0) + artesLiberalesSpecialisation + artesLiberalesPuissant +
            (philosophiae?.level ?? 0) + philosophiaeSpecialisation + philosophiaePuissant;
 }
@@ -519,7 +603,7 @@ function refreshXpEntries(state: State) {
             createXpEntry(state.character.ageing.currentYear, 'Winter')
         ];
     }
-    state.character.xpEntries = state.character.xpEntries.filter(x => x.year < state.character.ageing.currentYear + 2);
+    state.character.xpEntries = state.character.xpEntries.filter(x => x.year <= state.character.ageing.currentYear + 2);
     if (state.character.xpEntries.length == 0) {
         state.character.xpEntries = [
             createXpEntry(state.character.ageing.currentYear, 'Spring'),
@@ -562,8 +646,11 @@ function refreshLab(state: State) {
 function refreshModificationModifiers(modifications: LabModification[], availableModifications: LabModifierType[]){
     modifications.forEach(m =>
         {
+            while (m.modifiers.length < availableModifications.length) {
+                m.modifiers.push({ name: '', rating: 0 });
+            }
             m.modifiers.forEach((mf, idx) => {
-                mf.name = availableModifications[idx].name;
+                mf.name = availableModifications[idx]?.name ?? '';
                 if (mf.name == '') {
                     mf.rating = 0;
                 }
@@ -571,7 +658,7 @@ function refreshModificationModifiers(modifications: LabModification[], availabl
 
             if (m.category.length > 1) {
                 if ('outfitting'.startsWith(m.category.toLocaleLowerCase())) m.category = 'Outfitting';
-                if ('stucture'.startsWith(m.category.toLocaleLowerCase())) m.category = 'Structure';
+                if ('structure'.startsWith(m.category.toLocaleLowerCase())) m.category = 'Structure';
                 if ('supernatural'.startsWith(m.category.toLocaleLowerCase())) m.category = 'Supernatural';
             }
         });
@@ -591,36 +678,16 @@ export function getLabModifierTotals(lab: Lab): LabModifier[] {
 
 function refreshResearchProjects(state: State) {
     let lab = state.character.lab;
-    lab.researchProjects.filter(r => r.name === "").forEach(r =>
-        {
-            r.accumulatedLabTotal = 0;
-            r.additionalInfo = "";
-            r.arts = "";
-            r.experiment = false;
-            r.focus = false;
-            r.intelligenceSpecialisation = true;
-            r.labAssistantBonus = 0;
-            r.level = 1;
-            r.magicTheorySpecialisation = false;
-            r.material = "";
-            r.materialBonus = 0;
-            r.newWork = true;
-            r.nocturnal = true;
-            r.positiveCycle = true;
-            r.prerequisites = "";
-            r.shape = "";
-            r.shapeBonus = 0;
-            r.similarResearchBonus = 0;
-            r.specialisationBonus = 0;
-            r.talisman = false;
-        });
+    // Clear empty rows so a project typed into one starts out blank
+    lab.researchProjects.filter(r => r.name === "").forEach(r => Object.assign(r, createResearchProject()));
     let newWorkBonus = lab.inventiveGeniusVirtue ? 3 : 0;
     let experimentBonus = lab.inventiveGeniusVirtue ? 6 : 0;
     let positiveCycleValue = lab.cyclicMagicVirtue ? 3 : 0;
     let negativeCycleValue = lab.cyclicMagicFlaw ? -3 : 0;
     lab.researchProjects.forEach(r =>
         {
-            let magicTheory = state.character.abilities.find(a => a.name == 'Magic Theory')?.level ?? 0;
+            let magicTheoryAbility = state.character.abilities.find(a => a.name == 'Magic Theory');
+            let magicTheory = (magicTheoryAbility?.level ?? 0) + (magicTheoryAbility?.puissant ? 2 : 0);
             let generalQuality = getLabModifierTotals(lab).find(x => x.name == 'GQ')?.rating ?? 0;
             r.artModifier = calculateArtsScore(state, r.arts, r.prerequisites, r.focus);
             r.labTotal =
@@ -639,6 +706,7 @@ function refreshResearchProjects(state: State) {
                 r.materialBonus +
                 r.shapeBonus +
                 r.similarResearchBonus +
+                r.specialisationBonus +
                 (r.talisman ? 5 : 0);
             r.surplusLabTotal = r.labTotal - r.level;
         });

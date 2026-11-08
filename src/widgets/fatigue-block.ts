@@ -10,10 +10,10 @@ export class FatigueBlock extends SubWidget<PhysicalStatus, number> {
     bound() {
         super.bound();
 
-        this.ea.subscribe<{ group: string, source: Element, value: string }, 'radio-button-selected'>('radio-button-selected', payload => {
+        this.subscriptions.push(this.ea.subscribe<{ group: string, source: Element, value: string }, 'radio-button-selected'>('radio-button-selected', payload => {
             if (payload.group == "fatigue") {
                 this.model.fatigue = Number.parseInt(payload.value);
             }
-        });
+        }));
     }
 }

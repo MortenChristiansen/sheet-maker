@@ -9,10 +9,10 @@ export class CharacterTypeSelector extends Widget<"magus" | "companion"> {
     bound() {
         super.bound();
 
-        this.ea.subscribe<{ group: string, source: Element, value: string }, 'radio-button-selected'>('radio-button-selected', payload => {
+        this.subscriptions.push(this.ea.subscribe<{ group: string, source: Element, value: string }, 'radio-button-selected'>('radio-button-selected', payload => {
             if (payload.group == "character-type") {
                 this.model = payload.value as "magus" | "companion";
             }
-        });
+        }));
     }
 }

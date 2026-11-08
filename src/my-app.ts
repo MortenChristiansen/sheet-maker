@@ -1,5 +1,5 @@
-import { connectTo, jump, localStorageMiddleware, MiddlewarePlacement, rehydrateFromLocalStorage, StateHistory, Store } from "@aurelia/store-v1";
-import { createNewCharacter, globalCharacterInfo, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateCarriedBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFamiliar, updateFatigue, updateFlaws, updateFullAvatar, updateLab, updateMagicItems, updateName, updateNotes, updateNpcs, updatePersonalityTraits, updateQuests, updateSanctumBelongings, updateSigil, updateSmallAvatar, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateVis, updateWarping, updateWounds, updateXpEntries } from "./actions/sheetActions";
+import { connectTo, localStorageMiddleware, MiddlewarePlacement, StateHistory, Store } from "@aurelia/store-v1";
+import { createNewCharacter, globalCharacterInfo, loadCharacterFromLocalStorage, redoChange, saveWidgetChanges, undoChange, importCharacter, loadCharacter, loadCharacterFromFile, updateAbilities, updateActiveMagic, updateAgeing, updateArts, updateBackground, updateCarriedBelongings, updateCharacteristics, updateCharacterType, updateConfidence, updateDescription, updateFamiliar, updateFatigue, updateFlaws, updateFullAvatar, updateLab, updateMagicItems, updateName, updateNotes, updateNpcs, updatePersonalityTraits, updateQuests, updateSanctumBelongings, updateSigil, updateSmallAvatar, updateSpellcastingStats, updateSpells, updateSpellWishlist, updateTalisman, updateVirtues, updateVis, updateWarping, updateWounds, updateXpEntries } from "./actions/sheetActions";
 import { State } from "./types";
 import { downloadTextFile } from "./utils";
 
@@ -77,6 +77,9 @@ export class MyApp {
     hasError: boolean = false;
     
     constructor(private store: Store<StateHistory<State>>) {
+        this.store.registerAction('saveWidgetChanges', saveWidgetChanges);
+        this.store.registerAction('undoChange', undoChange);
+        this.store.registerAction('redoChange', redoChange);
         this.store.registerAction('createNewCharacter', createNewCharacter);
         this.store.registerAction('loadCharacter', loadCharacter);
         this.store.registerAction('loadCharacterFromFile', loadCharacterFromFile);
@@ -118,9 +121,9 @@ export class MyApp {
         if (this.isStandalone) {
             this.registerFileLaunchHandler();
         } else {
-            this.store.registerAction('rehydrateFromLocalStorage', rehydrateFromLocalStorage);
+            this.store.registerAction('loadCharacterFromLocalStorage', loadCharacterFromLocalStorage);
             store.registerMiddleware(localStorageMiddleware, MiddlewarePlacement.After, { key: 'character-sheets' });
-            store.dispatch(rehydrateFromLocalStorage, 'character-sheets');
+            store.dispatch(loadCharacterFromLocalStorage, 'character-sheets');
         }
 
         window.onerror = (msg, url, linenumber) => {
@@ -142,8 +145,11 @@ export class MyApp {
                     this.fileHandle = handle;
                     const file = await handle.getFile() as File;
                     if (file) {
+                        this.isInitialized = false;
+                        if (!this.middlewareRegistered) {
+                            this.store.registerMiddleware(this.fileStorageMiddlewareFactory(), MiddlewarePlacement.After);
+                        }
                         this.store.dispatch(loadCharacterFromFile, file);
-                        this.store.registerMiddleware(this.fileStorageMiddlewareFactory(), MiddlewarePlacement.After);
                     }
                 }
             });
@@ -151,11 +157,11 @@ export class MyApp {
     }
 
     undo = () => {
-        this.store.dispatch(jump, -1);
+        this.store.dispatch(undoChange);
     }
     
     redo = () => {
-        this.store.dispatch(jump, 1);
+        this.store.dispatch(redoChange);
     }
 
     save = async () => {
@@ -241,15 +247,23 @@ export class MyApp {
         return middleware;
     }
 
-    saveFile = async (state: StateHistory<State>) => {
-        if (!this.fileHandle) {
-            console.log("Could not save - file handle not set");
-            return;
-        }
+    private saveQueue: Promise<void> = Promise.resolve();
 
-        var writable = await this.fileHandle.createWritable()
-        await writable.write(JSON.stringify(state.present, null, 4));
-        await writable.close();
+    // Writes run one at a time, so an older save cannot finish after a newer one and overwrite it
+    saveFile = (state: StateHistory<State>) => {
+        const fileHandle = this.fileHandle;
+        const write = this.saveQueue.then(async () => {
+            if (!fileHandle) {
+                console.log("Could not save - file handle not set");
+                return;
+            }
+
+            const writable = await fileHandle.createWritable();
+            await writable.write(JSON.stringify(state.present, null, 4));
+            await writable.close();
+        });
+        this.saveQueue = write.catch(() => undefined);
+        return write;
     }
 }
 

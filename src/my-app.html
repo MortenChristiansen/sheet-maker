@@ -21,7 +21,7 @@
     <button click.delegate="load()">Load</button>
     <button click.delegate="newCharacter()">Create New Character</button>
     
-    <input type='file' accept='.json' files.bind="selectedFiles" ref="fileInput" style="display: none;"><br>
+    <input type='file' accept='.ars,.json' files.bind="selectedFiles" ref="fileInput" style="display: none;"><br>
 </div>
 <div class="error-indicator" if.bind="hasError">
 </div>

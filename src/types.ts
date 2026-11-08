@@ -348,6 +348,36 @@ export interface ArsCharacter {
     familiar: Familiar;
 }
 
+/** A blank research project with no bonuses enabled. */
+export function createResearchProject(name = ''): ResearchProject {
+    return {
+        name,
+        arts: '',
+        prerequisites: '',
+        artModifier: 0,
+        newWork: false,
+        experiment: false,
+        focus: false,
+        specialisationBonus: 0,
+        magicTheorySpecialisation: false,
+        intelligenceSpecialisation: false,
+        talisman: false,
+        similarResearchBonus: 0,
+        material: '',
+        materialBonus: 0,
+        shape: '',
+        shapeBonus: 0,
+        labAssistantBonus: 0,
+        labTotal: 0,
+        accumulatedLabTotal: 0,
+        surplusLabTotal: 0,
+        level: 1,
+        nocturnal: false,
+        positiveCycle: false,
+        additionalInfo: ''
+    };
+}
+
 export const initialState: State = {
     character: {
         type: 'magus',

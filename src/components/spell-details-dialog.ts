@@ -25,6 +25,8 @@ export class SpellDetailsDialog {
             model.attunementBonus = modelCopy.attunementBonus;
             model.masteries = modelCopy.masteries;
             model.xp = modelCopy.xp;
+            model.sourceBook = modelCopy.sourceBook;
+            model.pageNumber = modelCopy.pageNumber;
             if (onSuccess) {
                 onSuccess();
             }
